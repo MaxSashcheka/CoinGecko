@@ -5,8 +5,8 @@
 //  Created by Maksim Sashcheka on 12.09.22.
 //
 
-import UIKit
 import Core
+import UIKit
 import Utils
 
 class ViewController: UIViewController {
@@ -20,7 +20,4 @@ class ViewController: UIViewController {
         coreInstance.printName()
         utilsInstance.printName()
     }
-
-
 }
-

@@ -17,6 +17,10 @@
 		1CD695D128CFC326007AE077 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD695CF28CFC326007AE077 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1CD695D428CFC32A007AE077 /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD695D328CFC32A007AE077 /* Utils.framework */; };
 		1CD695D528CFC32A007AE077 /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD695D328CFC32A007AE077 /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1CD695E128CFD364007AE077 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CD695E328CFD364007AE077 /* Localizable.strings */; };
+		1CF466ED28CFDF5F0012DE85 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF466EA28CFDF5F0012DE85 /* Assets.swift */; };
+		1CF466EE28CFDF5F0012DE85 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF466EB28CFDF5F0012DE85 /* Fonts.swift */; };
+		1CF466EF28CFDF5F0012DE85 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF466EC28CFDF5F0012DE85 /* Localizable.swift */; };
 		B224E8EF66AFC36947FEFDC9 /* Pods_CoinGecko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A048B1055F31676E083DD39 /* Pods_CoinGecko.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +51,10 @@
 		1CD6959B28CFBDA7007AE077 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1CD695CF28CFC326007AE077 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD695D328CFC32A007AE077 /* Utils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CD695E228CFD364007AE077 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1CF466EA28CFDF5F0012DE85 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		1CF466EB28CFDF5F0012DE85 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		1CF466EC28CFDF5F0012DE85 /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		49077AF327030523977F7860 /* Pods-CoinGecko.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinGecko.release.xcconfig"; path = "Target Support Files/Pods-CoinGecko/Pods-CoinGecko.release.xcconfig"; sourceTree = "<group>"; };
 		6A048B1055F31676E083DD39 /* Pods_CoinGecko.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoinGecko.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -86,15 +94,51 @@
 		1CD6958C28CFBDA5007AE077 /* CoinGecko */ = {
 			isa = PBXGroup;
 			children = (
+				1CF466E628CFDEDE0012DE85 /* Resources */,
 				1CD6958D28CFBDA5007AE077 /* AppDelegate.swift */,
 				1CD6958F28CFBDA5007AE077 /* SceneDelegate.swift */,
 				1CD6959128CFBDA5007AE077 /* ViewController.swift */,
 				1CD6959328CFBDA5007AE077 /* Main.storyboard */,
-				1CD6959628CFBDA7007AE077 /* Assets.xcassets */,
 				1CD6959828CFBDA7007AE077 /* LaunchScreen.storyboard */,
 				1CD6959B28CFBDA7007AE077 /* Info.plist */,
 			);
 			path = CoinGecko;
+			sourceTree = "<group>";
+		};
+		1CF466E628CFDEDE0012DE85 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1CF466E928CFDEF90012DE85 /* Localizable */,
+				1CF466E828CFDEEE0012DE85 /* Generated */,
+				1CF466E728CFDEE60012DE85 /* Fonts */,
+				1CD6959628CFBDA7007AE077 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1CF466E728CFDEE60012DE85 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		1CF466E828CFDEEE0012DE85 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				1CF466EA28CFDF5F0012DE85 /* Assets.swift */,
+				1CF466EB28CFDF5F0012DE85 /* Fonts.swift */,
+				1CF466EC28CFDF5F0012DE85 /* Localizable.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		1CF466E928CFDEF90012DE85 /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				1CD695E328CFD364007AE077 /* Localizable.strings */,
+			);
+			path = Localizable;
 			sourceTree = "<group>";
 		};
 		2A94903A6BE96D2028A58D96 /* Frameworks */ = {
@@ -125,6 +169,7 @@
 			buildConfigurationList = 1CD6959E28CFBDA7007AE077 /* Build configuration list for PBXNativeTarget "CoinGecko" */;
 			buildPhases = (
 				92B48CC74AC12A835B3A4BB6 /* [CP] Check Pods Manifest.lock */,
+				1CD695E728CFD39E007AE077 /* SwiftGen */,
 				1CD6958628CFBDA5007AE077 /* Sources */,
 				1CD6958728CFBDA5007AE077 /* Frameworks */,
 				1CD6958828CFBDA5007AE077 /* Resources */,
@@ -182,6 +227,7 @@
 				1CD6959A28CFBDA7007AE077 /* LaunchScreen.storyboard in Resources */,
 				1CD6959728CFBDA7007AE077 /* Assets.xcassets in Resources */,
 				1CD6959528CFBDA5007AE077 /* Main.storyboard in Resources */,
+				1CD695E128CFD364007AE077 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +251,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n    \"${PODS_ROOT}/SwiftLint/swiftlint\" --quiet --config \"$(dirname $PWD)/.swiftlint.yml\"\nelse\n    echo \"error: SwiftLint does not exist, upadate CocoaPods (use `pod install`)\"\n    exit 1\nfi\n";
+		};
+		1CD695E728CFD39E007AE077 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which \"$PODS_ROOT/SwiftGen/bin/swiftgen\" >/dev/null; then\n    \"$PODS_ROOT/SwiftGen/bin/swiftgen\"\nelse\n    echo \"error: SwiftGen does not exist, upadate CocoaPods (use `pod install`)\"\n    exit 1\nfi\n";
 		};
 		92B48CC74AC12A835B3A4BB6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -236,7 +300,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CD6959228CFBDA5007AE077 /* ViewController.swift in Sources */,
+				1CF466EE28CFDF5F0012DE85 /* Fonts.swift in Sources */,
 				1CD6958E28CFBDA5007AE077 /* AppDelegate.swift in Sources */,
+				1CF466ED28CFDF5F0012DE85 /* Assets.swift in Sources */,
+				1CF466EF28CFDF5F0012DE85 /* Localizable.swift in Sources */,
 				1CD6959028CFBDA5007AE077 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +325,14 @@
 				1CD6959928CFBDA7007AE077 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		1CD695E328CFD364007AE077 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1CD695E228CFD364007AE077 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
