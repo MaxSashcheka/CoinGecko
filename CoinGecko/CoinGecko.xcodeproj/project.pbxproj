@@ -129,6 +129,7 @@
 				1CD6958728CFBDA5007AE077 /* Frameworks */,
 				1CD6958828CFBDA5007AE077 /* Resources */,
 				1CD695D228CFC326007AE077 /* Embed Frameworks */,
+				1CD695D628CFCE0A007AE077 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -187,6 +188,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1CD695D628CFCE0A007AE077 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n    \"${PODS_ROOT}/SwiftLint/swiftlint\" --quiet --config \"$(dirname $PWD)/.swiftlint.yml\"\nelse\n    echo \"error: SwiftLint does not exist, upadate CocoaPods (use `pod install`)\"\n    exit 1\nfi\n";
+		};
 		92B48CC74AC12A835B3A4BB6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
