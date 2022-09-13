@@ -54,10 +54,18 @@
 		1CD695AF28CFBF8C007AE077 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				1CDCB2C328D122AE00624AB5 /* Classes */,
 				1CD695B028CFBF8C007AE077 /* Core.h */,
 				1CD695CB28CFC2BD007AE077 /* CoreClass.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		1CDCB2C328D122AE00624AB5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		3B6491F9281145563AE6E63E /* Frameworks */ = {
