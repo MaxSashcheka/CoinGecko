@@ -1,3 +1,10 @@
+using_bundler = defined? Bundler
+unless using_bundler
+  puts "\nPlease re-run using:".red
+  puts "  bundle exec pod install\n\n"
+  exit(1)
+end
+
 platform :ios, '14.0'
 inhibit_all_warnings!
 use_frameworks! :linkage => :static
