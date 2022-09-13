@@ -1,0 +1,20 @@
+input_dir: CoinGecko/
+output_dir: CoinGecko/Resources/Generated
+xcassets:
+  - inputs: Resources/Assets.xcassets
+    outputs:
+        - templateName: swift5
+          output: Assets.swift
+          params:
+            enumName: Assets
+fonts:
+  inputs: Resources/Fonts
+  outputs:
+    - templateName: swift5
+      output: Fonts.swift
+strings:
+  inputs:
+    - Resources/Localizable/en.lproj/Localizable.strings
+  outputs:
+    - templateName: structured-swift5
+      output: Localizable.swift
