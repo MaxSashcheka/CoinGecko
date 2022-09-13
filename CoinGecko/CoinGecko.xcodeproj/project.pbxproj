@@ -15,6 +15,8 @@
 		1CD695D428CFC32A007AE077 /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD695D328CFC32A007AE077 /* Utils.framework */; };
 		1CD695D528CFC32A007AE077 /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD695D328CFC32A007AE077 /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1CD695E128CFD364007AE077 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CD695E328CFD364007AE077 /* Localizable.strings */; };
+		1CDCB2DD28D132D600624AB5 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2DC28D132D600624AB5 /* RootCoordinator.swift */; };
+		1CDCB2E028D1341500624AB5 /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2DF28D1341500624AB5 /* RootAssembly.swift */; };
 		1CF466ED28CFDF5F0012DE85 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF466EA28CFDF5F0012DE85 /* Assets.swift */; };
 		1CF466EE28CFDF5F0012DE85 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF466EB28CFDF5F0012DE85 /* Fonts.swift */; };
 		1CF466EF28CFDF5F0012DE85 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF466EC28CFDF5F0012DE85 /* Localizable.swift */; };
@@ -46,6 +48,8 @@
 		1CD695CF28CFC326007AE077 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD695D328CFC32A007AE077 /* Utils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD695E228CFD364007AE077 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1CDCB2DC28D132D600624AB5 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		1CDCB2DF28D1341500624AB5 /* RootAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
 		1CF466EA28CFDF5F0012DE85 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		1CF466EB28CFDF5F0012DE85 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		1CF466EC28CFDF5F0012DE85 /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
@@ -98,8 +102,26 @@
 			isa = PBXGroup;
 			children = (
 				1CD6958D28CFBDA5007AE077 /* AppDelegate.swift */,
+				1CDCB2DE28D133C000624AB5 /* Assembly */,
+				1CDCB2DB28D1324F00624AB5 /* Coordinators */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		1CDCB2DB28D1324F00624AB5 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				1CDCB2DC28D132D600624AB5 /* RootCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		1CDCB2DE28D133C000624AB5 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				1CDCB2DF28D1341500624AB5 /* RootAssembly.swift */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 		1CF466E628CFDEDE0012DE85 /* Resources */ = {
@@ -298,7 +320,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CF466EE28CFDF5F0012DE85 /* Fonts.swift in Sources */,
+				1CDCB2E028D1341500624AB5 /* RootAssembly.swift in Sources */,
 				1CD6958E28CFBDA5007AE077 /* AppDelegate.swift in Sources */,
+				1CDCB2DD28D132D600624AB5 /* RootCoordinator.swift in Sources */,
 				1CF466ED28CFDF5F0012DE85 /* Assets.swift in Sources */,
 				1CF466EF28CFDF5F0012DE85 /* Localizable.swift in Sources */,
 			);
