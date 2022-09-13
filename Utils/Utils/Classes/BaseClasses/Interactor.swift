@@ -5,9 +5,7 @@
 //  Created by Maksim Sashcheka on 14.09.22.
 //
 
-// TODO: - move to core
-
-import UIKit
+import Foundation
 
 /**
  The base class for the business logic. Split the application business logic to separate

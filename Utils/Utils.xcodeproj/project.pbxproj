@@ -19,6 +19,7 @@
 		1CDCB2D528D12EE500624AB5 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2D428D12EE500624AB5 /* Resolver.swift */; };
 		1CDCB2D728D12EFF00624AB5 /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2D628D12EFF00624AB5 /* TabCoordinator.swift */; };
 		1CDCB2D928D12FFE00624AB5 /* InteractiveDismissalHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2D828D12FFE00624AB5 /* InteractiveDismissalHandler.swift */; };
+		1CDCB2E228D1345600624AB5 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2E128D1345600624AB5 /* Assembly.swift */; };
 		359F80ECF50583DEF8F804CE /* Pods_Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3898E027ABCA247BC561838 /* Pods_Utils.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		1CDCB2D428D12EE500624AB5 /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		1CDCB2D628D12EFF00624AB5 /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		1CDCB2D828D12FFE00624AB5 /* InteractiveDismissalHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveDismissalHandler.swift; sourceTree = "<group>"; };
+		1CDCB2E128D1345600624AB5 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		C3898E027ABCA247BC561838 /* Pods_Utils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Utils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB297551BB29F733DCEDDEA0 /* Pods-Utils.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Utils.release.xcconfig"; path = "Target Support Files/Pods-Utils/Pods-Utils.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +86,7 @@
 		1CDCB2C428D122B200624AB5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1CDCB2DA28D1316C00624AB5 /* BaseClasses */,
 				1CDCB2C528D1248400624AB5 /* Coordinator */,
 			);
 			path = Classes;
@@ -100,10 +103,18 @@
 				1CDCB2CE28D12DED00624AB5 /* ContainerViewController.swift */,
 				1CDCB2D028D12E1000624AB5 /* ContainerViewControllerTransitionContext.swift */,
 				1CDCB2D828D12FFE00624AB5 /* InteractiveDismissalHandler.swift */,
-				1CDCB2D228D12E7500624AB5 /* Interactor.swift */,
-				1CDCB2D428D12EE500624AB5 /* Resolver.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		1CDCB2DA28D1316C00624AB5 /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				1CDCB2D428D12EE500624AB5 /* Resolver.swift */,
+				1CDCB2D228D12E7500624AB5 /* Interactor.swift */,
+				1CDCB2E128D1345600624AB5 /* Assembly.swift */,
+			);
+			path = BaseClasses;
 			sourceTree = "<group>";
 		};
 		84836B9DE7B7AB6E259842FB /* Frameworks */ = {
@@ -231,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CDCB2D728D12EFF00624AB5 /* TabCoordinator.swift in Sources */,
+				1CDCB2E228D1345600624AB5 /* Assembly.swift in Sources */,
 				1CDCB2CB28D12D7C00624AB5 /* ContainerCoordinator.swift in Sources */,
 				1CDCB2C728D12CCA00624AB5 /* Coordinator.swift in Sources */,
 				1CDCB2CD28D12DD200624AB5 /* NavigationController.swift in Sources */,
