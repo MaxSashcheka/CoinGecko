@@ -12,15 +12,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    private var rootCoordinator: RootCoordinator!
+//    private var rootCoordinator: RootCoordinator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        rootCoordinator = RootAssembly.makeRootCoordinator()
-
-        window = UIWindow(frame: UIScreen.main.bounds)
-        rootCoordinator.start(at: window)
-        
+//        rootCoordinator = RootAssembly.makeRootCoordinator()
+//
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        rootCoordinator.start(at: window)
+//
         return true
     }
 }

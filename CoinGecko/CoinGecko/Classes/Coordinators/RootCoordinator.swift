@@ -9,7 +9,7 @@
 import UIKit
 import Utils
 
-final class RootCoordinator: TabCoordinator {
+final class RootCoordinator: NavigationCoordinator {
 
     override func registerContent() {
         
@@ -19,5 +19,11 @@ final class RootCoordinator: TabCoordinator {
         assert(window != nil, "Root Window is nil")
         window?.rootViewController = baseViewController
         window?.makeKeyAndVisible()
+
+        let viewController = ViewController()
+        viewController.view.backgroundColor = .red
+        viewController.title = "First ViewController"
+        
+        navigationController.setViewControllers([viewController], animated: false)
     }
 }
