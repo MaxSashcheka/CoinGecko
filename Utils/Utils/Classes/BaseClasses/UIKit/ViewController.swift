@@ -3,6 +3,7 @@
 //  Utils
 //
 //  Created by Maksim Sashcheka on 14.09.22.
+//  Copyright © 2022 BSUIR. All rights reserved.
 //
 
 import UIKit
@@ -12,7 +13,6 @@ open class ViewController: UIViewController {
 
     open var isNavigationBarHidden: Bool { false }
     open var isToolbarHidden: Bool { true }
-
     open var backgroundColor: UIColor { .white }
     
     let disposeBag = DisposeBag()

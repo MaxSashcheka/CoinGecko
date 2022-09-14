@@ -193,6 +193,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1330;
+				ORGANIZATIONNAME = BSUIR;
 				TargetAttributes = {
 					1CD695C028CFBFAB007AE077 = {
 						CreatedOnToolsVersion = 13.3.1;

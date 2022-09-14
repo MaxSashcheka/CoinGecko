@@ -3,6 +3,7 @@
 //  Utils
 //
 //  Created by Maksim Sashcheka on 14.09.22.
+//  Copyright © 2022 BSUIR. All rights reserved.
 //
 
 // Implement this protocol ONLY for classes that could be registered or resolved.
