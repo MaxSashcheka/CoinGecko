@@ -11,3 +11,10 @@ import Utils
 final class RootAssembly: Assembly {
     static func makeRootCoordinator() -> RootCoordinator { RootCoordinator(parent: nil) }
 }
+
+// MARK: - Coordinators
+extension RootAssembly {
+    static func makeHomeCoordinator(parent: Coordinator) -> HomeCoordinator {
+        HomeCoordinator(parent: parent)
+    }
+}

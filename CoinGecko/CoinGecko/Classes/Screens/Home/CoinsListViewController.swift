@@ -10,5 +10,10 @@ import Utils
 import SnapKit
 
 final class CoinsListViewController: ViewController {
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .orange.withAlphaComponent(0.2)
+        title = "CoinsListViewController"
+    }
 }

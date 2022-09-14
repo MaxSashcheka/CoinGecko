@@ -27,3 +27,9 @@ final class RootCoordinator: NavigationCoordinator {
         navigationController.setViewControllers([viewController], animated: false)
     }
 }
+
+private extension RootCoordinator {
+    func initializeHomeCoordinatorAndShow() {
+        
+    }
+}

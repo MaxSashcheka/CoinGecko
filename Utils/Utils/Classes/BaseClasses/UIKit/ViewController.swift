@@ -17,7 +17,7 @@ open class ViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = backgroundColor
