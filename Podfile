@@ -48,6 +48,7 @@ end
 
 target 'Utils' do
   common_pods
+  reactive_pods
   ui_pods
   
   project 'Utils/Utils.xcodeproj'

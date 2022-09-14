@@ -9,6 +9,20 @@
 /* Begin PBXBuildFile section */
 		1CD695C528CFBFAB007AE077 /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CD695C428CFBFAB007AE077 /* Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CD695CE28CFC2C3007AE077 /* UtilsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD695CD28CFC2C3007AE077 /* UtilsClass.swift */; };
+		1CDCB2C728D12CCA00624AB5 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2C628D12CCA00624AB5 /* Coordinator.swift */; };
+		1CDCB2C928D12D5500624AB5 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2C828D12D5500624AB5 /* NavigationCoordinator.swift */; };
+		1CDCB2CB28D12D7C00624AB5 /* ContainerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2CA28D12D7C00624AB5 /* ContainerCoordinator.swift */; };
+		1CDCB2CD28D12DD200624AB5 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2CC28D12DD200624AB5 /* NavigationController.swift */; };
+		1CDCB2CF28D12DED00624AB5 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2CE28D12DED00624AB5 /* ContainerViewController.swift */; };
+		1CDCB2D128D12E1000624AB5 /* ContainerViewControllerTransitionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2D028D12E1000624AB5 /* ContainerViewControllerTransitionContext.swift */; };
+		1CDCB2D328D12E7500624AB5 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2D228D12E7500624AB5 /* Interactor.swift */; };
+		1CDCB2D528D12EE500624AB5 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2D428D12EE500624AB5 /* Resolver.swift */; };
+		1CDCB2D728D12EFF00624AB5 /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2D628D12EFF00624AB5 /* TabCoordinator.swift */; };
+		1CDCB2D928D12FFE00624AB5 /* InteractiveDismissalHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2D828D12FFE00624AB5 /* InteractiveDismissalHandler.swift */; };
+		1CDCB2E228D1345600624AB5 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2E128D1345600624AB5 /* Assembly.swift */; };
+		1CDCB2E528D1375300624AB5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2E428D1375300624AB5 /* ViewController.swift */; };
+		1CDCB2E728D1375800624AB5 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2E628D1375800624AB5 /* Button.swift */; };
+		1CDCB2E928D1375C00624AB5 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2E828D1375C00624AB5 /* Label.swift */; };
 		359F80ECF50583DEF8F804CE /* Pods_Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3898E027ABCA247BC561838 /* Pods_Utils.framework */; };
 /* End PBXBuildFile section */
 
@@ -17,6 +31,20 @@
 		1CD695C128CFBFAB007AE077 /* Utils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Utils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD695C428CFBFAB007AE077 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		1CD695CD28CFC2C3007AE077 /* UtilsClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsClass.swift; sourceTree = "<group>"; };
+		1CDCB2C628D12CCA00624AB5 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		1CDCB2C828D12D5500624AB5 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
+		1CDCB2CA28D12D7C00624AB5 /* ContainerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerCoordinator.swift; sourceTree = "<group>"; };
+		1CDCB2CC28D12DD200624AB5 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		1CDCB2CE28D12DED00624AB5 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		1CDCB2D028D12E1000624AB5 /* ContainerViewControllerTransitionContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewControllerTransitionContext.swift; sourceTree = "<group>"; };
+		1CDCB2D228D12E7500624AB5 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		1CDCB2D428D12EE500624AB5 /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
+		1CDCB2D628D12EFF00624AB5 /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
+		1CDCB2D828D12FFE00624AB5 /* InteractiveDismissalHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveDismissalHandler.swift; sourceTree = "<group>"; };
+		1CDCB2E128D1345600624AB5 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
+		1CDCB2E428D1375300624AB5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1CDCB2E628D1375800624AB5 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		1CDCB2E828D1375C00624AB5 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		C3898E027ABCA247BC561838 /* Pods_Utils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Utils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB297551BB29F733DCEDDEA0 /* Pods-Utils.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Utils.release.xcconfig"; path = "Target Support Files/Pods-Utils/Pods-Utils.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -54,10 +82,56 @@
 		1CD695C328CFBFAB007AE077 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				1CDCB2C428D122B200624AB5 /* Classes */,
 				1CD695C428CFBFAB007AE077 /* Utils.h */,
 				1CD695CD28CFC2C3007AE077 /* UtilsClass.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		1CDCB2C428D122B200624AB5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1CDCB2DA28D1316C00624AB5 /* BaseClasses */,
+				1CDCB2C528D1248400624AB5 /* Coordinator */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		1CDCB2C528D1248400624AB5 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				1CDCB2C628D12CCA00624AB5 /* Coordinator.swift */,
+				1CDCB2D628D12EFF00624AB5 /* TabCoordinator.swift */,
+				1CDCB2C828D12D5500624AB5 /* NavigationCoordinator.swift */,
+				1CDCB2CC28D12DD200624AB5 /* NavigationController.swift */,
+				1CDCB2CA28D12D7C00624AB5 /* ContainerCoordinator.swift */,
+				1CDCB2CE28D12DED00624AB5 /* ContainerViewController.swift */,
+				1CDCB2D028D12E1000624AB5 /* ContainerViewControllerTransitionContext.swift */,
+				1CDCB2D828D12FFE00624AB5 /* InteractiveDismissalHandler.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		1CDCB2DA28D1316C00624AB5 /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				1CDCB2E328D1372000624AB5 /* UIKit */,
+				1CDCB2D428D12EE500624AB5 /* Resolver.swift */,
+				1CDCB2D228D12E7500624AB5 /* Interactor.swift */,
+				1CDCB2E128D1345600624AB5 /* Assembly.swift */,
+			);
+			path = BaseClasses;
+			sourceTree = "<group>";
+		};
+		1CDCB2E328D1372000624AB5 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				1CDCB2E428D1375300624AB5 /* ViewController.swift */,
+				1CDCB2E628D1375800624AB5 /* Button.swift */,
+				1CDCB2E828D1375C00624AB5 /* Label.swift */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		84836B9DE7B7AB6E259842FB /* Frameworks */ = {
@@ -119,6 +193,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1330;
+				ORGANIZATIONNAME = BSUIR;
 				TargetAttributes = {
 					1CD695C028CFBFAB007AE077 = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -184,6 +259,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CDCB2D728D12EFF00624AB5 /* TabCoordinator.swift in Sources */,
+				1CDCB2E228D1345600624AB5 /* Assembly.swift in Sources */,
+				1CDCB2CB28D12D7C00624AB5 /* ContainerCoordinator.swift in Sources */,
+				1CDCB2C728D12CCA00624AB5 /* Coordinator.swift in Sources */,
+				1CDCB2CD28D12DD200624AB5 /* NavigationController.swift in Sources */,
+				1CDCB2D928D12FFE00624AB5 /* InteractiveDismissalHandler.swift in Sources */,
+				1CDCB2D528D12EE500624AB5 /* Resolver.swift in Sources */,
+				1CDCB2E728D1375800624AB5 /* Button.swift in Sources */,
+				1CDCB2E928D1375C00624AB5 /* Label.swift in Sources */,
+				1CDCB2C928D12D5500624AB5 /* NavigationCoordinator.swift in Sources */,
+				1CDCB2E528D1375300624AB5 /* ViewController.swift in Sources */,
+				1CDCB2CF28D12DED00624AB5 /* ContainerViewController.swift in Sources */,
+				1CDCB2D128D12E1000624AB5 /* ContainerViewControllerTransitionContext.swift in Sources */,
+				1CDCB2D328D12E7500624AB5 /* Interactor.swift in Sources */,
 				1CD695CE28CFC2C3007AE077 /* UtilsClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
