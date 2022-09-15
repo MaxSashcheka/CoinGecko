@@ -9,7 +9,7 @@
 import UIKit
 import Utils
 
-final class RootCoordinator: NavigationCoordinator {
+final class RootCoordinator: ContainerCoordinator {
 
     override func registerContent() {
         
@@ -20,10 +20,13 @@ final class RootCoordinator: NavigationCoordinator {
         window?.rootViewController = baseViewController
         window?.makeKeyAndVisible()
 
-        let viewController = ViewController()
-        viewController.view.backgroundColor = .red
-        viewController.title = "First ViewController"
-        
-        navigationController.setViewControllers([viewController], animated: false)
+        initializeHomeCoordinatorAndShow()
+    }
+}
+
+private extension RootCoordinator {
+    func initializeHomeCoordinatorAndShow() {
+        let coordinator = HomeCoordinator(parent: self)
+        setContentCoordinator(coordinator)
     }
 }
