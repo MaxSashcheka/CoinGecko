@@ -17,7 +17,7 @@ class HomeCoordinator: NavigationCoordinator {
 }
 
 private extension HomeCoordinator {
-    func showCoinsListScreen() -> () {
+    func showCoinsListScreen() {
         let (viewController, viewModel) = HomeAssembly.makeCoinsListScreen(resolver: self)
         
         pushViewController(viewController, animated: false)

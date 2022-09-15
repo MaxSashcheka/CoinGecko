@@ -13,7 +13,7 @@ final class CoinsListViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .orange.withAlphaComponent(0.2)
+        view.backgroundColor = .orange
         title = "CoinsListViewController"
     }
 }
