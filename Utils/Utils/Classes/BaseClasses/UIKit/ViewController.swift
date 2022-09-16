@@ -6,7 +6,7 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import UIKit
+import UIKit.UIViewController
 import RxSwift
 
 open class ViewController: UIViewController {

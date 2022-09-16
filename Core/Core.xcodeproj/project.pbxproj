@@ -8,11 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		0CDD5C6D191386F9E9337121 /* Pods_Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8B2BF1CDE9E49C0B08AA38 /* Pods_Core.framework */; };
+		1CA3D39B28D3C847009D43E9 /* CoinsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D39A28D3C847009D43E9 /* CoinsInteractor.swift */; };
+		1CA3D39D28D3C850009D43E9 /* CoinsInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D39C28D3C850009D43E9 /* CoinsInteractorProtocol.swift */; };
+		1CA3D39F28D3C8DE009D43E9 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D39E28D3C8DE009D43E9 /* Interactor.swift */; };
+		1CA3D3A128D3CD80009D43E9 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D3A028D3CD80009D43E9 /* Coin.swift */; };
 		1CD695B128CFBF8C007AE077 /* Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CD695B028CFBF8C007AE077 /* Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CD695CC28CFC2BD007AE077 /* CoreClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD695CB28CFC2BD007AE077 /* CoreClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1CA3D39A28D3C847009D43E9 /* CoinsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsInteractor.swift; sourceTree = "<group>"; };
+		1CA3D39C28D3C850009D43E9 /* CoinsInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsInteractorProtocol.swift; sourceTree = "<group>"; };
+		1CA3D39E28D3C8DE009D43E9 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		1CA3D3A028D3CD80009D43E9 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		1CD695AD28CFBF8C007AE077 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD695B028CFBF8C007AE077 /* Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
 		1CD695CB28CFC2BD007AE077 /* CoreClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreClass.swift; sourceTree = "<group>"; };
@@ -33,6 +41,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1CA3D39728D3C803009D43E9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1CA3D3A028D3CD80009D43E9 /* Coin.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1CA3D39828D3C807009D43E9 /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				1CA3D39E28D3C8DE009D43E9 /* Interactor.swift */,
+				1CA3D39928D3C835009D43E9 /* Coins */,
+			);
+			path = Interactors;
+			sourceTree = "<group>";
+		};
+		1CA3D39928D3C835009D43E9 /* Coins */ = {
+			isa = PBXGroup;
+			children = (
+				1CA3D39C28D3C850009D43E9 /* CoinsInteractorProtocol.swift */,
+				1CA3D39A28D3C847009D43E9 /* CoinsInteractor.swift */,
+			);
+			path = Coins;
+			sourceTree = "<group>";
+		};
 		1CD695A328CFBF8C007AE077 = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +98,8 @@
 		1CDCB2C328D122AE00624AB5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1CA3D39828D3C807009D43E9 /* Interactors */,
+				1CA3D39728D3C803009D43E9 /* Models */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -193,7 +229,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CA3D39B28D3C847009D43E9 /* CoinsInteractor.swift in Sources */,
 				1CD695CC28CFC2BD007AE077 /* CoreClass.swift in Sources */,
+				1CA3D39F28D3C8DE009D43E9 /* Interactor.swift in Sources */,
+				1CA3D3A128D3CD80009D43E9 /* Coin.swift in Sources */,
+				1CA3D39D28D3C850009D43E9 /* CoinsInteractorProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
