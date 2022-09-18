@@ -13,14 +13,16 @@ open class ViewController: UIViewController {
 
     open var isNavigationBarHidden: Bool { false }
     open var isToolbarHidden: Bool { true }
+    open var prefersLargeTitles: Bool { false }
     open var backgroundColor: UIColor { .white }
     
-    let disposeBag = DisposeBag()
+    public let disposeBag = DisposeBag()
     
     override open func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = backgroundColor
+        navigationController?.navigationBar.prefersLargeTitles = prefersLargeTitles
 
         arrangeSubviews()
         setupData()

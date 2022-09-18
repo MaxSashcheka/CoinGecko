@@ -9,5 +9,10 @@
 import UIKit.UILabel
 
 open class Label: UILabel {
-    
+    public convenience init(textPreferences: TextPreferences) {
+        self.init()
+        
+        font = textPreferences.font
+        textColor = textPreferences.textColor
+    }
 }
