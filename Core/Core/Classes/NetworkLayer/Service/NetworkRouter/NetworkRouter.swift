@@ -52,7 +52,23 @@ class NetworkRouter<EndPoint: EndPointType>: NetworkRouterProtocol {
                     let response = try JSONDecoder().decode(ResponseType.self, from: responseData)
                     success(response)
                 } catch {
-                    failure(.unableToDecode)
+                    if let decodingError = error as? DecodingError {
+                        // TODO: - Add custom errors for decoding error
+                        switch decodingError {
+                        case .typeMismatch(let key, let value):
+                            print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
+                        case .valueNotFound(let key, let value):
+                            print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
+                        case .keyNotFound(let key, let value):
+                            print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
+                        case .dataCorrupted(let key):
+                            print("error \(key), and ERROR: \(error.localizedDescription)")
+                        default:
+                            print("ERROR: \(error.localizedDescription)")
+                        }
+                    }
+                    
+                    failure(.unableToDecode); return
                 }
             })
         } catch {
@@ -77,9 +93,10 @@ private extension NetworkRouter {
             switch route.task {
             case .request:
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            case .requestParameters(let bodyParameters, let urlParameters):
+            case .requestParameters(let bodyParameters, let urlParameters, let pathParameters):
                 try configureParameters(bodyParameters: bodyParameters,
                                         urlParameters: urlParameters,
+                                        pathParameters: pathParameters,
                                         request: &request)
                 
             case .requestParametersAndHeaders(let bodyParameters, let urlParameters, let additionalHeaders):
@@ -94,8 +111,9 @@ private extension NetworkRouter {
         }
     }
     
-    func configureParameters(bodyParameters: Parameters?,
-                             urlParameters: Parameters?,
+    func configureParameters(bodyParameters: Parameters? = nil,
+                             urlParameters: Parameters? = nil,
+                             pathParameters: [String: String]? = nil,
                              request: inout URLRequest) throws {
         do {
             if let bodyParameters = bodyParameters {
@@ -103,6 +121,9 @@ private extension NetworkRouter {
             }
             if let urlParameters = urlParameters {
                 try URLParameterEncoder.encode(urlRequest: &request, with: urlParameters)
+            }
+            if let pathParameters = pathParameters {
+                try PathParameterEncoder.encode(urlRequest: &request, with: pathParameters)
             }
         } catch {
             throw error
@@ -114,5 +135,15 @@ private extension NetworkRouter {
         for (key, value) in headers {
             request.setValue(value, forHTTPHeaderField: key)
         }
+    }
+    
+    func addPathParameters(_ pathParameters: [String : String], forPath path: String) -> String {
+        pathParameters.reduce(path, { path, queryElement in
+            path.replacingOccurrences(
+                of: "{" + queryElement.key + "}",
+                with: queryElement.value,
+                options: .literal
+            )
+        })
     }
 }

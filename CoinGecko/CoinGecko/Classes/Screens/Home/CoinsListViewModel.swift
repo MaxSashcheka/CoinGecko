@@ -25,34 +25,40 @@ extension CoinsListViewController {
         
         func fetchCoins() {
             // TODO: - Remove hardcoded currency string
-            coinsInteractor.getCoins(currency: "usd", page: 1, pageSize: 20) { [weak self] coins in
-                self?.coinsViewModels.accept(
-                    coins.map { coin in
-                        let isPriceChangePositive = coin.previousDayPriceChangePercentage > 0
-                        var priceChangeString = preciseRound(coin.previousDayPriceChangePercentage,
-                                                             precision: .hundredths).description
-                        priceChangeString.insert(contentsOf: isPriceChangePositive ? "+" : .empty,
-                                                 at: priceChangeString.startIndex)
-                        priceChangeString.insert(contentsOf: String.percent, at: priceChangeString.endIndex)
-                        
-                        var currentPriceString = preciseRound(coin.currentPrice,
-                                                              precision: .thousandths).description
-                        currentPriceString.insert(contentsOf: "usd".currencySymbol, at: currentPriceString.startIndex)
-                        
-                        return CoinCell.ViewModel(
-                            imageURL: coin.imageURL,
-                            name: coin.id.firstCapitalized,
-                            symbol: coin.symbol.uppercased(),
-                            currentPrice: currentPriceString,
-                            priceChangePercentage: priceChangeString,
-                            isPriceChangePositive: isPriceChangePositive
-                        )
-                    }
-                )
-                
+//            coinsInteractor.getCoins(currency: "usd", page: 1, pageSize: 20) { [weak self] coins in
+//                self?.coinsViewModels.accept(
+//                    coins.map { coin in
+//                        let isPriceChangePositive = coin.priceChangePercentage24h > 0
+//                        var priceChangeString = preciseRound(coin.priceChangePercentage24h,
+//                                                             precision: .hundredths).description
+//                        priceChangeString.insert(contentsOf: isPriceChangePositive ? "+" : .empty,
+//                                                 at: priceChangeString.startIndex)
+//                        priceChangeString.insert(contentsOf: String.percent, at: priceChangeString.endIndex)
+//
+//                        var currentPriceString = preciseRound(coin.currentPrice,
+//                                                              precision: .thousandths).description
+//                        currentPriceString.insert(contentsOf: "usd".currencySymbol, at: currentPriceString.startIndex)
+//
+//                        return CoinCell.ViewModel(
+//                            imageURL: coin.imageURL,
+//                            name: coin.name,
+//                            symbol: coin.symbol.uppercased(),
+//                            currentPrice: currentPriceString,
+//                            priceChangePercentage: priceChangeString,
+//                            isPriceChangePositive: isPriceChangePositive
+//                        )
+//                    }
+//                )
+//
+//            } failure: { error in
+//                print(error)
+//            }
+            coinsInteractor.getCoinDetailInfo(id: "bitcoin") { coinDetails in
+                print(coinDetails)
             } failure: { error in
                 print(error)
             }
+
         }
         
         func cellViewModel(for indexPath: IndexPath) -> CoinCell.ViewModel {
@@ -60,5 +66,3 @@ extension CoinsListViewController {
         }
     }
 }
-
-

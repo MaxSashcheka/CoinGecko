@@ -14,7 +14,8 @@ public enum HTTPTask {
     case request
     
     case requestParameters(bodyParameters: Parameters? = nil,
-                           urlParameters: Parameters? = nil)
+                           urlParameters: Parameters? = nil,
+                           pathParameters: [String : String]? = nil)
     
     case requestParametersAndHeaders(bodyParameters: Parameters? = nil,
                                      urlParameters: Parameters? = nil,

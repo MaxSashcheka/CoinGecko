@@ -10,6 +10,7 @@ import Foundation
 
 public enum CoinsEnpoint {
     case markets(currency: String, page: Int, pageSize: Int)
+    case coinDetailInfo(id: String)
 }
 
 extension CoinsEnpoint: EndPointType {
@@ -21,6 +22,7 @@ extension CoinsEnpoint: EndPointType {
     var path: String {
         switch self {
         case .markets: return "/markets"
+        case .coinDetailInfo: return "/{id}"
         }
     }
     
@@ -35,6 +37,11 @@ extension CoinsEnpoint: EndPointType {
                 "per_page": pageSize
             ]
             return .requestParameters(urlParameters: urlParameters)
+        case .coinDetailInfo(let id):
+            let pathParameters: [String : String] = [
+                "id": id
+            ]
+            return .requestParameters(pathParameters: pathParameters)
         }
     }
     

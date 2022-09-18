@@ -10,6 +10,6 @@ import Foundation
 
 public typealias Parameters = [String : Any]
 
-public protocol ParameterEncoder {
+public protocol ParameterEncoderProtocol {
     static func encode(urlRequest: inout URLRequest, with parameters: Parameters) throws
 }

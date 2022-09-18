@@ -24,4 +24,14 @@ public class CoinsAPIDataManager: CoinsAPIDataManagerProtocol {
             failure: failure
         )
     }
+    
+    public func getCoinDetailInfo(id: String,
+                                  success: @escaping (CoinDetails) -> Void,
+                                  failure: @escaping NetworkRouterErrorClosure) {
+        router.request(
+            .coinDetailInfo(id: id),
+            success: success,
+            failure: failure
+        )
+    }
 }

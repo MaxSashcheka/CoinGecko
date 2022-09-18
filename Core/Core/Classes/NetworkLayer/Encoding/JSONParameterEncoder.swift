@@ -8,7 +8,7 @@
 
 import Utils
 
-public struct JSONParameterEncoder: ParameterEncoder {
+public struct JSONParameterEncoder: ParameterEncoderProtocol {
     public static func encode(urlRequest: inout URLRequest, with parameters: Parameters) throws {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
