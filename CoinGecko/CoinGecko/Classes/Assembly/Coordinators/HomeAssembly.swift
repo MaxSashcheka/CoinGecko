@@ -22,4 +22,16 @@ extension HomeAssembly {
         
         return (viewController, viewModel)
     }
+    
+    typealias CoinDetailsViewModel = CoinDetailsViewController.ViewModel
+    static func makeCoinsListScreen(resolver: Resolver, coinId: String) -> (CoinDetailsViewController, CoinDetailsViewModel) {
+        let viewController = CoinDetailsViewController()
+        let viewModel = CoinDetailsViewModel(
+            coinId: coinId,
+            coinsInteractor: InteractorsAssembly.makeCoinsInteractor(resolver: resolver)
+        )
+        viewController.viewModel = viewModel
+        
+        return (viewController, viewModel)
+    }
 }

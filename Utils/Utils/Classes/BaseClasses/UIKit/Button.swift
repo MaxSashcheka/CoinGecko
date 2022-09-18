@@ -9,5 +9,9 @@
 import UIKit.UIButton
 
 open class Button: UIButton {
-    
+    public convenience init(image: UIImage) {
+        self.init()
+        
+        setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+    }
 }

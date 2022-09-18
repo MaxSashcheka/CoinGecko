@@ -80,6 +80,8 @@ extension CoinsListViewController {
             priceInfoTitledDescriptionView.setDescriptionLabelTextColor(
                 viewModel.isPriceChangePositive ? .green : .red
             )
+            
+            selectionStyle = .none
         }
         
         override func prepareForReuse() {

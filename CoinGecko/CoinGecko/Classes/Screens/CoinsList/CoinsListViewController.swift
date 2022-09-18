@@ -15,7 +15,6 @@ final class CoinsListViewController: ViewController {
     private let coinsTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
-        tableView.allowsSelection = false
         tableView.separatorStyle = .none
         
         return tableView
@@ -74,5 +73,9 @@ extension CoinsListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.viewModel = viewModel.cellViewModel(for: indexPath)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelectCoin(at: indexPath)
     }
 }
