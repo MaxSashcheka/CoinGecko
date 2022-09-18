@@ -6,6 +6,7 @@ xcassets:
         - templateName: swift5
           output: Assets.swift
           params:
+            forceProvidesNamespaces: true
             enumName: Assets
 fonts:
   inputs: Resources/Fonts

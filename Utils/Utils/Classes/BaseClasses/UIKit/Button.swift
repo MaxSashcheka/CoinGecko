@@ -6,4 +6,8 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import Foundation
+import UIKit.UIButton
+
+open class Button: UIButton {
+    
+}

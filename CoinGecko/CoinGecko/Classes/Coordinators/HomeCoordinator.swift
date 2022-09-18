@@ -8,7 +8,7 @@
 
 import Utils
 
-class HomeCoordinator: NavigationCoordinator {
+final class HomeCoordinator: NavigationCoordinator {
     override init(parent: Coordinator?) {
         super.init(parent: parent)
         
