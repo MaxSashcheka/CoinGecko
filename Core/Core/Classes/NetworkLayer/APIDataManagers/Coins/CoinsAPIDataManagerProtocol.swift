@@ -14,4 +14,8 @@ public protocol CoinsAPIDataManagerProtocol {
                   pageSize: Int,
                   success: @escaping ([Coin]) -> Void,
                   failure: @escaping NetworkRouterErrorClosure)
+    
+    func getCoinDetailInfo(id: String,
+                           success: @escaping (CoinDetails) -> Void,
+                           failure: @escaping NetworkRouterErrorClosure)
 }

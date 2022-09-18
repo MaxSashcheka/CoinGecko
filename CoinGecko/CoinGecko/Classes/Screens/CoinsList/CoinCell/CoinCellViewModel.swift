@@ -13,17 +13,20 @@ extension CoinsListViewController.CoinCell {
     typealias TitledDescriptionViewModel = TitledDescriptionView.ViewModel
     
     final class ViewModel {
+        let id: String
         let imageURL: URL?
         let nameTitledDescriptionViewModel: TitledDescriptionViewModel
         let priceInfoTitledDescriptionViewModel: TitledDescriptionViewModel
         let isPriceChangePositive: Bool
         
-        init(imageURL: URL?,
+        init(id: String,
+             imageURL: URL?,
              name: String = .empty,
              symbol: String = .empty,
              currentPrice: String = .empty,
              priceChangePercentage: String = .empty,
              isPriceChangePositive: Bool) {
+            self.id = id
             self.imageURL = imageURL
             self.isPriceChangePositive = isPriceChangePositive
             

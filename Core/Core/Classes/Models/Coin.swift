@@ -19,8 +19,8 @@ public struct Coin {
     public let totalVolume: Int
     public let previousDayHighestPrice: Double
     public let previousDayLowestPrice: Double
-    public let previousDayPriceChange: Double
-    public let previousDayPriceChangePercentage: Double
+    public let priceChange24h: Double
+    public let priceChangePercentage24h: Double
 }
 
 extension Coin: Decodable {
@@ -35,8 +35,8 @@ extension Coin: Decodable {
         case totalVolume = "total_volume"
         case previousDayHighestPrice = "high_24h"
         case previousDayLowestPrice = "low_24h"
-        case previousDayPriceChange = "price_change_24h"
-        case previousDayPriceChangePercentage = "price_change_percentage_24h"
+        case priceChange24h = "price_change_24h"
+        case priceChangePercentage24h = "price_change_percentage_24h"
     }
     
     public init(from decoder: Decoder) throws {
@@ -52,7 +52,7 @@ extension Coin: Decodable {
         self.totalVolume = try container.decode(Int.self, forKey: .totalVolume)
         self.previousDayHighestPrice = try container.decode(Double.self, forKey: .previousDayHighestPrice)
         self.previousDayLowestPrice = try container.decode(Double.self, forKey: .previousDayLowestPrice)
-        self.previousDayPriceChange = try container.decode(Double.self, forKey: .previousDayPriceChange)
-        self.previousDayPriceChangePercentage = try container.decode(Double.self, forKey: .previousDayPriceChangePercentage)
+        self.priceChange24h = try container.decode(Double.self, forKey: .priceChange24h)
+        self.priceChangePercentage24h = try container.decode(Double.self, forKey: .priceChangePercentage24h)
     }
 }

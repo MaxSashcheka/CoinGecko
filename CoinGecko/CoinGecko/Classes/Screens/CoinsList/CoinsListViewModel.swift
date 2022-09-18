@@ -15,6 +15,8 @@ extension CoinsListViewController {
     final class ViewModel {
         private let coinsInteractor: CoinsInteractorProtocol
         
+        var showCoinDetailInfoTransition: Closure.String?
+        
         let coinsViewModels = BehaviorRelay<[CoinCell.ViewModel]>(value: [])
         
         var coinsCount: Int { coinsViewModels.value.count }
@@ -28,20 +30,21 @@ extension CoinsListViewController {
             coinsInteractor.getCoins(currency: "usd", page: 1, pageSize: 20) { [weak self] coins in
                 self?.coinsViewModels.accept(
                     coins.map { coin in
-                        let isPriceChangePositive = coin.previousDayPriceChangePercentage > 0
-                        var priceChangeString = preciseRound(coin.previousDayPriceChangePercentage,
+                        let isPriceChangePositive = coin.priceChangePercentage24h > 0
+                        var priceChangeString = preciseRound(coin.priceChangePercentage24h,
                                                              precision: .hundredths).description
                         priceChangeString.insert(contentsOf: isPriceChangePositive ? "+" : .empty,
                                                  at: priceChangeString.startIndex)
                         priceChangeString.insert(contentsOf: String.percent, at: priceChangeString.endIndex)
-                        
+
                         var currentPriceString = preciseRound(coin.currentPrice,
                                                               precision: .thousandths).description
                         currentPriceString.insert(contentsOf: "usd".currencySymbol, at: currentPriceString.startIndex)
-                        
+
                         return CoinCell.ViewModel(
+                            id: coin.id,
                             imageURL: coin.imageURL,
-                            name: coin.id.firstCapitalized,
+                            name: coin.name,
                             symbol: coin.symbol.uppercased(),
                             currentPrice: currentPriceString,
                             priceChangePercentage: priceChangeString,
@@ -49,7 +52,7 @@ extension CoinsListViewController {
                         )
                     }
                 )
-                
+
             } failure: { error in
                 print(error)
             }
@@ -58,7 +61,10 @@ extension CoinsListViewController {
         func cellViewModel(for indexPath: IndexPath) -> CoinCell.ViewModel {
             coinsViewModels.value[indexPath.row]
         }
+        
+        func didSelectCoin(at indexPath: IndexPath) {
+            let coinId = coinsViewModels.value[indexPath.row].id
+            showCoinDetailInfoTransition?(coinId)
+        }
     }
 }
-
-

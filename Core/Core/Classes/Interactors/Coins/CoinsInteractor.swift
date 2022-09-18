@@ -26,4 +26,12 @@ public class CoinsInteractor: CoinsInteractorProtocol {
                                      success: success,
                                      failure: failure)
     }
+    
+    public func getCoinDetailInfo(id: String,
+                                  success: @escaping (CoinDetails) -> Void,
+                                  failure: @escaping NetworkRouterErrorClosure) {
+        coinsAPIDataManager.getCoinDetailInfo(id: id,
+                                              success: success,
+                                              failure: failure)
+    }
 }
