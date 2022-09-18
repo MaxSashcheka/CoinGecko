@@ -8,8 +8,22 @@
 
 import Utils
 
-//https://api.coingecko.com/api/v3
-
-class CoinsInteractor: CoinsInteractorProtocol {
+public class CoinsInteractor: CoinsInteractorProtocol {
+    private let coinsAPIDataManager: CoinsAPIDataManagerProtocol
     
+    public init(coinsAPIDataManager: CoinsAPIDataManagerProtocol) {
+        self.coinsAPIDataManager = coinsAPIDataManager
+    }
+    
+    public func getCoins(currency: String,
+                         page: Int,
+                         pageSize: Int,
+                         success: @escaping ([Coin]) -> Void,
+                         failure: @escaping NetworkRouterErrorClosure) {
+        coinsAPIDataManager.getCoins(currency: currency,
+                                     page: page,
+                                     pageSize: pageSize,
+                                     success: success,
+                                     failure: failure)
+    }
 }
