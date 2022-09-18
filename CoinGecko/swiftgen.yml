@@ -8,11 +8,6 @@ xcassets:
           params:
             forceProvidesNamespaces: true
             enumName: Assets
-fonts:
-  inputs: Resources/Fonts
-  outputs:
-    - templateName: swift5
-      output: Fonts.swift
 strings:
   inputs:
     - Resources/Localizable/en.lproj/Localizable.strings
