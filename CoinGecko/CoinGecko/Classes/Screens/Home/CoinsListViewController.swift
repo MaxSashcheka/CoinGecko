@@ -6,29 +6,38 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import Utils
+import RxCocoa
+import RxSwift
 import SnapKit
+import Utils
 
 final class CoinsListViewController: ViewController {
-    
-    private let tableView: UITableView = {
+    private let coinsTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
+        tableView.allowsSelection = false
+        tableView.separatorStyle = .none
         
         return tableView
     }()
     
+    override var backgroundColor: UIColor { Assets.Colors.platinum.color }
+    override var prefersLargeTitles: Bool { true }
+    
+    var viewModel: ViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Trending Coins"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        viewModel.fetchCoins()
     }
     
     override func arrangeSubviews() {
         super.arrangeSubviews()
         
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
+        view.addSubview(coinsTableView)
+        coinsTableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
@@ -36,14 +45,25 @@ final class CoinsListViewController: ViewController {
     override func setupData() {
         super.setupData()
         
-        tableView.delegate = self
-        tableView.dataSource = self
+        coinsTableView.delegate = self
+        coinsTableView.dataSource = self
+    }
+    
+    override func bindData() {
+        super.bindData()
+        
+        viewModel.coinsViewModels
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                self?.coinsTableView.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
 }
 
 extension CoinsListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        100
+        viewModel.coinsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,7 +71,7 @@ extension CoinsListViewController: UITableViewDelegate, UITableViewDataSource {
             assertionFailure("Cannot deque reusable cell for \(CoinCell.reuseIdentifier) identifier")
             return UITableViewCell()
         }
-        
+        cell.viewModel = viewModel.cellViewModel(for: indexPath)
         
         return cell
     }

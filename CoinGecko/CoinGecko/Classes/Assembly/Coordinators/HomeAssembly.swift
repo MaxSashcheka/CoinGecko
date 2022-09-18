@@ -12,12 +12,14 @@ final class HomeAssembly: Assembly { }
 
 // MARK: - Screens
 extension HomeAssembly {
+    typealias CoinsListViewModel = CoinsListViewController.ViewModel
     static func makeCoinsListScreen(resolver: Resolver) -> (CoinsListViewController, CoinsListViewModel) {
         let viewController = CoinsListViewController()
-        let viewModel = CoinsListViewModel()
+        let viewModel = CoinsListViewModel(
+            coinsInteractor: InteractorsAssembly.makeCoinsInteractor(resolver: resolver)
+        )
+        viewController.viewModel = viewModel
         
         return (viewController, viewModel)
     }
 }
-
-

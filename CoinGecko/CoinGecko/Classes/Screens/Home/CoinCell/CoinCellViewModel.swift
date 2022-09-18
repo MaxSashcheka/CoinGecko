@@ -6,11 +6,35 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 extension CoinsListViewController.CoinCell {
-    class ViewModel {
+    typealias TitledDescriptionViewModel = TitledDescriptionView.ViewModel
+    
+    final class ViewModel {
+        let imageURL: URL?
+        let nameTitledDescriptionViewModel: TitledDescriptionViewModel
+        let priceInfoTitledDescriptionViewModel: TitledDescriptionViewModel
+        let isPriceChangePositive: Bool
         
+        init(imageURL: URL?,
+             name: String = .empty,
+             symbol: String = .empty,
+             currentPrice: String = .empty,
+             priceChangePercentage: String = .empty,
+             isPriceChangePositive: Bool) {
+            self.imageURL = imageURL
+            self.isPriceChangePositive = isPriceChangePositive
+            
+            nameTitledDescriptionViewModel = TitledDescriptionViewModel(
+                titleText: name,
+                descriptionText: symbol
+            )
+            priceInfoTitledDescriptionViewModel = TitledDescriptionViewModel(
+                titleText: currentPrice.description,
+                descriptionText: priceChangePercentage
+            )
+        }
     }
 }
