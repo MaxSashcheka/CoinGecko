@@ -23,11 +23,11 @@ public typealias NetworkRouterErrorClosure = (NetworkRouterError) -> Void
 
 class NetworkRouter<EndPoint: EndPointType>: NetworkRouterProtocol {
     private var task: URLSessionTask?
+    private let session = URLSession.shared
     
     func request<ResponseType: Decodable>(_ route: EndPoint,
                                           success: @escaping (ResponseType) -> Void,
                                           failure: @escaping NetworkRouterErrorClosure) {
-        let session = URLSession.shared
         do {
             let request = try buildRequest(from: route)
             task = session.dataTask(with: request, completionHandler: { data, response, error in

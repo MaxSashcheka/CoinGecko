@@ -25,4 +25,10 @@ open class View: UIView {
         layer.shadowRadius = shadowRadius
         layer.shadowOpacity = shadowOpacity
     }
+    
+    public convenience init(backgroundColor: UIColor) {
+        self.init()
+        
+        self.backgroundColor = backgroundColor
+    }
 }
