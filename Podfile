@@ -20,10 +20,7 @@ end
 
 def ui_pods
   pod 'SnapKit'
-end
-
-def network_pods
-  pod 'Alamofire'
+  pod 'SDWebImage'
 end
 
 def reactive_pods
@@ -41,7 +38,6 @@ end
 
 target 'Core' do
   common_pods
-  network_pods
   
   project 'Core/Core.xcodeproj'
 end
