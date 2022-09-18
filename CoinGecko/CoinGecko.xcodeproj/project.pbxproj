@@ -103,6 +103,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		032F933928D73ED100685F19 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		1C2A63DC28D644970007877D /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,21 +270,14 @@
 		1CF466E628CFDEDE0012DE85 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				032F933928D73ED100685F19 /* Fonts */,
 				1CF466E828CFDEEE0012DE85 /* Generated */,
 				1CF466E928CFDEF90012DE85 /* Localizable */,
-				1CF466E728CFDEE60012DE85 /* Fonts */,
 				1CD6959B28CFBDA7007AE077 /* Info.plist */,
 				1CD6959828CFBDA7007AE077 /* LaunchScreen.storyboard */,
 				1CD6959628CFBDA7007AE077 /* Assets.xcassets */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		1CF466E728CFDEE60012DE85 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		1CF466E828CFDEEE0012DE85 /* Generated */ = {
