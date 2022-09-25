@@ -21,6 +21,7 @@ end
 def ui_pods
   pod 'SnapKit'
   pod 'SDWebImage'
+  pod 'SVProgressHUD'
 end
 
 def reactive_pods
