@@ -16,18 +16,21 @@ extension CoinsListViewController {
         private let coinsInteractor: CoinsInteractorProtocol
         
         var showCoinDetailInfoTransition: Closure.String?
+        var errorHandlerClosure: NetworkRouterErrorClosure?
         
         let coinsViewModels = BehaviorRelay<[CoinCell.ViewModel]>(value: [])
         
         var coinsCount: Int { coinsViewModels.value.count }
-        
+
         init(coinsInteractor: CoinsInteractorProtocol) {
             self.coinsInteractor = coinsInteractor
         }
         
         func fetchCoins() {
             // TODO: - Remove hardcoded currency string
-            coinsInteractor.getCoins(currency: "usd", page: 1, pageSize: 20) { [weak self] coins in
+            
+            ActivityIndicator.show()
+            coinsInteractor.getCoins(currency: "usd", page: 1, pageSize: 20, success: { [weak self] coins in
                 self?.coinsViewModels.accept(
                     coins.map { coin in
                         let isPriceChangePositive = coin.priceChangePercentage24h > 0
@@ -52,10 +55,10 @@ extension CoinsListViewController {
                         )
                     }
                 )
-
-            } failure: { error in
-                print(error)
-            }
+                ActivityIndicator.hide()
+            }, failure: { [weak self] error in
+                self?.errorHandlerClosure?(error)
+            })
         }
         
         func cellViewModel(for indexPath: IndexPath) -> CoinCell.ViewModel {

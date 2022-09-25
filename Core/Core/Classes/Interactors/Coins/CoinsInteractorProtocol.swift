@@ -6,7 +6,7 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import Foundation
+import Utils
 
 public protocol CoinsInteractorProtocol: Interactor {
     func getCoins(currency: String,

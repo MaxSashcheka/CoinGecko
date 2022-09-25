@@ -8,13 +8,12 @@
 
 import Foundation
 
-// MARK: Optional+String
 public extension Optional where Wrapped == String {
     func orEmpty() -> Wrapped { self ?? "" }
     func isNilOrEmpty() -> Bool { orEmpty().isEmpty }
 }
 
-// MARK: Optional+Check
 public extension Optional {
     var isNil: Bool { self == nil }
+    var nonNil: Bool { !isNil }
 }

@@ -47,4 +47,18 @@ open class ViewController: UIViewController {
     open func setupData() {
         // Override at subclasses
     }
+    
+    public var errorHandler: NetworkRouterErrorClosure {
+        { [weak self] error in
+            ActivityIndicator.hide()
+            let alert = UIAlertController(title: "Ooops, error",
+                                          message: error.rawValue,
+                                          preferredStyle: UIAlertController.Style.alert)
+            
+            alert.addAction(UIAlertAction(title: "OK",
+                                          style: UIAlertAction.Style.default,
+                                          handler: nil))
+            self?.present(alert, animated: true, completion: nil)
+        }
+    }
 }

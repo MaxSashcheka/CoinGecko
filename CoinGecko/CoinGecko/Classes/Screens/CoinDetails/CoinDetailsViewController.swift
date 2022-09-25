@@ -43,8 +43,9 @@ final class CoinDetailsViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        descriptionTextView.backgroundColor = .red
+        
+        viewModel.errorHandlerClosure = errorHandler
+        viewModel.fetchCoinDetails()
     }
     
     override func arrangeSubviews() {

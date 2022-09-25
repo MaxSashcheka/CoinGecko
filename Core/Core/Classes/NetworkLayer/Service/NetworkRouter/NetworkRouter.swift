@@ -8,19 +8,6 @@
 
 import Utils
 
-public enum NetworkRouterError: String, Error {
-    case noInternetConnection = "Please check your internet connection"
-    case authenticationError = "You need to be authenticated first"
-    case badRequest = "Bad request"
-    case outdated = "The url you requested is outdated"
-    case failed = "Network request failed"
-    case noData = "Response returned with no data to decode"
-    case unableToDecode = "We could not decode the response"
-    case unableToBuildRequest = "Error during building url request"
-}
-
-public typealias NetworkRouterErrorClosure = (NetworkRouterError) -> Void
-
 class NetworkRouter<EndPoint: EndPointType>: NetworkRouterProtocol {
     private var task: URLSessionTask?
     private let session = URLSession.shared
@@ -31,48 +18,53 @@ class NetworkRouter<EndPoint: EndPointType>: NetworkRouterProtocol {
         do {
             let request = try buildRequest(from: route)
             task = session.dataTask(with: request, completionHandler: { data, response, error in
-                if !error.isNil {
-                    failure(.noInternetConnection); return
-                }
-                
-                if let response = response as? HTTPURLResponse {
-                    switch response.statusCode {
-                    case 401...500: failure(.authenticationError); return
-                    case 501...599: failure(.badRequest); return
-                    case 600: failure(.outdated); return
-                    default: break
+                DispatchQueue.main.async {
+                    if !error.isNil {
+                        failure(.noInternetConnection); return
                     }
-                }
-                
-                guard let responseData = data else {
-                    failure(.noData); return
-                }
-                
-                do {
-                    let response = try JSONDecoder().decode(ResponseType.self, from: responseData)
-                    success(response)
-                } catch {
-                    if let decodingError = error as? DecodingError {
-                        // TODO: - Add custom errors for decoding error
-                        switch decodingError {
-                        case .typeMismatch(let key, let value):
-                            print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
-                        case .valueNotFound(let key, let value):
-                            print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
-                        case .keyNotFound(let key, let value):
-                            print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
-                        case .dataCorrupted(let key):
-                            print("error \(key), and ERROR: \(error.localizedDescription)")
-                        default:
-                            print("ERROR: \(error.localizedDescription)")
+                    
+                    if let response = response as? HTTPURLResponse {
+                        switch response.statusCode {
+                        case 401...500: failure(.authenticationError); return
+                        case 501...599: failure(.badRequest); return
+                        case 600: failure(.outdated); return
+                        default: break
                         }
                     }
                     
-                    failure(.unableToDecode); return
+                    guard let responseData = data else {
+                        failure(.noData); return
+                    }
+                    
+                    do {
+                        let response = try JSONDecoder().decode(ResponseType.self, from: responseData)
+                        success(response)
+                    } catch {
+                        if let decodingError = error as? DecodingError {
+                            // TODO: - Add custom errors for decoding error
+                            switch decodingError {
+                            case .typeMismatch(let key, let value):
+                                print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
+                            case .valueNotFound(let key, let value):
+                                print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
+                            case .keyNotFound(let key, let value):
+                                print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
+                            case .dataCorrupted(let key):
+                                print("error \(key), and ERROR: \(error.localizedDescription)")
+                            default:
+                                print("ERROR: \(error.localizedDescription)")
+                            }
+                        }
+                        
+                        failure(.unableToDecode); return
+                    }
                 }
+                
             })
         } catch {
-            failure(.unableToBuildRequest); return
+            DispatchQueue.main.async {
+                failure(.unableToBuildRequest); return
+            }
         }
         task?.resume()
     }
