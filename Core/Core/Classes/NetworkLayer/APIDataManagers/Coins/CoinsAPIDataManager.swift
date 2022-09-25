@@ -6,7 +6,7 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import Foundation
+import Utils
 
 public class CoinsAPIDataManager: CoinsAPIDataManagerProtocol {
     private let router = NetworkRouter<CoinsEnpoint>()

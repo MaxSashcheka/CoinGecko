@@ -16,6 +16,7 @@ final class CoinsListViewController: ViewController {
         let tableView = UITableView()
         tableView.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
         tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
         
         return tableView
     }()
@@ -30,6 +31,7 @@ final class CoinsListViewController: ViewController {
         title = "Trending Coins"
         
         viewModel.fetchCoins()
+        viewModel.errorHandlerClosure = errorHandler
     }
     
     override func arrangeSubviews() {

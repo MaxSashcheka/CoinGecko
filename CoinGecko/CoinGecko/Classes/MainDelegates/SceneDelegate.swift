@@ -22,9 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         rootCoordinator.start(at: window)
         
-        
-        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.window = window
+        }
     }
-
 }
-

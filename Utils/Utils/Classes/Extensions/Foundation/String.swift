@@ -9,12 +9,14 @@
 import Foundation
 
 public extension String {
+    var firstUppercased: Self { prefix(1).uppercased() + dropFirst() }
+    var firstCapitalized: Self { prefix(1).capitalized + dropFirst() }
+}
+
+public extension String {
     static let empty = ""
     static let whitespace = " "
     static let percent = "%"
-    
-    var firstUppercased: Self { prefix(1).uppercased() + dropFirst() }
-    var firstCapitalized: Self { prefix(1).capitalized + dropFirst() }
 }
 
 public extension String {
