@@ -13,46 +13,36 @@ public struct Coin {
     public let symbol: String
     public let name: String
     public let imageURL: URL
+    public let priceDetails: PriceDetails
+}
+
+public struct PriceDetails {
     public let currentPrice: Double
     public let marketCap: Int
     public let marketCapRank: Int
     public let totalVolume: Int
     public let previousDayHighestPrice: Double
     public let previousDayLowestPrice: Double
-    public let priceChange24h: Double
-    public let priceChangePercentage24h: Double
+    public let change24h: Double
+    public let changePercentage24h: Double
 }
 
-extension Coin: Decodable {
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case symbol
-        case name
-        case imageURL = "image"
-        case currentPrice = "current_price"
-        case marketCap = "market_cap"
-        case marketCapRank = "market_cap_rank"
-        case totalVolume = "total_volume"
-        case previousDayHighestPrice = "high_24h"
-        case previousDayLowestPrice = "low_24h"
-        case priceChange24h = "price_change_24h"
-        case priceChangePercentage24h = "price_change_percentage_24h"
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+public extension Coin {
+    init(coinResponse: CoinResponse) {
+        self.id = coinResponse.id
+        self.symbol = coinResponse.symbol
+        self.name = coinResponse.name
+        self.imageURL = coinResponse.imageURL
         
-        self.id = try container.decode(String.self, forKey: .id)
-        self.symbol = try container.decode(String.self, forKey: .symbol)
-        self.name = try container.decode(String.self, forKey: .name)
-        self.imageURL = try container.decode(URL.self, forKey: .imageURL)
-        self.currentPrice = try container.decode(Double.self, forKey: .currentPrice)
-        self.marketCap = try container.decode(Int.self, forKey: .marketCap)
-        self.marketCapRank = try container.decode(Int.self, forKey: .marketCapRank)
-        self.totalVolume = try container.decode(Int.self, forKey: .totalVolume)
-        self.previousDayHighestPrice = try container.decode(Double.self, forKey: .previousDayHighestPrice)
-        self.previousDayLowestPrice = try container.decode(Double.self, forKey: .previousDayLowestPrice)
-        self.priceChange24h = try container.decode(Double.self, forKey: .priceChange24h)
-        self.priceChangePercentage24h = try container.decode(Double.self, forKey: .priceChangePercentage24h)
+        self.priceDetails = PriceDetails(
+            currentPrice: coinResponse.currentPrice,
+            marketCap: coinResponse.marketCap,
+            marketCapRank: coinResponse.marketCapRank,
+            totalVolume: coinResponse.totalVolume,
+            previousDayHighestPrice: coinResponse.previousDayHighestPrice,
+            previousDayLowestPrice: coinResponse.previousDayLowestPrice,
+            change24h: coinResponse.priceChange24h,
+            changePercentage24h: coinResponse.priceChangePercentage24h
+        )
     }
 }

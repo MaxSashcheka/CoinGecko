@@ -9,13 +9,14 @@
 import Utils
 
 public protocol CoinsInteractorProtocol: Interactor {
-    func getCoins(currency: String,
-                  page: Int,
-                  pageSize: Int,
+    func getCoins(fromCache: Bool,
+                  currency: String, page: Int, pageSize: Int,
                   success: @escaping ([Coin]) -> Void,
                   failure: @escaping NetworkRouterErrorClosure)
     
-    func getCoinDetailInfo(id: String,
-                           success: @escaping (CoinDetails) -> Void,
-                           failure: @escaping NetworkRouterErrorClosure)
+    func getCoinMarketChart(id: String, currency: String,
+                            startTimeInterval: TimeInterval,
+                            endTimeInterval: TimeInterval,
+                            success: @escaping (CoinChartData) -> Void,
+                            failure: @escaping NetworkRouterErrorClosure)
 }

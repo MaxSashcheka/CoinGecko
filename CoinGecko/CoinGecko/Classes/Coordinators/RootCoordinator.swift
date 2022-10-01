@@ -9,24 +9,33 @@
 import UIKit
 import Utils
 
-final class RootCoordinator: ContainerCoordinator {
+final class RootCoordinator: TabCoordinator {
 
     override func registerContent() {
         
     }
 
     func start(at window: UIWindow?) {
-        assert(window != nil, "Root Window is nil")
+        assert(window.nonNil, "Root Window is nil")
         window?.rootViewController = baseViewController
         window?.makeKeyAndVisible()
 
-        initializeHomeCoordinatorAndShow()
+        initializeTabsCoordinatorsAndShow()
     }
 }
 
 private extension RootCoordinator {
-    func initializeHomeCoordinatorAndShow() {
-        let coordinator = HomeCoordinator(parent: self)
-        setContentCoordinator(coordinator)
+    func initializeTabsCoordinatorsAndShow() {
+        let homeCoordinator = RootAssembly.makeHomeCoordinator(parent: self)
+        let marketsCoordinator = RootAssembly.makeMarketsCoordinator(parent: self)
+        
+        let coordinators = [
+            homeCoordinator,
+            marketsCoordinator
+        ]
+        
+        tabBarController.tabBar.tintColor = .red
+        
+        setTabsCoordinators(coordinators)
     }
 }

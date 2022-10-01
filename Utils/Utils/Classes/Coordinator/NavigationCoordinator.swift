@@ -41,18 +41,18 @@ open class NavigationCoordinator: Coordinator, UINavigationControllerDelegate {
     /// Overrided property of 'Coordinator' class.
     /// Returns the same object as *navigationController* property.
     override open var baseViewController: UIViewController {
-        return navigationController
+        navigationController
     }
     
     /// Overrided property of 'Coordinator' class.
     /// Returns the top view controller of navigation controller
     override open var activeViewController: UIViewController? {
-        return navigationController.topViewController
+        navigationController.topViewController
     }
 
     /// Return the value that indicates the possibility to edges swipe back
     open var isSwipeBackEnabled: Bool {
-        return navigationController.viewControllers.count > 1
+        navigationController.viewControllers.count > 1
     }
     
     /// Creates the navigation controller that the stack coordinator manages. You should never call this method directly.
@@ -97,7 +97,7 @@ open class NavigationCoordinator: Coordinator, UINavigationControllerDelegate {
     /// Pops top view controller
     /// - parameter animated: should pop animation be animated or not
     @discardableResult open func popViewController(animated: Bool) -> UIViewController? {
-        return navigationController.popViewController(animated: animated)
+        navigationController.popViewController(animated: animated)
     }
 
     /// Push view controller
@@ -134,7 +134,7 @@ open class NavigationCoordinator: Coordinator, UINavigationControllerDelegate {
     /// - parameter coordinator: coordinator to get index
     /// - returns: Index of coordinator at navigation stack, if exist.
     open func coordinatorIndexAtStack(_ coordinator: Coordinator) -> Int? {
-        return navigationController.viewControllers.firstIndex(of: coordinator.baseViewController)
+        navigationController.viewControllers.firstIndex(of: coordinator.baseViewController)
     }
 }
 
@@ -156,7 +156,7 @@ extension NavigationCoordinator: UIGestureRecognizerDelegate {
 // MARK: - NavigationControllerBackButtonDelegate
 extension NavigationCoordinator: NavigationControllerBackButtonDelegate {
     func navigationControllerShouldPopByBackButton(_ navigationController: UINavigationController) -> Bool {
-        return handleIntercativeDismissal(.navigationBackButton)
+        handleIntercativeDismissal(.navigationBackButton)
     }
 }
 

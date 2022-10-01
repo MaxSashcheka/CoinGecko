@@ -6,6 +6,7 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
+import Core
 import RxCocoa
 import RxSwift
 
@@ -18,6 +19,7 @@ extension CoinsListViewController.CoinCell {
         let nameTitledDescriptionViewModel: TitledDescriptionViewModel
         let priceInfoTitledDescriptionViewModel: TitledDescriptionViewModel
         let isPriceChangePositive: Bool
+        let coin: Coin
         
         init(id: String,
              imageURL: URL?,
@@ -25,10 +27,12 @@ extension CoinsListViewController.CoinCell {
              symbol: String = .empty,
              currentPrice: String = .empty,
              priceChangePercentage: String = .empty,
-             isPriceChangePositive: Bool) {
+             isPriceChangePositive: Bool,
+             coin: Coin) {
             self.id = id
             self.imageURL = imageURL
             self.isPriceChangePositive = isPriceChangePositive
+            self.coin = coin
             
             nameTitledDescriptionViewModel = TitledDescriptionViewModel(
                 titleText: name,

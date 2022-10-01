@@ -9,6 +9,10 @@
 import UIKit.UIView
 
 public extension UIView {
+    func removeAllSubviews() {
+        subviews.forEach { $0.removeFromSuperview() }
+    }
+    
     func asImage() -> UIImage {
         UIGraphicsImageRenderer(bounds: bounds).image { rendererContext in
             layer.render(in: rendererContext.cgContext)

@@ -15,23 +15,24 @@ public class CoinsInteractor: CoinsInteractorProtocol {
         self.coinsAPIDataManager = coinsAPIDataManager
     }
     
-    public func getCoins(currency: String,
-                         page: Int,
-                         pageSize: Int,
+    public func getCoins(fromCache: Bool = true,
+                         currency: String, page: Int, pageSize: Int,
                          success: @escaping ([Coin]) -> Void,
                          failure: @escaping NetworkRouterErrorClosure) {
-        coinsAPIDataManager.getCoins(currency: currency,
-                                     page: page,
-                                     pageSize: pageSize,
-                                     success: success,
+        coinsAPIDataManager.getCoins(currency: currency, page: page, pageSize: pageSize,
+                                     success: { success($0.map { .init(coinResponse: $0) })},
                                      failure: failure)
     }
     
-    public func getCoinDetailInfo(id: String,
-                                  success: @escaping (CoinDetails) -> Void,
-                                  failure: @escaping NetworkRouterErrorClosure) {
-        coinsAPIDataManager.getCoinDetailInfo(id: id,
-                                              success: success,
-                                              failure: failure)
+    public func getCoinMarketChart(id: String, currency: String,
+                                   startTimeInterval: TimeInterval,
+                                   endTimeInterval: TimeInterval,
+                                   success: @escaping (CoinChartData) -> Void,
+                                   failure: @escaping NetworkRouterErrorClosure) {
+        coinsAPIDataManager.getCoinMarketChart(id: id, currency: currency,
+                                               startTimeInterval: startTimeInterval,
+                                               endTimeInterval: endTimeInterval,
+                                               success: { success(.init(coinChartDataResponse: $0 )) },
+                                               failure: failure)
     }
 }

@@ -6,6 +6,7 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
+import Core
 import Utils
 
 final class HomeAssembly: Assembly { }
@@ -24,10 +25,10 @@ extension HomeAssembly {
     }
     
     typealias CoinDetailsViewModel = CoinDetailsViewController.ViewModel
-    static func makeCoinsListScreen(resolver: Resolver, coinId: String) -> (CoinDetailsViewController, CoinDetailsViewModel) {
+    static func makeCoinDetailsScreen(resolver: Resolver, coin: Coin) -> (CoinDetailsViewController, CoinDetailsViewModel) {
         let viewController = CoinDetailsViewController()
         let viewModel = CoinDetailsViewModel(
-            coinId: coinId,
+            coin: coin,
             coinsInteractor: InteractorsAssembly.makeCoinsInteractor(resolver: resolver)
         )
         viewController.viewModel = viewModel

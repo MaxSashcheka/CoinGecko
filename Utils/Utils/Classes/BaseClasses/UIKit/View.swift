@@ -31,4 +31,20 @@ open class View: UIView {
         
         self.backgroundColor = backgroundColor
     }
+    
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        initialize()
+    }
+    
+    required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        initialize()
+    }
+    
+    open func initialize() {
+        
+    }
 }

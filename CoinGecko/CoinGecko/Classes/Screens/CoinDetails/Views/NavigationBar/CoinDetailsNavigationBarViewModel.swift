@@ -12,6 +12,7 @@ import RxSwift
 extension CoinDetailsViewController.CoinDetailsNavigationBarView {
     class ViewModel {
         let title = BehaviorRelay<String>(value: .empty)
+        let description = BehaviorRelay<String>(value: .empty)
         let imageURL = BehaviorRelay<URL?>(value: nil)
         let closeButtonRelay = BehaviorRelay<Void>(value: ())
         

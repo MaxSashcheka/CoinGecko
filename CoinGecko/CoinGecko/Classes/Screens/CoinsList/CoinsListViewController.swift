@@ -28,7 +28,6 @@ final class CoinsListViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Trending Coins"
         
         viewModel.fetchCoins()
         viewModel.errorHandlerClosure = errorHandler
@@ -48,6 +47,10 @@ final class CoinsListViewController: ViewController {
         
         coinsTableView.delegate = self
         coinsTableView.dataSource = self
+        
+        title = "Trending Coins"
+        navigationController?.tabBarItem.title = "Home"
+        navigationController?.tabBarItem.image = UIImage(systemName: "house")
     }
     
     override func bindData() {

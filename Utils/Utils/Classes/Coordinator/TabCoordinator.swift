@@ -40,13 +40,13 @@ open class TabCoordinator: Coordinator {
     /// Overrided property of 'Coordinator' class.
     /// Returns the same object as *navigationController* property.
     override open var baseViewController: UIViewController {
-        return tabBarController
+        tabBarController
     }
     
     /// Overrided property of 'Coordinator' class.
     /// Returns the selected view controller of tab bar controller
     override open var activeViewController: UIViewController? {
-        return tabBarController.selectedViewController
+        tabBarController.selectedViewController
     }
     
     /// Creates the tab bar controller that the coordinator manages. You should never call this method directly.
@@ -60,13 +60,13 @@ open class TabCoordinator: Coordinator {
     /// Returns first controller with given type from *viewControllers* list of tab bar controller if exists. Otherwise returns nil.
     /// - parameter type: view controller's type to find
     open func viewController<ControllerType: UIViewController>(withType type: ControllerType.Type) -> UIViewController? {
-        return tabBarController.viewControllers?.first { $0 is ControllerType }
+        tabBarController.viewControllers?.first { $0 is ControllerType }
     }
     
     /// Returns **true** if view controller with given type is found in *viewControllers* list of tab bar controller. Otherwise returns **false**.
     /// - parameter type: view controller type to find
     open func containsViewController<ControllerType: UIViewController>(withType type: ControllerType.Type) -> Bool {
-        return (viewController(withType: ControllerType.self) != nil)
+        viewController(withType: ControllerType.self) != nil
     }
     
     /// Select view controller with given type. Throws assert if view controller with given type is not found.
@@ -98,6 +98,12 @@ open class TabCoordinator: Coordinator {
         }
 
         tabBarController.selectedViewController = coordinator.baseViewController
+    }
+    
+    open func setTabsCoordinators(_ newCoordinators: [Coordinator]) {
+        newCoordinators.forEach { add(child: $0) }
+        tabBarController.setViewControllers(newCoordinators.map { $0.baseViewController }, animated: false)
+        tabBarController.loadViewIfNeeded()
     }
 }
 
