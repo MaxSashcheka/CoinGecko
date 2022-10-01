@@ -16,26 +16,26 @@ final class CoinDetailsViewController: ViewController {
     
     private let scrollView = UIScrollView()
     
-    private let iconImageView: RemoteImageView = {
-        let imageView = RemoteImageView(placeholder: .color(.gray))
-        imageView.contentMode = .scaleAspectFit
+    private let currentPriceLabel: Label = {
+        let label = Label()
+        label.font = .systemFont(ofSize: 23, weight: .bold)
+        label.text = "₹98,509.75"
         
-        return imageView
+        return label
     }()
     
-    private let descriptionTitleLabel = Label(textPreferences: .largeTitle)
-    
-    private let descriptionTextView: UITextView = {
-        let textView = UITextView()
-        textView.textAlignment = .center
-        textView.isScrollEnabled = false
-        textView.isEditable = false
-        textView.textContainerInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        textView.font = .systemFont(ofSize: 17, weight: .regular)
-        textView.textColor = .gray.withAlphaComponent(0.7)
+    private let priceChangeLabel: Label = {
+        let label = Label()
+        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.text = "+ 1700.254 (9.77%)"
+        label.textColor = .systemGreen
         
-        return textView
+        return label
     }()
+    
+    private let chartView = ChartView()
+    
+    private let buttonsCollectionView = ButtonsCollectionView()
     
     var viewModel: ViewModel!
     
@@ -45,7 +45,6 @@ final class CoinDetailsViewController: ViewController {
         super.viewDidLoad()
         
         viewModel.errorHandlerClosure = errorHandler
-        viewModel.fetchCoinDetails()
     }
     
     override func arrangeSubviews() {
@@ -64,26 +63,33 @@ final class CoinDetailsViewController: ViewController {
             make.leading.trailing.bottom.equalToSuperview()
         }
         
-        scrollView.addSubview(iconImageView)
-        iconImageView.snp.makeConstraints { make in
+        scrollView.addSubview(currentPriceLabel)
+        currentPriceLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(15)
+        }
+        
+        scrollView.addSubview(priceChangeLabel)
+        priceChangeLabel.snp.makeConstraints { make in
+            make.leading.equalTo(currentPriceLabel.snp.trailing).offset(8)
+            make.bottom.equalTo(currentPriceLabel).offset(-2)
+        }
+        
+        scrollView.addSubview(chartView)
+        chartView.snp.makeConstraints { make in
+            make.top.equalTo(currentPriceLabel.snp.bottom).offset(35)
+            make.leading.trailing.equalToSuperview()
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(25)
-            make.size.equalTo(250)
+            make.height.equalTo(chartView.snp.width).multipliedBy(0.8)
         }
         
-        scrollView.addSubview(descriptionTitleLabel)
-        descriptionTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(iconImageView.snp.bottom).offset(15)
+        scrollView.addSubview(buttonsCollectionView)
+        buttonsCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(chartView.snp.bottom).offset(25)
             make.centerX.equalToSuperview()
+            make.height.equalTo(33)
+            make.bottom.equalToSuperview().offset(-20)
         }
-        
-        scrollView.addSubview(descriptionTextView)
-        descriptionTextView.snp.makeConstraints { make in
-            make.top.equalTo(descriptionTitleLabel.snp.bottom).offset(10)
-            make.width.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-40)
-        }
-        
     }
     
     override func bindData() {
@@ -97,16 +103,12 @@ final class CoinDetailsViewController: ViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.imageURL
-            .asDriver()
-            .drive(onNext: { [weak self] in
-                self?.iconImageView.imageURL = $0
+        viewModel.buttonsCollectionViewModel.selectTimeIntervalRelay
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: .zero)
+            .drive(onNext: { [weak viewModel] in
+                viewModel?.fetchCoinDetails(for: $0)
             })
-            .disposed(by: disposeBag)
-        
-        viewModel.descriptionText
-            .asDriver()
-            .drive(descriptionTextView.rx.text)
             .disposed(by: disposeBag)
 
     }
@@ -115,6 +117,7 @@ final class CoinDetailsViewController: ViewController {
         super.setupData()
         
         navigationBarView.viewModel = viewModel.navigationBarViewModel
-        descriptionTitleLabel.text = "Description"
+        chartView.viewModel = viewModel.chartViewModel
+        buttonsCollectionView.viewModel = viewModel.buttonsCollectionViewModel
     }
 }

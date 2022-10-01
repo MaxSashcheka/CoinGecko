@@ -13,25 +13,35 @@ public class CoinsAPIDataManager: CoinsAPIDataManagerProtocol {
     
     public init() { }
     
-    public func getCoins(currency: String,
-                         page: Int,
-                         pageSize: Int,
-                         success: @escaping ([Coin]) -> Void,
+    public func getCoins(currency: String, page: Int, pageSize: Int,
+                         success: @escaping ([CoinResponse]) -> Void,
                          failure: @escaping NetworkRouterErrorClosure) {
         router.request(
-            .markets(currency: currency, page: page, pageSize: pageSize),
+            .markets(
+                currency: currency,
+                page: page,
+                pageSize: pageSize
+            ),
             success: success,
             failure: failure
         )
     }
     
-    public func getCoinDetailInfo(id: String,
-                                  success: @escaping (CoinDetails) -> Void,
-                                  failure: @escaping NetworkRouterErrorClosure) {
+    public func getCoinMarketChart(id: String, currency: String,
+                                   startTimeInterval: TimeInterval,
+                                   endTimeInterval: TimeInterval,
+                                   success: @escaping (CoinChartDataResponse) -> Void,
+                                   failure: @escaping NetworkRouterErrorClosure) {
         router.request(
-            .coinDetailInfo(id: id),
+            .coinMarketChart(
+                id: id,
+                currency: currency,
+                startTimeInterval: startTimeInterval,
+                endTimeInterval: endTimeInterval
+            ),
             success: success,
             failure: failure
         )
     }
+    
 }

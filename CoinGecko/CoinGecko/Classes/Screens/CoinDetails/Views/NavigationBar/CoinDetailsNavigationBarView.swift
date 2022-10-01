@@ -17,6 +17,14 @@ extension CoinDetailsViewController {
         
         private let titleLabel = Label(textPreferences: .title)
         
+        private let descriptionLabel: Label = {
+            let label = Label()
+            label.font = .systemFont(ofSize: 14, weight: .regular)
+            label.textColor = .darkGray
+            
+            return label
+        }()
+        
         private let coinImageView: RemoteImageView = {
             let imageView = RemoteImageView(placeholder: .color(.gray))
             imageView.contentMode = .scaleAspectFit
@@ -32,7 +40,7 @@ extension CoinDetailsViewController {
             didSet {
                 disposeBag = DisposeBag()
                 guard let viewModel = viewModel else { return }
-                
+
                 arrangeSubviews()
                 bindData(with: viewModel)
                 setupData()
@@ -46,16 +54,29 @@ extension CoinDetailsViewController {
                 make.centerY.equalToSuperview()
             }
             
-            addSubview(titleLabel)
-            titleLabel.snp.makeConstraints { make in
-                make.centerX.centerY.equalToSuperview()
+            let infoContainerView = View()
+            addSubview(infoContainerView)
+            infoContainerView.snp.makeConstraints { make in
+                make.center.equalToSuperview()
             }
             
-            addSubview(coinImageView)
+            infoContainerView.addSubview(coinImageView)
             coinImageView.snp.makeConstraints { make in
-                make.leading.equalTo(titleLabel.snp.trailing).offset(10)
-                make.centerY.equalTo(titleLabel)
+                make.leading.top.bottom.equalToSuperview()
                 make.size.equalTo(30)
+            }
+            
+            infoContainerView.addSubview(titleLabel)
+            titleLabel.snp.makeConstraints { make in
+                make.centerY.equalTo(coinImageView)
+                make.leading.equalTo(coinImageView.snp.trailing).offset(5)
+            }
+            
+            infoContainerView.addSubview(descriptionLabel)
+            descriptionLabel.snp.makeConstraints { make in
+                make.leading.equalTo(titleLabel.snp.trailing).offset(3)
+                make.bottom.equalTo(titleLabel).offset(-3)
+                make.trailing.equalToSuperview()
             }
             
             addSubview(separatorLine)
@@ -69,6 +90,11 @@ extension CoinDetailsViewController {
             viewModel.title
                 .asDriver()
                 .drive(titleLabel.rx.text)
+                .disposed(by: disposeBag)
+            
+            viewModel.description
+                .asDriver()
+                .drive(descriptionLabel.rx.text)
                 .disposed(by: disposeBag)
             
             viewModel.imageURL
@@ -86,12 +112,6 @@ extension CoinDetailsViewController {
         
         func setupData() {
             backgroundColor = .white
-            
-            // TODO: - Move or remove
-            separatorLine.layer.shadowColor = UIColor.black.withAlphaComponent(0.25).cgColor
-            separatorLine.layer.shadowOffset = CGSize(width: 0, height: 2)
-            separatorLine.layer.shadowRadius = 1.5
-            separatorLine.layer.shadowOpacity = 1
         }
         
     }

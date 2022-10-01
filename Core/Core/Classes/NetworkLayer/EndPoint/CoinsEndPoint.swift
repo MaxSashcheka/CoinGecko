@@ -9,8 +9,14 @@
 import Foundation
 
 public enum CoinsEnpoint {
-    case markets(currency: String, page: Int, pageSize: Int)
-    case coinDetailInfo(id: String)
+    case markets(currency: String,
+                 page: Int,
+                 pageSize: Int)
+    
+    case coinMarketChart(id: String,
+                         currency: String,
+                         startTimeInterval: TimeInterval,
+                         endTimeInterval: TimeInterval)
 }
 
 extension CoinsEnpoint: EndPointType {
@@ -22,7 +28,7 @@ extension CoinsEnpoint: EndPointType {
     var path: String {
         switch self {
         case .markets: return "/markets"
-        case .coinDetailInfo: return "/{id}"
+        case .coinMarketChart: return "/{id}/market_chart/range"
         }
     }
     
@@ -30,18 +36,22 @@ extension CoinsEnpoint: EndPointType {
     
     var task: HTTPTask {
         switch self {
-        case .markets(let currency, let page, let pageSize):
+        case let .markets(currency, page, pageSize):
             let urlParameters: Parameters = [
                 "vs_currency": currency,
                 "page": page,
                 "per_page": pageSize
             ]
             return .requestParameters(urlParameters: urlParameters)
-        case .coinDetailInfo(let id):
-            let pathParameters: [String : String] = [
-                "id": id
+
+        case let .coinMarketChart(id, currency, startTimeInterval, endTimeInterval):
+            let pathParameters: [String : String] = ["id": id]
+            let urlParameters: Parameters = [
+                "vs_currency": currency,
+                "from": startTimeInterval,
+                "to": endTimeInterval
             ]
-            return .requestParameters(pathParameters: pathParameters)
+            return .requestParameters(urlParameters: urlParameters, pathParameters: pathParameters)
         }
     }
     

@@ -12,10 +12,12 @@ public protocol CoinsAPIDataManagerProtocol {
     func getCoins(currency: String,
                   page: Int,
                   pageSize: Int,
-                  success: @escaping ([Coin]) -> Void,
+                  success: @escaping ([CoinResponse]) -> Void,
                   failure: @escaping NetworkRouterErrorClosure)
     
-    func getCoinDetailInfo(id: String,
-                           success: @escaping (CoinDetails) -> Void,
-                           failure: @escaping NetworkRouterErrorClosure)
+    func getCoinMarketChart(id: String, currency: String,
+                            startTimeInterval: TimeInterval,
+                            endTimeInterval: TimeInterval,
+                            success: @escaping (CoinChartDataResponse) -> Void,
+                            failure: @escaping NetworkRouterErrorClosure)
 }

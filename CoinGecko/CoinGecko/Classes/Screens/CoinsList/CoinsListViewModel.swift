@@ -15,7 +15,7 @@ extension CoinsListViewController {
     final class ViewModel {
         private let coinsInteractor: CoinsInteractorProtocol
         
-        var showCoinDetailInfoTransition: Closure.String?
+        var showCoinDetailInfoTransition: ((Coin) -> Void)?
         var errorHandlerClosure: NetworkRouterErrorClosure?
         
         let coinsViewModels = BehaviorRelay<[CoinCell.ViewModel]>(value: [])
@@ -30,17 +30,17 @@ extension CoinsListViewController {
             // TODO: - Remove hardcoded currency string
             
             ActivityIndicator.show()
-            coinsInteractor.getCoins(currency: "usd", page: 1, pageSize: 20, success: { [weak self] coins in
+            coinsInteractor.getCoins(fromCache: false, currency: "usd", page: 1, pageSize: 20, success: { [weak self] coins in
                 self?.coinsViewModels.accept(
                     coins.map { coin in
-                        let isPriceChangePositive = coin.priceChangePercentage24h > 0
-                        var priceChangeString = preciseRound(coin.priceChangePercentage24h,
+                        let isPriceChangePositive = coin.priceDetails.changePercentage24h > 0
+                        var priceChangeString = preciseRound(coin.priceDetails.changePercentage24h,
                                                              precision: .hundredths).description
                         priceChangeString.insert(contentsOf: isPriceChangePositive ? "+" : .empty,
                                                  at: priceChangeString.startIndex)
                         priceChangeString.insert(contentsOf: String.percent, at: priceChangeString.endIndex)
 
-                        var currentPriceString = preciseRound(coin.currentPrice,
+                        var currentPriceString = preciseRound(coin.priceDetails.currentPrice,
                                                               precision: .thousandths).description
                         currentPriceString.insert(contentsOf: "usd".currencySymbol, at: currentPriceString.startIndex)
 
@@ -51,7 +51,8 @@ extension CoinsListViewController {
                             symbol: coin.symbol.uppercased(),
                             currentPrice: currentPriceString,
                             priceChangePercentage: priceChangeString,
-                            isPriceChangePositive: isPriceChangePositive
+                            isPriceChangePositive: isPriceChangePositive,
+                            coin: coin
                         )
                     }
                 )
@@ -66,8 +67,8 @@ extension CoinsListViewController {
         }
         
         func didSelectCoin(at indexPath: IndexPath) {
-            let coinId = coinsViewModels.value[indexPath.row].id
-            showCoinDetailInfoTransition?(coinId)
+            let coin = coinsViewModels.value[indexPath.row].coin
+            showCoinDetailInfoTransition?(coin)
         }
     }
 }

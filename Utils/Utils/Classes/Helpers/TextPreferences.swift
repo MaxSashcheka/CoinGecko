@@ -19,7 +19,7 @@ public extension TextPreferences {
                                  textColor: .black.withAlphaComponent(0.85))
     
     static let title = Self(font: .systemFont(ofSize: 20, weight: .medium),
-                            textColor: .black)
+                            textColor: .black.withAlphaComponent(0.85))
     
     static let subtitle = Self(font: .systemFont(ofSize: 15, weight: .regular),
                                textColor: .darkGray)
