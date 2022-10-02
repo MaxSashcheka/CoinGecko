@@ -6,7 +6,12 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import Foundation
+import Utils
+
+public extension Closure {
+    typealias Coin = (Core.Coin) -> Swift.Void
+    typealias CoinsArray = ([Core.Coin]) -> Swift.Void
+}
 
 public struct Coin {
     public let id: String

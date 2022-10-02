@@ -8,6 +8,10 @@
 
 import Foundation
 
+public struct CoinsMarketResponse: Decodable {
+    let coins: [CoinResponse]
+}
+
 public struct CoinResponse {
     public let id: String
     public let symbol: String
