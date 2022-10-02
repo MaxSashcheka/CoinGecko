@@ -6,8 +6,7 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import RxCocoa
-import RxSwift
+import Combine
 import UIKit
 import Utils
 
@@ -15,25 +14,22 @@ final class ChartView: View {
     enum PriceType {
         case max, min
     }
-    
-    private var disposeBag = DisposeBag()
 
     var viewModel: ViewModel? {
         didSet {
-            disposeBag = DisposeBag()
             guard let viewModel = viewModel else { return }
+            cancellables.removeAll()
             
             bindData(with: viewModel)
         }
     }
     
     private func bindData(with viewModel: ViewModel) {
-        viewModel.dataRelay
-            .asDriver()
-            .drive(onNext: { [weak self] _ in
+        viewModel.dataSubject
+            .sink { [weak self] _ in
                 self?.setNeedsDisplay()
-            })
-            .disposed(by: disposeBag)
+            }
+            .store(in: &cancellables)
     }
     
     override func initialize() {
@@ -65,7 +61,7 @@ final class ChartView: View {
         let yAxis = maxY - minY
 
         for index in sortedChartData.indices {
-            // TODO: - REfactor coordinate calculation for current and previous coordinates
+            // TODO: - Refactor coordinate calculation for current and previous coordinates
             let currentXCoordinate = width / CGFloat(sortedChartData.count) * CGFloat(index + 1)
             let currentYCoordinate = (1 - CGFloat((sortedChartData[index] - minY) / yAxis)) * height
             if index == .zero {

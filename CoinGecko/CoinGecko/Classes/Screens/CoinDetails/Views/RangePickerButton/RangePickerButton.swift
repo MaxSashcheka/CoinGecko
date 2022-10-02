@@ -6,17 +6,15 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import RxCocoa
-import RxSwift
+import Combine
+import UIKit
 import Utils
 
-class RangePickerButton: Button {
-    private var disposeBag = DisposeBag()
-    
+class RangePickerButton: Button {    
     var viewModel: ViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }
-            disposeBag = DisposeBag()
+            cancellables.removeAll()
             
             bindData(with: viewModel)
         }
@@ -24,14 +22,12 @@ class RangePickerButton: Button {
     
     private func bindData(with viewModel: ViewModel) {
         viewModel.title
-            .asObservable()
-            .bind(to: rx.title)
-            .disposed(by: disposeBag)
-        
+            .sink { [weak self] in self?.setTitle($0, for: .normal) }
+            .store(in: &cancellables)
+
         viewModel.isSelected
-            .asObservable()
-            .bind(to: rx.isSelected)
-            .disposed(by: disposeBag)
+            .sink { [weak self] in self?.isSelected = $0 }
+            .store(in: &cancellables)
     }
     
     override init(frame: CGRect) {

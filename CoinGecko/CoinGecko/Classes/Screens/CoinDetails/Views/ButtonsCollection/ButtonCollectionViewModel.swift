@@ -6,21 +6,21 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import RxCocoa
-import RxSwift
+import Combine
+import Foundation
 
 extension ButtonsCollectionView {
     final class ViewModel {
-        let buttonsViewModels = BehaviorRelay<[RangePickerButton.ViewModel]>(value: [])
-        let selectTimeIntervalRelay = PublishRelay<TimeInterval>()
+        let buttonsViewModels = CurrentValueSubject<[RangePickerButton.ViewModel], Never>([])
+        let selectTimeIntervalSubject = PassthroughSubject<TimeInterval, Never>()
         var selectedButtonIndex: Int = .zero
         
         func selectButton(at index: Int) {
             let buttons = buttonsViewModels.value
             if buttons.isEmpty { return }
-            buttons.filter { $0.isSelected.value }.forEach { $0.isSelected.accept(false) }
-            buttons[index].isSelected.accept(true)
-            selectTimeIntervalRelay.accept(buttons[index].offsetTimeInterval.value)
+            buttons.filter { $0.isSelected.value }.forEach { $0.isSelected.send(false) }
+            buttons[index].isSelected.send(true)
+            selectTimeIntervalSubject.send(buttons[index].offsetTimeInterval.value)
         }
     }
 }

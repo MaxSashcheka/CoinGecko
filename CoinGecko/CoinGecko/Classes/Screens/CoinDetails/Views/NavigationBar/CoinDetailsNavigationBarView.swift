@@ -6,8 +6,7 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import RxCocoa
-import RxSwift
+import Combine
 import SnapKit
 import Utils
 
@@ -34,11 +33,9 @@ extension CoinDetailsViewController {
         
         private let separatorLine = View(backgroundColor: .lightGray.withAlphaComponent(0.7))
         
-        private var disposeBag = DisposeBag()
-        
         var viewModel: ViewModel? {
             didSet {
-                disposeBag = DisposeBag()
+                cancellables.removeAll()
                 guard let viewModel = viewModel else { return }
 
                 arrangeSubviews()
@@ -88,31 +85,24 @@ extension CoinDetailsViewController {
         
         func bindData(with viewModel: ViewModel) {
             viewModel.title
-                .asDriver()
-                .drive(titleLabel.rx.text)
-                .disposed(by: disposeBag)
+                .bind(to: \.text, on: titleLabel)
+                .store(in: &cancellables)
             
             viewModel.description
-                .asDriver()
-                .drive(descriptionLabel.rx.text)
-                .disposed(by: disposeBag)
+                .bind(to: \.text, on: descriptionLabel)
+                .store(in: &cancellables)
             
             viewModel.imageURL
-                .asDriver()
-                .drive(onNext: { [weak self] in
-                    self?.coinImageView.imageURL = $0
-                })
-                .disposed(by: disposeBag)
+                .bind(to: \.imageURL, on: coinImageView)
+                .store(in: &cancellables)
             
-            closeButton.rx.tap
-                .asDriver()
-                .drive(viewModel.closeButtonRelay)
-                .disposed(by: disposeBag)
+            closeButton.tapPublisher()
+                .bind(to: viewModel.closeButtonSubject)
+                .store(in: &cancellables)
         }
         
         func setupData() {
             backgroundColor = .white
         }
-        
     }
 }

@@ -6,9 +6,8 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
+import Combine
 import Core
-import RxCocoa
-import RxSwift
 
 extension CoinsListViewController.CoinCell {
     typealias TitledDescriptionViewModel = TitledDescriptionView.ViewModel
@@ -34,11 +33,11 @@ extension CoinsListViewController.CoinCell {
             self.isPriceChangePositive = isPriceChangePositive
             self.coin = coin
             
-            nameTitledDescriptionViewModel = TitledDescriptionViewModel(
+            self.nameTitledDescriptionViewModel = TitledDescriptionViewModel(
                 titleText: name,
                 descriptionText: symbol
             )
-            priceInfoTitledDescriptionViewModel = TitledDescriptionViewModel(
+            self.priceInfoTitledDescriptionViewModel = TitledDescriptionViewModel(
                 titleText: currentPrice.description,
                 descriptionText: priceChangePercentage
             )

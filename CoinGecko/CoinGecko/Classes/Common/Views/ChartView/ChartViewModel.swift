@@ -6,12 +6,12 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import RxCocoa
-import RxSwift
+import Combine
+import Foundation
 
 extension ChartView {
     final class ViewModel {
-        let dataRelay = BehaviorRelay<[CGFloat]>(value: [])
-        var chartData: [CGFloat] { dataRelay.value }
+        let dataSubject = CurrentValueSubject<[CGFloat], Never>([])
+        var chartData: [CGFloat] { dataSubject.value }
     }
 }
