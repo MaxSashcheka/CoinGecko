@@ -6,6 +6,7 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
+import Combine
 import UIKit.UIButton
 
 open class Button: UIButton {
@@ -28,6 +29,8 @@ open class Button: UIButton {
         get { titleLabel?.font ?? UIFont() }
         set { titleLabel?.font = newValue }
     }
+    
+    open var cancellables: [AnyCancellable] = []
     
     public convenience init(image: UIImage) {
         self.init()

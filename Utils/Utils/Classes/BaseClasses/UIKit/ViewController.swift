@@ -6,8 +6,8 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
+import Combine
 import UIKit.UIViewController
-import RxSwift
 
 open class ViewController: UIViewController {
 
@@ -16,7 +16,7 @@ open class ViewController: UIViewController {
     open var prefersLargeTitles: Bool { false }
     open var backgroundColor: UIColor { .white }
     
-    public let disposeBag = DisposeBag()
+    open var cancellables: [AnyCancellable] = []
     
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ open class ViewController: UIViewController {
         // Override at subclasses
     }
     
-    public var errorHandler: NetworkRouterErrorClosure {
+    public var errorHandler: Closure.APIError {
         { [weak self] error in
             ActivityIndicator.hide()
             let alert = UIAlertController(title: "Ooops, error",
