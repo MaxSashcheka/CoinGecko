@@ -9,5 +9,5 @@
 import Foundation
 
 public struct CoinChartDataResponse: Decodable {
-    public let prices: [[Float]]
+    public let prices: [[Double]]
 }

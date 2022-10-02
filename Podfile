@@ -24,28 +24,26 @@ def ui_pods
   pod 'SVProgressHUD'
 end
 
-def reactive_pods
-  pod 'RxSwift'
-  pod 'RxCocoa'
+def network_pods
+  pod 'Alamofire'
 end
 
 target 'CoinGecko' do
   common_pods
   ui_pods
-  reactive_pods
 
   project 'CoinGecko/CoinGecko.xcodeproj'
 end
 
 target 'Core' do
   common_pods
+  network_pods
   
   project 'Core/Core.xcodeproj'
 end
 
 target 'Utils' do
   common_pods
-  reactive_pods
   ui_pods
   
   project 'Utils/Utils.xcodeproj'

@@ -11,10 +11,20 @@
 		1C2A63EB28D645E90007877D /* GeneralClosures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63EA28D645E90007877D /* GeneralClosures.swift */; };
 		1C2A63ED28D647290007877D /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63EC28D647290007877D /* UIView+Extensions.swift */; };
 		1C4287AC28E0B34A00273979 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4287AB28E0B34A00273979 /* UIStackView+Extensions.swift */; };
-		1C57A3EE28D7C46200290D58 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57A3ED28D7C46200290D58 /* NetworkError.swift */; };
 		1C57B50B28D5E92700E91F7C /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B50A28D5E92700E91F7C /* Optional+Extensions.swift */; };
+		1C60DA1228E8F8F400B675DA /* Publisher+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60DA1128E8F8F400B675DA /* Publisher+Extensions.swift */; };
+		1C60DA1428E8FC0D00B675DA /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60DA1328E8FC0D00B675DA /* APIError.swift */; };
 		1C7200AA28D717D5001DDBD5 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7200A928D717D5001DDBD5 /* String+Extensions.swift */; };
 		1C7200AC28D721ED001DDBD5 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7200AB28D721ED001DDBD5 /* Double+Extensions.swift */; };
+		1C97B9BE28E9CC940085C979 /* TapPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9BD28E9CC940085C979 /* TapPublisher.swift */; };
+		1C97B9C028E9CC9D0085C979 /* TapSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9BF28E9CC9D0085C979 /* TapSubscription.swift */; };
+		1C97B9C228E9CCAA0085C979 /* ControlEventSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9C128E9CCAA0085C979 /* ControlEventSubscription.swift */; };
+		1C97B9C428E9CCB10085C979 /* ControlEventPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9C328E9CCB10085C979 /* ControlEventPublisher.swift */; };
+		1C97B9C628E9CCC20085C979 /* PublisherProvider+TouchPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9C528E9CCC20085C979 /* PublisherProvider+TouchPublisher.swift */; };
+		1C97B9C828E9CCD60085C979 /* PublisherProvider+ControlEventPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9C728E9CCD60085C979 /* PublisherProvider+ControlEventPublisher.swift */; };
+		1C97B9CA28E9CCE10085C979 /* PublisherProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9C928E9CCE10085C979 /* PublisherProvider.swift */; };
+		1C97B9CC28E9CDB70085C979 /* DispatchQueue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9CB28E9CDB70085C979 /* DispatchQueue+Extensions.swift */; };
+		1C97B9CE28E9CE6F0085C979 /* UIGestureRecognizer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9CD28E9CE6F0085C979 /* UIGestureRecognizer+Extensions.swift */; };
 		1CA3D3A428D3CF38009D43E9 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D3A328D3CF38009D43E9 /* TableCell.swift */; };
 		1CA3D3AA28D3D1C2009D43E9 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D3A928D3D1C2009D43E9 /* CollectionCell.swift */; };
 		1CA3D3AE28D3D2B9009D43E9 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D3AD28D3D2B9009D43E9 /* UITableViewCell+Extensions.swift */; };
@@ -46,10 +56,20 @@
 		1C2A63EA28D645E90007877D /* GeneralClosures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralClosures.swift; sourceTree = "<group>"; };
 		1C2A63EC28D647290007877D /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		1C4287AB28E0B34A00273979 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
-		1C57A3ED28D7C46200290D58 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		1C57B50A28D5E92700E91F7C /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
+		1C60DA1128E8F8F400B675DA /* Publisher+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extensions.swift"; sourceTree = "<group>"; };
+		1C60DA1328E8FC0D00B675DA /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		1C7200A928D717D5001DDBD5 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		1C7200AB28D721ED001DDBD5 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
+		1C97B9BD28E9CC940085C979 /* TapPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapPublisher.swift; sourceTree = "<group>"; };
+		1C97B9BF28E9CC9D0085C979 /* TapSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapSubscription.swift; sourceTree = "<group>"; };
+		1C97B9C128E9CCAA0085C979 /* ControlEventSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlEventSubscription.swift; sourceTree = "<group>"; };
+		1C97B9C328E9CCB10085C979 /* ControlEventPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlEventPublisher.swift; sourceTree = "<group>"; };
+		1C97B9C528E9CCC20085C979 /* PublisherProvider+TouchPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublisherProvider+TouchPublisher.swift"; sourceTree = "<group>"; };
+		1C97B9C728E9CCD60085C979 /* PublisherProvider+ControlEventPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublisherProvider+ControlEventPublisher.swift"; sourceTree = "<group>"; };
+		1C97B9C928E9CCE10085C979 /* PublisherProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherProvider.swift; sourceTree = "<group>"; };
+		1C97B9CB28E9CDB70085C979 /* DispatchQueue+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extensions.swift"; sourceTree = "<group>"; };
+		1C97B9CD28E9CE6F0085C979 /* UIGestureRecognizer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Extensions.swift"; sourceTree = "<group>"; };
 		1CA3D3A328D3CF38009D43E9 /* TableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 		1CA3D3A928D3D1C2009D43E9 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		1CA3D3AD28D3D2B9009D43E9 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
@@ -102,7 +122,7 @@
 		1C57A3EC28D7C45000290D58 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
-				1C57A3ED28D7C46200290D58 /* NetworkError.swift */,
+				1C60DA1328E8FC0D00B675DA /* APIError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -114,13 +134,54 @@
 				1C7200A928D717D5001DDBD5 /* String+Extensions.swift */,
 				1C7200AB28D721ED001DDBD5 /* Double+Extensions.swift */,
 				1CF969CF28E399E400F49456 /* TimeInterval+Extensions.swift */,
+				1C97B9CB28E9CDB70085C979 /* DispatchQueue+Extensions.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		1C60DA1028E8F8E800B675DA /* Combine */ = {
+			isa = PBXGroup;
+			children = (
+				1C97B9BC28E9CC840085C979 /* PublisherProvider */,
+				1C97B9BB28E9CC7E0085C979 /* ControlEvent */,
+				1C97B9BA28E9CC780085C979 /* Tap */,
+				1C60DA1128E8F8F400B675DA /* Publisher+Extensions.swift */,
+			);
+			path = Combine;
+			sourceTree = "<group>";
+		};
+		1C97B9BA28E9CC780085C979 /* Tap */ = {
+			isa = PBXGroup;
+			children = (
+				1C97B9BD28E9CC940085C979 /* TapPublisher.swift */,
+				1C97B9BF28E9CC9D0085C979 /* TapSubscription.swift */,
+			);
+			path = Tap;
+			sourceTree = "<group>";
+		};
+		1C97B9BB28E9CC7E0085C979 /* ControlEvent */ = {
+			isa = PBXGroup;
+			children = (
+				1C97B9C128E9CCAA0085C979 /* ControlEventSubscription.swift */,
+				1C97B9C328E9CCB10085C979 /* ControlEventPublisher.swift */,
+			);
+			path = ControlEvent;
+			sourceTree = "<group>";
+		};
+		1C97B9BC28E9CC840085C979 /* PublisherProvider */ = {
+			isa = PBXGroup;
+			children = (
+				1C97B9C528E9CCC20085C979 /* PublisherProvider+TouchPublisher.swift */,
+				1C97B9C728E9CCD60085C979 /* PublisherProvider+ControlEventPublisher.swift */,
+				1C97B9C928E9CCE10085C979 /* PublisherProvider.swift */,
+			);
+			path = PublisherProvider;
 			sourceTree = "<group>";
 		};
 		1CA3D3AB28D3D2A6009D43E9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1C60DA1028E8F8E800B675DA /* Combine */,
 				1CF969D128E39DFE00F49456 /* Rx */,
 				1C57B50928D5E91D00E91F7C /* Foundation */,
 				1CA3D3AC28D3D2AB009D43E9 /* UIKit */,
@@ -135,6 +196,7 @@
 				1CA3D3AF28D3D2BF009D43E9 /* UICollectionViewCell+Extensions.swift */,
 				1C2A63EC28D647290007877D /* UIView+Extensions.swift */,
 				1C4287AB28E0B34A00273979 /* UIStackView+Extensions.swift */,
+				1C97B9CD28E9CE6F0085C979 /* UIGestureRecognizer+Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -371,29 +433,39 @@
 				1CDCB2D728D12EFF00624AB5 /* TabCoordinator.swift in Sources */,
 				1C7200AA28D717D5001DDBD5 /* String+Extensions.swift in Sources */,
 				1CF969D028E399E400F49456 /* TimeInterval+Extensions.swift in Sources */,
+				1C60DA1228E8F8F400B675DA /* Publisher+Extensions.swift in Sources */,
 				1C2A63ED28D647290007877D /* UIView+Extensions.swift in Sources */,
 				1CDCB2E228D1345600624AB5 /* Assembly.swift in Sources */,
 				1CA3D3A428D3CF38009D43E9 /* TableCell.swift in Sources */,
 				1CDCB2CB28D12D7C00624AB5 /* ContainerCoordinator.swift in Sources */,
 				1CDCB2C728D12CCA00624AB5 /* Coordinator.swift in Sources */,
 				1CDCB2CD28D12DD200624AB5 /* NavigationController.swift in Sources */,
+				1C97B9C428E9CCB10085C979 /* ControlEventPublisher.swift in Sources */,
 				1CDCB2D928D12FFE00624AB5 /* InteractiveDismissalHandler.swift in Sources */,
+				1C97B9BE28E9CC940085C979 /* TapPublisher.swift in Sources */,
+				1C97B9C628E9CCC20085C979 /* PublisherProvider+TouchPublisher.swift in Sources */,
+				1C97B9CE28E9CE6F0085C979 /* UIGestureRecognizer+Extensions.swift in Sources */,
 				1CDCB2D528D12EE500624AB5 /* Resolver.swift in Sources */,
 				1CDCB2E728D1375800624AB5 /* Button.swift in Sources */,
 				1C2A63EB28D645E90007877D /* GeneralClosures.swift in Sources */,
 				1CA3D3AE28D3D2B9009D43E9 /* UITableViewCell+Extensions.swift in Sources */,
 				1CDCB2E928D1375C00624AB5 /* Label.swift in Sources */,
 				1C2A63DB28D63F160007877D /* View.swift in Sources */,
+				1C97B9CA28E9CCE10085C979 /* PublisherProvider.swift in Sources */,
 				1CDABA9F28DA4ACC00B7A632 /* ActivityIndicator.swift in Sources */,
 				1CDCB2C928D12D5500624AB5 /* NavigationCoordinator.swift in Sources */,
 				1CA3D3AA28D3D1C2009D43E9 /* CollectionCell.swift in Sources */,
 				1CDCB2E528D1375300624AB5 /* ViewController.swift in Sources */,
+				1C97B9C228E9CCAA0085C979 /* ControlEventSubscription.swift in Sources */,
+				1C60DA1428E8FC0D00B675DA /* APIError.swift in Sources */,
 				1CDCB2CF28D12DED00624AB5 /* ContainerViewController.swift in Sources */,
+				1C97B9CC28E9CDB70085C979 /* DispatchQueue+Extensions.swift in Sources */,
 				1C7200AC28D721ED001DDBD5 /* Double+Extensions.swift in Sources */,
+				1C97B9C028E9CC9D0085C979 /* TapSubscription.swift in Sources */,
 				1CDCB2D128D12E1000624AB5 /* ContainerViewControllerTransitionContext.swift in Sources */,
 				1CF969D328E39E0C00F49456 /* Button+Rx.swift in Sources */,
 				1C4287AC28E0B34A00273979 /* UIStackView+Extensions.swift in Sources */,
-				1C57A3EE28D7C46200290D58 /* NetworkError.swift in Sources */,
+				1C97B9C828E9CCD60085C979 /* PublisherProvider+ControlEventPublisher.swift in Sources */,
 				1C57B50B28D5E92700E91F7C /* Optional+Extensions.swift in Sources */,
 				1CDABAA128DA4B0B00B7A632 /* TextPreferences.swift in Sources */,
 			);

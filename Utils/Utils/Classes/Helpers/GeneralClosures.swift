@@ -20,4 +20,6 @@ public enum Closure {
     public typealias UUID = (Foundation.UUID) -> Swift.Void
     public typealias URL = (Foundation.URL) -> Swift.Void
     public typealias UIImage = (UIKit.UIImage) -> Swift.Void
+    public typealias Data = (Foundation.Data) -> Swift.Void
+    public typealias OptionalData = (Foundation.Data?) -> Swift.Void
 }

@@ -8,22 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		0CDD5C6D191386F9E9337121 /* Pods_Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8B2BF1CDE9E49C0B08AA38 /* Pods_Core.framework */; };
-		1C2A63D728D5F7B50007877D /* CoinsEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63D628D5F7B50007877D /* CoinsEndPoint.swift */; };
 		1C2A63D928D5FA1F0007877D /* CoinsAPIDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63D828D5FA1F0007877D /* CoinsAPIDataManager.swift */; };
 		1C4287A428E07DFD00273979 /* CoinChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4287A328E07DFD00273979 /* CoinChartData.swift */; };
-		1C57B4FE28D5E4B700E91F7C /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B4FD28D5E4B700E91F7C /* EndPointType.swift */; };
-		1C57B50028D5E4F300E91F7C /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B4FF28D5E4F300E91F7C /* HTTPMethod.swift */; };
-		1C57B50228D5E55600E91F7C /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B50128D5E55600E91F7C /* HTTPTask.swift */; };
-		1C57B50428D5E5EE00E91F7C /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B50328D5E5EE00E91F7C /* ParameterEncoding.swift */; };
-		1C57B50628D5E74100E91F7C /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B50528D5E74100E91F7C /* NetworkError.swift */; };
-		1C57B50828D5E7A400E91F7C /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B50728D5E7A400E91F7C /* URLParameterEncoder.swift */; };
 		1C57B50D28D5E9B600E91F7C /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C57B50C28D5E9B600E91F7C /* Utils.framework */; };
 		1C57B50E28D5E9B600E91F7C /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1C57B50C28D5E9B600E91F7C /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1C57B51128D5EA0D00E91F7C /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B51028D5EA0D00E91F7C /* JSONParameterEncoder.swift */; };
-		1C57B51328D5EA8D00E91F7C /* NetworkRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B51228D5EA8D00E91F7C /* NetworkRouterProtocol.swift */; };
-		1C57B51528D5EB2800E91F7C /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B51428D5EB2800E91F7C /* NetworkRouter.swift */; };
+		1C60D9F828E8C68500B675DA /* APIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60D9F728E8C68500B675DA /* APIHelpers.swift */; };
+		1C60D9FD28E8C70A00B675DA /* RequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60D9FC28E8C70A00B675DA /* RequestDescription.swift */; };
+		1C60D9FF28E8C71200B675DA /* RequestDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60D9FE28E8C71200B675DA /* RequestDescriptions.swift */; };
+		1C60DA0128E8C72700B675DA /* ParametersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60DA0028E8C72700B675DA /* ParametersProvider.swift */; };
+		1C60DA0328E8C72F00B675DA /* ParametersProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60DA0228E8C72F00B675DA /* ParametersProviders.swift */; };
+		1C60DA0528E8C78A00B675DA /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60DA0428E8C78A00B675DA /* APIClient.swift */; };
+		1C60DA0728E8C79600B675DA /* APIClient+Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60DA0628E8C79600B675DA /* APIClient+Requests.swift */; };
+		1C60DA0928E8C79D00B675DA /* APIClient+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60DA0828E8C79D00B675DA /* APIClient+Combine.swift */; };
+		1C60DA0D28E8E64000B675DA /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60DA0C28E8E64000B675DA /* APIResponse.swift */; };
 		1C72009E28D70E9D001DDBD5 /* CoinsAPIDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C72009D28D70E9D001DDBD5 /* CoinsAPIDataManagerProtocol.swift */; };
-		1C7200B528D773CC001DDBD5 /* PathParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7200B428D773CC001DDBD5 /* PathParameterEncoder.swift */; };
 		1CA3D39B28D3C847009D43E9 /* CoinsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D39A28D3C847009D43E9 /* CoinsInteractor.swift */; };
 		1CA3D39D28D3C850009D43E9 /* CoinsInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D39C28D3C850009D43E9 /* CoinsInteractorProtocol.swift */; };
 		1CA3D39F28D3C8DE009D43E9 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D39E28D3C8DE009D43E9 /* Interactor.swift */; };
@@ -48,21 +46,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1C2A63D628D5F7B50007877D /* CoinsEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsEndPoint.swift; sourceTree = "<group>"; };
 		1C2A63D828D5FA1F0007877D /* CoinsAPIDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsAPIDataManager.swift; sourceTree = "<group>"; };
 		1C4287A328E07DFD00273979 /* CoinChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinChartData.swift; sourceTree = "<group>"; };
-		1C57B4FD28D5E4B700E91F7C /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
-		1C57B4FF28D5E4F300E91F7C /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
-		1C57B50128D5E55600E91F7C /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
-		1C57B50328D5E5EE00E91F7C /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
-		1C57B50528D5E74100E91F7C /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		1C57B50728D5E7A400E91F7C /* URLParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
 		1C57B50C28D5E9B600E91F7C /* Utils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1C57B51028D5EA0D00E91F7C /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
-		1C57B51228D5EA8D00E91F7C /* NetworkRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouterProtocol.swift; sourceTree = "<group>"; };
-		1C57B51428D5EB2800E91F7C /* NetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
+		1C60D9F728E8C68500B675DA /* APIHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelpers.swift; sourceTree = "<group>"; };
+		1C60D9FC28E8C70A00B675DA /* RequestDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDescription.swift; sourceTree = "<group>"; };
+		1C60D9FE28E8C71200B675DA /* RequestDescriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDescriptions.swift; sourceTree = "<group>"; };
+		1C60DA0028E8C72700B675DA /* ParametersProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersProvider.swift; sourceTree = "<group>"; };
+		1C60DA0228E8C72F00B675DA /* ParametersProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersProviders.swift; sourceTree = "<group>"; };
+		1C60DA0428E8C78A00B675DA /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		1C60DA0628E8C79600B675DA /* APIClient+Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Requests.swift"; sourceTree = "<group>"; };
+		1C60DA0828E8C79D00B675DA /* APIClient+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Combine.swift"; sourceTree = "<group>"; };
+		1C60DA0C28E8E64000B675DA /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		1C72009D28D70E9D001DDBD5 /* CoinsAPIDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsAPIDataManagerProtocol.swift; sourceTree = "<group>"; };
-		1C7200B428D773CC001DDBD5 /* PathParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathParameterEncoder.swift; sourceTree = "<group>"; };
 		1CA3D39A28D3C847009D43E9 /* CoinsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsInteractor.swift; sourceTree = "<group>"; };
 		1CA3D39C28D3C850009D43E9 /* CoinsInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsInteractorProtocol.swift; sourceTree = "<group>"; };
 		1CA3D39E28D3C8DE009D43E9 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
@@ -89,63 +85,68 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1C08728F28D652710048AD5B /* NetworkRouter */ = {
+		1C57B4F828D5E43800E91F7C /* API */ = {
 			isa = PBXGroup;
 			children = (
-				1C57B51228D5EA8D00E91F7C /* NetworkRouterProtocol.swift */,
-				1C57B51428D5EB2800E91F7C /* NetworkRouter.swift */,
+				1C60D9F728E8C68500B675DA /* APIHelpers.swift */,
+				1C60DA0C28E8E64000B675DA /* APIResponse.swift */,
+				1C60D9F928E8C6B200B675DA /* RequestDescription */,
+				1C60D9FA28E8C6C100B675DA /* ParametersProvider */,
+				1C60D9FB28E8C6F600B675DA /* Client */,
 			);
-			path = NetworkRouter;
+			path = API;
 			sourceTree = "<group>";
 		};
-		1C57B4F828D5E43800E91F7C /* NetworkLayer */ = {
+		1C57B4FA28D5E47700E91F7C /* DataManagers */ = {
 			isa = PBXGroup;
 			children = (
-				1C57B4F928D5E47000E91F7C /* EndPoint */,
-				1C57B4FA28D5E47700E91F7C /* APIDataManagers */,
-				1C57B4FB28D5E47C00E91F7C /* Service */,
-				1C57B4FC28D5E48300E91F7C /* Encoding */,
+				1C60DA0A28E8E45400B675DA /* API */,
+				1C60DA0B28E8E45800B675DA /* Cache */,
 			);
-			path = NetworkLayer;
+			path = DataManagers;
 			sourceTree = "<group>";
 		};
-		1C57B4F928D5E47000E91F7C /* EndPoint */ = {
+		1C60D9F928E8C6B200B675DA /* RequestDescription */ = {
 			isa = PBXGroup;
 			children = (
-				1C2A63D628D5F7B50007877D /* CoinsEndPoint.swift */,
+				1C60D9FE28E8C71200B675DA /* RequestDescriptions.swift */,
+				1C60D9FC28E8C70A00B675DA /* RequestDescription.swift */,
 			);
-			path = EndPoint;
+			path = RequestDescription;
 			sourceTree = "<group>";
 		};
-		1C57B4FA28D5E47700E91F7C /* APIDataManagers */ = {
+		1C60D9FA28E8C6C100B675DA /* ParametersProvider */ = {
+			isa = PBXGroup;
+			children = (
+				1C60DA0228E8C72F00B675DA /* ParametersProviders.swift */,
+				1C60DA0028E8C72700B675DA /* ParametersProvider.swift */,
+			);
+			path = ParametersProvider;
+			sourceTree = "<group>";
+		};
+		1C60D9FB28E8C6F600B675DA /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				1C60DA0428E8C78A00B675DA /* APIClient.swift */,
+				1C60DA0628E8C79600B675DA /* APIClient+Requests.swift */,
+				1C60DA0828E8C79D00B675DA /* APIClient+Combine.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		1C60DA0A28E8E45400B675DA /* API */ = {
 			isa = PBXGroup;
 			children = (
 				1C72009C28D70E7C001DDBD5 /* Coins */,
 			);
-			path = APIDataManagers;
+			path = API;
 			sourceTree = "<group>";
 		};
-		1C57B4FB28D5E47C00E91F7C /* Service */ = {
+		1C60DA0B28E8E45800B675DA /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				1C08728F28D652710048AD5B /* NetworkRouter */,
-				1C57B4FD28D5E4B700E91F7C /* EndPointType.swift */,
-				1C57B4FF28D5E4F300E91F7C /* HTTPMethod.swift */,
-				1C57B50128D5E55600E91F7C /* HTTPTask.swift */,
 			);
-			path = Service;
-			sourceTree = "<group>";
-		};
-		1C57B4FC28D5E48300E91F7C /* Encoding */ = {
-			isa = PBXGroup;
-			children = (
-				1C57B51028D5EA0D00E91F7C /* JSONParameterEncoder.swift */,
-				1C57B50728D5E7A400E91F7C /* URLParameterEncoder.swift */,
-				1C7200B428D773CC001DDBD5 /* PathParameterEncoder.swift */,
-				1C57B50328D5E5EE00E91F7C /* ParameterEncoding.swift */,
-				1C57B50528D5E74100E91F7C /* NetworkError.swift */,
-			);
-			path = Encoding;
+			path = Cache;
 			sourceTree = "<group>";
 		};
 		1C72009C28D70E7C001DDBD5 /* Coins */ = {
@@ -225,8 +226,9 @@
 			children = (
 				1CA3D39728D3C803009D43E9 /* Models */,
 				1CC178F528E63C2500550D3B /* Responces */,
-				1C57B4F828D5E43800E91F7C /* NetworkLayer */,
+				1C57B4F828D5E43800E91F7C /* API */,
 				1CA3D39828D3C807009D43E9 /* Interactors */,
+				1C57B4FA28D5E47700E91F7C /* DataManagers */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -358,26 +360,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C57B50428D5E5EE00E91F7C /* ParameterEncoding.swift in Sources */,
-				1C57B50828D5E7A400E91F7C /* URLParameterEncoder.swift in Sources */,
+				1C60DA0128E8C72700B675DA /* ParametersProvider.swift in Sources */,
 				1CA3D39B28D3C847009D43E9 /* CoinsInteractor.swift in Sources */,
-				1C57B50028D5E4F300E91F7C /* HTTPMethod.swift in Sources */,
 				1C2A63D928D5FA1F0007877D /* CoinsAPIDataManager.swift in Sources */,
-				1C2A63D728D5F7B50007877D /* CoinsEndPoint.swift in Sources */,
 				1C4287A428E07DFD00273979 /* CoinChartData.swift in Sources */,
-				1C7200B528D773CC001DDBD5 /* PathParameterEncoder.swift in Sources */,
-				1C57B4FE28D5E4B700E91F7C /* EndPointType.swift in Sources */,
+				1C60D9F828E8C68500B675DA /* APIHelpers.swift in Sources */,
+				1C60DA0528E8C78A00B675DA /* APIClient.swift in Sources */,
+				1C60DA0928E8C79D00B675DA /* APIClient+Combine.swift in Sources */,
 				1C72009E28D70E9D001DDBD5 /* CoinsAPIDataManagerProtocol.swift in Sources */,
-				1C57B50228D5E55600E91F7C /* HTTPTask.swift in Sources */,
+				1C60DA0328E8C72F00B675DA /* ParametersProviders.swift in Sources */,
+				1C60D9FF28E8C71200B675DA /* RequestDescriptions.swift in Sources */,
 				1CC178F428E63BDA00550D3B /* CoinResponse.swift in Sources */,
 				1CA3D39F28D3C8DE009D43E9 /* Interactor.swift in Sources */,
-				1C57B51328D5EA8D00E91F7C /* NetworkRouterProtocol.swift in Sources */,
-				1C57B51128D5EA0D00E91F7C /* JSONParameterEncoder.swift in Sources */,
+				1C60DA0728E8C79600B675DA /* APIClient+Requests.swift in Sources */,
 				1CA3D3A128D3CD80009D43E9 /* Coin.swift in Sources */,
 				1CA3D39D28D3C850009D43E9 /* CoinsInteractorProtocol.swift in Sources */,
-				1C57B50628D5E74100E91F7C /* NetworkError.swift in Sources */,
 				1CC178F728E6463900550D3B /* CoinChartDataResponse.swift in Sources */,
-				1C57B51528D5EB2800E91F7C /* NetworkRouter.swift in Sources */,
+				1C60D9FD28E8C70A00B675DA /* RequestDescription.swift in Sources */,
+				1C60DA0D28E8E64000B675DA /* APIResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,8 +8,6 @@
 
 import SnapKit
 import Utils
-import RxCocoa
-import RxSwift
 
 extension CoinsListViewController {
     final class CoinCell: TableCell {
@@ -36,9 +34,6 @@ extension CoinsListViewController {
         private let nameTitledDescriptionView = TitledDescriptionView()
         
         private let priceInfoTitledDescriptionView = TitledDescriptionView()
-        
-        
-        private var disposeBag = DisposeBag()
         
         var viewModel: ViewModel? {
             didSet {

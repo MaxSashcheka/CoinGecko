@@ -6,18 +6,18 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import RxCocoa
-import RxSwift
+import Combine
+import Foundation
 
 extension RangePickerButton {
     class ViewModel {
-        let title = BehaviorRelay<String>(value: .empty)
-        let offsetTimeInterval = BehaviorRelay<TimeInterval>(value: .zero)
-        let isSelected = BehaviorRelay<Bool>(value: false)
+        let title = CurrentValueSubject<String, Never>(.empty)
+        let offsetTimeInterval = CurrentValueSubject<TimeInterval, Never>(.zero)
+        let isSelected = CurrentValueSubject<Bool, Never>(false)
         
         init(title: String, offsetTimeInterval: TimeInterval) {
-            self.title.accept(title)
-            self.offsetTimeInterval.accept(offsetTimeInterval)
+            self.title.send(title)
+            self.offsetTimeInterval.send(offsetTimeInterval)
         }
     }
 }

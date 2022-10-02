@@ -6,19 +6,22 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import RxCocoa
-import RxSwift
+import Combine
+import Foundation
 
 extension CoinDetailsViewController.CoinDetailsNavigationBarView {
     class ViewModel {
-        let title = BehaviorRelay<String>(value: .empty)
-        let description = BehaviorRelay<String>(value: .empty)
-        let imageURL = BehaviorRelay<URL?>(value: nil)
-        let closeButtonRelay = BehaviorRelay<Void>(value: ())
+        let title = CurrentValueSubject<String, Never>(.empty)
+        let description = CurrentValueSubject<String, Never>(.empty)
+        let imageURL = CurrentValueSubject<URL?, Never>(nil)
+        let closeButtonSubject = PassthroughSubject<Void, Never>()
         
-        init(title: String = .empty, imageURL: URL? = nil) {
-            self.title.accept(title)
-            self.imageURL.accept(imageURL)
+        init(title: String = .empty,
+             description: String = .empty,
+             imageURL: URL? = nil) {
+            self.title.send(title)
+            self.description.send(description)
+            self.imageURL.send(imageURL)
         }
     }
 }

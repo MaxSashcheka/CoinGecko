@@ -6,8 +6,7 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import RxCocoa
-import RxSwift
+import Combine
 import SnapKit
 import Utils
 
@@ -27,12 +26,10 @@ final class ButtonsCollectionView: View {
         }
     }
     
-    private var disposeBag = DisposeBag()
-    
     var viewModel: ViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }
-            disposeBag = DisposeBag()
+            cancellables.removeAll()
             
             bindData(with: viewModel)
             arrangeSubviews()
@@ -48,8 +45,7 @@ final class ButtonsCollectionView: View {
     
     private func bindData(with viewModel: ViewModel) {
         viewModel.buttonsViewModels
-            .asDriver()
-            .drive(onNext: { [weak self, weak viewModel] viewModels in
+            .sink { [weak self, weak viewModel] viewModels in
                 let buttons = viewModels.map {
                     let button = RangePickerButton()
                     button.viewModel = $0
@@ -58,18 +54,17 @@ final class ButtonsCollectionView: View {
                 self?.buttons = buttons
                 self?.stackView.addArrangedSubviews(buttons)
                 viewModel?.selectButton(at: .zero)
-            })
-            .disposed(by: disposeBag)
+            }
+            .store(in: &cancellables)
     }
     
     private func bindButtons() {
         buttons.enumerated().forEach { index, button in
-            button.rx.tap
-                .asDriver()
-                .drive(onNext: { [weak viewModel] in
+            button.tapPublisher()
+                .sink { [weak viewModel] in
                     viewModel?.selectButton(at: index)
-                })
-                .disposed(by: disposeBag)
+                }
+                .store(in: &cancellables)
         }
     }
 }

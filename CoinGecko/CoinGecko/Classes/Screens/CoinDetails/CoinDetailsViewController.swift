@@ -6,8 +6,7 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import RxCocoa
-import RxSwift
+import Combine
 import SnapKit
 import Utils
 
@@ -19,7 +18,6 @@ final class CoinDetailsViewController: ViewController {
     private let currentPriceLabel: Label = {
         let label = Label()
         label.font = .systemFont(ofSize: 23, weight: .bold)
-        label.text = "₹98,509.75"
         
         return label
     }()
@@ -95,22 +93,32 @@ final class CoinDetailsViewController: ViewController {
     override func bindData() {
         super.bindData()
         
-        viewModel.navigationBarViewModel.closeButtonRelay
-            .asDriver()
-            .skip(1)
-            .drive(onNext: { [weak viewModel] in
+        viewModel.navigationBarViewModel.closeButtonSubject
+            .sink { [weak viewModel] in
                 viewModel?.didTapCloseButton()
-            })
-            .disposed(by: disposeBag)
+            }
+            .store(in: &cancellables)
         
-        viewModel.buttonsCollectionViewModel.selectTimeIntervalRelay
-            .distinctUntilChanged()
-            .asDriver(onErrorJustReturn: .zero)
-            .drive(onNext: { [weak viewModel] in
+        viewModel.buttonsCollectionViewModel.selectTimeIntervalSubject
+            .removeDuplicates()
+            .sink { [weak viewModel] in
                 viewModel?.fetchCoinDetails(for: $0)
-            })
-            .disposed(by: disposeBag)
-
+            }
+            .store(in: &cancellables)
+        
+        viewModel.currentPrice
+            .bind(to: \.text, on: currentPriceLabel)
+            .store(in: &cancellables)
+        
+        viewModel.priceChange
+            .bind(to: \.text, on: priceChangeLabel)
+            .store(in: &cancellables)
+        
+        viewModel.isPriceChangePositive
+            .sink { [weak self] in
+                self?.priceChangeLabel.textColor = $0 ? .systemGreen : .systemRed
+            }
+            .store(in: &cancellables)
     }
     
     override func setupData() {

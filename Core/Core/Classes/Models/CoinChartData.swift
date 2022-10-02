@@ -6,10 +6,14 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import Foundation
+import Utils
+
+public extension Closure {
+    typealias CoinChartData = (Core.CoinChartData) -> Swift.Void
+}
 
 public struct CoinChartData: Decodable {
-    public let prices: [Float]
+    public let prices: [Double]
 }
 
 public extension CoinChartData {

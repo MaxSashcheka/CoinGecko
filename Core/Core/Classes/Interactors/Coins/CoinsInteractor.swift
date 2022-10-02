@@ -17,22 +17,22 @@ public class CoinsInteractor: CoinsInteractorProtocol {
     
     public func getCoins(fromCache: Bool = true,
                          currency: String, page: Int, pageSize: Int,
-                         success: @escaping ([Coin]) -> Void,
-                         failure: @escaping NetworkRouterErrorClosure) {
-        coinsAPIDataManager.getCoins(currency: currency, page: page, pageSize: pageSize,
-                                     success: { success($0.map { .init(coinResponse: $0) })},
-                                     failure: failure)
+                         success: @escaping Closure.CoinsArray,
+                         failure: @escaping Closure.APIError) {
+        coinsAPIDataManager.getCoins(currency: currency, page: page, pageSize: pageSize)
+            .strongSink(receiveValue: success, receiveError: failure)
+        // TODO: - Replace receiveValue block with closure and implement saving coins to cache data manager
     }
     
     public func getCoinMarketChart(id: String, currency: String,
                                    startTimeInterval: TimeInterval,
                                    endTimeInterval: TimeInterval,
-                                   success: @escaping (CoinChartData) -> Void,
-                                   failure: @escaping NetworkRouterErrorClosure) {
-        coinsAPIDataManager.getCoinMarketChart(id: id, currency: currency,
+                                   success: @escaping Closure.CoinChartData,
+                                   failure: @escaping Closure.APIError) {
+        coinsAPIDataManager.getCoinMarketChart(id: id,
+                                               currency: currency,
                                                startTimeInterval: startTimeInterval,
-                                               endTimeInterval: endTimeInterval,
-                                               success: { success(.init(coinChartDataResponse: $0 )) },
-                                               failure: failure)
+                                               endTimeInterval: endTimeInterval)
+            .strongSink(receiveValue: success, receiveError: failure)
     }
 }

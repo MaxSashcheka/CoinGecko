@@ -6,6 +6,7 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
+import Combine
 import UIKit.UIView
 
 open class View: UIView {
@@ -13,6 +14,8 @@ open class View: UIView {
         get { layer.cornerRadius }
         set { layer.cornerRadius = newValue }
     }
+    
+    open var cancellables: [AnyCancellable] = []
     
     public convenience init(shadowColor: UIColor = .clear,
                             shadowOffset: CGSize = .zero,

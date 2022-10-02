@@ -6,8 +6,7 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import RxCocoa
-import RxSwift
+import Combine
 import SnapKit
 import Utils
 
@@ -57,11 +56,10 @@ final class CoinsListViewController: ViewController {
         super.bindData()
         
         viewModel.coinsViewModels
-            .asDriver()
-            .drive(onNext: { [weak self] _ in
+            .sink { [weak self] _ in
                 self?.coinsTableView.reloadData()
-            })
-            .disposed(by: disposeBag)
+            }
+            .store(in: &cancellables)
     }
 }
 

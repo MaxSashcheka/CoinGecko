@@ -6,9 +6,8 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
+import Combine
 import Core
-import RxCocoa
-import RxSwift
 import Utils
 
 extension CoinsListViewController {
@@ -16,9 +15,9 @@ extension CoinsListViewController {
         private let coinsInteractor: CoinsInteractorProtocol
         
         var showCoinDetailInfoTransition: ((Coin) -> Void)?
-        var errorHandlerClosure: NetworkRouterErrorClosure?
+        var errorHandlerClosure: Closure.APIError?
         
-        let coinsViewModels = BehaviorRelay<[CoinCell.ViewModel]>(value: [])
+        let coinsViewModels = CurrentValueSubject<[CoinCell.ViewModel], Never>([])
         
         var coinsCount: Int { coinsViewModels.value.count }
 
@@ -27,11 +26,15 @@ extension CoinsListViewController {
         }
         
         func fetchCoins() {
-            // TODO: - Remove hardcoded currency string
+            // TODO: - Remove hardcoded currency string and add pagination logic
             
             ActivityIndicator.show()
-            coinsInteractor.getCoins(fromCache: false, currency: "usd", page: 1, pageSize: 20, success: { [weak self] coins in
-                self?.coinsViewModels.accept(
+            coinsInteractor.getCoins(fromCache: false,
+                                     currency: "usd",
+                                     page: 1,
+                                     pageSize: 20,
+                                     success: { [weak self] coins in
+                self?.coinsViewModels.send(
                     coins.map { coin in
                         let isPriceChangePositive = coin.priceDetails.changePercentage24h > 0
                         var priceChangeString = preciseRound(coin.priceDetails.changePercentage24h,
