@@ -13,7 +13,6 @@ extension ButtonsCollectionView {
     final class ViewModel {
         let buttonsViewModels = CurrentValueSubject<[RangePickerButton.ViewModel], Never>([])
         let selectTimeIntervalSubject = PassthroughSubject<TimeInterval, Never>()
-        var selectedButtonIndex: Int = .zero
         
         func selectButton(at index: Int) {
             let buttons = buttonsViewModels.value

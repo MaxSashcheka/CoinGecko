@@ -21,6 +21,11 @@ final class RootCoordinator: TabCoordinator {
         window?.makeKeyAndVisible()
 
         initializeTabsCoordinatorsAndShow()
+        setupAppearance()
+    }
+    
+    func setupAppearance() {
+        
     }
 }
 
@@ -33,9 +38,19 @@ private extension RootCoordinator {
             homeCoordinator,
             marketsCoordinator
         ]
-        
-        tabBarController.tabBar.tintColor = .red
-        
+
         setTabsCoordinators(coordinators)
+        
+        // TODO: - Fix this
+        DispatchQueue.main.async { [weak self] in
+            self?.selectViewController(withCoordinatorType: MarketsCoordinator.self)
+            self?.selectViewController(withCoordinatorType: HomeCoordinator.self)
+            self?.selectViewController(withCoordinatorType: MarketsCoordinator.self)
+        }
+       
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        tabBarController.tabBar.standardAppearance = appearance
+        tabBarController.tabBar.scrollEdgeAppearance = appearance
     }
 }

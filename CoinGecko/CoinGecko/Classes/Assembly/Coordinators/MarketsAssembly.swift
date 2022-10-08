@@ -16,7 +16,9 @@ extension MarketsAssembly {
     typealias MarketsViewModel = MarketsViewController.ViewModel
     static func makeMarketsScreen(resolver: Resolver) -> (MarketsViewController, MarketsViewModel) {
         let viewController = MarketsViewController()
-        let viewModel = MarketsViewModel()
+        let viewModel = MarketsViewModel(
+            coinsInteractor: InteractorsAssembly.makeCoinsInteractor(resolver: resolver)
+        )
         viewController.viewModel = viewModel
         
         return (viewController, viewModel)

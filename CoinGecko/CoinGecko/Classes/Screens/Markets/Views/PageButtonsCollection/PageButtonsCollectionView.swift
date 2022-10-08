@@ -1,21 +1,20 @@
 //
-//  ButtonsCollectionView.swift
+//  PageButtonsCollectionView.swift
 //  CoinGecko
 //
-//  Created by Maksim Sashcheka on 27.09.22.
+//  Created by Maksim Sashcheka on 2.10.22.
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import Combine
 import SnapKit
 import Utils
 
-final class ButtonsCollectionView: View {
+final class PageButtonsCollectionView: View {
     private let stackView = UIStackView(axis: .horizontal,
-                                        spacing: 10,
-                                        distribution: .fillProportionally)
+                                        spacing: 15,
+                                        distribution: .equalSpacing)
     
-    private var buttons = [Button]() {
+    private var buttons = [PageButton]() {
         didSet {
             bindButtons()
         }
@@ -28,6 +27,7 @@ final class ButtonsCollectionView: View {
             
             bindData(with: viewModel)
             arrangeSubviews()
+            stackView.isUserInteractionEnabled = true
         }
     }
     
@@ -42,7 +42,7 @@ final class ButtonsCollectionView: View {
         viewModel.buttonsViewModels
             .sink { [weak self, weak viewModel] viewModels in
                 let buttons = viewModels.map {
-                    let button = RangePickerButton()
+                    let button = PageButton()
                     button.viewModel = $0
                     return button
                 }
@@ -56,11 +56,12 @@ final class ButtonsCollectionView: View {
     private func bindButtons() {
         buttons.enumerated().forEach { index, button in
             button.tapPublisher()
-                .sink { [weak viewModel] in
+                .sink { [weak viewModel] _ in
                     viewModel?.selectButton(at: index)
                     UIFeedbackGenerator.generateFeedback(.medium)
                 }
                 .store(in: &cancellables)
         }
+        print(cancellables)
     }
 }
