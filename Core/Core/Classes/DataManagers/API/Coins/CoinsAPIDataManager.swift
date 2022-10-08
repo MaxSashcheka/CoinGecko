@@ -38,4 +38,13 @@ public class CoinsAPIDataManager: CoinsAPIDataManagerProtocol {
             .eraseToAnyPublisher()
     }
     
+    public func getGlobalData() -> AnyPublisher<GlobalData, APIError> {
+        APIClient.Combine.getGlobalData()
+            .flatMap { response in
+                Just(response)
+                    .map { GlobalData(globalDataResponse: $0) }
+            }
+            .eraseToAnyPublisher()
+    }
+    
 }

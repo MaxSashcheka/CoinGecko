@@ -6,7 +6,11 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import Foundation
+import Utils
+
+public extension Closure {
+    typealias CoinsArrayReponse = ([Core.CoinResponse]) -> Swift.Void
+}
 
 public struct CoinsMarketResponse: Decodable {
     let coins: [CoinResponse]

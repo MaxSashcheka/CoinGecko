@@ -35,4 +35,10 @@ public class CoinsInteractor: CoinsInteractorProtocol {
                                                endTimeInterval: endTimeInterval)
             .strongSink(receiveValue: success, receiveError: failure)
     }
+    
+    public func getGlobalData(success: @escaping Closure.GlobalData,
+                              failure: @escaping Closure.APIError) {
+        coinsAPIDataManager.getGlobalData()
+            .strongSink(receiveValue: success, receiveError: failure)
+    }
 }

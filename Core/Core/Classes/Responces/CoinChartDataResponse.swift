@@ -6,7 +6,11 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import Foundation
+import Utils
+
+public extension Closure {
+    typealias CoinChartDataResponse = (Core.CoinChartDataResponse) -> (Swift.Void)
+}
 
 public struct CoinChartDataResponse: Decodable {
     public let prices: [[Double]]

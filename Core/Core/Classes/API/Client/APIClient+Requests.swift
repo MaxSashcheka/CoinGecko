@@ -35,7 +35,7 @@ public extension APIClient {
                                    currency: String,
                                    startTimeInterval: TimeInterval,
                                    endTimeInterval: TimeInterval,
-                                   success: @escaping (CoinChartDataResponse) -> Void,
+                                   success: @escaping Closure.CoinChartDataResponse,
                                    failure: @escaping Closure.APIError) {
         let endpoint = RequestDescription
             .Coins
@@ -51,6 +51,14 @@ public extension APIClient {
                 .id(id)
             )
         
+        let request = makeDataRequest(for: endpoint)
+        
+        execute(request: request, success: success, failure: failure)
+    }
+    
+    static func getGlobalData(success: @escaping Closure.GlobalDataResponse,
+                              failure: @escaping Closure.APIError) {
+        let endpoint = RequestDescription.Global.getGlobalData
         let request = makeDataRequest(for: endpoint)
         
         execute(request: request, success: success, failure: failure)

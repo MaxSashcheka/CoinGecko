@@ -54,7 +54,6 @@ public class APIClient {
                     return
                 }
                 
-                print(type(of: ResultType.self))
                 let result = try ResultType.make(from: data)
                 success(result)
             } catch {
@@ -63,24 +62,6 @@ public class APIClient {
             }
         }, failure: failure)
     }
-    
-//    public static func execute<ResultType>(request: DataRequest,
-//                                           success: @escaping ([ResultType]) -> Void,
-//                                           failure: @escaping Closure.APIError) where ResultType: APIResponse {
-//        execute(request: request, success: { data in
-//            do {
-//                guard let data = data else {
-//                    failure(.corruptedErrorResponse)
-//                    return
-//                }
-//                
-//                let result = try ResultType.make(from: data)
-//                success([result])
-//            } catch {
-//                failure(.corruptedResponse)
-//            }
-//        }, failure: failure)
-//    }
     
     public static func execute(request: DataRequest,
                                success: @escaping Closure.Void,

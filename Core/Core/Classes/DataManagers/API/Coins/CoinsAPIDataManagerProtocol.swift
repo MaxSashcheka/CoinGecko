@@ -18,4 +18,6 @@ public protocol CoinsAPIDataManagerProtocol {
                             currency: String,
                             startTimeInterval: TimeInterval,
                             endTimeInterval: TimeInterval) -> AnyPublisher<CoinChartData, APIError>
+    
+    func getGlobalData() -> AnyPublisher<GlobalData, APIError>
 }
