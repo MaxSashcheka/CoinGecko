@@ -17,9 +17,12 @@ final class MarketsCoordinator: NavigationCoordinator {
     }
 }
 
-private extension MarketsCoordinator {
+extension MarketsCoordinator: CoinDetailsInfoScreenPresentable {
     func showMarketsScreen() {
         let (viewController, viewModel) = MarketsAssembly.makeMarketsScreen(resolver: self)
+        viewModel.showCoinDetailInfoTransition = { [weak self] in
+            self?.showCoinDetailInfoScreen(coin: $0)
+        }
         
         pushViewController(viewController, animated: false)
     }

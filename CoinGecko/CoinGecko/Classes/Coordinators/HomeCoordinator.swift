@@ -17,7 +17,7 @@ final class HomeCoordinator: NavigationCoordinator {
     }
 }
 
-private extension HomeCoordinator {
+extension HomeCoordinator: CoinDetailsInfoScreenPresentable {
     func showCoinsListScreen() {
         let (viewController, viewModel) = HomeAssembly.makeCoinsListScreen(resolver: self)
         viewModel.showCoinDetailInfoTransition = { [weak self] in
@@ -25,15 +25,5 @@ private extension HomeCoordinator {
         }
         
         pushViewController(viewController, animated: false)
-    }
-    
-    // TODO: - Move this method to protocol with extension to provide showing this screen from different places
-    func showCoinDetailInfoScreen(coin: Coin) {
-        let (viewController, viewModel) = HomeAssembly.makeCoinDetailsScreen(resolver: self, coin: coin)
-        viewModel.closeTransition = { [weak self] in
-            self?.dismissModalController()
-        }
-        
-        presentModal(controller: viewController, presentationStyle: .overFullScreen)
     }
 }

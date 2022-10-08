@@ -19,4 +19,7 @@ public protocol CoinsInteractorProtocol: Interactor {
                             endTimeInterval: TimeInterval,
                             success: @escaping Closure.CoinChartData,
                             failure: @escaping Closure.APIError)
+    
+    func getGlobalData(success: @escaping Closure.GlobalData,
+                       failure: @escaping Closure.APIError)
 }

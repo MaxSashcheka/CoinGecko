@@ -25,5 +25,15 @@ public extension RequestDescription {
             isAuthRequired: false
         )
     }
+    
+    class Global {
+        private static let basePath = "/global"
+        
+        public static let getGlobalData = RequestDescription(
+            path: basePath,
+            method: .get,
+            isAuthRequired: false
+        )
+    }
 }
 

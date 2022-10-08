@@ -44,5 +44,16 @@ public extension APIClient {
             .share()
             .eraseToAnyPublisher()
         }
+        
+        public static func getGlobalData() -> AnyPublisher<GlobalDataResponse, APIError> {
+            Future { promise in
+                APIClient.getGlobalData(
+                    success: { promise(.success($0)) },
+                    failure: { promise(.failure($0)) }
+                )
+            }
+            .share()
+            .eraseToAnyPublisher()
+        }
     }
 }

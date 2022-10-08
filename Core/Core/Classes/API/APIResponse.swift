@@ -22,8 +22,4 @@ extension CoinsMarketResponse: APIResponse { }
 extension CoinResponse: APIResponse { }
 extension CoinChartDataResponse: APIResponse { }
 extension [CoinResponse]: APIResponse { }
-
-public extension Closure {
-    typealias CoinsArrayReponse = ([Core.CoinResponse]) -> Swift.Void
-    typealias CoinChartDataResponse = (Core.CoinChartDataResponse) -> Swift.Void
-}
+extension GlobalDataResponse: APIResponse { }

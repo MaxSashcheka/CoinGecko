@@ -16,6 +16,7 @@ final class CoinsListViewController: ViewController {
         tableView.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
+        tableView.backgroundColor = .clear
         
         return tableView
     }()

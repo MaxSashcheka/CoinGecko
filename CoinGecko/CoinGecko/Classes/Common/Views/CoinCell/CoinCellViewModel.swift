@@ -9,7 +9,7 @@
 import Combine
 import Core
 
-extension CoinsListViewController.CoinCell {
+extension CoinCell {
     typealias TitledDescriptionViewModel = TitledDescriptionView.ViewModel
     
     final class ViewModel {

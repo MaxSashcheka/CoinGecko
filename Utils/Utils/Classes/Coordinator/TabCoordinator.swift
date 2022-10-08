@@ -103,7 +103,6 @@ open class TabCoordinator: Coordinator {
     open func setTabsCoordinators(_ newCoordinators: [Coordinator]) {
         newCoordinators.forEach { add(child: $0) }
         tabBarController.setViewControllers(newCoordinators.map { $0.baseViewController }, animated: false)
-        tabBarController.loadViewIfNeeded()
     }
 }
 
