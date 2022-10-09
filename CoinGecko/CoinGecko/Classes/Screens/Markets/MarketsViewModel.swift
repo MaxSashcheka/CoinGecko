@@ -16,7 +16,8 @@ extension MarketsViewController {
         
         private let coinsInteractor: CoinsInteractorProtocol
         
-        var showCoinDetailInfoTransition: ((Coin) -> Void)?
+        var showCoinDetailInfoTransition: Closure.String?
+        var showSearchTransition: Closure.Void?
         var errorHandlerClosure: Closure.APIError?
         
         let pageButtonsCollectionViewModel = PageButtonsCollectionView.ViewModel()
@@ -89,14 +90,13 @@ extension MarketsViewController {
                             symbol: coin.symbol.uppercased(),
                             currentPrice: currentPriceString,
                             priceChangePercentage: priceChangeString,
-                            isPriceChangePositive: isPriceChangePositive,
-                            coin: coin
+                            isPriceChangePositive: isPriceChangePositive
                         )
                     }
                 )
                 ActivityIndicator.hide()
-            }, failure: { [weak self] error in
-                self?.errorHandlerClosure?(error)
+            }, failure: { [weak self] in
+                self?.errorHandlerClosure?($0)
             })
         }
         
@@ -105,8 +105,11 @@ extension MarketsViewController {
         }
         
         func didSelectCoin(at indexPath: IndexPath) {
-            let coin = coinsViewModels.value[indexPath.row].coin
-            showCoinDetailInfoTransition?(coin)
+            showCoinDetailInfoTransition?(coinsViewModels.value[indexPath.row].id)
+        }
+        
+        func didTapSearchButton() {
+            showSearchTransition?()
         }
     }
 }

@@ -25,10 +25,10 @@ extension HomeAssembly {
     }
     
     typealias CoinDetailsViewModel = CoinDetailsViewController.ViewModel
-    static func makeCoinDetailsScreen(resolver: Resolver, coin: Coin) -> (CoinDetailsViewController, CoinDetailsViewModel) {
+    static func makeCoinDetailsScreen(resolver: Resolver, coinId: String) -> (CoinDetailsViewController, CoinDetailsViewModel) {
         let viewController = CoinDetailsViewController()
         let viewModel = CoinDetailsViewModel(
-            coin: coin,
+            coinId: coinId,
             coinsInteractor: InteractorsAssembly.makeCoinsInteractor(resolver: resolver)
         )
         viewController.viewModel = viewModel

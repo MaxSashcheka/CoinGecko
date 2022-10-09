@@ -23,4 +23,15 @@ extension MarketsAssembly {
         
         return (viewController, viewModel)
     }
+    
+    typealias SearchViewModel = SearchViewController.ViewModel
+    static func makeSearchScreen(resolver: Resolver) -> (SearchViewController, SearchViewModel) {
+        let viewController = SearchViewController()
+        let viewModel = SearchViewModel(
+            coinsInteractor: InteractorsAssembly.makeCoinsInteractor(resolver: resolver)
+        )
+        viewController.viewModel = viewModel
+        
+        return (viewController, viewModel)
+    }
 }

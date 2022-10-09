@@ -68,7 +68,8 @@ final class MarketsViewController: ViewController {
         // TODO: - ADD pull to refresh
         viewModel.errorHandlerClosure = errorHandler
         viewModel.fetchCoins(mode: .all)
-        title = "Hello"
+        
+        title = .empty
         navigationController?.tabBarItem.title = "Markets"
         navigationController?.tabBarItem.image = UIImage(systemName: "chart.xyaxis.line")
     }
@@ -166,15 +167,19 @@ final class MarketsViewController: ViewController {
         
         coinsTableView.publisher(for: \.contentOffset)
             .sink { [weak self] contentOffset in
-                UIView.animate(withDuration: 0.3) {
-                    self?.separatorLine.alpha = (contentOffset.y <= .zero) ? 0 : 1
-                }
+                self?.separatorLine.alpha = contentOffset.y <= .zero ? 0 : 1
+            }
+            .store(in: &cancellables)
+        
+        searchButton.tapPublisher()
+            .sink { [weak viewModel] in
+                viewModel?.didTapSearchButton()
             }
             .store(in: &cancellables)
     }
 }
 
-extension MarketsViewController: UITableViewDelegate, UITableViewDataSource {
+extension MarketsViewController: UITableViewPresentable {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.coinsCount
     }

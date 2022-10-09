@@ -64,7 +64,7 @@ final class CoinsListViewController: ViewController {
     }
 }
 
-extension CoinsListViewController: UITableViewDelegate, UITableViewDataSource {
+extension CoinsListViewController: UITableViewPresentable {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.coinsCount
     }

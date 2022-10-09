@@ -14,11 +14,10 @@ extension CoinsListViewController {
     final class ViewModel {
         private let coinsInteractor: CoinsInteractorProtocol
         
-        var showCoinDetailInfoTransition: ((Coin) -> Void)?
+        var showCoinDetailInfoTransition: Closure.String?
         var errorHandlerClosure: Closure.APIError?
         
         let coinsViewModels = CurrentValueSubject<[CoinCell.ViewModel], Never>([])
-        
         var coinsCount: Int { coinsViewModels.value.count }
 
         init(coinsInteractor: CoinsInteractorProtocol) {
@@ -54,8 +53,7 @@ extension CoinsListViewController {
                             symbol: coin.symbol.uppercased(),
                             currentPrice: currentPriceString,
                             priceChangePercentage: priceChangeString,
-                            isPriceChangePositive: isPriceChangePositive,
-                            coin: coin
+                            isPriceChangePositive: isPriceChangePositive
                         )
                     }
                 )
@@ -70,8 +68,7 @@ extension CoinsListViewController {
         }
         
         func didSelectCoin(at indexPath: IndexPath) {
-            let coin = coinsViewModels.value[indexPath.row].coin
-            showCoinDetailInfoTransition?(coin)
+            showCoinDetailInfoTransition?(coinsViewModels.value[indexPath.row].id)
         }
     }
 }

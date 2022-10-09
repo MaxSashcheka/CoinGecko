@@ -96,9 +96,16 @@ extension CoinDetailsViewController {
                 .bind(to: \.imageURL, on: coinImageView)
                 .store(in: &cancellables)
             
-            closeButton.tapPublisher()
-                .bind(to: viewModel.closeButtonSubject)
-                .store(in: &cancellables)
+            closeButton.addTarget(self,
+                                  action: #selector(closeButtonDidTapped),
+                                  for: .touchUpInside)
+//            closeButton.tapPublisher()
+//                .bind(to: viewModel.closeButtonSubject)
+//                .store(in: &cancellables)
+        }
+        
+        @objc func closeButtonDidTapped() {
+            viewModel?.closeButtonSubject.send(())
         }
         
         func setupData() {

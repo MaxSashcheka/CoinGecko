@@ -21,9 +21,21 @@ extension MarketsCoordinator: CoinDetailsInfoScreenPresentable {
     func showMarketsScreen() {
         let (viewController, viewModel) = MarketsAssembly.makeMarketsScreen(resolver: self)
         viewModel.showCoinDetailInfoTransition = { [weak self] in
-            self?.showCoinDetailInfoScreen(coin: $0)
+            self?.showCoinDetailInfoScreen(coinId: $0)
+        }
+        viewModel.showSearchTransition = { [weak self] in
+            self?.showSearchScreen()
         }
         
         pushViewController(viewController, animated: false)
+    }
+    
+    func showSearchScreen() {
+        let (viewController, viewModel) = MarketsAssembly.makeSearchScreen(resolver: self)
+        viewModel.showCoinDetailInfoTransition = { [weak self] in
+            self?.showCoinDetailInfoScreen(coinId: $0)
+        }
+        
+        pushViewController(viewController, animated: true)
     }
 }

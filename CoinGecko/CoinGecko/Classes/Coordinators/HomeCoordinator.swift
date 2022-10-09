@@ -21,7 +21,7 @@ extension HomeCoordinator: CoinDetailsInfoScreenPresentable {
     func showCoinsListScreen() {
         let (viewController, viewModel) = HomeAssembly.makeCoinsListScreen(resolver: self)
         viewModel.showCoinDetailInfoTransition = { [weak self] in
-            self?.showCoinDetailInfoScreen(coin: $0)
+            self?.showCoinDetailInfoScreen(coinId: $0)
         }
         
         pushViewController(viewController, animated: false)
