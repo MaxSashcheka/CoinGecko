@@ -14,10 +14,14 @@ public protocol CoinsAPIDataManagerProtocol {
                   page: Int,
                   pageSize: Int) -> AnyPublisher<[Coin], APIError>
     
+    func getCoinDetails(id: String) -> AnyPublisher<CoinDetails, APIError>
+    
     func getCoinMarketChart(id: String,
                             currency: String,
                             startTimeInterval: TimeInterval,
                             endTimeInterval: TimeInterval) -> AnyPublisher<CoinChartData, APIError>
+    
+    func search(query: String) -> AnyPublisher<SearchResult, APIError>
     
     func getGlobalData() -> AnyPublisher<GlobalData, APIError>
 }

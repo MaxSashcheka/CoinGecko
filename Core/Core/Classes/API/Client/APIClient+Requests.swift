@@ -15,9 +15,7 @@ public extension APIClient {
                                 pageSize: Int,
                                 success: @escaping ([CoinResponse]) -> Void,
                                 failure: @escaping Closure.APIError) {
-        let endpoint = RequestDescription
-            .Coins
-            .getCoinsMarkets
+        let endpoint = RequestDescription.Coins.getCoinsMarkets
             .replacingQueryParameters(
                 .getCoinsMarkets(
                     currency: currency,
@@ -31,15 +29,25 @@ public extension APIClient {
         execute(request: request, success: success, failure: failure)
     }
     
+    static func getCoinDetails(id: String,
+                               success: @escaping Closure.CoinDetailsResponse,
+                               failure: @escaping Closure.APIError) {
+        let endpoint = RequestDescription.Coins.getCoinDetails
+            .replacingInlineArguments(
+                .id(id)
+            )
+        let request = makeDataRequest(for: endpoint)
+        
+        execute(request: request, success: success, failure: failure)
+    }
+    
     static func getCoinMarketChart(id: String,
                                    currency: String,
                                    startTimeInterval: TimeInterval,
                                    endTimeInterval: TimeInterval,
                                    success: @escaping Closure.CoinChartDataResponse,
                                    failure: @escaping Closure.APIError) {
-        let endpoint = RequestDescription
-            .Coins
-            .getCoinMarketChart
+        let endpoint = RequestDescription.Coins.getCoinMarketChart
             .replacingQueryParameters(
                 .getCoinMarketChart(
                     currency: currency,
@@ -49,6 +57,21 @@ public extension APIClient {
             )
             .replacingInlineArguments(
                 .id(id)
+            )
+        
+        let request = makeDataRequest(for: endpoint)
+        
+        execute(request: request, success: success, failure: failure)
+    }
+    
+    static func search(query: String,
+                       success: @escaping Closure.SearchResponse,
+                       failure: @escaping Closure.APIError) {
+        let endpoint = RequestDescription.Search.search
+            .replacingQueryParameters(
+                .search(
+                    query: query
+                )
             )
         
         let request = makeDataRequest(for: endpoint)

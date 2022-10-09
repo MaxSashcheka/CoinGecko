@@ -24,6 +24,13 @@ public class CoinsInteractor: CoinsInteractorProtocol {
         // TODO: - Replace receiveValue block with closure and implement saving coins to cache data manager
     }
     
+    public func getCoinDetails(id: String,
+                               success: @escaping Closure.CoinDetails,
+                               failure: @escaping Closure.APIError) {
+        coinsAPIDataManager.getCoinDetails(id: id)
+            .strongSink(receiveValue: success, receiveError: failure)
+    }
+    
     public func getCoinMarketChart(id: String, currency: String,
                                    startTimeInterval: TimeInterval,
                                    endTimeInterval: TimeInterval,
@@ -33,6 +40,13 @@ public class CoinsInteractor: CoinsInteractorProtocol {
                                                currency: currency,
                                                startTimeInterval: startTimeInterval,
                                                endTimeInterval: endTimeInterval)
+            .strongSink(receiveValue: success, receiveError: failure)
+    }
+    
+    public func search(query: String,
+                       success: @escaping Closure.SearchResult,
+                       failure: @escaping Closure.APIError) {
+        coinsAPIDataManager.search(query: query)
             .strongSink(receiveValue: success, receiveError: failure)
     }
     

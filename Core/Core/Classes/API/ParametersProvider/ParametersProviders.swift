@@ -9,8 +9,6 @@
 import Foundation
 
 public extension ParametersProvider {
-    // MARK: - Coins
-    
     static func id(_ id: String) -> [String: String] {
         ["id": id]
     }
@@ -33,5 +31,9 @@ public extension ParametersProvider {
             "from": startTimeInterval,
             "to": endTimeInterval
         ]
+    }
+    
+    static func search(query: String) -> [String: String] {
+        ["query": query]
     }
 }

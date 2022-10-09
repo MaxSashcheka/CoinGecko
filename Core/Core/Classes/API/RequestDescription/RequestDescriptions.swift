@@ -19,8 +19,24 @@ public extension RequestDescription {
             isAuthRequired: false
         )
         
+        public static let getCoinDetails = RequestDescription(
+            path: basePath + "/{id}",
+            method: .get,
+            isAuthRequired: false
+        )
+        
         public static let getCoinMarketChart = RequestDescription(
             path: basePath + "/{id}/market_chart/range",
+            method: .get,
+            isAuthRequired: false
+        )
+    }
+    
+    class Search {
+        private static let basePath = "/search"
+        
+        public static let search = RequestDescription(
+            path: basePath,
             method: .get,
             isAuthRequired: false
         )
