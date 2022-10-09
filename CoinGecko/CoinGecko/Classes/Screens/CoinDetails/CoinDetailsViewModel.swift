@@ -17,7 +17,7 @@ extension CoinDetailsViewController {
         }
         
         private let coinsInteractor: CoinsInteractorProtocol
-        private let coin: Coin
+        private let coinId: String
         
         var closeTransition: Closure.Void?
         var errorHandlerClosure: Closure.APIError?
@@ -26,24 +26,14 @@ extension CoinDetailsViewController {
         let chartViewModel = ChartView.ViewModel()
         let buttonsCollectionViewModel = ButtonsCollectionView.ViewModel()
         
-        let currentPrice = CurrentValueSubject<String, Never>(.empty)
-        let priceChange = CurrentValueSubject<String, Never>(.empty)
+        let currentPrice = CurrentValueSubject<Double, Never>(.zero)
+        let currentPriceText = CurrentValueSubject<String, Never>(.empty)
+        let priceChangeText = CurrentValueSubject<String, Never>(.empty)
         let isPriceChangePositive = CurrentValueSubject<Bool, Never>(false)
         
-        init(coin: Coin, coinsInteractor: CoinsInteractorProtocol) {
-            self.coin = coin
+        init(coinId: String, coinsInteractor: CoinsInteractorProtocol) {
+            self.coinId = coinId
             self.coinsInteractor = coinsInteractor
-            
-            navigationBarViewModel.title.send(coin.name)
-            navigationBarViewModel.description.send("(\(coin.symbol.uppercased()))")
-            navigationBarViewModel.imageURL.send(coin.imageURL)
-            
-            var currentPriceText = preciseRound(coin.priceDetails.currentPrice,
-                                                precision: .thousandths).description
-            currentPriceText.insert(contentsOf: "usd".currencySymbol, at: currentPriceText.startIndex)
-            currentPrice.send(currentPriceText)
-            
-            
             
             buttonsCollectionViewModel.buttonsViewModels.send(
                 RangeButtonConfig.allCases.map {
@@ -51,12 +41,34 @@ extension CoinDetailsViewController {
                 }
             )
             
-            fetchCoinDetails(for: .hour)
+            fetchCoinDetails()
+            fetchCoinChartData(for: .hour)
         }
         
-        func fetchCoinDetails(for timeInterval: TimeInterval) {
+        func fetchCoinDetails() {
+            coinsInteractor.getCoinDetails(id: coinId,
+                                           success: { [weak self] coinDetails in
+                guard let self = self else { return }
+                self.navigationBarViewModel.title.send(coinDetails.name)
+                self.navigationBarViewModel.description.send("(\(coinDetails.symbol.uppercased()))")
+                self.navigationBarViewModel.imageURL.send(coinDetails.imageURL)
+                
+                var currentPriceText = preciseRound(coinDetails.currentPrice,
+                                                    precision: .thousandths).description
+                currentPriceText.insert(contentsOf: "usd".currencySymbol, at: currentPriceText.startIndex)
+                self.currentPriceText.send(currentPriceText)
+                self.currentPrice.send(coinDetails.currentPrice)
+                
+                ActivityIndicator.hide()
+            }, failure: { [weak self] error in
+                self?.errorHandlerClosure?(error)
+                ActivityIndicator.hide()
+            })
+        }
+        
+        func fetchCoinChartData(for timeInterval: TimeInterval) {
             ActivityIndicator.show()
-            coinsInteractor.getCoinMarketChart(id: coin.id, currency: "usd",
+            coinsInteractor.getCoinMarketChart(id: coinId, currency: "usd",
                                                startTimeInterval: timeInterval.offsetFromCurrentTime,
                                                endTimeInterval: .intervalSince1970,
                                                success: { [weak self] chartData in
@@ -66,30 +78,30 @@ extension CoinDetailsViewController {
                 )
                 
                 let chartDataFirstPrice = chartData.prices.first ?? .zero
-                let isPriceChangePositive = self.coin.priceDetails.currentPrice > chartDataFirstPrice
+                let isPriceChangePositive = self.currentPrice.value > chartDataFirstPrice
                 var priceChangeText = preciseRound(
-                    self.coin.priceDetails.currentPrice - chartDataFirstPrice,
+                    self.currentPrice.value - chartDataFirstPrice,
                     precision: .thousandths
                 ).description
                 priceChangeText.insert(contentsOf: isPriceChangePositive ? "+" : .empty,
                                        at: priceChangeText.startIndex)
                 
                 let priceChangePercentage: Double
-                if self.coin.priceDetails.currentPrice > chartDataFirstPrice {
+                if self.currentPrice.value > chartDataFirstPrice {
                     priceChangePercentage = preciseRound(
-                        (self.coin.priceDetails.currentPrice / chartDataFirstPrice - 1) * 100,
+                        (self.currentPrice.value / chartDataFirstPrice - 1) * 100,
                         precision: .hundredths
                     )
                 } else {
                     priceChangePercentage = preciseRound(
-                        (chartDataFirstPrice / self.coin.priceDetails.currentPrice - 1) * 100,
+                        (chartDataFirstPrice / self.currentPrice.value - 1) * 100,
                         precision: .hundredths
                     )
                 }
                 
                 priceChangeText.append(" (\(priceChangePercentage) %)")
                 
-                self.priceChange.send(priceChangeText)
+                self.priceChangeText.send(priceChangeText)
                 self.isPriceChangePositive.send(isPriceChangePositive)
                 
                 ActivityIndicator.hide()

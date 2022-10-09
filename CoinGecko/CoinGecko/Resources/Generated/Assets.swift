@@ -28,6 +28,7 @@ internal enum Assets {
     internal static let platinum = ColorAsset(name: "platinum")
   }
   internal enum Images {
+    internal static let back = ImageAsset(name: "back")
     internal static let cross = ImageAsset(name: "cross")
     internal static let search = ImageAsset(name: "search")
   }

@@ -60,6 +60,7 @@ final class CoinCell: TableCell {
         containerShadowView.addSubview(nameTitledDescriptionView)
         nameTitledDescriptionView.snp.makeConstraints { make in
             make.leading.equalTo(coinImageView.snp.trailing).offset(9)
+            make.trailing.equalToSuperview().offset(-50)
             make.centerY.equalToSuperview()
         }
         

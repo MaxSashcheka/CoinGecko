@@ -25,7 +25,17 @@ final class RootCoordinator: TabCoordinator {
     }
     
     func setupAppearance() {
+        let navigationAppearance = UINavigationBarAppearance()
+        let backButtonImage = Assets.Images.back.image
+        navigationAppearance.setBackIndicatorImage(backButtonImage,
+                                                   transitionMaskImage: backButtonImage)
         
+        let navigationBar: UINavigationBar = UINavigationBar.appearance()
+        navigationBar.tintColor = .black
+        
+        navigationBar.standardAppearance = navigationAppearance
+        navigationBar.compactAppearance = navigationAppearance
+        navigationBar.scrollEdgeAppearance = navigationAppearance
     }
 }
 

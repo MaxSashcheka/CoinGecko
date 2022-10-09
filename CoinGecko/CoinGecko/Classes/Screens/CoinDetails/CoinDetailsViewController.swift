@@ -102,15 +102,15 @@ final class CoinDetailsViewController: ViewController {
         viewModel.buttonsCollectionViewModel.selectTimeIntervalSubject
             .removeDuplicates()
             .sink { [weak viewModel] in
-                viewModel?.fetchCoinDetails(for: $0)
+                viewModel?.fetchCoinChartData(for: $0)
             }
             .store(in: &cancellables)
         
-        viewModel.currentPrice
+        viewModel.currentPriceText
             .bind(to: \.text, on: currentPriceLabel)
             .store(in: &cancellables)
         
-        viewModel.priceChange
+        viewModel.priceChangeText
             .bind(to: \.text, on: priceChangeLabel)
             .store(in: &cancellables)
         

@@ -23,6 +23,15 @@ public class CoinsAPIDataManager: CoinsAPIDataManagerProtocol {
             .eraseToAnyPublisher()
     }
     
+    public func getCoinDetails(id: String) -> AnyPublisher<CoinDetails, APIError> {
+        APIClient.Combine.getCoinDetails(id: id)
+            .flatMap { response in
+                Just(response)
+                    .map { CoinDetails(coinDetailsResponse: $0) }
+            }
+            .eraseToAnyPublisher()
+    }
+    
     public func getCoinMarketChart(id: String,
                                    currency: String,
                                    startTimeInterval: TimeInterval,
@@ -34,6 +43,15 @@ public class CoinsAPIDataManager: CoinsAPIDataManagerProtocol {
             .flatMap { response in
                 Just(response)
                     .map { CoinChartData(coinChartDataResponse: $0) }
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    public func search(query: String) -> AnyPublisher<SearchResult, APIError> {
+        APIClient.Combine.search(query: query)
+            .flatMap { response in
+                Just(response)
+                    .map { SearchResult(searchResponse: $0) }
             }
             .eraseToAnyPublisher()
     }

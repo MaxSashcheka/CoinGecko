@@ -15,6 +15,36 @@ open class View: UIView {
         set { layer.cornerRadius = newValue }
     }
     
+    public var shadowColor: UIColor? {
+        get { UIColor(cgColor: layer.shadowColor ?? .clear) }
+        set { layer.shadowColor = newValue?.cgColor }
+    }
+    
+    public var shadowOffset: CGSize {
+        get { layer.shadowOffset }
+        set { layer.shadowOffset = newValue }
+    }
+    
+    public var shadowRadius: CGFloat {
+        get { layer.shadowRadius }
+        set { layer.shadowRadius = newValue }
+    }
+    
+    public var shadowOpacity: Float {
+        get { layer.shadowOpacity }
+        set { layer.shadowOpacity = newValue }
+    }
+    
+    public var borderColor: UIColor? {
+        get { UIColor(cgColor: layer.shadowColor ?? .clear) }
+        set { layer.borderColor = newValue?.cgColor }
+    }
+    
+    public var borderWidth: CGFloat {
+        get { layer.borderWidth }
+        set { layer.borderWidth = newValue }
+    }
+    
     open var cancellables: [AnyCancellable] = []
     
     public convenience init(shadowColor: UIColor = .clear,
@@ -23,10 +53,10 @@ open class View: UIView {
                             shadowOpacity: Float = .zero) {
         self.init()
         
-        layer.shadowColor = shadowColor.cgColor
-        layer.shadowOffset = shadowOffset
-        layer.shadowRadius = shadowRadius
-        layer.shadowOpacity = shadowOpacity
+        self.shadowColor = shadowColor
+        self.shadowOffset = shadowOffset
+        self.shadowRadius = shadowRadius
+        self.shadowOpacity = shadowOpacity
     }
     
     public convenience init(backgroundColor: UIColor) {

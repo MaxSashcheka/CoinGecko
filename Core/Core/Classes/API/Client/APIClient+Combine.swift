@@ -11,9 +11,11 @@ import Utils
 
 public extension APIClient {
     final class Combine {
-        public static func getCoinsMarkets(currency: String,
-                                           page: Int,
-                                           pageSize: Int) -> AnyPublisher<[CoinResponse], APIError> {
+        public static func getCoinsMarkets(
+            currency: String,
+            page: Int,
+            pageSize: Int
+        ) -> AnyPublisher<[CoinResponse], APIError> {
                 Future { promise in
                     APIClient.getCoinsMarkets(
                         currency: currency,
@@ -27,16 +29,42 @@ public extension APIClient {
                 .eraseToAnyPublisher()
         }
         
-        public static func getCoinMarketChart(id: String,
-                                              currency: String,
-                                              startTimeInterval: TimeInterval,
-                                              endTimeInterval: TimeInterval) -> AnyPublisher<CoinChartDataResponse, APIError> {
+        public static func getCoinDetails(id: String) -> AnyPublisher<CoinDetailsResponse, APIError> {
+            Future { promise in
+                APIClient.getCoinDetails(
+                    id: id,
+                    success: { promise(.success($0)) },
+                    failure: { promise(.failure($0)) }
+                )
+            }
+            .share()
+            .eraseToAnyPublisher()
+        }
+        
+        public static func getCoinMarketChart(
+            id: String,
+            currency: String,
+            startTimeInterval: TimeInterval,
+            endTimeInterval: TimeInterval
+        ) -> AnyPublisher<CoinChartDataResponse, APIError> {
             Future { promise in
                 APIClient.getCoinMarketChart(
                     id: id,
                     currency: currency,
                     startTimeInterval: startTimeInterval,
                     endTimeInterval: endTimeInterval,
+                    success: { promise(.success($0)) },
+                    failure: { promise(.failure($0)) }
+                )
+            }
+            .share()
+            .eraseToAnyPublisher()
+        }
+        
+        public static func search(query: String) -> AnyPublisher<SearchResponse, APIError> {
+            Future { promise in
+                APIClient.search(
+                    query: query,
                     success: { promise(.success($0)) },
                     failure: { promise(.failure($0)) }
                 )

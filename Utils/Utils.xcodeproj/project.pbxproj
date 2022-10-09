@@ -46,6 +46,7 @@
 		1CDCB2E528D1375300624AB5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2E428D1375300624AB5 /* ViewController.swift */; };
 		1CDCB2E728D1375800624AB5 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2E628D1375800624AB5 /* Button.swift */; };
 		1CDCB2E928D1375C00624AB5 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2E828D1375C00624AB5 /* Label.swift */; };
+		1CE2AE6B28F3671100642D00 /* CGColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2AE6A28F3671100642D00 /* CGColor+Extensions.swift */; };
 		1CF969D028E399E400F49456 /* TimeInterval+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF969CF28E399E400F49456 /* TimeInterval+Extensions.swift */; };
 		1CF969D328E39E0C00F49456 /* Button+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF969D228E39E0C00F49456 /* Button+Rx.swift */; };
 		359F80ECF50583DEF8F804CE /* Pods_Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3898E027ABCA247BC561838 /* Pods_Utils.framework */; };
@@ -93,6 +94,7 @@
 		1CDCB2E428D1375300624AB5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1CDCB2E628D1375800624AB5 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		1CDCB2E828D1375C00624AB5 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		1CE2AE6A28F3671100642D00 /* CGColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGColor+Extensions.swift"; sourceTree = "<group>"; };
 		1CF969CF28E399E400F49456 /* TimeInterval+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extensions.swift"; sourceTree = "<group>"; };
 		1CF969D228E39E0C00F49456 /* Button+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+Rx.swift"; sourceTree = "<group>"; };
 		C3898E027ABCA247BC561838 /* Pods_Utils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Utils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +139,7 @@
 				1C7200AB28D721ED001DDBD5 /* Double+Extensions.swift */,
 				1CF969CF28E399E400F49456 /* TimeInterval+Extensions.swift */,
 				1C97B9CB28E9CDB70085C979 /* DispatchQueue+Extensions.swift */,
+				1CE2AE6A28F3671100642D00 /* CGColor+Extensions.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				1CDCB2CB28D12D7C00624AB5 /* ContainerCoordinator.swift in Sources */,
 				1CDCB2C728D12CCA00624AB5 /* Coordinator.swift in Sources */,
 				1CDCB2CD28D12DD200624AB5 /* NavigationController.swift in Sources */,
+				1CE2AE6B28F3671100642D00 /* CGColor+Extensions.swift in Sources */,
 				1C97B9C428E9CCB10085C979 /* ControlEventPublisher.swift in Sources */,
 				1CDCB2D928D12FFE00624AB5 /* InteractiveDismissalHandler.swift in Sources */,
 				1C97B9BE28E9CC940085C979 /* TapPublisher.swift in Sources */,
