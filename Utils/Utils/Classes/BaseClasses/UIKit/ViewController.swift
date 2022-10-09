@@ -12,6 +12,7 @@ import UIKit.UIViewController
 open class ViewController: UIViewController {
 
     open var isNavigationBarHidden: Bool { false }
+    open var isTabBarHidden: Bool { false }
     open var isToolbarHidden: Bool { true }
     open var prefersLargeTitles: Bool { false }
     open var backgroundColor: UIColor { .white }
@@ -32,6 +33,7 @@ open class ViewController: UIViewController {
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        tabBarController?.setTabBarHidden(isTabBarHidden, animated: true)
         navigationController?.setNavigationBarHidden(isNavigationBarHidden, animated: animated)
         navigationController?.setToolbarHidden(isToolbarHidden, animated: animated)
     }
@@ -60,5 +62,33 @@ open class ViewController: UIViewController {
                                           handler: nil))
             self?.present(alert, animated: true, completion: nil)
         }
+    }
+}
+
+private extension UITabBarController {
+    func setTabBarHidden(_ hidden: Bool, animated: Bool) {
+        guard let vc = selectedViewController else { return }
+        guard tabBarHidden != hidden else { return }
+        
+        let frame = self.tabBar.frame
+        let height = frame.size.height
+        let offsetY = hidden ? height : -height
+
+        UIViewPropertyAnimator(duration: animated ? 0.3 : 0, curve: .easeOut) {
+            self.tabBar.frame = self.tabBar.frame.offsetBy(dx: 0, dy: offsetY)
+            self.selectedViewController?.view.frame = CGRect(x: .zero,
+                                                             y: .zero,
+                                                             width: vc.view.frame.width,
+                                                             height: vc.view.frame.height + offsetY
+            )
+            
+            self.view.setNeedsDisplay()
+            self.view.layoutIfNeeded()
+        }
+        .startAnimation()
+    }
+    
+    private var tabBarHidden: Bool {
+        tabBar.frame.origin.y >= UIScreen.main.bounds.height
     }
 }
