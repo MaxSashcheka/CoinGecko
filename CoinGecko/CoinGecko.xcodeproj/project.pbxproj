@@ -50,6 +50,14 @@
 		1CDCB2DD28D132D600624AB5 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2DC28D132D600624AB5 /* RootCoordinator.swift */; };
 		1CDCB2E028D1341500624AB5 /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2DF28D1341500624AB5 /* RootAssembly.swift */; };
 		1CDCB2EC28D1378600624AB5 /* ScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2EB28D1378600624AB5 /* ScreenAssembly.swift */; };
+		1CE2AE6D28F3752B00642D00 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2AE6C28F3752B00642D00 /* ProfileCoordinator.swift */; };
+		1CE2AE6F28F3753B00642D00 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2AE6E28F3753B00642D00 /* SettingsCoordinator.swift */; };
+		1CE2AE7228F3777200642D00 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2AE7128F3777200642D00 /* ProfileViewController.swift */; };
+		1CE2AE7428F3777700642D00 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2AE7328F3777700642D00 /* ProfileViewModel.swift */; };
+		1CE2AE7728F3778D00642D00 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2AE7628F3778D00642D00 /* SettingsViewController.swift */; };
+		1CE2AE7928F3779400642D00 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2AE7828F3779400642D00 /* SettingsViewModel.swift */; };
+		1CE2AE7B28F37C2300642D00 /* ProfileAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2AE7A28F37C2300642D00 /* ProfileAssembly.swift */; };
+		1CE2AE7D28F37C2B00642D00 /* SettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2AE7C28F37C2B00642D00 /* SettingsAssembly.swift */; };
 		1CE8A3C828F182450052E34B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8A3C728F182450052E34B /* SearchViewController.swift */; };
 		1CE8A3CA28F1824C0052E34B /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8A3C928F1824C0052E34B /* SearchViewModel.swift */; };
 		1CEEC76D28D2801800F8DC7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEEC76C28D2801800F8DC7A /* AppDelegate.swift */; };
@@ -123,6 +131,14 @@
 		1CDCB2DC28D132D600624AB5 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		1CDCB2DF28D1341500624AB5 /* RootAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
 		1CDCB2EB28D1378600624AB5 /* ScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAssembly.swift; sourceTree = "<group>"; };
+		1CE2AE6C28F3752B00642D00 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		1CE2AE6E28F3753B00642D00 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		1CE2AE7128F3777200642D00 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1CE2AE7328F3777700642D00 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		1CE2AE7628F3778D00642D00 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		1CE2AE7828F3779400642D00 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		1CE2AE7A28F37C2300642D00 /* ProfileAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssembly.swift; sourceTree = "<group>"; };
+		1CE2AE7C28F37C2B00642D00 /* SettingsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAssembly.swift; sourceTree = "<group>"; };
 		1CE8A3C728F182450052E34B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1CE8A3C928F1824C0052E34B /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		1CEEC76C28D2801800F8DC7A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -252,6 +268,8 @@
 				1CDCB2DF28D1341500624AB5 /* RootAssembly.swift */,
 				1CFA294A28D27CBA0088A051 /* HomeAssembly.swift */,
 				1C60D9F528E8A4C900B675DA /* MarketsAssembly.swift */,
+				1CE2AE7A28F37C2300642D00 /* ProfileAssembly.swift */,
+				1CE2AE7C28F37C2B00642D00 /* SettingsAssembly.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -291,6 +309,8 @@
 				1C7200B628D77FA4001DDBD5 /* CoinDetails */,
 				1C60D9F028E8A2EB00B675DA /* Markets */,
 				1CE8A3C628F182360052E34B /* Search */,
+				1CE2AE7028F3776400642D00 /* Profile */,
+				1CE2AE7528F3777E00642D00 /* Settings */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -386,6 +406,8 @@
 				1CDCB2DC28D132D600624AB5 /* RootCoordinator.swift */,
 				1CFA294828D27B510088A051 /* HomeCoordinator.swift */,
 				1C60D9EB28E8853500B675DA /* MarketsCoordinator.swift */,
+				1CE2AE6C28F3752B00642D00 /* ProfileCoordinator.swift */,
+				1CE2AE6E28F3753B00642D00 /* SettingsCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -407,6 +429,24 @@
 				1CDCB2EB28D1378600624AB5 /* ScreenAssembly.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1CE2AE7028F3776400642D00 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				1CE2AE7128F3777200642D00 /* ProfileViewController.swift */,
+				1CE2AE7328F3777700642D00 /* ProfileViewModel.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		1CE2AE7528F3777E00642D00 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1CE2AE7628F3778D00642D00 /* SettingsViewController.swift */,
+				1CE2AE7828F3779400642D00 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		1CE8A3C628F182360052E34B /* Search */ = {
@@ -647,6 +687,7 @@
 				1C3F8ADF28ECD39100E04740 /* CoinDetailsInfoScreenPresentable.swift in Sources */,
 				1C97B9D328EA2E460085C979 /* PageButtonViewModel.swift in Sources */,
 				1C7CD4F628D2743C00068965 /* CoinsListViewController.swift in Sources */,
+				1CE2AE7428F3777700642D00 /* ProfileViewModel.swift in Sources */,
 				1C12DD4C28F21DCB00E7D91E /* SearchTextFieldViewModel.swift in Sources */,
 				1CFA294B28D27CBA0088A051 /* HomeAssembly.swift in Sources */,
 				1C2A63DF28D644C00007877D /* SceneDelegate.swift in Sources */,
@@ -658,11 +699,16 @@
 				1C7200A628D714A7001DDBD5 /* APIDataManagerAssembly.swift in Sources */,
 				1CDCB2DD28D132D600624AB5 /* RootCoordinator.swift in Sources */,
 				1CDCB2EC28D1378600624AB5 /* ScreenAssembly.swift in Sources */,
+				1CE2AE7B28F37C2300642D00 /* ProfileAssembly.swift in Sources */,
+				1CE2AE6F28F3753B00642D00 /* SettingsCoordinator.swift in Sources */,
 				1C7200A828D714AF001DDBD5 /* CacheDataManagerAssembly.swift in Sources */,
 				1C97B9D128EA2E3C0085C979 /* PageButton.swift in Sources */,
+				1CE2AE7728F3778D00642D00 /* SettingsViewController.swift in Sources */,
+				1CE2AE6D28F3752B00642D00 /* ProfileCoordinator.swift in Sources */,
 				1C97B9D928EA325F0085C979 /* PageButtonsCollectionViewModel.swift in Sources */,
 				1CFA294928D27B510088A051 /* HomeCoordinator.swift in Sources */,
 				1C7200BA28D77FED001DDBD5 /* CoinDetailsViewModel.swift in Sources */,
+				1CE2AE7228F3777200642D00 /* ProfileViewController.swift in Sources */,
 				1C60D9F428E8A3F600B675DA /* MarketsViewModel.swift in Sources */,
 				1C4287AA28E0B0C300273979 /* RangePickerButtonViewModel.swift in Sources */,
 				1CF466ED28CFDF5F0012DE85 /* Assets.swift in Sources */,
@@ -675,9 +721,11 @@
 				1C4287A728E0AFD800273979 /* RangePickerButton.swift in Sources */,
 				1CE8A3CA28F1824C0052E34B /* SearchViewModel.swift in Sources */,
 				1C97B9D728EA32550085C979 /* PageButtonsCollectionView.swift in Sources */,
+				1CE2AE7928F3779400642D00 /* SettingsViewModel.swift in Sources */,
 				1C60D9F628E8A4C900B675DA /* MarketsAssembly.swift in Sources */,
 				1CA3D3A828D3CFAF009D43E9 /* CoinCellViewModel.swift in Sources */,
 				1CF969CC28E393AC00F49456 /* ButtonsCollectionView.swift in Sources */,
+				1CE2AE7D28F37C2B00642D00 /* SettingsAssembly.swift in Sources */,
 				1C7200A328D71411001DDBD5 /* InteractorsAssembly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

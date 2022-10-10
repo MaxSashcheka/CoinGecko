@@ -43,17 +43,18 @@ private extension RootCoordinator {
     func initializeTabsCoordinatorsAndShow() {
         let homeCoordinator = RootAssembly.makeHomeCoordinator(parent: self)
         let marketsCoordinator = RootAssembly.makeMarketsCoordinator(parent: self)
+        let profileCoordinator = RootAssembly.makeProfileCoordinator(parent: self)
         
         let coordinators = [
             homeCoordinator,
-            marketsCoordinator
+            marketsCoordinator,
+            profileCoordinator
         ]
 
         setTabsCoordinators(coordinators)
         
         // TODO: - Fix this
         DispatchQueue.main.async { [weak self] in
-            self?.selectViewController(withCoordinatorType: MarketsCoordinator.self)
             self?.selectViewController(withCoordinatorType: HomeCoordinator.self)
             self?.selectViewController(withCoordinatorType: MarketsCoordinator.self)
         }

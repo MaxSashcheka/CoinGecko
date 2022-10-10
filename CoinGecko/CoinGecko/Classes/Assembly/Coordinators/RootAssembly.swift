@@ -21,4 +21,8 @@ extension RootAssembly {
     static func makeMarketsCoordinator(parent: Coordinator) -> MarketsCoordinator {
         MarketsCoordinator(parent: parent)
     }
+    
+    static func makeProfileCoordinator(parent: Coordinator) -> ProfileCoordinator {
+        ProfileCoordinator(parent: parent)
+    }
 }

@@ -39,7 +39,8 @@ final class MarketsViewController: ViewController {
     
     private let searchButton: Button = {
         let button = Button()
-        button.setImage(Assets.Images.search.image, for: .normal)
+        button.setImage(Assets.Images.search.image.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = .darkGray
         
         return button
     }()
@@ -81,7 +82,6 @@ final class MarketsViewController: ViewController {
         statusPlaceholderLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(15)
             make.leading.equalToSuperview().offset(16)
-
         }
         
         view.addSubview(statusPercentageLabel)
