@@ -22,15 +22,10 @@ final class ProfileViewController: ViewController {
     override var isNavigationBarHidden: Bool { true }
     
     override var backgroundColor: UIColor { Assets.Colors.platinum.color }
+    override var tabBarTitle: String { "Profile" }
+    override var tabBarImage: UIImage? { UIImage(systemName: "person.circle") }
     
     var viewModel: ViewModel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationController?.tabBarItem.title = "Profile"
-        navigationController?.tabBarItem.image = UIImage(systemName: "person.circle")
-    }
     
     override func arrangeSubviews() {
         super.arrangeSubviews()

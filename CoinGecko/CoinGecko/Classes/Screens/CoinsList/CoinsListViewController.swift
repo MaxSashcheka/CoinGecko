@@ -23,6 +23,8 @@ final class CoinsListViewController: ViewController {
     
     override var backgroundColor: UIColor { Assets.Colors.platinum.color }
     override var prefersLargeTitles: Bool { true }
+    override var tabBarTitle: String { "Home" }
+    override var tabBarImage: UIImage? { UIImage(systemName: "house") }
     
     var viewModel: ViewModel!
     
@@ -49,8 +51,6 @@ final class CoinsListViewController: ViewController {
         coinsTableView.dataSource = self
         
         title = "Trending Coins"
-        navigationController?.tabBarItem.title = "Home"
-        navigationController?.tabBarItem.image = UIImage(systemName: "house")
     }
     
     override func bindData() {
@@ -59,6 +59,15 @@ final class CoinsListViewController: ViewController {
         viewModel.coinsViewModels
             .sink { [weak self] _ in
                 self?.coinsTableView.reloadData()
+            }
+            .store(in: &cancellables)
+        
+        coinsTableView.publisher(for: \.contentOffset)
+            .sink { [weak self] in
+                guard let self = self else { return }
+                if $0.y + self.coinsTableView.frame.height > self.coinsTableView.contentSize.height, self.coinsTableView.contentSize.height > .zero {
+                    self.viewModel.fetchCoins()
+                }
             }
             .store(in: &cancellables)
     }

@@ -62,6 +62,9 @@ final class MarketsViewController: ViewController {
     override var backgroundColor: UIColor { Assets.Colors.platinum.color }
     override var isNavigationBarHidden: Bool { true }
     
+    override var tabBarTitle: String { "Markets" }
+    override var tabBarImage: UIImage? { UIImage(systemName: "chart.xyaxis.line") }
+    
     var viewModel: ViewModel!
     
     override func viewDidLoad() {
@@ -69,10 +72,6 @@ final class MarketsViewController: ViewController {
         // TODO: - ADD pull to refresh
         viewModel.errorHandlerClosure = errorHandler
         viewModel.fetchCoins(mode: .all)
-        
-        title = .empty
-        navigationController?.tabBarItem.title = "Markets"
-        navigationController?.tabBarItem.image = UIImage(systemName: "chart.xyaxis.line")
     }
     
     override func arrangeSubviews() {
@@ -96,10 +95,21 @@ final class MarketsViewController: ViewController {
             make.top.equalTo(statusPlaceholderLabel.snp.bottom).offset(3)
         }
         
-        view.addSubview(searchButton)
-        searchButton.snp.makeConstraints { make in
+        let searchButtonContainerView: View = {
+            let view = View(backgroundColor: .lightGray.withAlphaComponent(0.2))
+            view.cornerRadius = 17
+            return view
+        }()
+        view.addSubview(searchButtonContainerView)
+        searchButtonContainerView.snp.makeConstraints { make in
             make.top.equalTo(statusPlaceholderLabel)
             make.trailing.equalToSuperview().offset(-20)
+            make.size.equalTo(34)
+        }
+        
+        searchButtonContainerView.addSubview(searchButton)
+        searchButton.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
         
         view.addSubview(pageButtonsCollectionView)

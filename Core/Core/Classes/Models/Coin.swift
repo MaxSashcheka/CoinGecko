@@ -25,7 +25,7 @@ public struct PriceDetails {
     public let currentPrice: Double
     public let marketCap: Int
     public let marketCapRank: Int
-    public let totalVolume: Int
+    public let totalVolume: Double
     public let previousDayHighestPrice: Double
     public let previousDayLowestPrice: Double
     public let change24h: Double
