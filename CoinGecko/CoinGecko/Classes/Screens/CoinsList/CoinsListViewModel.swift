@@ -19,22 +19,32 @@ extension CoinsListViewController {
         
         let coinsViewModels = CurrentValueSubject<[CoinCell.ViewModel], Never>([])
         var coinsCount: Int { coinsViewModels.value.count }
+        
+        private var isSearchPerforming = false
+        private var currentPage = 0
 
         init(coinsInteractor: CoinsInteractorProtocol) {
             self.coinsInteractor = coinsInteractor
         }
         
         func fetchCoins() {
+            guard !isSearchPerforming else { return }
+            isSearchPerforming = true
+            
             // TODO: - Remove hardcoded currency string and add pagination logic
+            currentPage += 1
             
             ActivityIndicator.show()
             coinsInteractor.getCoins(fromCache: false,
                                      currency: "usd",
-                                     page: 1,
+                                     page: currentPage,
                                      pageSize: 20,
                                      success: { [weak self] coins in
-                self?.coinsViewModels.send(
-                    coins.map { coin in
+                guard let self = self else { return }
+                self.isSearchPerforming = false
+                
+                self.coinsViewModels.send(
+                    self.coinsViewModels.value + coins.map { coin in
                         let isPriceChangePositive = coin.priceDetails.changePercentage24h > 0
                         var priceChangeString = preciseRound(coin.priceDetails.changePercentage24h,
                                                              precision: .hundredths).description
@@ -59,6 +69,7 @@ extension CoinsListViewController {
                 )
                 ActivityIndicator.hide()
             }, failure: { [weak self] error in
+                self?.isSearchPerforming = false
                 self?.errorHandlerClosure?(error)
             })
         }
