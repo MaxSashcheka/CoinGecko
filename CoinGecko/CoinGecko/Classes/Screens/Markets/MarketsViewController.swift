@@ -63,7 +63,7 @@ final class MarketsViewController: ViewController {
     override var isNavigationBarHidden: Bool { true }
     
     override var tabBarTitle: String { "Markets" }
-    override var tabBarImage: UIImage? { UIImage(systemName: "chart.xyaxis.line") }
+    override var tabBarImage: UIImage? { UIImage(systemName: "chart.pie") }
     
     var viewModel: ViewModel!
     

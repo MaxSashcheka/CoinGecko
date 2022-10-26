@@ -26,7 +26,7 @@ final class RootCoordinator: TabCoordinator {
     
     func setupAppearance() {
         let navigationAppearance = UINavigationBarAppearance()
-        let backButtonImage = Assets.Images.back.image
+        let backButtonImage = Assets.Images.back.image.withBaselineOffset(fromBottom: 2)
         navigationAppearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
         
         let navigationBar: UINavigationBar = UINavigationBar.appearance()
@@ -45,11 +45,10 @@ final class RootCoordinator: TabCoordinator {
 
 private extension RootCoordinator {
     func initializeTabsCoordinatorsAndShow() {
-        let homeCoordinator = RootAssembly.makeHomeCoordinator(parent: self)
+        let homeCoordinator = RootAssembly.makeTrendingCoordinator(parent: self)
         let marketsCoordinator = RootAssembly.makeMarketsCoordinator(parent: self)
-        let profileCoordinator = RootAssembly.makeProfileCoordinator(parent: self)
+        let profileCoordinator = RootAssembly.makeHomeCoordinator(parent: self)
 
         setTabsCoordinators([homeCoordinator, marketsCoordinator, profileCoordinator])
     }
 }
-

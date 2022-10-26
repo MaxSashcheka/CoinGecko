@@ -40,12 +40,12 @@ public extension Coin {
         self.imageURL = coinResponse.imageURL
         
         self.priceDetails = PriceDetails(
-            currentPrice: coinResponse.currentPrice,
-            marketCap: coinResponse.marketCap,
-            marketCapRank: coinResponse.marketCapRank,
-            totalVolume: coinResponse.totalVolume,
-            previousDayHighestPrice: coinResponse.previousDayHighestPrice,
-            previousDayLowestPrice: coinResponse.previousDayLowestPrice,
+            currentPrice: coinResponse.currentPrice ?? .zero,
+            marketCap: coinResponse.marketCap ?? .zero,
+            marketCapRank: coinResponse.marketCapRank ?? .zero,
+            totalVolume: coinResponse.totalVolume ?? .zero,
+            previousDayHighestPrice: coinResponse.previousDayHighestPrice ?? .zero,
+            previousDayLowestPrice: coinResponse.previousDayLowestPrice ?? .zero,
             change24h: coinResponse.priceChange24h,
             changePercentage24h: coinResponse.priceChangePercentage24h
         )

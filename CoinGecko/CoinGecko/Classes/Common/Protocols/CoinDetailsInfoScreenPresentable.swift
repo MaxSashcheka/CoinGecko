@@ -13,7 +13,7 @@ protocol CoinDetailsInfoScreenPresentable { }
 extension CoinDetailsInfoScreenPresentable where Self: NavigationCoordinator {
     func showCoinDetailInfoScreen(coinId: String) {
         // TODO: - move makeCoinDetailsScreen into general assembly
-        let (viewController, viewModel) = HomeAssembly.makeCoinDetailsScreen(resolver: self, coinId: coinId)
+        let (viewController, viewModel) = TrendingAssembly.makeCoinDetailsScreen(resolver: self, coinId: coinId)
         viewModel.closeTransition = { [weak self] in
             self?.dismissModalController()
         }

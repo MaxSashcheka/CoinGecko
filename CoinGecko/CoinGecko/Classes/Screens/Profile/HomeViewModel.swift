@@ -1,5 +1,5 @@
 //
-//  ProfileViewModel.swift
+//  HomeViewModel.swift
 //  CoinGecko
 //
 //  Created by Maksim Sashcheka on 10.10.22.
@@ -10,7 +10,7 @@ import Combine
 import Core
 import Utils
 
-extension ProfileViewController {
+extension HomeViewController {
     final class ViewModel {
         var openSettingsTransition: Closure.Void?
         

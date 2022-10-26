@@ -31,7 +31,7 @@ extension CoinsListViewController {
             guard !isSearchPerforming else { return }
             isSearchPerforming = true
             
-            // TODO: - Remove hardcoded currency string and add pagination logic
+            // TODO: - Refactor nextPage value calculation according to current items and remove currentPage property
             currentPage += 1
             
             ActivityIndicator.show()

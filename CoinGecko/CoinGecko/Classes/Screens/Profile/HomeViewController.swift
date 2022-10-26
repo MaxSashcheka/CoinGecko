@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  HomeViewController.swift
 //  CoinGecko
 //
 //  Created by Maksim Sashcheka on 10.10.22.
@@ -10,7 +10,7 @@ import Combine
 import SnapKit
 import Utils
 
-final class ProfileViewController: ViewController {
+final class HomeViewController: ViewController {
     private let settingsButton: Button = {
         let button = Button()
         button.setImage(Assets.Images.settings.image.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -22,8 +22,8 @@ final class ProfileViewController: ViewController {
     override var isNavigationBarHidden: Bool { true }
     
     override var backgroundColor: UIColor { Assets.Colors.platinum.color }
-    override var tabBarTitle: String { "Profile" }
-    override var tabBarImage: UIImage? { UIImage(systemName: "person.circle") }
+    override var tabBarTitle: String { "Home" }
+    override var tabBarImage: UIImage? { UIImage(systemName: "house") }
     
     var viewModel: ViewModel!
     

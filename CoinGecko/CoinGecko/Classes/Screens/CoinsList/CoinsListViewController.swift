@@ -23,8 +23,8 @@ final class CoinsListViewController: ViewController {
     
     override var backgroundColor: UIColor { Assets.Colors.platinum.color }
     override var prefersLargeTitles: Bool { true }
-    override var tabBarTitle: String { "Home" }
-    override var tabBarImage: UIImage? { UIImage(systemName: "house") }
+    override var tabBarTitle: String { "Trending" }
+    override var tabBarImage: UIImage? { UIImage(systemName: "chart.line.uptrend.xyaxis") }
     
     var viewModel: ViewModel!
     

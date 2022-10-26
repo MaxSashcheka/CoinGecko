@@ -2,7 +2,7 @@
 //  HomeCoordinator.swift
 //  CoinGecko
 //
-//  Created by Maksim Sashcheka on 15.09.22.
+//  Created by Maksim Sashcheka on 10.10.22.
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
@@ -13,17 +13,23 @@ final class HomeCoordinator: NavigationCoordinator {
     override init(parent: Coordinator?) {
         super.init(parent: parent)
         
-        showCoinsListScreen()
+        showProfileScreen()
     }
 }
 
-extension HomeCoordinator: CoinDetailsInfoScreenPresentable {
-    func showCoinsListScreen() {
-        let (viewController, viewModel) = HomeAssembly.makeCoinsListScreen(resolver: self)
-        viewModel.showCoinDetailInfoTransition = { [weak self] in
-            self?.showCoinDetailInfoScreen(coinId: $0)
+extension HomeCoordinator {
+    func showProfileScreen() {
+        let (viewController, viewModel) = HomeAssembly.makeProfileScreen(resolver: self)
+        viewModel.openSettingsTransition = { [weak self] in
+            self?.showSettingsScreen()
         }
         
         pushViewController(viewController, animated: false)
+    }
+    
+    func showSettingsScreen() {
+        let (viewController, viewModel) = HomeAssembly.makeSettingsScreen(resolver: self)
+        
+        pushViewController(viewController, animated: true)
     }
 }

@@ -21,12 +21,12 @@ public struct CoinResponse {
     public let symbol: String
     public let name: String
     public let imageURL: URL
-    public let currentPrice: Double
-    public let marketCap: Int
-    public let marketCapRank: Int
-    public let totalVolume: Double
-    public let previousDayHighestPrice: Double
-    public let previousDayLowestPrice: Double
+    public let currentPrice: Double?
+    public let marketCap: Int?
+    public let marketCapRank: Int?
+    public let totalVolume: Double?
+    public let previousDayHighestPrice: Double?
+    public let previousDayLowestPrice: Double?
     public let priceChange24h: Double
     public let priceChangePercentage24h: Double
 }
