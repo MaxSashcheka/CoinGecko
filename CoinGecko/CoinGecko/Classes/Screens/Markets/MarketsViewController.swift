@@ -23,10 +23,11 @@ final class MarketsViewController: ViewController {
         let label = Label()
         label.font = .systemFont(ofSize: 28, weight: .medium)
         label.textColor = .systemRed
-        label.text = "-11.47 %"
         
         return label
     }()
+    
+    private let statusTriangleView = PriceTriangleView(backgroundColor: .clear)
     
     private let statusTimePlaceholderLabel: Label = {
         let label = Label()
@@ -89,6 +90,13 @@ final class MarketsViewController: ViewController {
             make.centerY.equalTo(statusPlaceholderLabel)
         }
         
+        view.addSubview(statusTriangleView)
+        statusTriangleView.snp.makeConstraints { make in
+            make.leading.equalTo(statusPercentageLabel.snp.trailing).offset(5)
+            make.size.equalTo(20)
+            make.bottom.equalTo(statusPercentageLabel).offset(-7)
+        }
+        
         view.addSubview(statusTimePlaceholderLabel)
         statusTimePlaceholderLabel.snp.makeConstraints { make in
             make.leading.equalTo(statusPlaceholderLabel)
@@ -97,19 +105,20 @@ final class MarketsViewController: ViewController {
         
         let searchButtonContainerView: View = {
             let view = View(backgroundColor: .lightGray.withAlphaComponent(0.2))
-            view.cornerRadius = 17
+            view.cornerRadius = 20
             return view
         }()
         view.addSubview(searchButtonContainerView)
         searchButtonContainerView.snp.makeConstraints { make in
             make.top.equalTo(statusPlaceholderLabel)
             make.trailing.equalToSuperview().offset(-20)
-            make.size.equalTo(34)
+            make.size.equalTo(40)
         }
         
         searchButtonContainerView.addSubview(searchButton)
         searchButton.snp.makeConstraints { make in
             make.center.equalToSuperview()
+            make.size.equalTo(25)
         }
         
         view.addSubview(pageButtonsCollectionView)
@@ -157,8 +166,11 @@ final class MarketsViewController: ViewController {
             }
             .store(in: &cancellables)
         
-        viewModel.statusPlaceholderText
-            .bind(to: \.text, on: statusPlaceholderLabel)
+        viewModel.isPriceChangePositive
+            .sink { [weak self] in
+                self?.statusPlaceholderLabel.text = $0 ? "Market is up" : "Market is down"
+                self?.statusTriangleView.state = $0 ? .gainer : .loser
+            }
             .store(in: &cancellables)
         
         viewModel.changePercentage

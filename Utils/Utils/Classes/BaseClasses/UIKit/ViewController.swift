@@ -88,7 +88,17 @@ open class ViewController: UIViewController {
             self?.present(alert, animated: true, completion: nil)
         }
     }
+    
+
 }
+
+//extension ViewController: UIViewControllerTransitioningDelegate  {
+//    public func presentationController(forPresented presented: UIViewController,
+//                                       presenting: UIViewController?,
+//                                       source: UIViewController) -> UIPresentationController? {
+//        PresentationController(presentedViewController: presented, presenting: presenting)
+//    }
+//}
 
 private extension UITabBarController {
     func setTabBarHidden(_ hidden: Bool, animated: Bool) {
@@ -99,7 +109,9 @@ private extension UITabBarController {
         let height = frame.size.height
         let offsetY = hidden ? height : -height
 
-        UIViewPropertyAnimator(duration: animated ? 0.3 : 0, curve: .easeOut) {
+        UIViewPropertyAnimator(duration: animated ? 0.3 : 0, curve: .easeOut) { [weak self] in
+            guard let self = self else { return }
+            
             self.tabBar.frame = self.tabBar.frame.offsetBy(dx: 0, dy: offsetY)
             self.selectedViewController?.view.frame = CGRect(x: .zero,
                                                              y: .zero,

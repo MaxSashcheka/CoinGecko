@@ -35,6 +35,11 @@ final class CoinDetailsViewController: ViewController {
     
     private let buttonsCollectionView = ButtonsCollectionView()
     
+    private let addToPortfolioButton = Button(title: "Add to portfolio",
+                                              backgroundColor: .systemBlue.withAlphaComponent(0.65))
+    
+    override var isNavigationBarHidden: Bool { true }
+    
     var viewModel: ViewModel!
     
     override var backgroundColor: UIColor { .white }
@@ -43,6 +48,12 @@ final class CoinDetailsViewController: ViewController {
         super.viewDidLoad()
         
         viewModel.errorHandlerClosure = errorHandler
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        addToPortfolioButton.cornerRadius = addToPortfolioButton.frame.height / 2
     }
     
     override func arrangeSubviews() {
@@ -88,6 +99,13 @@ final class CoinDetailsViewController: ViewController {
             make.height.equalTo(33)
             make.bottom.equalToSuperview().offset(-20)
         }
+        
+        scrollView.addSubview(addToPortfolioButton)
+        addToPortfolioButton.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(buttonsCollectionView)
+            make.top.equalTo(buttonsCollectionView.snp.bottom).offset(35)
+            make.height.equalTo(55)
+        }
     }
     
     override func bindData() {
@@ -115,8 +133,14 @@ final class CoinDetailsViewController: ViewController {
             .store(in: &cancellables)
         
         viewModel.isPriceChangePositive
-            .sink { [weak self] in
-                self?.priceChangeLabel.textColor = $0 ? .systemGreen : .systemRed
+            .sink { [weak priceChangeLabel] in
+                priceChangeLabel?.textColor = $0 ? .systemGreen : .systemRed
+            }
+            .store(in: &cancellables)
+        
+        addToPortfolioButton.tapPublisher()
+            .sink { [weak viewModel] in
+                viewModel?.didTapOpenBottomSheetButton()
             }
             .store(in: &cancellables)
     }

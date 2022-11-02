@@ -6,9 +6,10 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import Utils
 import SDWebImage
+import Utils
 
+/// Placeholder to show when image is loading
 enum RemoteImagePlaceholder {
     case image(UIImage)
     case color(UIColor)

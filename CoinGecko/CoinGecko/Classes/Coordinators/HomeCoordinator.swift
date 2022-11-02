@@ -13,22 +13,31 @@ final class HomeCoordinator: NavigationCoordinator {
     override init(parent: Coordinator?) {
         super.init(parent: parent)
         
-        showProfileScreen()
+        showHomeScreen()
     }
 }
 
 extension HomeCoordinator {
-    func showProfileScreen() {
-        let (viewController, viewModel) = HomeAssembly.makeProfileScreen(resolver: self)
+    func showHomeScreen() {
+        let (viewController, viewModel) = HomeAssembly.makeHomeScreen(resolver: self)
         viewModel.openSettingsTransition = { [weak self] in
             self?.showSettingsScreen()
+        }
+        viewModel.openProfileTransition = { [weak self] in
+            self?.showProfileScreen()
         }
         
         pushViewController(viewController, animated: false)
     }
     
     func showSettingsScreen() {
-        let (viewController, viewModel) = HomeAssembly.makeSettingsScreen(resolver: self)
+        let (viewController, _) = HomeAssembly.makeSettingsScreen(resolver: self)
+        
+        pushViewController(viewController, animated: true)
+    }
+    
+    func showProfileScreen() {
+        let (viewController, _) = HomeAssembly.makeProfileScreen(resolver: self)
         
         pushViewController(viewController, animated: true)
     }

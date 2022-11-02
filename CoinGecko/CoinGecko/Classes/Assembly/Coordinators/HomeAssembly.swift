@@ -12,10 +12,10 @@ final class HomeAssembly { }
 
 // MARK: - Screens
 extension HomeAssembly {
-    typealias ProfileViewModel = HomeViewController.ViewModel
-    static func makeProfileScreen(resolver: Resolver) -> (HomeViewController, ProfileViewModel) {
+    typealias HomeViewModel = HomeViewController.ViewModel
+    static func makeHomeScreen(resolver: Resolver) -> (HomeViewController, HomeViewModel) {
         let viewController = HomeViewController()
-        let viewModel = ProfileViewModel()
+        let viewModel = HomeViewModel()
         viewController.viewModel = viewModel
         
         return (viewController, viewModel)
@@ -25,6 +25,15 @@ extension HomeAssembly {
     static func makeSettingsScreen(resolver: Resolver) -> (SettingsViewController, SettingsViewModel) {
         let viewController = SettingsViewController()
         let viewModel = SettingsViewModel()
+        viewController.viewModel = viewModel
+        
+        return (viewController, viewModel)
+    }
+    
+    typealias ProfileViewModel = ProfileViewController.ViewModel
+    static func makeProfileScreen(resolver: Resolver) -> (ProfileViewController, ProfileViewModel) {
+        let viewController = ProfileViewController()
+        let viewModel = ProfileViewModel()
         viewController.viewModel = viewModel
         
         return (viewController, viewModel)

@@ -57,8 +57,8 @@ final class CoinsListViewController: ViewController {
         super.bindData()
         
         viewModel.coinsViewModels
-            .sink { [weak self] _ in
-                self?.coinsTableView.reloadData()
+            .sink { [weak coinsTableView] _ in
+                coinsTableView?.reloadData()
             }
             .store(in: &cancellables)
         

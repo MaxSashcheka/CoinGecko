@@ -9,6 +9,7 @@
 import Combine
 import UIKit.UIView
 
+/// Base class for all UIView inheritors
 open class View: UIView {
     public var cornerRadius: CGFloat {
         get { layer.cornerRadius }

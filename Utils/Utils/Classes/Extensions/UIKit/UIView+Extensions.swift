@@ -18,4 +18,9 @@ public extension UIView {
             layer.render(in: rendererContext.cgContext)
         }
     }
+    
+    func apply(cornerMask: CACornerMask, withCornerRadius cornerRadius: CGFloat) {
+        layer.maskedCorners = cornerMask
+        layer.cornerRadius = cornerRadius
+    }
 }

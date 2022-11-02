@@ -9,7 +9,7 @@
 import Combine
 import Foundation
 
-extension CoinDetailsViewController.CoinDetailsNavigationBarView {
+extension CoinDetailsNavigationBarView {
     class ViewModel {
         let title = CurrentValueSubject<String, Never>(.empty)
         let description = CurrentValueSubject<String, Never>(.empty)

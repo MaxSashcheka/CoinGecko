@@ -23,8 +23,8 @@ extension MarketsViewController {
         let pageButtonsCollectionViewModel = PageButtonsCollectionView.ViewModel()
         
         let coinsViewModels = CurrentValueSubject<[CoinCell.ViewModel], Never>([])
-        let statusPlaceholderText = CurrentValueSubject<String, Never>(.empty)
         let changePercentage = CurrentValueSubject<Double, Never>(.zero)
+        let isPriceChangePositive = CurrentValueSubject<Bool, Never>(false)
         
         var coinsCount: Int { coinsViewModels.value.count }
         
@@ -43,11 +43,7 @@ extension MarketsViewController {
         func fetchGlobalData() {
             ActivityIndicator.show()
             coinsInteractor.getGlobalData { [weak self] globalData in
-                self?.statusPlaceholderText.send(
-                    globalData.previousDayChangePercentage > .zero
-                        ? "Market is up"
-                        : "Market is down"
-                )
+                self?.isPriceChangePositive.send(globalData.previousDayChangePercentage > .zero)
                 self?.changePercentage.send(globalData.previousDayChangePercentage)
             } failure: { [weak self] error in
                 self?.errorHandlerClosure?(error)

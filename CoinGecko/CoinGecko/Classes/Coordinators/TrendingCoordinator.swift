@@ -17,13 +17,22 @@ final class TrendingCoordinator: NavigationCoordinator {
     }
 }
 
-extension TrendingCoordinator: CoinDetailsInfoScreenPresentable {
+extension TrendingCoordinator {
     func showCoinsListScreen() {
         let (viewController, viewModel) = TrendingAssembly.makeCoinsListScreen(resolver: self)
         viewModel.showCoinDetailInfoTransition = { [weak self] in
-            self?.showCoinDetailInfoScreen(coinId: $0)
+            self?.showCoinDetailsCoordinator(coinId: $0)
         }
         
         pushViewController(viewController, animated: false)
+    }
+    
+    func showCoinDetailsCoordinator(coinId: String) {
+        let coordinator = CoinDetailsCoordinator(parent: self,
+                                                 coinId: coinId,
+                                                 closeClosure: { [weak self] in
+                                                     self?.dismissModalCoordinator()
+                                                 })
+        presentModal(coordinator: coordinator, presentationStyle: .overFullScreen)
     }
 }

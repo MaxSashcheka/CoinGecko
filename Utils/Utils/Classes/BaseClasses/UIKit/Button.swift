@@ -8,6 +8,7 @@
 
 import Combine
 import UIKit.UIButton
+import SnapKit
 
 open class Button: UIButton {
     public var cornerRadius: CGFloat {
@@ -32,9 +33,31 @@ open class Button: UIButton {
     
     open var cancellables: [AnyCancellable] = []
     
-    public convenience init(image: UIImage) {
+    public convenience init(image: UIImage? = nil,
+                            title: String = .empty,
+                            backgroundColor: UIColor = .clear) {
         self.init()
         
-        setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+        setTitle(title, for: .normal)
+        self.backgroundColor = backgroundColor
+    }
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupContent()
+    }
+    
+    required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        setupContent()
+    }
+    
+    private func setupContent() {
+        imageView?.snp.makeConstraints { make in
+            make.size.equalToSuperview()
+        }
     }
 }
