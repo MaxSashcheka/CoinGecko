@@ -60,7 +60,7 @@ public struct SearchExchange {
     
     init(searchExchangeResponse: SearchExchangeResponse) {
         self.id = searchExchangeResponse.id
-        self.name = searchExchangeResponse.name
+        self.name = searchExchangeResponse.name ?? .empty
         self.thumbURL = searchExchangeResponse.thumb
         self.largeURL = searchExchangeResponse.large
     }
@@ -72,14 +72,14 @@ public struct SearchCategory {
     
     init(searchCategoryResponse: SearchCategoryResponse) {
         self.id = searchCategoryResponse.id
-        self.name = searchCategoryResponse.name
+        self.name = searchCategoryResponse.name ?? .empty
     }
 }
 
 public struct SearchNFT {
     public let id: String
-    public let name: String
-    public let symbol: String
+    public let name: String?
+    public let symbol: String?
     public let thumbURL: URL
     
     init(searchNFTResponse: SearchNFTResponse) {

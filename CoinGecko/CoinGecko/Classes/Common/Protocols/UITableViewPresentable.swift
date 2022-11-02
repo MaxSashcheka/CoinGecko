@@ -8,4 +8,5 @@
 
 import UIKit
 
+/// UITableViewDelegate and UITableViewDataSource protocols
 typealias UITableViewPresentable = UITableViewDelegate & UITableViewDataSource

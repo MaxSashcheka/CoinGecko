@@ -14,11 +14,15 @@ final class RootAssembly: Assembly {
 
 // MARK: - Coordinators
 extension RootAssembly {
-    static func makeHomeCoordinator(parent: Coordinator) -> HomeCoordinator {
-        HomeCoordinator(parent: parent)
+    static func makeTrendingCoordinator(parent: Coordinator) -> TrendingCoordinator {
+        TrendingCoordinator(parent: parent)
     }
     
     static func makeMarketsCoordinator(parent: Coordinator) -> MarketsCoordinator {
         MarketsCoordinator(parent: parent)
+    }
+    
+    static func makeHomeCoordinator(parent: Coordinator) -> HomeCoordinator {
+        HomeCoordinator(parent: parent)
     }
 }

@@ -11,6 +11,7 @@ import Utils
 
 final class TitledDescriptionView: View {
     private let titleLabel = Label(textPreferences: .title)
+    
     private let descriptionLabel = Label(textPreferences: .subtitle)
     
     var viewModel: ViewModel? {

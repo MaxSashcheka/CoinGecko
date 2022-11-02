@@ -26,9 +26,8 @@ final class RootCoordinator: TabCoordinator {
     
     func setupAppearance() {
         let navigationAppearance = UINavigationBarAppearance()
-        let backButtonImage = Assets.Images.back.image
-        navigationAppearance.setBackIndicatorImage(backButtonImage,
-                                                   transitionMaskImage: backButtonImage)
+        let backButtonImage = Assets.Images.back.image.withBaselineOffset(fromBottom: 2)
+        navigationAppearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
         
         let navigationBar: UINavigationBar = UINavigationBar.appearance()
         navigationBar.tintColor = .black
@@ -36,31 +35,20 @@ final class RootCoordinator: TabCoordinator {
         navigationBar.standardAppearance = navigationAppearance
         navigationBar.compactAppearance = navigationAppearance
         navigationBar.scrollEdgeAppearance = navigationAppearance
+        
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        tabBarController.tabBar.standardAppearance = appearance
+        tabBarController.tabBar.scrollEdgeAppearance = appearance
     }
 }
 
 private extension RootCoordinator {
     func initializeTabsCoordinatorsAndShow() {
-        let homeCoordinator = RootAssembly.makeHomeCoordinator(parent: self)
+        let homeCoordinator = RootAssembly.makeTrendingCoordinator(parent: self)
         let marketsCoordinator = RootAssembly.makeMarketsCoordinator(parent: self)
-        
-        let coordinators = [
-            homeCoordinator,
-            marketsCoordinator
-        ]
+        let profileCoordinator = RootAssembly.makeHomeCoordinator(parent: self)
 
-        setTabsCoordinators(coordinators)
-        
-        // TODO: - Fix this
-        DispatchQueue.main.async { [weak self] in
-            self?.selectViewController(withCoordinatorType: MarketsCoordinator.self)
-            self?.selectViewController(withCoordinatorType: HomeCoordinator.self)
-            self?.selectViewController(withCoordinatorType: MarketsCoordinator.self)
-        }
-       
-        let appearance = UITabBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        tabBarController.tabBar.standardAppearance = appearance
-        tabBarController.tabBar.scrollEdgeAppearance = appearance
+        setTabsCoordinators([homeCoordinator, marketsCoordinator, profileCoordinator])
     }
 }

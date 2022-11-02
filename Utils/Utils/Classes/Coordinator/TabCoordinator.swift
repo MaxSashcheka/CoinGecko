@@ -100,9 +100,9 @@ open class TabCoordinator: Coordinator {
         tabBarController.selectedViewController = coordinator.baseViewController
     }
     
-    open func setTabsCoordinators(_ newCoordinators: [Coordinator]) {
-        newCoordinators.forEach { add(child: $0) }
-        tabBarController.setViewControllers(newCoordinators.map { $0.baseViewController }, animated: false)
+    open func setTabsCoordinators(_ coordinators: [Coordinator]) {
+        coordinators.forEach { add(child: $0) }
+        tabBarController.setViewControllers(coordinators.map(\.baseViewController), animated: false)
     }
 }
 

@@ -20,6 +20,7 @@ extension CoinDetailsViewController {
         private let coinId: String
         
         var closeTransition: Closure.Void?
+        var openBottomSheetTransition: Closure.Void?
         var errorHandlerClosure: Closure.APIError?
         
         let navigationBarViewModel = CoinDetailsNavigationBarView.ViewModel()
@@ -110,10 +111,16 @@ extension CoinDetailsViewController {
                 ActivityIndicator.hide()
             })
         }
-        
-        func didTapCloseButton() {
-            closeTransition?()
-        }
+    }
+}
+
+extension CoinDetailsViewController.ViewModel {
+    func didTapCloseButton() {
+        closeTransition?()
+    }
+    
+    func didTapOpenBottomSheetButton() {
+        openBottomSheetTransition?()
     }
 }
 

@@ -15,11 +15,13 @@ public extension UIStackView {
     
     convenience init(axis: NSLayoutConstraint.Axis,
                      spacing: CGFloat,
+                     alignment: UIStackView.Alignment = .fill,
                      distribution: UIStackView.Distribution) {
         self.init()
         
         self.axis = axis
         self.spacing = spacing
+        self.alignment = alignment
         self.distribution = distribution
     }
 }

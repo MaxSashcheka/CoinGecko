@@ -93,6 +93,7 @@ final class SearchTextField: View {
         clearButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-10)
             make.centerY.equalToSuperview()
+            make.size.equalTo(20)
         }
     }
 }

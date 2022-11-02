@@ -11,8 +11,6 @@ import Utils
 
 final class InteractorsAssembly: Assembly {
     static func makeCoinsInteractor(resolver: Resolver) -> CoinsInteractorProtocol {
-        CoinsInteractor(
-            coinsAPIDataManager: CoinsAPIDataManager()
-        )
+        CoinsInteractor(coinsAPIDataManager: CoinsAPIDataManager())
     }
 }

@@ -10,6 +10,7 @@ import Combine
 import UIKit
 import Utils
 
+/// Allows to add endEditing behavior for specific view
 public protocol EndEditingTappable: AnyObject {
     func activateEndEditingTap(at view: UIView)
 }

@@ -39,20 +39,20 @@ public struct SearchCoinResponse: Decodable {
 
 public struct SearchExchangeResponse: Decodable {
     public let id: String
-    public let name: String
+    public let name: String?
     public let thumb: URL
     public let large: URL
 }
 
 public struct SearchCategoryResponse: Decodable {
     public let id: Int
-    public let name: String
+    public let name: String?
 }
 
 public struct SearchNFTResponse: Decodable {
     public let id: String
-    public let name: String
-    public let symbol: String
+    public let name: String?
+    public let symbol: String?
     public let thumb: URL
 }
 

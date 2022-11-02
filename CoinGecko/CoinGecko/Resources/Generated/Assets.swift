@@ -31,6 +31,7 @@ internal enum Assets {
     internal static let back = ImageAsset(name: "back")
     internal static let cross = ImageAsset(name: "cross")
     internal static let search = ImageAsset(name: "search")
+    internal static let settings = ImageAsset(name: "settings")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

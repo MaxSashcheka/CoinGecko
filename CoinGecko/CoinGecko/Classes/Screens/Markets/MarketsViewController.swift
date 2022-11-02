@@ -23,10 +23,11 @@ final class MarketsViewController: ViewController {
         let label = Label()
         label.font = .systemFont(ofSize: 28, weight: .medium)
         label.textColor = .systemRed
-        label.text = "-11.47 %"
         
         return label
     }()
+    
+    private let statusTriangleView = PriceTriangleView(backgroundColor: .clear)
     
     private let statusTimePlaceholderLabel: Label = {
         let label = Label()
@@ -39,7 +40,8 @@ final class MarketsViewController: ViewController {
     
     private let searchButton: Button = {
         let button = Button()
-        button.setImage(Assets.Images.search.image, for: .normal)
+        button.setImage(Assets.Images.search.image.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = .darkGray
         
         return button
     }()
@@ -61,6 +63,9 @@ final class MarketsViewController: ViewController {
     override var backgroundColor: UIColor { Assets.Colors.platinum.color }
     override var isNavigationBarHidden: Bool { true }
     
+    override var tabBarTitle: String { "Markets" }
+    override var tabBarImage: UIImage? { UIImage(systemName: "chart.pie") }
+    
     var viewModel: ViewModel!
     
     override func viewDidLoad() {
@@ -68,10 +73,6 @@ final class MarketsViewController: ViewController {
         // TODO: - ADD pull to refresh
         viewModel.errorHandlerClosure = errorHandler
         viewModel.fetchCoins(mode: .all)
-        
-        title = .empty
-        navigationController?.tabBarItem.title = "Markets"
-        navigationController?.tabBarItem.image = UIImage(systemName: "chart.xyaxis.line")
     }
     
     override func arrangeSubviews() {
@@ -81,7 +82,6 @@ final class MarketsViewController: ViewController {
         statusPlaceholderLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(15)
             make.leading.equalToSuperview().offset(16)
-
         }
         
         view.addSubview(statusPercentageLabel)
@@ -90,16 +90,35 @@ final class MarketsViewController: ViewController {
             make.centerY.equalTo(statusPlaceholderLabel)
         }
         
+        view.addSubview(statusTriangleView)
+        statusTriangleView.snp.makeConstraints { make in
+            make.leading.equalTo(statusPercentageLabel.snp.trailing).offset(5)
+            make.size.equalTo(20)
+            make.bottom.equalTo(statusPercentageLabel).offset(-7)
+        }
+        
         view.addSubview(statusTimePlaceholderLabel)
         statusTimePlaceholderLabel.snp.makeConstraints { make in
             make.leading.equalTo(statusPlaceholderLabel)
             make.top.equalTo(statusPlaceholderLabel.snp.bottom).offset(3)
         }
         
-        view.addSubview(searchButton)
-        searchButton.snp.makeConstraints { make in
+        let searchButtonContainerView: View = {
+            let view = View(backgroundColor: .lightGray.withAlphaComponent(0.2))
+            view.cornerRadius = 20
+            return view
+        }()
+        view.addSubview(searchButtonContainerView)
+        searchButtonContainerView.snp.makeConstraints { make in
             make.top.equalTo(statusPlaceholderLabel)
             make.trailing.equalToSuperview().offset(-20)
+            make.size.equalTo(40)
+        }
+        
+        searchButtonContainerView.addSubview(searchButton)
+        searchButton.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(25)
         }
         
         view.addSubview(pageButtonsCollectionView)
@@ -147,8 +166,11 @@ final class MarketsViewController: ViewController {
             }
             .store(in: &cancellables)
         
-        viewModel.statusPlaceholderText
-            .bind(to: \.text, on: statusPlaceholderLabel)
+        viewModel.isPriceChangePositive
+            .sink { [weak self] in
+                self?.statusPlaceholderLabel.text = $0 ? "Market is up" : "Market is down"
+                self?.statusTriangleView.state = $0 ? .gainer : .loser
+            }
             .store(in: &cancellables)
         
         viewModel.changePercentage

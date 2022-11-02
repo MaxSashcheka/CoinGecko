@@ -47,7 +47,7 @@ extension SearchViewController {
                         .init(
                             id: nft.id,
                             imageURL: nft.thumbURL,
-                            name: nft.name
+                            name: nft.name.orEmpty()
                         )
                     }
                 )

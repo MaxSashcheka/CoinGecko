@@ -24,10 +24,10 @@ public struct CoinDetails {
 public extension CoinDetails {
     init(coinDetailsResponse: CoinDetailsResponse) {
         self.id = coinDetailsResponse.id
-        self.name = coinDetailsResponse.name
-        self.symbol = coinDetailsResponse.symbol
+        self.name = coinDetailsResponse.name ?? .empty
+        self.symbol = coinDetailsResponse.symbol ?? .empty
         self.imageURL = coinDetailsResponse.image.large
-        self.marketCapRank = coinDetailsResponse.marketCapRank
-        self.currentPrice = coinDetailsResponse.marketData.currentPrice.usd
+        self.marketCapRank = coinDetailsResponse.marketCapRank ?? .zero
+        self.currentPrice = coinDetailsResponse.marketData.currentPrice.usd ?? .zero
     }
 }
