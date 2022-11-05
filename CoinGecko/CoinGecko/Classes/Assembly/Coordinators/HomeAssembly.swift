@@ -15,7 +15,9 @@ extension HomeAssembly {
     typealias HomeViewModel = HomeViewController.ViewModel
     static func makeHomeScreen(resolver: Resolver) -> (HomeViewController, HomeViewModel) {
         let viewController = HomeViewController()
-        let viewModel = HomeViewModel()
+        let viewModel = HomeViewModel(
+            coinsInteractor: InteractorsAssembly.makeCoinsInteractor(resolver: resolver)
+        )
         viewController.viewModel = viewModel
         
         return (viewController, viewModel)

@@ -170,20 +170,19 @@ final class AddCoinOverlayViewController: ViewController {
                 }
             }
             .store(in: &cancellables)
+        
+        addButton.tapPublisher()
+            .sink { [weak self] in
+                // Add tap publisher
+            }
+            .store(in: &cancellables)
     }
-    
-    
-
     
     func updateBlurEffectAlpha(translation: CGFloat) {
         let translationProgress = translation / view.frame.height
         let newAlpha = initialBlurEffectAlpha - translationProgress
         blurEffectAlpha = newAlpha
-        
-        
     }
-    
-    
 }
 
 extension AddCoinOverlayViewController: EndEditingTappable { }

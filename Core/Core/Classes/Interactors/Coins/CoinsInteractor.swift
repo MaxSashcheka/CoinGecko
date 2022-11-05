@@ -10,9 +10,12 @@ import Utils
 
 public class CoinsInteractor: CoinsInteractorProtocol {
     private let coinsAPIDataManager: CoinsAPIDataManagerProtocol
+    private let coinsCacheDataManager: CoinsCacheDataManagerProtocol
     
-    public init(coinsAPIDataManager: CoinsAPIDataManagerProtocol) {
+    public init(coinsAPIDataManager: CoinsAPIDataManagerProtocol,
+                coinsCacheDataManager: CoinsCacheDataManagerProtocol) {
         self.coinsAPIDataManager = coinsAPIDataManager
+        self.coinsCacheDataManager = coinsCacheDataManager
     }
     
     public func getCoins(fromCache: Bool = true,
@@ -41,6 +44,25 @@ public class CoinsInteractor: CoinsInteractorProtocol {
                                                startTimeInterval: startTimeInterval,
                                                endTimeInterval: endTimeInterval)
             .strongSink(receiveValue: success, receiveError: failure)
+    }
+    
+    public func getStoredCoins(success: @escaping Closure.CoinsArray,
+                               failure: @escaping Closure.Error) {
+        coinsCacheDataManager.getStoredCoins()
+            .strongSink(receiveValue: success, receiveError: failure)
+    }
+    
+    public func createOrUpdate(coins: [Coin],
+                               success: @escaping Closure.Void,
+                               failure: @escaping Closure.Error) {
+        coinsCacheDataManager.createOrUpdate(coins: coins)
+            .strongSink(receiveValue: success, receiveError: failure)
+    }
+    
+    public func createOrUpdate(coin: Coin,
+                               success: @escaping Closure.Void,
+                               failure: @escaping Closure.Error) {
+        createOrUpdate(coins: [coin], success: success, failure: failure)
     }
     
     public func search(query: String,

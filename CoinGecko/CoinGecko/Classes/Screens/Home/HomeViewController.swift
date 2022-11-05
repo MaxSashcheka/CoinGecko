@@ -42,6 +42,7 @@ final class HomeViewController: ViewController {
         super.viewDidLoad()
         
         viewModel.fetchPortfolioCoins()
+        viewModel.errorHandlerClosure = errorHandler
     }
     
     override func arrangeSubviews() {

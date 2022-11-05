@@ -36,7 +36,7 @@ extension CoinDetailsCoordinator {
     }
     
     func showAddCoinBottomSheet() {
-        let (viewController, viewModel) = CommonAssembly.makeAddCoinBottomSheet()
+        let (viewController, viewModel) = CommonAssembly.makeAddCoinBottomSheet(resolver: self)
         viewModel.closeTransition = { [weak self] in
             self?.dismissModalController()
         }

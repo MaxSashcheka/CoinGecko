@@ -10,6 +10,7 @@ import Combine
 import SnapKit
 import Utils
 
+// TODO: - change naming to trending
 final class CoinsListViewController: ViewController {
     private let coinsTableView: UITableView = {
         let tableView = UITableView()

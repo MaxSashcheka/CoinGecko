@@ -18,7 +18,7 @@ public protocol Resolver: AnyObject {
 
 public extension Resolver {
     func resolve<ContentType: Resolvable>(_: ContentType.Type) -> ContentType {
-        return resolve(ContentType.self, keypath: nil)
+        resolve(ContentType.self, keypath: nil)
     }
 }
 

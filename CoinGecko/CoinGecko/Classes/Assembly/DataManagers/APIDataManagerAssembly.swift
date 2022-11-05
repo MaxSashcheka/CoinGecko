@@ -10,7 +10,7 @@ import Core
 import Utils
 
 final class APIDataManagerAssembly: Assembly {
-    static func makeCoinsAPIDataManager() -> CoinsAPIDataManagerProtocol {
+    static func makeCoinsAPIDataManager() -> CoinsAPIDataManager {
         CoinsAPIDataManager()
     }
 }

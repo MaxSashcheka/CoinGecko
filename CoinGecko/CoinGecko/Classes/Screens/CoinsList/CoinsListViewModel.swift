@@ -25,6 +25,8 @@ extension CoinsListViewController {
 
         init(coinsInteractor: CoinsInteractorProtocol) {
             self.coinsInteractor = coinsInteractor
+//            coinsInteractor.coins
+            
         }
         
         func fetchCoins() {
