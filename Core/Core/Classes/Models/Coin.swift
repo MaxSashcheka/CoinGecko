@@ -17,8 +17,10 @@ public struct Coin {
     public let id: String
     public let symbol: String
     public let name: String
-    public let imageURL: URL
+    public let imageURL: URL?
     public let priceDetails: PriceDetails
+    public var amount: Double = .zero
+    public var isFavourite: Bool = false
 }
 
 public struct PriceDetails {
@@ -32,6 +34,7 @@ public struct PriceDetails {
     public let changePercentage24h: Double
 }
 
+// MARK: Coin+CoinResponse
 public extension Coin {
     init(coinResponse: CoinResponse) {
         self.id = coinResponse.id
@@ -48,6 +51,29 @@ public extension Coin {
             previousDayLowestPrice: coinResponse.previousDayLowestPrice ?? .zero,
             change24h: coinResponse.priceChange24h,
             changePercentage24h: coinResponse.priceChangePercentage24h
+        )
+    }
+}
+
+// MARK: Coin+CoinEntity
+public extension Coin {
+    init(coinEntity: CoinEntity) {
+        self.id = coinEntity.id ?? .empty
+        self.symbol = coinEntity.symbol ?? .empty
+        self.name = coinEntity.name ?? .empty
+        self.imageURL = coinEntity.imageURL
+        self.amount = coinEntity.amount
+        self.isFavourite = coinEntity.isFavourite
+        
+        self.priceDetails = PriceDetails(
+            currentPrice: coinEntity.currentPrice,
+            marketCap: Int(coinEntity.marketCap),
+            marketCapRank: Int(coinEntity.marketCapRank),
+            totalVolume: coinEntity.totalVolume,
+            previousDayHighestPrice: coinEntity.previousDayHighestPrice,
+            previousDayLowestPrice: coinEntity.previousDayLowestPrice,
+            change24h: coinEntity.change24h,
+            changePercentage24h: coinEntity.changePercentage24h
         )
     }
 }

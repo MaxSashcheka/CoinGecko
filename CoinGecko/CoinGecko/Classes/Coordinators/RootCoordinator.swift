@@ -12,7 +12,8 @@ import Utils
 final class RootCoordinator: TabCoordinator {
 
     override func registerContent() {
-        
+        register(DataSourcesAssembly.makeCoreDataSource())
+        register(CacheDataManagerAssembly.makeCoinsCacheDataManager(resolver: self))
     }
 
     func start(at window: UIWindow?) {

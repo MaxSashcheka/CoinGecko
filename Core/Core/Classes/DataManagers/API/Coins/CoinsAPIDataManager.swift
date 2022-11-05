@@ -9,7 +9,7 @@
 import Combine
 import Utils
 
-public class CoinsAPIDataManager: CoinsAPIDataManagerProtocol {
+public final class CoinsAPIDataManager: CoinsAPIDataManagerProtocol {
     public init() { }
     
     public func getCoins(currency: String,

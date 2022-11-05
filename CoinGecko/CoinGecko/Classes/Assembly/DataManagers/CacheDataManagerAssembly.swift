@@ -6,13 +6,15 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import Foundation
-
 import Core
 import Utils
 
 final class CacheDataManagerAssembly: Assembly {
-//    static func makeCoinsCacheDataManager() -> CoinsAPIDataManagerProtocol {
-//        CoinsAPIDataManager()
-//    }
+    static func makeCoinsCacheDataManager(resolver: Resolver) -> CoinsCacheDataManager {
+        CoinsCacheDataManager(
+            coreDataSource: resolver.resolve(CoreDataSource.self)
+        )
+    }
 }
+
+extension CoinsCacheDataManager: Resolvable { }

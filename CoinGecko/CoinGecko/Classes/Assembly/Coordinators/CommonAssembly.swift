@@ -26,9 +26,11 @@ extension CommonAssembly {
     }
     
     typealias AddCoinOverlayViewModel = AddCoinOverlayViewController.ViewModel
-    static func makeAddCoinBottomSheet() -> (AddCoinOverlayViewController, AddCoinOverlayViewModel) {
+    static func makeAddCoinBottomSheet(resolver: Resolver) -> (AddCoinOverlayViewController, AddCoinOverlayViewModel) {
         let viewController = AddCoinOverlayViewController()
-        let viewModel = AddCoinOverlayViewModel()
+        let viewModel = AddCoinOverlayViewModel(
+            coinsInteractor: InteractorsAssembly.makeCoinsInteractor(resolver: resolver)
+        )
         viewController.viewModel = viewModel
         
         return (viewController, viewModel)
