@@ -10,6 +10,9 @@ import SnapKit
 import Utils
 
 final class NetworthCoinCell: TableCell {
+    
+    // MARK: - Properties
+    
     private let containerShadowView: View = {
         let view = View(shadowColor: UIColor.black.withAlphaComponent(0.25),
                         shadowOffset: .zero,
@@ -17,8 +20,6 @@ final class NetworthCoinCell: TableCell {
                         shadowOpacity: 1)
         view.backgroundColor = .white
         view.cornerRadius = 15
-        
-        // TODO: - Move all constants into constants enum
         
         return view
     }()
@@ -36,16 +37,31 @@ final class NetworthCoinCell: TableCell {
     
     private let networthTitledDescriptionView = TitledDescriptionView()
     
+    private let deleteButton: Button = {
+        let button = Button()
+        button.backgroundColor = .red
+        button.setTitle(L10n.Home.NetworthCell.DeleteButton.title, for: .normal)
+        button.font = .systemFont(ofSize: 16, weight: .medium)
+        button.textColor = .white
+        button.cornerRadius = 17.5
+        
+        return button
+    }()
+    
     var viewModel: ViewModel? {
         didSet {
+            cancellables.removeAll()
             guard let viewModel = viewModel else { return }
             
             arrangeSubviews()
+            bindData(with: viewModel)
             setupData(with: viewModel)
         }
     }
     
-    func arrangeSubviews() {
+    // MARK: - Methods
+    
+    private func arrangeSubviews() {
         contentView.addSubview(containerShadowView)
         containerShadowView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(15)
@@ -78,18 +94,41 @@ final class NetworthCoinCell: TableCell {
             make.leading.equalTo(coinImageView)
             make.bottom.equalToSuperview().offset(-15)
         }
+        
+        containerShadowView.addSubview(deleteButton)
+        deleteButton.snp.makeConstraints { make in
+            make.centerY.equalTo(networthTitledDescriptionView)
+            make.trailing.equalTo(priceInfoTitledDescriptionView)
+            make.width.equalTo(60)
+            make.height.equalTo(35)
+        }
     }
     
-    func setupData(with viewModel: ViewModel) {
-        coinImageView.imageURL = viewModel.imageURL
+    private func bindData(with viewModel: ViewModel) {
+        viewModel.imageURL
+            .bind(to: \.imageURL, on: coinImageView)
+            .store(in: &cancellables)
+        
+        viewModel.isPriceChangePositive
+            .sink { [weak priceInfoTitledDescriptionView] in
+                priceInfoTitledDescriptionView?.setDescriptionLabelTextColor($0 ? .green : .red)
+            }
+            .store(in: &cancellables)
+        
+        deleteButton.tapPublisher()
+            .sink { [weak viewModel] in
+                guard let viewModel = viewModel else { return }
+                viewModel.deleteSubject.send(viewModel.id)
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func setupData(with viewModel: ViewModel) {
         nameTitledDescriptionView.viewModel = viewModel.nameTitledDescriptionViewModel
         priceInfoTitledDescriptionView.viewModel = viewModel.priceInfoTitledDescriptionViewModel
         networthTitledDescriptionView.viewModel = viewModel.networthTitledDescriptionViewModel
         
         priceInfoTitledDescriptionView.setTextAlignment(to: .right)
-        priceInfoTitledDescriptionView.setDescriptionLabelTextColor(
-            viewModel.isPriceChangePositive ? .green : .red
-        )
         
         selectionStyle = .none
         backgroundColor = .clear
@@ -98,7 +137,6 @@ final class NetworthCoinCell: TableCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        // TODO: - check if it is required to remove subviews
         viewModel = nil
     }
 }

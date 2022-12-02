@@ -1,2 +1,41 @@
-"text.string" = "TEFASA";
-"mock.string" = "qwfqwd";
+"tabbar.title.trending" = "Trending";
+"tabbar.title.markets" = "Markets";
+"tabbar.title.home" = "Home";
+
+"range_button.title.hour" = "1 H";
+"range_button.title.day" = "24 H";
+"range_button.title.week" = "1 W";
+"range_button.title.month" = "1 M";
+"range_button.title.half_year" = "6 M";
+"range_button.title.year" = "1 Y";
+"range_button.title.all" = "All";
+
+"overlay.coin.title" = "Enter the amount of the coin";
+"overlay.coin.button.title" = "Add";
+
+"trending.title" = "Trending Coins";
+
+"coin_details.add_button.title" = "Add to portfolio";
+
+"markets.status_title.up" = "Market is up";
+"markets.status_title.down" = "Market is down";
+"markets.time_placeholder.title" = "In the past 24 hours";
+
+"search.title" = "Search";
+"search.text_field.placeholder.title" = "Search Cryptocurrency";
+"search.table.title.crypto_coin" = "Crypto coins";
+"search.table.title.nft" = "NFTS";
+
+"home.networth_cell.delete_button.title" = "Delete";
+"home.portfolio.title.count" = "Portfolio count: %@";
+"home.portfolio.title.networth" = "Portfolio networth: %@";
+"home.networth_card.title" = "Balance";
+
+"home.navigation_bar.title.welcome" = "Weclome";
+"home.navigation_bar.title.name" = "Maksim Sashcheka";
+"home.navigation_bar.title.email" = "sashchekam@gmail.com";
+
+"home.placeholder.title" = "No coins yet.";
+"home.placeholder.subtitle" = "Try to add coin to see portfolio";
+
+

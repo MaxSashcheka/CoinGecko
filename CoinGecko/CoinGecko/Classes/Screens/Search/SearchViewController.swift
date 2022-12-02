@@ -11,6 +11,9 @@ import SnapKit
 import Utils
 
 final class SearchViewController: ViewController {
+    
+    // MARK: - Properties
+    
     private let coinsTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
@@ -22,7 +25,16 @@ final class SearchViewController: ViewController {
     }()
     
     private let searchTextField = SearchTextField()
+    
     private let searchHeaderView = View()
+    
+    private let activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.hidesWhenStopped = true
+//        activityIndicator.activityitem
+        
+        return activityIndicator
+    }()
     
     var viewModel: ViewModel!
     
@@ -30,13 +42,15 @@ final class SearchViewController: ViewController {
     override var isNavigationBarHidden: Bool { false }
     override var isTabBarHidden: Bool { true }
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         viewModel.errorHandlerClosure = errorHandler
-    
-        title = "Search"
     }
+    
+    // MARK: - Methods
     
     override func arrangeSubviews() {
         super.arrangeSubviews()
@@ -50,6 +64,11 @@ final class SearchViewController: ViewController {
         view.addSubview(coinsTableView)
         coinsTableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        view.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
     }
     
@@ -80,6 +99,8 @@ final class SearchViewController: ViewController {
     override func setupData() {
         super.setupData()
         
+        title = L10n.Search.title
+        
         coinsTableView.delegate = self
         coinsTableView.dataSource = self
         
@@ -87,7 +108,10 @@ final class SearchViewController: ViewController {
     }
 }
 
+// MARK: - SearchViewController+UITableViewPresentable
 extension SearchViewController: UITableViewPresentable {
+    typealias Texts = L10n.Search.Table.Title
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == .zero else { return nil }
         return searchHeaderView
@@ -101,7 +125,7 @@ extension SearchViewController: UITableViewPresentable {
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        section == .zero ? "Crypto coins" : "NFTS"
+        section == .zero ? Texts.cryptoCoin : Texts.nft
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

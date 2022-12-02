@@ -19,4 +19,3 @@ final class ProfileViewController: ViewController {
         title = "Profile"
     }
 }
-

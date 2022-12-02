@@ -7,16 +7,19 @@
 //
 
 import Combine
+import SafeSFSymbols
 import SnapKit
 import Utils
 
 extension HomeViewController {
     final class HomeNavigationBarView: View {
+        typealias Texts = L10n.Home.NavigationBar.Title
+        
         private let welcomeTitleLabel: Label = {
             let label = Label()
             label.font = .systemFont(ofSize: 30, weight: .semibold)
             label.textColor = .darkGray
-            label.text = "Welcome"
+            label.text = Texts.welcome
             
             return label
         }()
@@ -25,7 +28,7 @@ extension HomeViewController {
             let label = Label()
             label.font = .systemFont(ofSize: 22, weight: .bold)
             label.textColor = .black.withAlphaComponent(0.9)
-            label.text = "Maksim Sashcheka"
+            label.text = Texts.name
             
             return label
         }()
@@ -34,7 +37,7 @@ extension HomeViewController {
             let label = Label()
             label.font = .systemFont(ofSize: 19, weight: .bold)
             label.textColor = .darkGray.withAlphaComponent(0.9)
-            label.text = "sashchekam@gmail.com"
+            label.text = Texts.email
 
             return label
         }()
@@ -49,7 +52,7 @@ extension HomeViewController {
         
         private let profileButton: Button = {
             let button = Button()
-            button.setImage(UIImage(systemName: "person.crop.circle"), for: .normal)
+            button.setImage(UIImage(.person.cropCircle), for: .normal)
             button.tintColor = .darkGray
 
             return button
@@ -63,7 +66,6 @@ extension HomeViewController {
                 guard let viewModel = viewModel else { return }
                 
                 arrangeSubviews()
-                setupData()
                 bindData(with: viewModel)
             }
         }
@@ -114,10 +116,5 @@ extension HomeViewController {
                 .store(in: &cancellables)
 
         }
-        
-        func setupData() {
-            
-        }
     }
 }
-

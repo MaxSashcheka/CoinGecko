@@ -22,6 +22,7 @@ def ui_pods
   pod 'SnapKit'
   pod 'SDWebImage'
   pod 'SVProgressHUD'
+  pod 'SafeSFSymbols'
 end
 
 def network_pods

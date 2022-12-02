@@ -10,6 +10,9 @@ import SnapKit
 import Utils
 
 final class PageButtonsCollectionView: View {
+    
+    // MARK: - Properties
+    
     private let stackView = UIStackView(axis: .horizontal,
                                         spacing: 15,
                                         distribution: .equalSpacing)
@@ -22,14 +25,16 @@ final class PageButtonsCollectionView: View {
     
     var viewModel: ViewModel? {
         didSet {
-            guard let viewModel = viewModel else { return }
             cancellables.removeAll()
+            guard let viewModel = viewModel else { return }
             
             bindData(with: viewModel)
             arrangeSubviews()
-            stackView.isUserInteractionEnabled = true
+            setupData()
         }
     }
+    
+    // MARK: - Methods
     
     private func arrangeSubviews() {
         addSubview(stackView)
@@ -62,6 +67,9 @@ final class PageButtonsCollectionView: View {
                 }
                 .store(in: &cancellables)
         }
-        print(cancellables)
+    }
+    
+    private func setupData() {
+        stackView.isUserInteractionEnabled = true
     }
 }

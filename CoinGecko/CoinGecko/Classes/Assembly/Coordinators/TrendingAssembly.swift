@@ -13,9 +13,9 @@ final class TrendingAssembly: Assembly { }
 
 // MARK: - Screens
 extension TrendingAssembly {
-    typealias CoinsListViewModel = CoinsListViewController.ViewModel
-    static func makeCoinsListScreen(resolver: Resolver) -> (CoinsListViewController, CoinsListViewModel) {
-        let viewController = CoinsListViewController()
+    typealias CoinsListViewModel = TrendingViewController.ViewModel
+    static func makeCoinsListScreen(resolver: Resolver) -> (TrendingViewController, CoinsListViewModel) {
+        let viewController = TrendingViewController()
         let viewModel = CoinsListViewModel(
             coinsInteractor: InteractorsAssembly.makeCoinsInteractor(resolver: resolver)
         )

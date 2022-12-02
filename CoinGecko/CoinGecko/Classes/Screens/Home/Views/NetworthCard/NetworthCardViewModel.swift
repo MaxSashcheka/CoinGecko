@@ -11,13 +11,16 @@ import Foundation
 
 extension HomeViewController.NetworhCardView {
     final class ViewModel {
-        let networth = CurrentValueSubject<Double, Never>(.zero)
-        let dayProfit = CurrentValueSubject<Double, Never>(.zero)
+        let networthValue = CurrentValueSubject<String, Never>(.empty)
+        let dayProfitTitle = CurrentValueSubject<String, Never>(.empty)
+        let dayProfitValue = CurrentValueSubject<String, Never>(.empty)
         
-        init(networth: Double = .zero,
-             dayProfit: Double = .zero) {
-            self.networth.send(networth)
-            self.dayProfit.send(dayProfit)
+        init(networthValue: String = .empty,
+             dayProfitTitle: String = .empty,
+             dayProfitValue: String = .empty) {
+            self.networthValue.send(networthValue)
+            self.dayProfitTitle.send(dayProfitTitle)
+            self.dayProfitValue.send(dayProfitValue)
         }
     }
 }

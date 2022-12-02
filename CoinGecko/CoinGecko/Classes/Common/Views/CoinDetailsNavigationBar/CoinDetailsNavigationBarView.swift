@@ -7,10 +7,14 @@
 //
 
 import Combine
+import SafeSFSymbols
 import SnapKit
 import Utils
 
 final class CoinDetailsNavigationBarView: View {
+    
+    // MARK: - Properties
+    
     private let closeButton = Button(image: Assets.Images.cross.image)
     
     private let titleLabel = Label(textPreferences: .title)
@@ -30,6 +34,8 @@ final class CoinDetailsNavigationBarView: View {
         return imageView
     }()
     
+    private let favouriteButton = Button()
+    
     private let separatorLine = View(backgroundColor: .lightGray.withAlphaComponent(0.7))
     
     var viewModel: ViewModel? {
@@ -42,6 +48,8 @@ final class CoinDetailsNavigationBarView: View {
             setupData()
         }
     }
+    
+    // MARK: - Methods
     
     func arrangeSubviews() {
         addSubview(closeButton)
@@ -76,6 +84,13 @@ final class CoinDetailsNavigationBarView: View {
             make.trailing.equalToSuperview()
         }
         
+        addSubview(favouriteButton)
+        favouriteButton.snp.makeConstraints { make in
+            make.centerY.equalTo(closeButton)
+            make.trailing.equalToSuperview().offset(-25)
+            make.size.equalTo(30)
+        }
+        
         addSubview(separatorLine)
         separatorLine.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
@@ -95,9 +110,19 @@ final class CoinDetailsNavigationBarView: View {
         viewModel.imageURL
             .bind(to: \.imageURL, on: coinImageView)
             .store(in: &cancellables)
+        
+        viewModel.isFavourite
+            .sink { [weak favouriteButton] in
+                favouriteButton?.setImage($0 ? UIImage(.heart.fill) : UIImage(.heart), for: .normal)
+            }
+            .store(in: &cancellables)
 
         closeButton.tapPublisher()
             .bind(to: viewModel.closeButtonSubject)
+            .store(in: &cancellables)
+        
+        favouriteButton.tapPublisher()
+            .bind(to: viewModel.addToFavouriteSubject)
             .store(in: &cancellables)
     }
     

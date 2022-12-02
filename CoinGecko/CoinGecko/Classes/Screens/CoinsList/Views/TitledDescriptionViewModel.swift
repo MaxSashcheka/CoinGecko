@@ -6,17 +6,17 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import Foundation
+import Combine
 
 extension TitledDescriptionView {
     final class ViewModel {
-        let titleText: String
-        let descriptionText: String
+        let titleText = CurrentValueSubject<String, Never>(.empty)
+        let descriptionText = CurrentValueSubject<String, Never>(.empty)
         
         init(titleText: String = .empty,
              descriptionText: String = .empty) {
-            self.titleText = titleText
-            self.descriptionText = descriptionText
+            self.titleText.send(titleText)
+            self.descriptionText.send(descriptionText)
         }
     }
 }

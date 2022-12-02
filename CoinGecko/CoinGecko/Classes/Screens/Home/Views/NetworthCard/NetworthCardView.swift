@@ -12,11 +12,14 @@ import Utils
 
 extension HomeViewController {
     final class NetworhCardView: View {
+        
+        // MARK: - Properties
+        
         private let balanceTitleLabel: Label = {
             let label = Label()
             label.font = .systemFont(ofSize: 24, weight: .regular)
             label.textColor = .white
-            label.text = "Balance"
+            label.text = L10n.Home.NetworthCard.title
             
             return label
         }()
@@ -25,7 +28,6 @@ extension HomeViewController {
             let label = Label()
             label.font = .systemFont(ofSize: 32, weight: .semibold)
             label.textColor = .white
-            label.text = "$450.933"
             
             return label
         }()
@@ -34,7 +36,6 @@ extension HomeViewController {
             let label = Label()
             label.font = .systemFont(ofSize: 24, weight: .regular)
             label.textColor = .white
-            label.text = "Day Profit"
             
             return label
         }()
@@ -43,7 +44,6 @@ extension HomeViewController {
             let label = Label()
             label.font = .systemFont(ofSize: 32, weight: .semibold)
             label.textColor = .white
-            label.text = "$12.484"
             
             return label
         }()
@@ -63,7 +63,9 @@ extension HomeViewController {
             }
         }
         
-        func arrangeSubviews() {
+        // MARK: - Methods
+        
+        private func arrangeSubviews() {
             let balanceStackView = contentStackView
             addSubview(balanceStackView)
             
@@ -83,11 +85,21 @@ extension HomeViewController {
             }
         }
         
-        func bindData(with viewModel: ViewModel) {
+        private func bindData(with viewModel: ViewModel) {
+            viewModel.networthValue
+                .bind(to: \.text, on: balanceValueLabel)
+                .store(in: &cancellables)
             
+            viewModel.dayProfitTitle
+                .bind(to: \.text, on: dayProfitTitleLabel)
+                .store(in: &cancellables)
+            
+            viewModel.dayProfitValue
+                .bind(to: \.text, on: dayProfitValueLabel)
+                .store(in: &cancellables)
         }
         
-        func setupData() {
+        private func setupData() {
             backgroundColor = .systemBlue.withAlphaComponent(0.65)
         }
         

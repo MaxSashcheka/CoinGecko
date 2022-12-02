@@ -26,7 +26,7 @@ public class APIClient {
     
     public static func execute(request: DataRequest,
                                success: @escaping Closure.OptionalData,
-                               failure: @escaping Closure.APIError) {
+                               failure: @escaping Closure.GeneralError) {
         request
             .validate()
             .response(completionHandler: { response in
@@ -35,7 +35,7 @@ public class APIClient {
                     success(data)
                 case let .failure(afError):
                     guard let responseData = response.data else {
-                        failure(.corruptedErrorResponse)
+                        failure(.corrutpedDataResponse)
                         return
                     }
                     // TODO: - Add decoding response error
@@ -46,11 +46,11 @@ public class APIClient {
     
     public static func execute<ResultType>(request: DataRequest,
                                            success: @escaping (ResultType) -> Void,
-                                           failure: @escaping Closure.APIError) where ResultType: APIResponse {
+                                           failure: @escaping Closure.GeneralError) where ResultType: APIResponse {
         execute(request: request, success: { data in
             do {
                 guard let data = data else {
-                    failure(.corruptedErrorResponse)
+                    failure(.corrutpedDataResponse)
                     return
                 }
                 
@@ -65,7 +65,7 @@ public class APIClient {
     
     public static func execute(request: DataRequest,
                                success: @escaping Closure.Void,
-                               failure: @escaping Closure.APIError) {
+                               failure: @escaping Closure.GeneralError) {
         execute(request: request, success: { _ in success() }, failure: failure)
     }
 }

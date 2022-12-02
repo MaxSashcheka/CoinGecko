@@ -1,11 +1,6 @@
 PODS:
   - Alamofire (5.6.2)
-  - RxCocoa (6.5.0):
-    - RxRelay (= 6.5.0)
-    - RxSwift (= 6.5.0)
-  - RxRelay (6.5.0):
-    - RxSwift (= 6.5.0)
-  - RxSwift (6.5.0)
+  - SafeSFSymbols (1.1.4)
   - SDWebImage (5.13.2):
     - SDWebImage/Core (= 5.13.2)
   - SDWebImage/Core (5.13.2)
@@ -16,8 +11,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - RxCocoa
-  - RxSwift
+  - SafeSFSymbols
   - SDWebImage
   - SnapKit
   - SVProgressHUD
@@ -27,9 +21,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
-    - RxCocoa
-    - RxRelay
-    - RxSwift
+    - SafeSFSymbols
     - SDWebImage
     - SnapKit
     - SVProgressHUD
@@ -38,15 +30,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
-  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
-  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
-  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  SafeSFSymbols: 01a76621736d73afd4a19f31da8602a37badd0a2
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftGen: 787181d7895fa2f5e7313d05de92c387010149c2
   SwiftLint: 284cea64b6187c5d6bd83e9a548a64104d546447
 
-PODFILE CHECKSUM: 2abe296ca79e2684eda994ee99cd1e9478bdce45
+PODFILE CHECKSUM: 884aab28ad7bc3f4aff78d1a0c3c8223ce5cb723
 
 COCOAPODS: 1.11.3

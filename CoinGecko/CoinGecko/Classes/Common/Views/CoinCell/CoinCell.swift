@@ -6,10 +6,14 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
+import Combine
 import SnapKit
 import Utils
 
 final class CoinCell: TableCell {
+    
+    // MARK: - Properties
+    
     private let containerShadowView: View = {
         let view = View(shadowColor: UIColor.black.withAlphaComponent(0.25),
                         shadowOffset: .zero,
@@ -17,8 +21,6 @@ final class CoinCell: TableCell {
                         shadowOpacity: 1)
         view.backgroundColor = .white
         view.cornerRadius = 15
-        
-        // TODO: - Move all constants into constants enum
         
         return view
     }()
@@ -36,12 +38,16 @@ final class CoinCell: TableCell {
     
     var viewModel: ViewModel? {
         didSet {
+            cancellables.removeAll()
             guard let viewModel = viewModel else { return }
             
             arrangeSubviews()
+            bindData(with: viewModel)
             setupData(with: viewModel)
         }
     }
+    
+    // MARK: - Methods
     
     func arrangeSubviews() {
         contentView.addSubview(containerShadowView)
@@ -71,15 +77,23 @@ final class CoinCell: TableCell {
         }
     }
     
+    func bindData(with viewModel: ViewModel) {
+        viewModel.imageURL
+            .bind(to: \.imageURL, on: coinImageView)
+            .store(in: &cancellables)
+        
+        viewModel.isPriceChangePositive
+            .sink { [weak priceInfoTitledDescriptionView] in
+                priceInfoTitledDescriptionView?.setDescriptionLabelTextColor($0 ? .green : .red)
+            }
+            .store(in: &cancellables)
+    }
+    
     func setupData(with viewModel: ViewModel) {
-        coinImageView.imageURL = viewModel.imageURL
         nameTitledDescriptionView.viewModel = viewModel.nameTitledDescriptionViewModel
         priceInfoTitledDescriptionView.viewModel = viewModel.priceInfoTitledDescriptionViewModel
         
         priceInfoTitledDescriptionView.setTextAlignment(to: .right)
-        priceInfoTitledDescriptionView.setDescriptionLabelTextColor(
-            viewModel.isPriceChangePositive ? .green : .red
-        )
         
         selectionStyle = .none
         backgroundColor = .clear

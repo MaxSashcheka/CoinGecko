@@ -17,6 +17,8 @@ public extension String {
     static let empty = ""
     static let whitespace = " "
     static let percent = "%"
+    static let dot = "."
+    static let comma = ","
 }
 
 public extension String {

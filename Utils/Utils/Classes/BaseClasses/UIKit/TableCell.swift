@@ -6,8 +6,9 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
+import Combine
 import UIKit.UITableViewCell
 
 open class TableCell: UITableViewCell {
-
+    open var cancellables: [AnyCancellable] = []
 }

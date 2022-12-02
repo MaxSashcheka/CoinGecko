@@ -14,11 +14,14 @@ final class CommonAssembly: Assembly { }
 // MARK: - Screens
 extension CommonAssembly {
     typealias CoinDetailsViewModel = CoinDetailsViewController.ViewModel
-    static func makeCoinDetailsScreen(resolver: Resolver, coinId: String) -> (CoinDetailsViewController, CoinDetailsViewModel) {
+    static func makeCoinDetailsScreen(resolver: Resolver,
+                                      coinId: String,
+                                      isAddToPortfolioEnabled: Bool) -> (CoinDetailsViewController, CoinDetailsViewModel) {
         let viewController = CoinDetailsViewController()
         let viewModel = CoinDetailsViewModel(
             coinId: coinId,
-            coinsInteractor: InteractorsAssembly.makeCoinsInteractor(resolver: resolver)
+            coinsInteractor: InteractorsAssembly.makeCoinsInteractor(resolver: resolver),
+            isAddToPortfolioEnabled: isAddToPortfolioEnabled
         )
         viewController.viewModel = viewModel
         
@@ -26,9 +29,11 @@ extension CommonAssembly {
     }
     
     typealias AddCoinOverlayViewModel = AddCoinOverlayViewController.ViewModel
-    static func makeAddCoinBottomSheet(resolver: Resolver) -> (AddCoinOverlayViewController, AddCoinOverlayViewModel) {
+    static func makeAddCoinBottomSheet(resolver: Resolver,
+                                       coinId: String) -> (AddCoinOverlayViewController, AddCoinOverlayViewModel) {
         let viewController = AddCoinOverlayViewController()
         let viewModel = AddCoinOverlayViewModel(
+            coinId: coinId,
             coinsInteractor: InteractorsAssembly.makeCoinsInteractor(resolver: resolver)
         )
         viewController.viewModel = viewModel

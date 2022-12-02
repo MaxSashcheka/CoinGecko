@@ -33,6 +33,6 @@ extension TrendingCoordinator {
                                                  closeClosure: { [weak self] in
                                                      self?.dismissModalCoordinator()
                                                  })
-        presentModal(coordinator: coordinator, presentationStyle: .overFullScreen)
+        presentModal(coordinator: coordinator, presentationStyle: .fullScreen)
     }
 }

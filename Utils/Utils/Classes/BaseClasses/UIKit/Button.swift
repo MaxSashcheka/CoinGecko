@@ -41,6 +41,7 @@ open class Button: UIButton {
         setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         setTitle(title, for: .normal)
         self.backgroundColor = backgroundColor
+        setupContent()
     }
     
     public override init(frame: CGRect) {

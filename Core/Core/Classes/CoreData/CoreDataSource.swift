@@ -13,13 +13,6 @@ public final class CoreDataSource: NSObject {
     private let persistentContainer: NSPersistentContainer
     private let accessQueue: DispatchQueue
     
-    public var persistentStoreURL: URL? {
-        persistentContainer.persistentStoreDescriptions.first?.url
-    }
-    public var entityNames: [String] {
-        persistentContainer.managedObjectModel.entities.map { $0.managedObjectClassName }
-    }
-    
     public init(persistentContainer: NSPersistentContainer) {
         self.persistentContainer = persistentContainer
         self.persistentContainer.loadPersistentStores { (_, error) in
@@ -109,7 +102,7 @@ public extension CoreDataSource {
     func read<Result>(_ action: @escaping (NSManagedObjectContext) throws -> Result,
                       resultQueue: DispatchQueue = .main,
                       success: @escaping (Result) -> Void,
-                      failure: @escaping Closure.Error) {
+                      failure: @escaping Closure.GeneralError) {
         accessQueue.async {
             let result = self.unsafeRead(action)
             
@@ -117,7 +110,7 @@ public extension CoreDataSource {
             case let .success(output):
                 resultQueue.async { success(output) }
             case let .failure(error):
-                resultQueue.async { failure(error) }
+                resultQueue.async { failure(.coreDataError) }
             }
         }
     }
@@ -125,7 +118,7 @@ public extension CoreDataSource {
     func update<Result>(_ action: @escaping (NSManagedObjectContext) throws -> Result,
                         resultQueue: DispatchQueue = .main,
                         success: @escaping (Result) -> Void,
-                        failure: @escaping Closure.Error) {
+                        failure: @escaping Closure.GeneralError) {
         accessQueue.async(flags: [.barrier]) {
             let result = self.unsafeUpdate(action)
             
@@ -133,7 +126,7 @@ public extension CoreDataSource {
             case let .success(output):
                 resultQueue.async { success(output) }
             case let .failure(error):
-                resultQueue.async { failure(error) }
+                resultQueue.async { failure(.coreDataError) }
             }
         }
     }

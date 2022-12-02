@@ -11,14 +11,17 @@ import Core
 
 extension NetworthCoinCell {
     typealias TitledDescriptionViewModel = TitledDescriptionView.ViewModel
+    typealias Texts = L10n.Home.Portfolio.Title
     
     final class ViewModel {
         let id: String
-        let imageURL: URL?
         let nameTitledDescriptionViewModel: TitledDescriptionViewModel
         let priceInfoTitledDescriptionViewModel: TitledDescriptionViewModel
         let networthTitledDescriptionViewModel: TitledDescriptionViewModel
-        let isPriceChangePositive: Bool
+        let imageURL = CurrentValueSubject<URL?, Never>(nil)
+        let isPriceChangePositive = CurrentValueSubject<Bool, Never>(true)
+        
+        var deleteSubject = PassthroughSubject<String, Never>()
         
         init(id: String,
              imageURL: URL?,
@@ -28,10 +31,10 @@ extension NetworthCoinCell {
              priceChangePercentage: String = .empty,
              isPriceChangePositive: Bool = false,
              portfolioCount: Double,
-             portfolioPrice: Double ) {
+             portfolioPrice: String ) {
             self.id = id
-            self.imageURL = imageURL
-            self.isPriceChangePositive = isPriceChangePositive
+            self.imageURL.send(imageURL)
+            self.isPriceChangePositive.send(isPriceChangePositive)
             
             self.nameTitledDescriptionViewModel = TitledDescriptionViewModel(
                 titleText: name,
@@ -43,10 +46,9 @@ extension NetworthCoinCell {
             )
             
             self.networthTitledDescriptionViewModel = TitledDescriptionViewModel(
-                titleText: "Portfolio count: \(portfolioCount)",
-                descriptionText: "Portfolio networth: \(portfolioPrice)"
+                titleText: Texts.count(portfolioCount),
+                descriptionText: Texts.networth(portfolioPrice)
             )
         }
     }
 }
-

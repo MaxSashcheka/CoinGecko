@@ -14,10 +14,10 @@ extension CoinCell {
     
     final class ViewModel {
         let id: String
-        let imageURL: URL?
         let nameTitledDescriptionViewModel: TitledDescriptionViewModel
         let priceInfoTitledDescriptionViewModel: TitledDescriptionViewModel
-        let isPriceChangePositive: Bool
+        let imageURL = CurrentValueSubject<URL?, Never>(nil)
+        let isPriceChangePositive = CurrentValueSubject<Bool, Never>(true)
         
         init(id: String,
              imageURL: URL?,
@@ -27,8 +27,8 @@ extension CoinCell {
              priceChangePercentage: String = .empty,
              isPriceChangePositive: Bool = false) {
             self.id = id
-            self.imageURL = imageURL
-            self.isPriceChangePositive = isPriceChangePositive
+            self.imageURL.send(imageURL)
+            self.isPriceChangePositive.send(isPriceChangePositive)
             
             self.nameTitledDescriptionViewModel = TitledDescriptionViewModel(
                 titleText: name,

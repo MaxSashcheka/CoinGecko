@@ -7,46 +7,45 @@
 //
 
 import Core
-import Utils
 import UIKit
+import Utils
 
 final class CoinDetailsCoordinator: NavigationCoordinator {
+    var presentationControllerDidDismissed: Closure.Void?
     var closeClosure: Closure.Void?
      
-    init(parent: Coordinator?, coinId: String, closeClosure: @escaping Closure.Void) {
+    init(parent: Coordinator?,
+         coinId: String,
+         isAddToPortfolioEnabled: Bool = true,
+         closeClosure: @escaping Closure.Void) {
         self.closeClosure = closeClosure
         
         super.init(parent: parent)
         
-        showCoinDetailInfoScreen(coinId: coinId)
+        showCoinDetailInfoScreen(coinId: coinId, isAddToPortfolioEnabled: isAddToPortfolioEnabled)
     }
 }
 
+// MARK: - CoinDetailsCoordinator+SreensAssembly
 extension CoinDetailsCoordinator {
-    func showCoinDetailInfoScreen(coinId: String) {
-        let (viewController, viewModel) = CommonAssembly.makeCoinDetailsScreen(resolver: self, coinId: coinId)
+    func showCoinDetailInfoScreen(coinId: String, isAddToPortfolioEnabled: Bool) {
+        let (viewController, viewModel) = CommonAssembly.makeCoinDetailsScreen(
+            resolver: self,
+            coinId: coinId,
+            isAddToPortfolioEnabled: isAddToPortfolioEnabled
+        )
         viewModel.closeTransition = { [weak self] in
             self?.closeClosure?()
         }
         viewModel.openBottomSheetTransition = { [weak self] in
-            self?.showAddCoinBottomSheet()
+            self?.showAddCoinBottomSheet(coinId: coinId)
         }
-   
+
         pushViewController(viewController, animated: false)
-    }
-    
-    func showAddCoinBottomSheet() {
-        let (viewController, viewModel) = CommonAssembly.makeAddCoinBottomSheet(resolver: self)
-        viewModel.closeTransition = { [weak self] in
-            self?.dismissModalController()
-        }
-        
-        viewController.transitioningDelegate = self
-        
-        presentModal(controller: viewController, presentationStyle: .custom, animated: true)
     }
 }
 
+// MARK: - CoinDetailsCoordinator+UIViewControllerTransitioningDelegate
 extension CoinDetailsCoordinator: UIViewControllerTransitioningDelegate {
     public func presentationController(forPresented presented: UIViewController,
                                        presenting: UIViewController?,
@@ -57,3 +56,6 @@ extension CoinDetailsCoordinator: UIViewControllerTransitioningDelegate {
                                       dismissAction: dismissAction)
     }
 }
+
+// MARK: - CoinDetailsCoordinator+CoinBottomSheetPresentable
+extension CoinDetailsCoordinator: CoinBottomSheetPresentable { }

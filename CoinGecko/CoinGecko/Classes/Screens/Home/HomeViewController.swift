@@ -7,10 +7,14 @@
 //
 
 import Combine
+import SafeSFSymbols
 import SnapKit
 import Utils
 
 final class HomeViewController: ViewController {
+    
+    // MARK: - Properties
+    
     private let navigationBarView = HomeNavigationBarView()
     
     private let coinsTableView: UITableView = {
@@ -22,28 +26,54 @@ final class HomeViewController: ViewController {
         return tableView
     }()
     
+    private let placeholderTitleLabel: Label = {
+        let label = Label()
+        label.text = "No coins yet."
+        label.font = .systemFont(ofSize: 24, weight: .semibold)
+        label.textColor = .black
+        label.textAlignment = .center
+        
+        return label
+    }()
     
-//    private let containerScrollView = UIScrollView()
-//    private let containerStackView = UIStackView(axis: .vertical,
-//                                                 spacing: 20,
-//                                                 distribution: .equalSpacing)
+    private let placeholderSubtitleLabel: Label = {
+        let label = Label()
+        label.text = "Try to add coin to see portfolio"
+        label.font = .systemFont(ofSize: 21, weight: .semibold)
+        label.textColor = .darkGray
+        label.textAlignment = .center
+
+        return label
+    }()
     
-    private let tableViewHeaderView = View()
+    private let placeholderStackView = UIStackView(axis: .vertical, spacing: 3, distribution: .equalSpacing)
+    
+    private let tableHeaderView = View()
+    
     private let networhCardView = NetworhCardView()
     
     override var isNavigationBarHidden: Bool { true }
     override var backgroundColor: UIColor { Assets.Colors.platinum.color }
-    override var tabBarTitle: String { "Home" }
-    override var tabBarImage: UIImage? { UIImage(systemName: "house") }
+    override var tabBarTitle: String { L10n.Tabbar.Title.home }
+    override var tabBarImage: UIImage? { UIImage(.house) }
     
     var viewModel: ViewModel!
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.fetchPortfolioCoins()
         viewModel.errorHandlerClosure = errorHandler
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.fetchPortfolioCoins()
+    }
+    
+    // MARK: - Methods
     
     override func arrangeSubviews() {
         super.arrangeSubviews()
@@ -55,57 +85,31 @@ final class HomeViewController: ViewController {
             make.height.equalTo(140)
         }
         
-        view.addSubview(coinsTableView)
-        coinsTableView.snp.makeConstraints { make in
-            make.top.equalTo(navigationBarView.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
+        arrangeTableView()
         
-        tableViewHeaderView.addSubview(networhCardView)
+        tableHeaderView.addSubview(networhCardView)
         networhCardView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(15)
             make.top.bottom.equalToSuperview().inset(15)
         }
         
-//        view.addSubview(containerScrollView)
-//        containerScrollView.snp.makeConstraints { make in
-//            make.top.equalTo(navigationBarView.snp.bottom)
-//            make.leading.trailing.equalToSuperview()
-//            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-//            make.centerX.equalToSuperview()
-//        }
-//
-//        containerScrollView.addSubview(containerStackView)
-//        containerStackView.snp.makeConstraints { make in
-//            make.leading.trailing.equalToSuperview().inset(20)
-//            make.top.bottom.equalToSuperview().inset(15)
-//            make.centerX.equalToSuperview()
-//        }
-//        containerStackView.addArrangedSubview(networhCardView)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        coinsTableView.contentOffset = .init(x: .zero, y: -450)
-        UIView.animate(withDuration: 0.67, animations: {
-            self.coinsTableView.contentOffset = .zero
-        })
-        
-        coinsTableView.alpha = 0
-        UIView.animate(withDuration: 0.9, animations: {
-            self.coinsTableView.alpha = 1
-        })
-        
-        
+        placeholderStackView.addArrangedSubviews([placeholderTitleLabel, placeholderSubtitleLabel])
     }
     
     override func bindData() {
         super.bindData()
         
         viewModel.coinsViewModels
-            .sink { [weak coinsTableView] _ in
-                coinsTableView?.reloadData()
+            .sink { [weak self] in
+                guard let self = self else { return }
+                if $0.isEmpty {
+                    self.coinsTableView.removeFromSuperview()
+                    self.arrangePlaceholderStack()
+                } else {
+                    self.placeholderStackView.removeFromSuperview()
+                    self.arrangeTableView()
+                    self.coinsTableView.reloadData()
+                }
             }
             .store(in: &cancellables)
         
@@ -118,6 +122,12 @@ final class HomeViewController: ViewController {
         viewModel.navigationBarViewModel.settingsButtonSubject
             .sink { [weak viewModel] in
                 viewModel?.didTapSettingsButton()
+            }
+            .store(in: &cancellables)
+        
+        viewModel.deleteCoinSubject
+            .sink { [weak viewModel] in
+                viewModel?.deleteCoin(withId: $0)
             }
             .store(in: &cancellables)
         
@@ -134,14 +144,33 @@ final class HomeViewController: ViewController {
     }
 }
 
-extension HomeViewController: UITableViewPresentable {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard section == .zero else { return nil }
-        return tableViewHeaderView
+// MARK: - HomeViewController+ArrangeViews
+private extension HomeViewController {
+    func arrangeTableView() {
+        view.addSubview(coinsTableView)
+        coinsTableView.snp.makeConstraints { make in
+            make.top.equalTo(navigationBarView.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
     }
     
+    func arrangePlaceholderStack() {
+        view.addSubview(placeholderStackView)
+        placeholderStackView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+    }
+}
+
+// MARK: - HomeViewController+UITableViewPresentable
+extension HomeViewController: UITableViewPresentable {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.coinsCount
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard section == .zero else { return nil }
+        return tableHeaderView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -150,9 +179,12 @@ extension HomeViewController: UITableViewPresentable {
             return UITableViewCell()
         }
         cell.viewModel = viewModel.cellViewModel(for: indexPath)
+        cell.viewModel?.deleteSubject = viewModel.deleteCoinSubject
         
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelectCoin(at: indexPath)
+    }
 }
