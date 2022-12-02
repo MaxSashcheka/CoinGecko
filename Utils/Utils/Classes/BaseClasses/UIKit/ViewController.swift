@@ -20,7 +20,8 @@ open class ViewController: UIViewController {
     open var tabBarTitle: String { .empty }
     open var tabBarImage: UIImage? { .none }
     
-    open var cancellables: [AnyCancellable] = []
+    public var cancellables: [AnyCancellable] = []
+    public private(set) var isAppearFirstTime = true
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -63,6 +64,12 @@ open class ViewController: UIViewController {
         navigationController?.setToolbarHidden(isToolbarHidden, animated: animated)
     }
     
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        isAppearFirstTime = false
+    }
+    
     open func arrangeSubviews() {
         // Override at subclasses
     }
@@ -75,10 +82,10 @@ open class ViewController: UIViewController {
         // Override at subclasses
     }
     
-    public var errorHandler: Closure.APIError {
+    public var errorHandler: Closure.GeneralError {
         { [weak self] error in
             ActivityIndicator.hide()
-            let alert = UIAlertController(title: "Ooops, error",
+            let alert = UIAlertController(title: "Error Appeared !",
                                           message: error.rawValue,
                                           preferredStyle: UIAlertController.Style.alert)
             
@@ -92,14 +99,6 @@ open class ViewController: UIViewController {
 
 }
 
-//extension ViewController: UIViewControllerTransitioningDelegate  {
-//    public func presentationController(forPresented presented: UIViewController,
-//                                       presenting: UIViewController?,
-//                                       source: UIViewController) -> UIPresentationController? {
-//        PresentationController(presentedViewController: presented, presenting: presenting)
-//    }
-//}
-
 private extension UITabBarController {
     func setTabBarHidden(_ hidden: Bool, animated: Bool) {
         guard let vc = selectedViewController else { return }
@@ -109,16 +108,14 @@ private extension UITabBarController {
         let height = frame.size.height
         let offsetY = hidden ? height : -height
 
-        UIViewPropertyAnimator(duration: animated ? 0.3 : 0, curve: .easeOut) { [weak self] in
+        UIViewPropertyAnimator(duration: animated ? 0.3 : .zero, curve: .easeOut) { [weak self] in
             guard let self = self else { return }
             
-            self.tabBar.frame = self.tabBar.frame.offsetBy(dx: 0, dy: offsetY)
+            self.tabBar.frame = self.tabBar.frame.offsetBy(dx: .zero, dy: offsetY)
             self.selectedViewController?.view.frame = CGRect(x: .zero,
                                                              y: .zero,
                                                              width: vc.view.frame.width,
-                                                             height: vc.view.frame.height + offsetY
-            )
-            
+                                                             height: vc.view.frame.height + offsetY)
             self.view.setNeedsDisplay()
             self.view.layoutIfNeeded()
         }

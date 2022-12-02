@@ -24,7 +24,9 @@ final class RootCoordinator: TabCoordinator {
         initializeTabsCoordinatorsAndShow()
         setupAppearance()
     }
-    
+}
+
+private extension RootCoordinator {
     func setupAppearance() {
         let navigationAppearance = UINavigationBarAppearance()
         let backButtonImage = Assets.Images.back.image.withBaselineOffset(fromBottom: 2)

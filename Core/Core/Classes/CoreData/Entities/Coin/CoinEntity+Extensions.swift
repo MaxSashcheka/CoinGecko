@@ -10,8 +10,6 @@ import Foundation
 
 extension CoinEntity {
     func update(with coin: Coin) {
-        self.amount = .zero
-        self.isFavourite = false
         self.change24h = coin.priceDetails.change24h
         self.changePercentage24h = coin.priceDetails.changePercentage24h
         self.currentPrice = coin.priceDetails.currentPrice
@@ -24,6 +22,12 @@ extension CoinEntity {
         self.previousDayHighestPrice = coin.priceDetails.previousDayHighestPrice
         self.symbol = coin.symbol
         self.totalVolume = coin.priceDetails.totalVolume
+        if let coinAmount = coin.amount {
+            self.amount = coinAmount
+        }
+        if let isFavourite = coin.isFavourite {
+            self.isFavourite = isFavourite
+        }
     }
         
 }

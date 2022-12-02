@@ -11,6 +11,9 @@ import SnapKit
 import Utils
 
 final class CoinDetailsViewController: ViewController {
+    
+    // MARK: - Properties
+    
     private let navigationBarView = CoinDetailsNavigationBarView()
     
     private let scrollView = UIScrollView()
@@ -25,7 +28,6 @@ final class CoinDetailsViewController: ViewController {
     private let priceChangeLabel: Label = {
         let label = Label()
         label.font = .systemFont(ofSize: 18, weight: .medium)
-        label.text = "+ 1700.254 (9.77%)"
         label.textColor = .systemGreen
         
         return label
@@ -35,7 +37,7 @@ final class CoinDetailsViewController: ViewController {
     
     private let buttonsCollectionView = ButtonsCollectionView()
     
-    private let addToPortfolioButton = Button(title: "Add to portfolio",
+    private let addToPortfolioButton = Button(title: L10n.CoinDetails.AddButton.title,
                                               backgroundColor: .systemBlue.withAlphaComponent(0.65))
     
     override var isNavigationBarHidden: Bool { true }
@@ -43,6 +45,8 @@ final class CoinDetailsViewController: ViewController {
     var viewModel: ViewModel!
     
     override var backgroundColor: UIColor { .white }
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +59,8 @@ final class CoinDetailsViewController: ViewController {
         
         addToPortfolioButton.cornerRadius = addToPortfolioButton.frame.height / 2
     }
+    
+    // MARK: - Methods
     
     override func arrangeSubviews() {
         super.arrangeSubviews()
@@ -100,11 +106,13 @@ final class CoinDetailsViewController: ViewController {
             make.bottom.equalToSuperview().offset(-20)
         }
         
-        scrollView.addSubview(addToPortfolioButton)
-        addToPortfolioButton.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(buttonsCollectionView)
-            make.top.equalTo(buttonsCollectionView.snp.bottom).offset(35)
-            make.height.equalTo(55)
+        if viewModel.isAddToPortfolioEnabled {
+            scrollView.addSubview(addToPortfolioButton)
+            addToPortfolioButton.snp.makeConstraints { make in
+                make.leading.trailing.equalTo(buttonsCollectionView)
+                make.top.equalTo(buttonsCollectionView.snp.bottom).offset(35)
+                make.height.equalTo(55)
+            }
         }
     }
     
@@ -114,6 +122,12 @@ final class CoinDetailsViewController: ViewController {
         viewModel.navigationBarViewModel.closeButtonSubject
             .sink { [weak viewModel] in
                 viewModel?.didTapCloseButton()
+            }
+            .store(in: &cancellables)
+        
+        viewModel.navigationBarViewModel.addToFavouriteSubject
+            .sink { [weak viewModel] in
+                viewModel?.didTapAddToFavouriteButton()
             }
             .store(in: &cancellables)
         

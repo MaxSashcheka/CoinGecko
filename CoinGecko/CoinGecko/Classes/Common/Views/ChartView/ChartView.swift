@@ -11,9 +11,8 @@ import UIKit
 import Utils
 
 final class ChartView: View {
-    enum PriceType {
-        case max, min
-    }
+    
+    // MARK: - Properties
 
     var viewModel: ViewModel? {
         didSet {
@@ -23,6 +22,8 @@ final class ChartView: View {
             bindData(with: viewModel)
         }
     }
+    
+    // MARK: - Methods
     
     private func bindData(with viewModel: ViewModel) {
         viewModel.dataSubject
@@ -49,7 +50,7 @@ final class ChartView: View {
         }
 
         var sortedChartData: [CGFloat] = []
-        for index in originalChartData.indices where index % skipValuesCoefficient == 0 && skipValuesCoefficient != .zero {
+        for index in originalChartData.indices where index % skipValuesCoefficient == .zero && skipValuesCoefficient != .zero {
             sortedChartData.append(originalChartData[index])
         }
 
@@ -92,7 +93,10 @@ final class ChartView: View {
         path.lineWidth = 2
         path.stroke()
     }
-    
+}
+
+// MARK: - ChartView+Private
+private extension ChartView {
     func arrangePriceLabelFor(point: CGPoint, priceValue: CGFloat, type: PriceType) {
         let labelFont = Constants.Fonts.priceLabel
         let roundedPrice = preciseRound(priceValue, precision: .hundredths).description
@@ -111,6 +115,14 @@ final class ChartView: View {
     }
 }
 
+// MARK: - ChartView+PriceType
+extension ChartView {
+    enum PriceType {
+        case max, min
+    }
+}
+
+// MARK: - ChartView+Constants
 private extension ChartView {
     enum Constants {
         static let skipValuesCount = 10
@@ -125,7 +137,3 @@ private extension ChartView {
         }
     }
 }
-
-
-
-

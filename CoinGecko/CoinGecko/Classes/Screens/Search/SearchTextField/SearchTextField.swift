@@ -10,9 +10,12 @@ import UIKit
 import Utils
 
 final class SearchTextField: View {
+    
+    // MARK: - Properties
+    
     private let innerTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Search Cryptocurrency"
+        textField.placeholder = L10n.Search.TextField.Placeholder.title
         
         return textField
     }()
@@ -43,6 +46,8 @@ final class SearchTextField: View {
         }
     }
     
+    // MARK: - Methods
+    
     override func initialize() {
         arrangeSubviews()
         
@@ -59,7 +64,7 @@ final class SearchTextField: View {
             .sink { [weak self] query in
                 self?.viewModel?.updateQuery(with: query)
                 UIView.animate(withDuration: 0.15) {
-                    self?.clearButton.alpha = query.isEmpty ? 0 : 1
+                    self?.clearButton.alpha = query.isEmpty ? .zero : 1
                 }
             }
             .store(in: &cancellables)
@@ -68,7 +73,7 @@ final class SearchTextField: View {
             .sink { [weak self] in
                 self?.innerTextField.text = .empty
                 UIView.animate(withDuration: 0.15) {
-                    self?.clearButton.alpha = 0
+                    self?.clearButton.alpha = .zero
                 }
             }
             .store(in: &cancellables)
@@ -98,6 +103,7 @@ final class SearchTextField: View {
     }
 }
 
+// MARK: - SearchTextField+UITextFieldDelegate
 extension SearchTextField: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         viewModel?.didTapReturnButton()

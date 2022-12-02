@@ -7,14 +7,17 @@
 //
 
 import Combine
+import SafeSFSymbols
 import SnapKit
 import Utils
 
 final class MarketsViewController: ViewController {
+    typealias Texts = L10n.Markets
+    // MARK: - Properties
+    
     private let statusPlaceholderLabel: Label = {
         let label = Label()
         label.font = .systemFont(ofSize: 28, weight: .medium)
-        label.text = "Market is down"
         
         return label
     }()
@@ -33,7 +36,7 @@ final class MarketsViewController: ViewController {
         let label = Label()
         label.font = .systemFont(ofSize: 18, weight: .regular)
         label.textColor = .darkGray
-        label.text = "In the past 24 hours"
+        label.text = Texts.TimePlaceholder.title
         
         return label
     }()
@@ -62,18 +65,29 @@ final class MarketsViewController: ViewController {
     
     override var backgroundColor: UIColor { Assets.Colors.platinum.color }
     override var isNavigationBarHidden: Bool { true }
-    
-    override var tabBarTitle: String { "Markets" }
-    override var tabBarImage: UIImage? { UIImage(systemName: "chart.pie") }
+    override var tabBarTitle: String { L10n.Tabbar.Title.markets }
+    override var tabBarImage: UIImage? { UIImage(.chart.pie) }
     
     var viewModel: ViewModel!
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: - ADD pull to refresh
+        
+        // TODO: - add pull to refresh
         viewModel.errorHandlerClosure = errorHandler
         viewModel.fetchCoins(mode: .all)
+        viewModel.fetchGlobalData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.fetchFavouritesCoins()
+    }
+    
+    // MARK: - Methods
     
     override func arrangeSubviews() {
         super.arrangeSubviews()
@@ -168,7 +182,9 @@ final class MarketsViewController: ViewController {
         
         viewModel.isPriceChangePositive
             .sink { [weak self] in
-                self?.statusPlaceholderLabel.text = $0 ? "Market is up" : "Market is down"
+                self?.statusPlaceholderLabel.text = $0
+                    ? Texts.StatusTitle.up
+                    : Texts.StatusTitle.down
                 self?.statusTriangleView.state = $0 ? .gainer : .loser
             }
             .store(in: &cancellables)
@@ -201,6 +217,7 @@ final class MarketsViewController: ViewController {
     }
 }
 
+// MARK: - MarketsViewController+UITableViewPresentable
 extension MarketsViewController: UITableViewPresentable {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.coinsCount

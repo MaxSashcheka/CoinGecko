@@ -6,15 +6,19 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import Utils
 import SnapKit
+import Utils
 
 final class AddCoinOverlayViewController: ViewController {
+    typealias Texts = L10n.Overlay.Coin
+    
+    // MARK: - Properties
+    
     private let indicatorView = View(backgroundColor: .lightGray)
     
     private let descriptionLabel: Label = {
         let label = Label()
-        label.text = "Enter the amount of the coin"
+        label.text = Texts.title
         label.font = .systemFont(ofSize: 17, weight: .regular)
         label.textColor = .darkGray
         label.textAlignment = .center
@@ -34,7 +38,7 @@ final class AddCoinOverlayViewController: ViewController {
     
     private let textFieldBottomLine = View(backgroundColor: .darkGray)
     
-    private let addButton = Button(title: "Add", backgroundColor: .systemBlue.withAlphaComponent(0.65))
+    private let addButton = Button(title: Texts.Button.title, backgroundColor: .systemBlue.withAlphaComponent(0.65))
     
     private var keyboardIsShown = false
     private var hasSetOriginPoint = false
@@ -51,10 +55,15 @@ final class AddCoinOverlayViewController: ViewController {
     
     var viewModel: ViewModel!
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.errorHandlerClosure = errorHandler
+        
         activateEndEditingTap(at: view)
+        viewModel.fillAmountInfoIfPossible()
     }
     
     override func viewDidLayoutSubviews() {
@@ -73,6 +82,8 @@ final class AddCoinOverlayViewController: ViewController {
         
         view.apply(cornerMask: [.layerMinXMinYCorner, .layerMaxXMinYCorner], withCornerRadius: 30)
     }
+    
+    // MARK: - Methods
     
     override func arrangeSubviews() {
         super.arrangeSubviews()
@@ -139,7 +150,7 @@ final class AddCoinOverlayViewController: ViewController {
                       let animationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
                       else { return }
                 UIView.animate(withDuration: animationDuration) {
-                    self.view.frame.origin = .init(x: 0, y: self.originPoint?.y ?? .zero)
+                    self.view.frame.origin = .init(x: .zero, y: self.originPoint?.y ?? .zero)
                 }
                 self.keyboardIsShown.toggle()
             }
@@ -166,18 +177,31 @@ final class AddCoinOverlayViewController: ViewController {
                             self.blurEffectAlpha = self.initialBlurEffectAlpha
                         }
                     }
-                    
                 }
             }
             .store(in: &cancellables)
         
         addButton.tapPublisher()
-            .sink { [weak self] in
-                // Add tap publisher
+            .sink { [weak self, weak viewModel] in
+                guard let self = self, let viewModel = viewModel else { return }
+                viewModel.didTapAddButton(amountText: self.amountTextField.text ?? .empty)
+            }
+            .store(in: &cancellables)
+        
+        viewModel.amountText
+            .bind(to: \.text, on: amountTextField)
+            .store(in: &cancellables)
+        
+        viewModel.incorrectNumberSubject
+            .sink { [weak textFieldBottomLine] in
+                textFieldBottomLine?.backgroundColor = .red
             }
             .store(in: &cancellables)
     }
-    
+}
+
+// MARK: - AddCoinOverlayViewController+Constants
+private extension AddCoinOverlayViewController {
     func updateBlurEffectAlpha(translation: CGFloat) {
         let translationProgress = translation / view.frame.height
         let newAlpha = initialBlurEffectAlpha - translationProgress
@@ -185,4 +209,5 @@ final class AddCoinOverlayViewController: ViewController {
     }
 }
 
+// MARK: - AddCoinOverlayViewController+EndEditingTappable
 extension AddCoinOverlayViewController: EndEditingTappable { }

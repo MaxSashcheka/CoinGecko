@@ -1,5 +1,5 @@
 //
-//  CoinsListViewController.swift
+//  TrendingViewController.swift
 //  CoinGecko
 //
 //  Created by Maksim Sashcheka on 14.09.22.
@@ -7,11 +7,14 @@
 //
 
 import Combine
+import SafeSFSymbols
 import SnapKit
 import Utils
 
-// TODO: - change naming to trending
-final class CoinsListViewController: ViewController {
+final class TrendingViewController: ViewController {
+    
+    // MARK: - Properties
+    
     private let coinsTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
@@ -24,10 +27,12 @@ final class CoinsListViewController: ViewController {
     
     override var backgroundColor: UIColor { Assets.Colors.platinum.color }
     override var prefersLargeTitles: Bool { true }
-    override var tabBarTitle: String { "Trending" }
-    override var tabBarImage: UIImage? { UIImage(systemName: "chart.line.uptrend.xyaxis") }
+    override var tabBarTitle: String { L10n.Tabbar.Title.trending }
+    override var tabBarImage: UIImage? { UIImage(.chart.lineUptrendXyaxis) }
     
     var viewModel: ViewModel!
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +40,8 @@ final class CoinsListViewController: ViewController {
         viewModel.fetchCoins()
         viewModel.errorHandlerClosure = errorHandler
     }
+    
+    // MARK: - Methods
     
     override func arrangeSubviews() {
         super.arrangeSubviews()
@@ -51,7 +58,7 @@ final class CoinsListViewController: ViewController {
         coinsTableView.delegate = self
         coinsTableView.dataSource = self
         
-        title = "Trending Coins"
+        title = L10n.Trending.title
     }
     
     override func bindData() {
@@ -74,7 +81,8 @@ final class CoinsListViewController: ViewController {
     }
 }
 
-extension CoinsListViewController: UITableViewPresentable {
+// MARK: - TrendingViewController+UITableViewPresentable
+extension TrendingViewController: UITableViewPresentable {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.coinsCount
     }

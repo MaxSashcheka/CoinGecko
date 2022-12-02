@@ -10,7 +10,10 @@ import Combine
 import UIKit
 import Utils
 
-class RangePickerButton: Button {    
+class RangePickerButton: Button {
+    
+    // MARK: - Properties
+    
     var viewModel: ViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }
@@ -18,28 +21,6 @@ class RangePickerButton: Button {
             
             bindData(with: viewModel)
         }
-    }
-    
-    private func bindData(with viewModel: ViewModel) {
-        viewModel.title
-            .sink { [weak self] in self?.setTitle($0, for: .normal) }
-            .store(in: &cancellables)
-
-        viewModel.isSelected
-            .sink { [weak self] in self?.isSelected = $0 }
-            .store(in: &cancellables)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        initialize()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        initialize()
     }
     
     override var intrinsicContentSize: CGSize {
@@ -63,6 +44,40 @@ class RangePickerButton: Button {
         }
     }
     
+    // MARK: - Methods
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        cornerRadius = frame.height / 2
+    }
+    
+    private func bindData(with viewModel: ViewModel) {
+        viewModel.title
+            .sink { [weak self] in
+                self?.setTitle($0, for: .normal)
+            }
+            .store(in: &cancellables)
+
+        viewModel.isSelected
+            .sink { [weak self] in
+                self?.isSelected = $0
+            }
+            .store(in: &cancellables)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        initialize()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        initialize()
+    }
+    
     func initialize() {
         font = .systemFont(ofSize: 15, weight: .semibold)
         backgroundColor = .lightGray.withAlphaComponent(0.15)
@@ -72,10 +87,11 @@ class RangePickerButton: Button {
         layer.borderColor = UIColor.lightGray.withAlphaComponent(0.3).cgColor
         layer.borderWidth = 1
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
+}
+
+// MARK: - RangePickerButton+Constants
+private extension RangePickerButton {
+    enum Constants {
         
-        cornerRadius = frame.height / 2
     }
 }

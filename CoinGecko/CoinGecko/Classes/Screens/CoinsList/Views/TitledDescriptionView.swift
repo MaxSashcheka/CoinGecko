@@ -10,18 +10,24 @@ import UIKit
 import Utils
 
 final class TitledDescriptionView: View {
+    
+    // MARK: - Properties
+    
     private let titleLabel = Label(textPreferences: .title)
     
     private let descriptionLabel = Label(textPreferences: .subtitle)
     
     var viewModel: ViewModel? {
         didSet {
+            cancellables.removeAll()
             guard let viewModel = viewModel else { return }
             
             arrangeSubviews()
-            setupData(with: viewModel)
+            bindData(with: viewModel)
         }
     }
+    
+    // MARK: - Methods
     
     func arrangeSubviews() {
         addSubview(titleLabel)
@@ -36,9 +42,14 @@ final class TitledDescriptionView: View {
         }
     }
     
-    func setupData(with viewModel: ViewModel) {
-        titleLabel.text = viewModel.titleText
-        descriptionLabel.text = viewModel.descriptionText
+    func bindData(with viewModel: ViewModel) {
+        viewModel.titleText
+            .bind(to: \.text, on: titleLabel)
+            .store(in: &cancellables)
+        
+        viewModel.descriptionText
+            .bind(to: \.text, on: descriptionLabel)
+            .store(in: &cancellables)
     }
 }
 

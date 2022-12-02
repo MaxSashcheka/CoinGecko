@@ -11,6 +11,9 @@ import SnapKit
 import Utils
 
 final class ButtonsCollectionView: View {
+    
+    // MARK: - Properties
+    
     private let stackView = UIStackView(axis: .horizontal,
                                         spacing: 10,
                                         distribution: .fillProportionally)
@@ -23,13 +26,15 @@ final class ButtonsCollectionView: View {
     
     var viewModel: ViewModel? {
         didSet {
-            guard let viewModel = viewModel else { return }
             cancellables.removeAll()
+            guard let viewModel = viewModel else { return }
             
             bindData(with: viewModel)
             arrangeSubviews()
         }
     }
+    
+    // MARK: - Methods
     
     private func arrangeSubviews() {
         addSubview(stackView)

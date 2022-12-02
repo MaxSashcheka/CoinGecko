@@ -14,7 +14,7 @@ public extension APIClient {
                                 page: Int,
                                 pageSize: Int,
                                 success: @escaping ([CoinResponse]) -> Void,
-                                failure: @escaping Closure.APIError) {
+                                failure: @escaping Closure.GeneralError) {
         let endpoint = RequestDescription.Coins.getCoinsMarkets
             .replacingQueryParameters(
                 .getCoinsMarkets(
@@ -31,7 +31,7 @@ public extension APIClient {
     
     static func getCoinDetails(id: String,
                                success: @escaping Closure.CoinDetailsResponse,
-                               failure: @escaping Closure.APIError) {
+                               failure: @escaping Closure.GeneralError) {
         let endpoint = RequestDescription.Coins.getCoinDetails
             .replacingInlineArguments(
                 .id(id)
@@ -46,7 +46,7 @@ public extension APIClient {
                                    startTimeInterval: TimeInterval,
                                    endTimeInterval: TimeInterval,
                                    success: @escaping Closure.CoinChartDataResponse,
-                                   failure: @escaping Closure.APIError) {
+                                   failure: @escaping Closure.GeneralError) {
         let endpoint = RequestDescription.Coins.getCoinMarketChart
             .replacingQueryParameters(
                 .getCoinMarketChart(
@@ -66,7 +66,7 @@ public extension APIClient {
     
     static func search(query: String,
                        success: @escaping Closure.SearchResponse,
-                       failure: @escaping Closure.APIError) {
+                       failure: @escaping Closure.GeneralError) {
         let endpoint = RequestDescription.Search.search
             .replacingQueryParameters(
                 .search(
@@ -80,7 +80,7 @@ public extension APIClient {
     }
     
     static func getGlobalData(success: @escaping Closure.GlobalDataResponse,
-                              failure: @escaping Closure.APIError) {
+                              failure: @escaping Closure.GeneralError) {
         let endpoint = RequestDescription.Global.getGlobalData
         let request = makeDataRequest(for: endpoint)
         

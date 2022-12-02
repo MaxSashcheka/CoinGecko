@@ -6,8 +6,8 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import Utils
 import UIKit.UIImageView
+import Utils
 
 final class RemoteImageView: UIImageView, RemoteImageDownloadable {
     var imageURL: URL? {

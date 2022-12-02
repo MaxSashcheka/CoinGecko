@@ -26,6 +26,7 @@ extension PageButton {
     }
 }
 
+// MARK: - DisplayMode+ComputedProperties
 extension PageButton.ViewModel.DisplayMode {
     var title: String {
         switch self {

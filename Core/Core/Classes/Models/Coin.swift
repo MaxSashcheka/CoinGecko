@@ -9,6 +9,7 @@
 import Utils
 
 public extension Closure {
+    typealias OptionalCoin = (Core.Coin?) -> Swift.Void
     typealias Coin = (Core.Coin) -> Swift.Void
     typealias CoinsArray = ([Core.Coin]) -> Swift.Void
 }
@@ -19,8 +20,8 @@ public struct Coin {
     public let name: String
     public let imageURL: URL?
     public let priceDetails: PriceDetails
-    public var amount: Double = .zero
-    public var isFavourite: Bool = false
+    public var amount: Double?
+    public var isFavourite: Bool?
 }
 
 public struct PriceDetails {

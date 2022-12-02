@@ -7,26 +7,28 @@
 //
 
 import Combine
+import SnapKit
 import UIKit
 import Utils
-import SnapKit
 
 final class PageButton: Button {
+    
+    // MARK: - Properties
+    
     private let bottomLine = View(backgroundColor: .blue)
     
     var viewModel: ViewModel? {
         didSet {
-            guard let viewModel = viewModel else { return }
             cancellables.removeAll()
+            guard let viewModel = viewModel else { return }
             
             bindData(with: viewModel)
             arrangeSubviews()
-            
-            font = .systemFont(ofSize: 20, weight: .medium)
-            textColor = .darkGray
-            
+            setupData()
         }
     }
+    
+    // MARK: - Methods
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -53,5 +55,10 @@ final class PageButton: Button {
                 self?.bottomLine.isHidden = !isSelected
             }
             .store(in: &cancellables)
+    }
+    
+    private func setupData() {
+        font = .systemFont(ofSize: 20, weight: .medium)
+        textColor = .darkGray
     }
 }

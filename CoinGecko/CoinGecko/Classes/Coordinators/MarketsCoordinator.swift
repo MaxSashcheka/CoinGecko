@@ -33,18 +33,19 @@ extension MarketsCoordinator {
     func showSearchScreen() {
         let (viewController, viewModel) = MarketsAssembly.makeSearchScreen(resolver: self)
         viewModel.showCoinDetailInfoTransition = { [weak self] in
-            self?.showCoinDetailsCoordinator(coinId: $0)
+            self?.showCoinDetailsCoordinator(coinId: $0, isAddToPortfolioEnabled: false)
         }
         
         pushViewController(viewController, animated: true)
     }
     
-    func showCoinDetailsCoordinator(coinId: String) {
+    func showCoinDetailsCoordinator(coinId: String, isAddToPortfolioEnabled: Bool = true) {
         let coordinator = CoinDetailsCoordinator(parent: self,
                                                  coinId: coinId,
+                                                 isAddToPortfolioEnabled: isAddToPortfolioEnabled,
                                                  closeClosure: { [weak self] in
                                                      self?.dismissModalCoordinator()
                                                  })
-        presentModal(coordinator: coordinator, presentationStyle: .overFullScreen)
+        presentModal(coordinator: coordinator, presentationStyle: .fullScreen)
     }
 }

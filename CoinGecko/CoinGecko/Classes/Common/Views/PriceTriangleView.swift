@@ -10,10 +10,6 @@ import UIKit
 import Utils
 
 class PriceTriangleView: View {
-    enum State {
-        case loser, gainer
-    }
-    
     var state: State = .loser {
         didSet {
             fillColor = state == .gainer ? .green : .red
@@ -27,13 +23,12 @@ class PriceTriangleView: View {
         guard let context = UIGraphicsGetCurrentContext() else { return }
     
         context.beginPath()
-        // TODO: - Replace this different logic with rotation
+
         switch state {
         case .loser:
             context.move(to: .init(x: rect.minX, y: rect.minY))
             context.addLine(to: .init(x: rect.maxX, y: rect.minY))
             context.addLine(to: .init(x: (rect.maxX / 2.0), y: rect.maxY))
-            
         case .gainer:
             context.move(to: .init(x: rect.minX, y: rect.maxY))
             context.addLine(to: .init(x: rect.maxX, y: rect.maxY))
@@ -43,6 +38,12 @@ class PriceTriangleView: View {
         
         context.setFillColor(fillColor.cgColor)
         context.fillPath()
-        
+    }
+}
+
+// MARK: - PriceTriangleView+State
+extension PriceTriangleView {
+    enum State {
+        case loser, gainer
     }
 }

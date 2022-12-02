@@ -15,6 +15,8 @@ extension CoinDetailsNavigationBarView {
         let description = CurrentValueSubject<String, Never>(.empty)
         let imageURL = CurrentValueSubject<URL?, Never>(nil)
         let closeButtonSubject = PassthroughSubject<Void, Never>()
+        let addToFavouriteSubject = PassthroughSubject<Void, Never>()
+        let isFavourite = CurrentValueSubject<Bool, Never>(false)
         
         init(title: String = .empty,
              description: String = .empty,
