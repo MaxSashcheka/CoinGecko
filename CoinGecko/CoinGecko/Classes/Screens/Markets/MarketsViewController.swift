@@ -12,7 +12,7 @@ import SnapKit
 import Utils
 
 final class MarketsViewController: ViewController {
-    typealias Texts = L10n.Markets
+    private typealias Texts = L10n.Markets
     // MARK: - Properties
     
     private let statusPlaceholderLabel: Label = {

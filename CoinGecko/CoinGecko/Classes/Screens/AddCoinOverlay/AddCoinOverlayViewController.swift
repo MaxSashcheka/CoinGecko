@@ -10,7 +10,7 @@ import SnapKit
 import Utils
 
 final class AddCoinOverlayViewController: ViewController {
-    typealias Texts = L10n.Overlay.Coin
+    private typealias Texts = L10n.Overlay.Coin
     
     // MARK: - Properties
     

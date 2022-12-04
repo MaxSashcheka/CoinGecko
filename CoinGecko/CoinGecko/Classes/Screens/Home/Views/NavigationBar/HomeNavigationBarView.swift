@@ -13,7 +13,7 @@ import Utils
 
 extension HomeViewController {
     final class HomeNavigationBarView: View {
-        typealias Texts = L10n.Home.NavigationBar.Title
+        private typealias Texts = L10n.Home.NavigationBar.Title
         
         private let welcomeTitleLabel: Label = {
             let label = Label()

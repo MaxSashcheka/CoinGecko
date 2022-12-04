@@ -16,3 +16,5 @@ open class Label: UILabel {
         textColor = textPreferences.textColor
     }
 }
+
+

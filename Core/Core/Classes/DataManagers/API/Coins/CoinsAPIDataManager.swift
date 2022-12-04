@@ -31,9 +31,9 @@ public final class CoinsAPIDataManager: CoinsAPIDataManagerProtocol {
                                failure: @escaping Closure.GeneralError) {
         APIClient.getCoinDetails(
             id: id,
-            success: {
-                success(CoinDetails(coinDetailsResponse: $0))
-        }, failure: failure)
+            success: { success(CoinDetails(coinDetailsResponse: $0)) },
+            failure: failure
+        )
     
     }
     
@@ -48,9 +48,9 @@ public final class CoinsAPIDataManager: CoinsAPIDataManagerProtocol {
             currency: currency,
             startTimeInterval: startTimeInterval,
             endTimeInterval: endTimeInterval,
-            success: {
-                success(CoinChartData(coinChartDataResponse: $0))
-        }, failure: failure)
+            success: { success(CoinChartData(coinChartDataResponse: $0)) },
+            failure: failure
+        )
     }
     
     public func search(query: String,
@@ -58,17 +58,17 @@ public final class CoinsAPIDataManager: CoinsAPIDataManagerProtocol {
                        failure: @escaping Closure.GeneralError) {
         APIClient.search(
             query: query,
-            success: {
-                success(SearchResult(searchResponse: $0))
-        }, failure: failure)
+            success: { success(SearchResult(searchResponse: $0)) },
+            failure: failure
+        )
     }
     
     public func getGlobalData(success: @escaping Closure.GlobalData,
                               failure: @escaping Closure.GeneralError) {
         APIClient.getGlobalData(
-            success: {
-                success(GlobalData(globalDataResponse: $0))
-        }, failure: failure)
+            success: { success(GlobalData(globalDataResponse: $0)) },
+            failure: failure
+        )
     }
     
 }

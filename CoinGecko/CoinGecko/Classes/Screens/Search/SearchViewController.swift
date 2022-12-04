@@ -110,7 +110,7 @@ final class SearchViewController: ViewController {
 
 // MARK: - SearchViewController+UITableViewPresentable
 extension SearchViewController: UITableViewPresentable {
-    typealias Texts = L10n.Search.Table.Title
+    private typealias Texts = L10n.Search.Table.Title
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == .zero else { return nil }

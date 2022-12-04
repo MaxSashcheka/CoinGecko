@@ -158,7 +158,7 @@ extension CoinDetailsViewController.ViewModel {
 
 // MARK: - RangeButtonConfig+ComputedProperties
 extension CoinDetailsViewController.ViewModel.RangeButtonConfig {
-    typealias Texts = L10n.RangeButton.Title
+    private typealias Texts = L10n.RangeButton.Title
     var title: String {
         switch self {
         case .hour: return Texts.hour

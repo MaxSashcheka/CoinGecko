@@ -12,6 +12,7 @@ import SnapKit
 import Utils
 
 final class HomeViewController: ViewController {
+    private typealias Texts = L10n.Home.Placeholder
     
     // MARK: - Properties
     
@@ -26,27 +27,23 @@ final class HomeViewController: ViewController {
         return tableView
     }()
     
-    private let placeholderTitleLabel: Label = {
-        let label = Label()
-        label.text = "No coins yet."
-        label.font = .systemFont(ofSize: 24, weight: .semibold)
-        label.textColor = .black
-        label.textAlignment = .center
-        
-        return label
-    }()
+    private let placeholderTitleLabel: Label = makeView {
+        $0.text = Texts.title
+        $0.font = .systemFont(ofSize: 24, weight: .semibold)
+        $0.textColor = .black
+        $0.textAlignment = .center
+    }
     
-    private let placeholderSubtitleLabel: Label = {
-        let label = Label()
-        label.text = "Try to add coin to see portfolio"
-        label.font = .systemFont(ofSize: 21, weight: .semibold)
-        label.textColor = .darkGray
-        label.textAlignment = .center
-
-        return label
-    }()
+    private let placeholderSubtitleLabel: Label = makeView {
+        $0.text = Texts.subtitle
+        $0.font = .systemFont(ofSize: 21, weight: .semibold)
+        $0.textColor = .darkGray
+        $0.textAlignment = .center
+    }
     
-    private let placeholderStackView = UIStackView(axis: .vertical, spacing: 3, distribution: .equalSpacing)
+    private let placeholderStackView = UIStackView(axis: .vertical,
+                                                   spacing: 3,
+                                                   distribution: .equalSpacing)
     
     private let tableHeaderView = View()
     

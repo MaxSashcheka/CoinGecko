@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03F1744D293AA48C00E4E2CF /* MakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1744C293AA48C00E4E2CF /* MakeView.swift */; };
 		1C1E6A0A292113B800A04434 /* ErrorHandableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E6A09292113B800A04434 /* ErrorHandableViewModel.swift */; };
 		1C1E6A0C29216CA300A04434 /* StringConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E6A0B29216CA300A04434 /* StringConverter.swift */; };
 		1C2A63DB28D63F160007877D /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63DA28D63F160007877D /* View.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03F1744C293AA48C00E4E2CF /* MakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeView.swift; sourceTree = "<group>"; };
 		04E1F3DEFE54A2141D0058A8 /* Pods-Utils.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Utils.debug.xcconfig"; path = "Target Support Files/Pods-Utils/Pods-Utils.debug.xcconfig"; sourceTree = "<group>"; };
 		1C1E6A09292113B800A04434 /* ErrorHandableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandableViewModel.swift; sourceTree = "<group>"; };
 		1C1E6A0B29216CA300A04434 /* StringConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConverter.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				1C4287AB28E0B34A00273979 /* UIStackView+Extensions.swift */,
 				1C97B9CD28E9CE6F0085C979 /* UIGestureRecognizer+Extensions.swift */,
 				1C3F8ADC28ECB48C00E04740 /* UIFeedbackGenerator.swift */,
+				03F1744C293AA48C00E4E2CF /* MakeView.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				1C7200AC28D721ED001DDBD5 /* Double+Extensions.swift in Sources */,
 				1C97B9C028E9CC9D0085C979 /* TapSubscription.swift in Sources */,
 				1CDCB2D128D12E1000624AB5 /* ContainerViewControllerTransitionContext.swift in Sources */,
+				03F1744D293AA48C00E4E2CF /* MakeView.swift in Sources */,
 				1C4287AC28E0B34A00273979 /* UIStackView+Extensions.swift in Sources */,
 				1C97B9C828E9CCD60085C979 /* PublisherProvider+ControlEventPublisher.swift in Sources */,
 				1C57B50B28D5E92700E91F7C /* Optional+Extensions.swift in Sources */,

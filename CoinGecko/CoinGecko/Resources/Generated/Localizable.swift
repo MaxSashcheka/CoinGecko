@@ -37,6 +37,12 @@ internal enum L10n {
         internal static let title = L10n.tr("Localizable", "home.networth_cell.delete_button.title", fallback: #"Delete"#)
       }
     }
+    internal enum Placeholder {
+      /// Try to add coin to see portfolio
+      internal static let subtitle = L10n.tr("Localizable", "home.placeholder.subtitle", fallback: #"Try to add coin to see portfolio"#)
+      /// No coins yet.
+      internal static let title = L10n.tr("Localizable", "home.placeholder.title", fallback: #"No coins yet."#)
+    }
     internal enum Portfolio {
       internal enum Title {
         /// Portfolio count: %@

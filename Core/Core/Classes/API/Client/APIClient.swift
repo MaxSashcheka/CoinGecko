@@ -29,6 +29,7 @@ public class APIClient {
                                failure: @escaping Closure.GeneralError) {
         request
             .validate()
+
             .response(completionHandler: { response in
                 switch response.result {
                 case let .success(data):
