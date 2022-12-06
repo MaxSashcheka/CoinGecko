@@ -18,27 +18,23 @@ final class CoinDetailsViewController: ViewController {
     
     private let scrollView = UIScrollView()
     
-    private let currentPriceLabel: Label = {
-        let label = Label()
-        label.font = .systemFont(ofSize: 23, weight: .bold)
-        
-        return label
-    }()
+    private let currentPriceLabel: Label = .make {
+        $0.font = .systemFont(ofSize: 23, weight: .bold)
+    }
     
-    private let priceChangeLabel: Label = {
-        let label = Label()
-        label.font = .systemFont(ofSize: 18, weight: .medium)
-        label.textColor = .systemGreen
-        
-        return label
-    }()
+    private let priceChangeLabel: Label = .make {
+        $0.font = .systemFont(ofSize: 18, weight: .medium)
+        $0.textColor = .systemGreen
+    }
     
     private let chartView = ChartView()
     
     private let buttonsCollectionView = ButtonsCollectionView()
     
-    private let addToPortfolioButton = Button(title: L10n.CoinDetails.AddButton.title,
-                                              backgroundColor: .systemBlue.withAlphaComponent(0.65))
+    private let addToPortfolioButton: Button = .make {
+        $0.setTitle(L10n.CoinDetails.AddButton.title, for: .normal)
+        $0.backgroundColor = .systemBlue.withAlphaComponent(0.65)
+    }
     
     override var isNavigationBarHidden: Bool { true }
     
@@ -147,9 +143,8 @@ final class CoinDetailsViewController: ViewController {
             .store(in: &cancellables)
         
         viewModel.isPriceChangePositive
-            .sink { [weak priceChangeLabel] in
-                priceChangeLabel?.textColor = $0 ? .systemGreen : .systemRed
-            }
+            .map { $0 ? UIColor.systemGreen : .systemRed }
+            .bind(to: \.textColor, on: priceChangeLabel)
             .store(in: &cancellables)
         
         addToPortfolioButton.tapPublisher()

@@ -15,38 +15,26 @@ extension HomeViewController {
         
         // MARK: - Properties
         
-        private let balanceTitleLabel: Label = {
-            let label = Label()
-            label.font = .systemFont(ofSize: 24, weight: .regular)
-            label.textColor = .white
-            label.text = L10n.Home.NetworthCard.title
-            
-            return label
-        }()
+        private let balanceTitleLabel: Label = .make {
+            $0.font = .systemFont(ofSize: 24, weight: .regular)
+            $0.textColor = .white
+            $0.text = L10n.Home.NetworthCard.title
+        }
         
-        private let balanceValueLabel: Label = {
-            let label = Label()
-            label.font = .systemFont(ofSize: 32, weight: .semibold)
-            label.textColor = .white
-            
-            return label
-        }()
+        private let balanceValueLabel: Label = .make {
+            $0.font = .systemFont(ofSize: 32, weight: .semibold)
+            $0.textColor = .white
+        }
         
-        private let dayProfitTitleLabel: Label = {
-            let label = Label()
-            label.font = .systemFont(ofSize: 24, weight: .regular)
-            label.textColor = .white
-            
-            return label
-        }()
+        private let dayProfitTitleLabel: Label = .make {
+            $0.font = .systemFont(ofSize: 24, weight: .regular)
+            $0.textColor = .white
+        }
         
-        private let dayProfitValueLabel: Label = {
-            let label = Label()
-            label.font = .systemFont(ofSize: 32, weight: .semibold)
-            label.textColor = .white
-            
-            return label
-        }()
+        private let dayProfitValueLabel: Label = .make {
+            $0.font = .systemFont(ofSize: 32, weight: .semibold)
+            $0.textColor = .white
+        }
         
         var contentStackView: UIStackView {
             UIStackView(axis: .vertical, spacing: 5, distribution: .fill)

@@ -18,23 +18,21 @@ final class HomeViewController: ViewController {
     
     private let navigationBarView = HomeNavigationBarView()
     
-    private let coinsTableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.register(NetworthCoinCell.self, forCellReuseIdentifier: NetworthCoinCell.reuseIdentifier)
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = .clear
-        
-        return tableView
-    }()
+    private let coinsTableView: TableView = .make(style: .grouped) {
+        $0.register(NetworthCoinCell.self,
+                    forCellReuseIdentifier: NetworthCoinCell.reuseIdentifier)
+        $0.separatorStyle = .none
+        $0.backgroundColor = .clear
+    }
     
-    private let placeholderTitleLabel: Label = makeView {
+    private let placeholderTitleLabel: Label = .make {
         $0.text = Texts.title
         $0.font = .systemFont(ofSize: 24, weight: .semibold)
         $0.textColor = .black
         $0.textAlignment = .center
     }
     
-    private let placeholderSubtitleLabel: Label = makeView {
+    private let placeholderSubtitleLabel: Label = .make {
         $0.text = Texts.subtitle
         $0.font = .systemFont(ofSize: 21, weight: .semibold)
         $0.textColor = .darkGray

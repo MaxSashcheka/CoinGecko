@@ -15,53 +15,38 @@ final class MarketsViewController: ViewController {
     private typealias Texts = L10n.Markets
     // MARK: - Properties
     
-    private let statusPlaceholderLabel: Label = {
-        let label = Label()
-        label.font = .systemFont(ofSize: 28, weight: .medium)
-        
-        return label
-    }()
+    private let statusPlaceholderLabel: Label = .make {
+        $0.font = .systemFont(ofSize: 28, weight: .medium)
+    }
     
-    private let statusPercentageLabel: Label = {
-        let label = Label()
-        label.font = .systemFont(ofSize: 28, weight: .medium)
-        label.textColor = .systemRed
-        
-        return label
-    }()
+    private let statusPercentageLabel: Label = .make {
+        $0.font = .systemFont(ofSize: 28, weight: .medium)
+        $0.textColor = .systemRed
+    }
     
     private let statusTriangleView = PriceTriangleView(backgroundColor: .clear)
     
-    private let statusTimePlaceholderLabel: Label = {
-        let label = Label()
-        label.font = .systemFont(ofSize: 18, weight: .regular)
-        label.textColor = .darkGray
-        label.text = Texts.TimePlaceholder.title
-        
-        return label
-    }()
+    private let statusTimePlaceholderLabel: Label = .make {
+        $0.font = .systemFont(ofSize: 18, weight: .regular)
+        $0.textColor = .darkGray
+        $0.text = Texts.TimePlaceholder.title
+    }
     
-    private let searchButton: Button = {
-        let button = Button()
-        button.setImage(Assets.Images.search.image.withRenderingMode(.alwaysTemplate), for: .normal)
-        button.tintColor = .darkGray
-        
-        return button
-    }()
+    private let searchButton: Button = .make {
+        $0.setImage(Assets.Images.search.image.withRenderingMode(.alwaysTemplate), for: .normal)
+        $0.tintColor = .darkGray
+    }
     
     private let pageButtonsCollectionView = PageButtonsCollectionView()
     
     private let separatorLine = View(backgroundColor: .lightGray.withAlphaComponent(0.7))
     
-    private let coinsTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
-        tableView.separatorStyle = .none
-        tableView.showsVerticalScrollIndicator = false
-        tableView.backgroundColor = .clear
-        
-        return tableView
-    }()
+    private let coinsTableView: TableView = .make(style: .plain) {
+        $0.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
+        $0.separatorStyle = .none
+        $0.showsVerticalScrollIndicator = false
+        $0.backgroundColor = .clear
+    }
     
     override var backgroundColor: UIColor { Assets.Colors.platinum.color }
     override var isNavigationBarHidden: Bool { true }

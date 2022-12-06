@@ -17,5 +17,7 @@ final class SettingsViewController: ViewController {
         super.viewDidLoad()
         
         title = "Settings"
+        
+        // TODO: - Implement for Diplom
     }
 }

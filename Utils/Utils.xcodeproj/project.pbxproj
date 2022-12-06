@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03F1744D293AA48C00E4E2CF /* MakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1744C293AA48C00E4E2CF /* MakeView.swift */; };
 		1C1E6A0A292113B800A04434 /* ErrorHandableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E6A09292113B800A04434 /* ErrorHandableViewModel.swift */; };
 		1C1E6A0C29216CA300A04434 /* StringConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E6A0B29216CA300A04434 /* StringConverter.swift */; };
 		1C2A63DB28D63F160007877D /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63DA28D63F160007877D /* View.swift */; };
@@ -33,6 +32,7 @@
 		1CA3D3AA28D3D1C2009D43E9 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D3A928D3D1C2009D43E9 /* CollectionCell.swift */; };
 		1CA3D3AE28D3D2B9009D43E9 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D3AD28D3D2B9009D43E9 /* UITableViewCell+Extensions.swift */; };
 		1CA3D3B028D3D2BF009D43E9 /* UICollectionViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D3AF28D3D2BF009D43E9 /* UICollectionViewCell+Extensions.swift */; };
+		1CAD2B30293F58960004E4AA /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD2B2F293F58950004E4AA /* TableView.swift */; };
 		1CD695C528CFBFAB007AE077 /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CD695C428CFBFAB007AE077 /* Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDABA9F28DA4ACC00B7A632 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDABA9E28DA4ACC00B7A632 /* ActivityIndicator.swift */; };
 		1CDABAA128DA4B0B00B7A632 /* TextPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDABAA028DA4B0B00B7A632 /* TextPreferences.swift */; };
@@ -57,7 +57,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		03F1744C293AA48C00E4E2CF /* MakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeView.swift; sourceTree = "<group>"; };
 		04E1F3DEFE54A2141D0058A8 /* Pods-Utils.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Utils.debug.xcconfig"; path = "Target Support Files/Pods-Utils/Pods-Utils.debug.xcconfig"; sourceTree = "<group>"; };
 		1C1E6A09292113B800A04434 /* ErrorHandableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandableViewModel.swift; sourceTree = "<group>"; };
 		1C1E6A0B29216CA300A04434 /* StringConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConverter.swift; sourceTree = "<group>"; };
@@ -84,6 +83,7 @@
 		1CA3D3A928D3D1C2009D43E9 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		1CA3D3AD28D3D2B9009D43E9 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		1CA3D3AF28D3D2BF009D43E9 /* UICollectionViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extensions.swift"; sourceTree = "<group>"; };
+		1CAD2B2F293F58950004E4AA /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		1CD695C128CFBFAB007AE077 /* Utils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Utils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD695C428CFBFAB007AE077 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		1CDABA9E28DA4ACC00B7A632 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -212,7 +212,6 @@
 				1C4287AB28E0B34A00273979 /* UIStackView+Extensions.swift */,
 				1C97B9CD28E9CE6F0085C979 /* UIGestureRecognizer+Extensions.swift */,
 				1C3F8ADC28ECB48C00E04740 /* UIFeedbackGenerator.swift */,
-				03F1744C293AA48C00E4E2CF /* MakeView.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -292,6 +291,7 @@
 				1CDCB2E428D1375300624AB5 /* ViewController.swift */,
 				1CA3D3A328D3CF38009D43E9 /* TableCell.swift */,
 				1CA3D3A928D3D1C2009D43E9 /* CollectionCell.swift */,
+				1CAD2B2F293F58950004E4AA /* TableView.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -474,12 +474,12 @@
 				1C97B9C228E9CCAA0085C979 /* ControlEventSubscription.swift in Sources */,
 				1C60DA1428E8FC0D00B675DA /* GeneralError.swift in Sources */,
 				1CDCB2CF28D12DED00624AB5 /* ContainerViewController.swift in Sources */,
+				1CAD2B30293F58960004E4AA /* TableView.swift in Sources */,
 				1C1E6A0C29216CA300A04434 /* StringConverter.swift in Sources */,
 				1C97B9CC28E9CDB70085C979 /* DispatchQueue+Extensions.swift in Sources */,
 				1C7200AC28D721ED001DDBD5 /* Double+Extensions.swift in Sources */,
 				1C97B9C028E9CC9D0085C979 /* TapSubscription.swift in Sources */,
 				1CDCB2D128D12E1000624AB5 /* ContainerViewControllerTransitionContext.swift in Sources */,
-				03F1744D293AA48C00E4E2CF /* MakeView.swift in Sources */,
 				1C4287AC28E0B34A00273979 /* UIStackView+Extensions.swift in Sources */,
 				1C97B9C828E9CCD60085C979 /* PublisherProvider+ControlEventPublisher.swift in Sources */,
 				1C57B50B28D5E92700E91F7C /* Optional+Extensions.swift in Sources */,

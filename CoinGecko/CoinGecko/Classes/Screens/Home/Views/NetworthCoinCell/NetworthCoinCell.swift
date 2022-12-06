@@ -24,12 +24,10 @@ final class NetworthCoinCell: TableCell {
         return view
     }()
     
-    private let coinImageView: RemoteImageView = {
-        let imageView = RemoteImageView(placeholder: .color(.gray))
-        imageView.contentMode = .scaleAspectFit
-        
-        return imageView
-    }()
+    private let coinImageView: RemoteImageView = .make {
+        $0.placeholder = .color(.gray)
+        $0.contentMode = .scaleAspectFit
+    }
     
     private let nameTitledDescriptionView = TitledDescriptionView()
     
@@ -110,8 +108,9 @@ final class NetworthCoinCell: TableCell {
             .store(in: &cancellables)
         
         viewModel.isPriceChangePositive
+            .map { $0 ? UIColor.green : .red }
             .sink { [weak priceInfoTitledDescriptionView] in
-                priceInfoTitledDescriptionView?.setDescriptionLabelTextColor($0 ? .green : .red)
+                priceInfoTitledDescriptionView?.setDescriptionLabelTextColor($0)
             }
             .store(in: &cancellables)
         

@@ -472,9 +472,9 @@
 			children = (
 				1C2A63DD28D644B70007877D /* MainDelegates */,
 				1C2A63E028D644D60007877D /* Common */,
-				1C7CD4F328D273F800068965 /* Screens */,
 				1CDCB2DE28D133C000624AB5 /* Assembly */,
 				1CDCB2DB28D1324F00624AB5 /* Coordinators */,
+				1C7CD4F328D273F800068965 /* Screens */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

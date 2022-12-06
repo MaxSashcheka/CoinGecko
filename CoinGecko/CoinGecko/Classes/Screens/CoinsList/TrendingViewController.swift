@@ -15,15 +15,12 @@ final class TrendingViewController: ViewController {
     
     // MARK: - Properties
     
-    private let coinsTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
-        tableView.separatorStyle = .none
-        tableView.showsVerticalScrollIndicator = false
-        tableView.backgroundColor = .clear
-        
-        return tableView
-    }()
+    private let coinsTableView: TableView = .make(style: .plain) {
+        $0.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
+        $0.separatorStyle = .none
+        $0.showsVerticalScrollIndicator = false
+        $0.backgroundColor = .clear
+    }
     
     override var backgroundColor: UIColor { Assets.Colors.platinum.color }
     override var prefersLargeTitles: Bool { true }

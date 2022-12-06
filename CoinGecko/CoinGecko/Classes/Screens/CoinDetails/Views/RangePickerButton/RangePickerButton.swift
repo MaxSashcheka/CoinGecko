@@ -60,9 +60,7 @@ class RangePickerButton: Button {
             .store(in: &cancellables)
 
         viewModel.isSelected
-            .sink { [weak self] in
-                self?.isSelected = $0
-            }
+            .bind(to: \.isSelected, on: self)
             .store(in: &cancellables)
     }
     
