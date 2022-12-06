@@ -13,82 +13,107 @@ extension AppStyle {
         enum TitledDescription {
             static var title: TextStyle {
                 .style(font: .systemFont(ofSize: 20, weight: .medium),
-                       textColor: .black.withAlphaComponent(0.85))
+                       textColor: Colors.TitledDescription.title)
             }
             
             static var description: TextStyle {
                 .style(font: .systemFont(ofSize: 15, weight: .regular),
-                       textColor: .darkGray)
+                       textColor: Colors.TitledDescription.description)
             }
         }
         
         enum CoinOverlay {
             static var description: TextStyle {
                 .style(font: .systemFont(ofSize: 17, weight: .regular),
-                       textColor: .darkGray)
+                       textColor: Colors.CoinOverlay.description)
             }
             
             static var amount: TextStyle {
                 .style(font: .systemFont(ofSize: 30, weight: .semibold),
-                       textColor: .black)
+                       textColor: Colors.CoinOverlay.amount)
             }
         }
         
         enum CoinDetails {
+            enum NavigationBar {
+                static var title: TextStyle {
+                    .style(font: .systemFont(ofSize: 20, weight: .medium),
+                           textColor: .black.withAlphaComponent(0.85))
+                }
+                
+                static var description: TextStyle {
+                    .style(font: .systemFont(ofSize: 14, weight: .regular),
+                           textColor: .darkGray)
+                }
+            }
+            
+            enum RangePickerButton {
+                static var title: TextStyle {
+                    .style(font: .systemFont(ofSize: 15, weight: .semibold),
+                           textColor: Colors.RangePickerButton.Unselected.title)
+                }
+            }
+            
             static var currentPrice: TextStyle {
                 .style(font: .systemFont(ofSize: 23, weight: .bold),
-                       textColor: .black)
+                       textColor: Colors.CoinDetails.currentPrice)
             }
             
             static var priceChange: TextStyle {
                 .style(font: .systemFont(ofSize: 18, weight: .medium),
-                       textColor: .systemGreen)
+                       textColor: Colors.CoinDetails.priceChange)
             }
         }
         
         enum Markets {
+            enum PageButton {
+                static var title: TextStyle {
+                    .style(font: .systemFont(ofSize: 20, weight: .medium),
+                           textColor: Colors.Markets.PageButton.title)
+                }
+            }
             static var statusPlaceholder: TextStyle {
                 .style(font: .systemFont(ofSize: 28, weight: .medium),
-                       textColor: .black)
+                       textColor: Colors.Markets.statusPlaceholder)
             }
             
             static var statusPercentage: TextStyle {
                 .style(font: .systemFont(ofSize: 28, weight: .medium),
-                       textColor: .systemRed)
+                       textColor: Colors.Markets.statusPercentage)
             }
             
             static var statusTimePlaceholder: TextStyle {
                 .style(font: .systemFont(ofSize: 18, weight: .regular),
-                       textColor: .darkGray)
+                       textColor: Colors.Markets.statusTimePlaceholder)
             }
         }
         
         enum NetworthCoin {
             static var deleteButton: TextStyle {
                 .style(font: .systemFont(ofSize: 16, weight: .medium),
-                       textColor: .white)
+                       textColor: Colors.Home.CoinCell.deleteButtonTitle)
             }
         }
         
         enum NetworthCard {
             static var balanceTitle: TextStyle {
                 .style(font: .systemFont(ofSize: 24, weight: .regular),
-                       textColor: .white)
+                       textColor: Colors.Home.CardView.text)
             }
             
             static var balanceValue: TextStyle {
                 .style(font: .systemFont(ofSize: 32, weight: .semibold),
-                       textColor: .white)
+                       textColor: Colors.Home.CardView.text)
             }
             
             static var dayProfitTitle: TextStyle {
                 .style(font: .systemFont(ofSize: 24, weight: .regular),
-                       textColor: .white)
+                       textColor: Colors.Home.CardView.text)
             }
             
             static var dayProfitValue: TextStyle {
                 .style(font: .systemFont(ofSize: 32, weight: .semibold),
-                       textColor: .white)
+                       textColor: Colors.Home.CardView.text)
             }
         }
         
@@ -96,33 +121,31 @@ extension AppStyle {
             enum NavigationBar {
                 static var welcomeTitle: TextStyle {
                     .style(font: .systemFont(ofSize: 30, weight: .semibold),
-                           textColor: .darkGray)
+                           textColor: Colors.Home.NavigationBar.welcome)
                 }
                 
                 static var nameTitle: TextStyle {
                     .style(font: .systemFont(ofSize: 22, weight: .bold),
-                           textColor: .black.withAlphaComponent(0.9))
+                           textColor: Colors.Home.NavigationBar.name)
                 }
                 
                 static var emailTitle: TextStyle {
                     .style(font: .systemFont(ofSize: 19, weight: .bold),
-                           textColor: .darkGray.withAlphaComponent(0.9))
+                           textColor: Colors.Home.NavigationBar.email)
                 }
             }
             
             enum Placeholder {
                 static var title: TextStyle {
                     .style(font: .systemFont(ofSize: 24, weight: .semibold),
-                           textColor: .black)
+                           textColor: Colors.Home.Placeholder.title)
                 }
                 
                 static var subtitle: TextStyle {
                     .style(font: .systemFont(ofSize: 21, weight: .semibold),
-                           textColor: .darkGray)
+                           textColor: Colors.Home.Placeholder.subtitle)
                 }
             }
         }
-        
-        
     }
 }

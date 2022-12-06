@@ -6,8 +6,9 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import UIKit
+import SafeSFSymbols
 import Utils
+import UIKit
 
 final class RootCoordinator: TabCoordinator {
 
@@ -29,7 +30,7 @@ final class RootCoordinator: TabCoordinator {
 private extension RootCoordinator {
     func setupAppearance() {
         let navigationAppearance = UINavigationBarAppearance()
-        let backButtonImage = Assets.Images.back.image.withBaselineOffset(fromBottom: 2)
+        let backButtonImage = UIImage(.chevron.left).withBaselineOffset(fromBottom: 2)
         navigationAppearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
         
         let navigationBar: UINavigationBar = UINavigationBar.appearance()

@@ -11,6 +11,7 @@ import UIKit
 import Utils
 
 class RangePickerButton: Button {
+    private typealias Colors = AppStyle.Colors.RangePickerButton
     
     // MARK: - Properties
     
@@ -33,13 +34,13 @@ class RangePickerButton: Button {
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                backgroundColor = .systemBlue.withAlphaComponent(0.1)
-                setTitleColor(.systemBlue.withAlphaComponent(0.7), for: .normal)
-                layer.borderColor = UIColor.systemBlue.withAlphaComponent(0.7).cgColor
+                backgroundColor = Colors.Selected.background
+                setTitleColor(Colors.Selected.title, for: .normal)
+                layer.borderColor = Colors.Selected.border.cgColor
             } else {
-                backgroundColor = .lightGray.withAlphaComponent(0.15)
-                setTitleColor(.darkGray, for: .normal)
-                layer.borderColor = UIColor.lightGray.withAlphaComponent(0.3).cgColor
+                backgroundColor = Colors.Unselected.background
+                setTitleColor(Colors.Unselected.title, for: .normal)
+                layer.borderColor = Colors.Unselected.border.cgColor
             }
         }
     }
@@ -77,19 +78,10 @@ class RangePickerButton: Button {
     }
     
     func initialize() {
-        font = .systemFont(ofSize: 15, weight: .semibold)
-        backgroundColor = .lightGray.withAlphaComponent(0.15)
+        apply(AppStyle.TextStyles.CoinDetails.RangePickerButton.title)
         
-        setTitleColor(.darkGray, for: .normal)
-        
-        layer.borderColor = UIColor.lightGray.withAlphaComponent(0.3).cgColor
+        backgroundColor = Colors.Unselected.background
+        layer.borderColor = Colors.Unselected.border.cgColor
         layer.borderWidth = 1
-    }
-}
-
-// MARK: - RangePickerButton+Constants
-private extension RangePickerButton {
-    enum Constants {
-        
     }
 }

@@ -12,20 +12,19 @@ import SnapKit
 import Utils
 
 final class CoinDetailsNavigationBarView: View {
+    private typealias TextStyles = AppStyle.TextStyles.CoinDetails.NavigationBar
     
     // MARK: - Properties
     
     private let closeButton = Button(image: Assets.Images.cross.image)
     
-    private let titleLabel = Label(textPreferences: .title)
+    private let titleLabel: Label = .make {
+        $0.apply(TextStyles.title)
+    }
     
-    private let descriptionLabel: Label = {
-        let label = Label()
-        label.font = .systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .darkGray
-        
-        return label
-    }()
+    private let descriptionLabel: Label = .make {
+        $0.apply(TextStyles.description)
+    }
     
     private let coinImageView: RemoteImageView = {
         let imageView = RemoteImageView(placeholder: .color(.gray))

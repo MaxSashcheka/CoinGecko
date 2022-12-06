@@ -15,6 +15,7 @@ extension HomeViewController {
     final class HomeNavigationBarView: View {
         private typealias Texts = L10n.Home.NavigationBar.Title
         private typealias TextStyles = AppStyle.TextStyles.Home.NavigationBar
+        private typealias Colors = AppStyle.Colors.Home.NavigationBar
         
         private let welcomeTitleLabel: Label = .make {
             $0.apply(TextStyles.welcomeTitle)
@@ -33,15 +34,15 @@ extension HomeViewController {
         
         private let settingsButton: Button = .make {
             $0.setImage(Assets.Images.settings.image.withRenderingMode(.alwaysTemplate), for: .normal)
-            $0.tintColor = .darkGray
+            $0.tintColor = Colors.tint
         }
         
         private let profileButton: Button = .make {
             $0.setImage(UIImage(.person.cropCircle), for: .normal)
-            $0.tintColor = .darkGray
+            $0.tintColor = Colors.tint
         }
         
-        private let separatorLine = View(backgroundColor: .lightGray.withAlphaComponent(0.7))
+        private let separatorLine = View(backgroundColor: Colors.separatorLine)
         
         var viewModel: ViewModel? {
             didSet {

@@ -10,6 +10,7 @@ import UIKit
 import Utils
 
 protocol CoinBottomSheetPresentable {
+    func showAddCoinBottomSheet(coinId: String)
     var presentationControllerDidDismissed: Closure.Void? { get }
 }
 

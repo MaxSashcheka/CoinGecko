@@ -13,6 +13,7 @@ import Utils
 extension HomeViewController {
     final class NetworhCardView: View {
         private typealias TextStyles = AppStyle.TextStyles.NetworthCard
+        private typealias Colors = AppStyle.Colors.Home.CardView
         
         // MARK: - Properties
         
@@ -85,7 +86,7 @@ extension HomeViewController {
         }
         
         private func setupData() {
-            backgroundColor = .systemBlue.withAlphaComponent(0.65)
+            backgroundColor = Colors.background
         }
         
         override func layoutSubviews() {

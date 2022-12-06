@@ -12,6 +12,7 @@ import Utils
 
 final class CoinDetailsViewController: ViewController {
     private typealias TextStyles = AppStyle.TextStyles.CoinDetails
+    private typealias Colors = AppStyle.Colors.CoinDetails
     
     // MARK: - Properties
     
@@ -33,14 +34,14 @@ final class CoinDetailsViewController: ViewController {
     
     private let addToPortfolioButton: Button = .make {
         $0.setTitle(L10n.CoinDetails.AddButton.title, for: .normal)
-        $0.backgroundColor = .systemBlue.withAlphaComponent(0.65)
+        $0.backgroundColor = Colors.addButton
     }
     
     override var isNavigationBarHidden: Bool { true }
     
     var viewModel: ViewModel!
     
-    override var backgroundColor: UIColor { .white }
+    override var backgroundColor: UIColor { Colors.background }
     
     // MARK: - Lifecycle
     

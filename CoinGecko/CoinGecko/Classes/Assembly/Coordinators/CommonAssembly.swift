@@ -40,4 +40,13 @@ extension CommonAssembly {
         
         return (viewController, viewModel)
     }
+    
+    typealias InAppWebBrowserViewModel = InAppWebBrowserViewController.ViewModel
+    static func makeInAppWebBroserScreen(url: URL) -> (InAppWebBrowserViewController, InAppWebBrowserViewModel) {
+        let viewController = InAppWebBrowserViewController(url: url)
+        let viewModel = InAppWebBrowserViewModel()
+        viewController.viewModel = viewModel
+        
+        return (viewController, viewModel)
+    }
 }

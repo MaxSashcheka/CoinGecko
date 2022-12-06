@@ -11,6 +11,7 @@ import SnapKit
 import Utils
 
 final class SearchViewController: ViewController {
+    private typealias Colors = AppStyle.Colors.Search
     
     // MARK: - Properties
     
@@ -18,7 +19,7 @@ final class SearchViewController: ViewController {
         $0.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
-        $0.backgroundColor = .clear
+        $0.backgroundColor = Colors.table
     }
     
     private let searchTextField = SearchTextField()
@@ -27,7 +28,7 @@ final class SearchViewController: ViewController {
     
     var viewModel: ViewModel!
     
-    override var backgroundColor: UIColor { Assets.Colors.platinum.color }
+    override var backgroundColor: UIColor { Colors.background }
     override var isNavigationBarHidden: Bool { false }
     override var isTabBarHidden: Bool { true }
     

@@ -10,6 +10,7 @@ import UIKit
 import Utils
 
 final class SearchTextField: View {
+    private typealias Colors = AppStyle.Colors.Search.TextField
     
     // MARK: - Properties
     
@@ -19,12 +20,12 @@ final class SearchTextField: View {
     
     private let iconImageView: UIImageView = .make {
         $0.image = Assets.Images.search.image.withRenderingMode(.alwaysTemplate)
-        $0.tintColor = .lightGray.withAlphaComponent(0.7)
+        $0.tintColor = Colors.tint
     }
     
     private let clearButton: Button = .make {
         $0.setImage(Assets.Images.cross.image.withRenderingMode(.alwaysTemplate), for: .normal)
-        $0.tintColor = .lightGray.withAlphaComponent(0.7)
+        $0.tintColor = Colors.tint
         $0.alpha = .zero
     }
     
@@ -44,7 +45,7 @@ final class SearchTextField: View {
         
         backgroundColor = .white
         cornerRadius = 8
-        borderColor = .lightGray.withAlphaComponent(0.7)
+        borderColor = Colors.tint
         borderWidth = 1.5
         
         innerTextField.delegate = self

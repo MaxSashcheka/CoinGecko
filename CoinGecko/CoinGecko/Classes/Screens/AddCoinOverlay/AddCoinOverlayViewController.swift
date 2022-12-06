@@ -12,10 +12,11 @@ import Utils
 final class AddCoinOverlayViewController: ViewController {
     private typealias Texts = L10n.Overlay.Coin
     private typealias TextStyles = AppStyle.TextStyles.CoinOverlay
+    private typealias Colors = AppStyle.Colors.CoinOverlay
     
     // MARK: - Properties
     
-    private let indicatorView = View(backgroundColor: .lightGray)
+    private let indicatorView = View(backgroundColor: Colors.indicator)
     
     private let descriptionLabel: Label = .make {
         $0.text = Texts.title
@@ -33,7 +34,7 @@ final class AddCoinOverlayViewController: ViewController {
     
     private let addButton: Button = .make {
         $0.setTitle(Texts.Button.title, for: .normal)
-        $0.backgroundColor = .systemBlue.withAlphaComponent(0.65)
+        $0.backgroundColor = Colors.addButton
     }
     
     private var keyboardIsShown = false
@@ -191,13 +192,13 @@ final class AddCoinOverlayViewController: ViewController {
             .store(in: &cancellables)
         
         viewModel.incorrectNumberSubject
-            .map { UIColor.red }
+            .map { Colors.failure }
             .bind(to: \.backgroundColor, on: textFieldBottomLine)
             .store(in: &cancellables)
     }
 }
 
-// MARK: - AddCoinOverlayViewController+Constants
+// MARK: - AddCoinOverlayViewController+updateBlurEffectAlpha
 private extension AddCoinOverlayViewController {
     func updateBlurEffectAlpha(translation: CGFloat) {
         let translationProgress = translation / view.frame.height

@@ -14,6 +14,7 @@ import Utils
 final class HomeViewController: ViewController {
     private typealias Texts = L10n.Home.Placeholder
     private typealias TextStyles = AppStyle.TextStyles.Home.Placeholder
+    private typealias Colors = AppStyle.Colors.Home
     
     // MARK: - Properties
     
@@ -23,7 +24,7 @@ final class HomeViewController: ViewController {
         $0.register(NetworthCoinCell.self,
                     forCellReuseIdentifier: NetworthCoinCell.reuseIdentifier)
         $0.separatorStyle = .none
-        $0.backgroundColor = .clear
+        $0.backgroundColor = Colors.table
     }
     
     private let placeholderTitleLabel: Label = .make {
@@ -47,7 +48,7 @@ final class HomeViewController: ViewController {
     private let networhCardView = NetworhCardView()
     
     override var isNavigationBarHidden: Bool { true }
-    override var backgroundColor: UIColor { Assets.Colors.platinum.color }
+    override var backgroundColor: UIColor { Colors.background }
     override var tabBarTitle: String { L10n.Tabbar.Title.home }
     override var tabBarImage: UIImage? { UIImage(.house) }
     

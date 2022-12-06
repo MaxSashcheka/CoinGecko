@@ -14,6 +14,7 @@ import Utils
 final class MarketsViewController: ViewController {
     private typealias Texts = L10n.Markets
     private typealias TextsStyles = AppStyle.TextStyles.Markets
+    private typealias Colors = AppStyle.Colors.Markets
     
     // MARK: - Properties
     
@@ -34,21 +35,21 @@ final class MarketsViewController: ViewController {
     
     private let searchButton: Button = .make {
         $0.setImage(Assets.Images.search.image.withRenderingMode(.alwaysTemplate), for: .normal)
-        $0.tintColor = .darkGray
+        $0.tintColor = Colors.tint
     }
     
     private let pageButtonsCollectionView = PageButtonsCollectionView()
     
-    private let separatorLine = View(backgroundColor: .lightGray.withAlphaComponent(0.7))
+    private let separatorLine = View(backgroundColor: Colors.separatorLine)
     
     private let coinsTableView: TableView = .make(style: .plain) {
         $0.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
-        $0.backgroundColor = .clear
+        $0.backgroundColor = Colors.table
     }
     
-    override var backgroundColor: UIColor { Assets.Colors.platinum.color }
+    override var backgroundColor: UIColor { Colors.background }
     override var isNavigationBarHidden: Bool { true }
     override var tabBarTitle: String { L10n.Tabbar.Title.markets }
     override var tabBarImage: UIImage? { UIImage(.chart.pie) }
@@ -103,7 +104,7 @@ final class MarketsViewController: ViewController {
         }
         
         let searchButtonContainerView: View = {
-            let view = View(backgroundColor: .lightGray.withAlphaComponent(0.2))
+            let view = View(backgroundColor: Colors.searchContainer)
             view.cornerRadius = 20
             return view
         }()
@@ -184,7 +185,7 @@ final class MarketsViewController: ViewController {
                 // TODO: - this logic with creating priceChangeString should become reusable
                 
                 self?.statusPercentageLabel.text = priceChangeString
-                self?.statusPercentageLabel.textColor = isChangePercentagePositive ? .green : .red
+                self?.statusPercentageLabel.textColor = isChangePercentagePositive ? Colors.positiveChange : Colors.negativeChange
             }
             .store(in: &cancellables)
         

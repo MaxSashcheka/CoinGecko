@@ -12,10 +12,13 @@ import UIKit
 import Utils
 
 final class PageButton: Button {
+    typealias TextsStyles = AppStyle.TextStyles.Markets.PageButton
+    typealias Colors = AppStyle.Colors.Markets.PageButton
+
     
     // MARK: - Properties
     
-    private let bottomLine = View(backgroundColor: .blue)
+    private let bottomLine = View(backgroundColor: Colors.bottomLine)
     
     var viewModel: ViewModel? {
         didSet {
@@ -51,14 +54,13 @@ final class PageButton: Button {
         
         viewModel.isSelected
             .sink { [weak self] isSelected in
-                self?.setTitleColor(isSelected ? .blue : .darkGray, for: .normal)
+                self?.setTitleColor(isSelected ? Colors.selected : Colors.unselected, for: .normal)
                 self?.bottomLine.isHidden = !isSelected
             }
             .store(in: &cancellables)
     }
     
     private func setupData() {
-        font = .systemFont(ofSize: 20, weight: .medium)
-        textColor = .darkGray
+        apply(TextsStyles.title)
     }
 }
