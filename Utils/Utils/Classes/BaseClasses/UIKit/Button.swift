@@ -62,6 +62,11 @@ open class Button: UIButton {
         return button
     }
     
+    public func apply(_ style: TextStyle) {
+        self.font = style.font
+        self.textColor = style.textColor
+    }
+    
     private func setupContent() {
         imageView?.snp.makeConstraints { make in
             make.size.equalToSuperview()

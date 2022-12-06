@@ -39,9 +39,7 @@ final class NetworthCoinCell: TableCell {
         let button = Button()
         button.backgroundColor = .red
         button.setTitle(L10n.Home.NetworthCell.DeleteButton.title, for: .normal)
-        button.font = .systemFont(ofSize: 16, weight: .medium)
-        button.textColor = .white
-        button.cornerRadius = 17.5
+        button.apply(AppStyle.TextStyles.NetworthCoin.deleteButton)
         
         return button
     }()
@@ -55,6 +53,12 @@ final class NetworthCoinCell: TableCell {
             bindData(with: viewModel)
             setupData(with: viewModel)
         }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        deleteButton.cornerRadius = deleteButton.frame.height / 2
     }
     
     // MARK: - Methods

@@ -13,22 +13,22 @@ import Utils
 
 final class MarketsViewController: ViewController {
     private typealias Texts = L10n.Markets
+    private typealias TextsStyles = AppStyle.TextStyles.Markets
+    
     // MARK: - Properties
     
     private let statusPlaceholderLabel: Label = .make {
-        $0.font = .systemFont(ofSize: 28, weight: .medium)
+        $0.apply(TextsStyles.statusPlaceholder)
     }
     
     private let statusPercentageLabel: Label = .make {
-        $0.font = .systemFont(ofSize: 28, weight: .medium)
-        $0.textColor = .systemRed
+        $0.apply(TextsStyles.statusPercentage)
     }
     
     private let statusTriangleView = PriceTriangleView(backgroundColor: .clear)
     
     private let statusTimePlaceholderLabel: Label = .make {
-        $0.font = .systemFont(ofSize: 18, weight: .regular)
-        $0.textColor = .darkGray
+        $0.apply(TextsStyles.statusTimePlaceholder)
         $0.text = Texts.TimePlaceholder.title
     }
     

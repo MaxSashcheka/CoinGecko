@@ -11,6 +11,7 @@ import SnapKit
 import Utils
 
 final class CoinDetailsViewController: ViewController {
+    private typealias TextStyles = AppStyle.TextStyles.CoinDetails
     
     // MARK: - Properties
     
@@ -19,12 +20,11 @@ final class CoinDetailsViewController: ViewController {
     private let scrollView = UIScrollView()
     
     private let currentPriceLabel: Label = .make {
-        $0.font = .systemFont(ofSize: 23, weight: .bold)
+        $0.apply(TextStyles.currentPrice)
     }
     
     private let priceChangeLabel: Label = .make {
-        $0.font = .systemFont(ofSize: 18, weight: .medium)
-        $0.textColor = .systemGreen
+        $0.apply(TextStyles.priceChange)
     }
     
     private let chartView = ChartView()

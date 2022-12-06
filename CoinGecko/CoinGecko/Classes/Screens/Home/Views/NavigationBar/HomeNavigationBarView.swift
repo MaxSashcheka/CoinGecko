@@ -14,22 +14,20 @@ import Utils
 extension HomeViewController {
     final class HomeNavigationBarView: View {
         private typealias Texts = L10n.Home.NavigationBar.Title
+        private typealias TextStyles = AppStyle.TextStyles.Home.NavigationBar
         
         private let welcomeTitleLabel: Label = .make {
-            $0.font = .systemFont(ofSize: 30, weight: .semibold)
-            $0.textColor = .darkGray
+            $0.apply(TextStyles.welcomeTitle)
             $0.text = Texts.welcome
         }
         
         private let nameTitleLabel: Label = .make {
-            $0.font = .systemFont(ofSize: 22, weight: .bold)
-            $0.textColor = .black.withAlphaComponent(0.9)
+            $0.apply(TextStyles.nameTitle)
             $0.text = Texts.name
         }
         
         private let emailTitleLabel: Label = .make {
-            $0.font = .systemFont(ofSize: 19, weight: .bold)
-            $0.textColor = .darkGray.withAlphaComponent(0.9)
+            $0.apply(TextStyles.emailTitle)
             $0.text = Texts.email
         }
         

@@ -13,6 +13,7 @@ import Utils
 
 final class HomeViewController: ViewController {
     private typealias Texts = L10n.Home.Placeholder
+    private typealias TextStyles = AppStyle.TextStyles.Home.Placeholder
     
     // MARK: - Properties
     
@@ -26,16 +27,14 @@ final class HomeViewController: ViewController {
     }
     
     private let placeholderTitleLabel: Label = .make {
+        $0.apply(TextStyles.title)
         $0.text = Texts.title
-        $0.font = .systemFont(ofSize: 24, weight: .semibold)
-        $0.textColor = .black
         $0.textAlignment = .center
     }
     
     private let placeholderSubtitleLabel: Label = .make {
+        $0.apply(TextStyles.subtitle)
         $0.text = Texts.subtitle
-        $0.font = .systemFont(ofSize: 21, weight: .semibold)
-        $0.textColor = .darkGray
         $0.textAlignment = .center
     }
     

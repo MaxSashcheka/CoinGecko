@@ -12,28 +12,25 @@ import Utils
 
 extension HomeViewController {
     final class NetworhCardView: View {
+        private typealias TextStyles = AppStyle.TextStyles.NetworthCard
         
         // MARK: - Properties
         
         private let balanceTitleLabel: Label = .make {
-            $0.font = .systemFont(ofSize: 24, weight: .regular)
-            $0.textColor = .white
+            $0.apply(TextStyles.balanceTitle)
             $0.text = L10n.Home.NetworthCard.title
         }
         
         private let balanceValueLabel: Label = .make {
-            $0.font = .systemFont(ofSize: 32, weight: .semibold)
-            $0.textColor = .white
+            $0.apply(TextStyles.balanceValue)
         }
         
         private let dayProfitTitleLabel: Label = .make {
-            $0.font = .systemFont(ofSize: 24, weight: .regular)
-            $0.textColor = .white
+            $0.apply(TextStyles.dayProfitTitle)
         }
         
         private let dayProfitValueLabel: Label = .make {
-            $0.font = .systemFont(ofSize: 32, weight: .semibold)
-            $0.textColor = .white
+            $0.apply(TextStyles.dayProfitValue)
         }
         
         var contentStackView: UIStackView {

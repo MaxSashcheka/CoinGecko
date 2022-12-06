@@ -11,6 +11,7 @@ import Utils
 
 final class AddCoinOverlayViewController: ViewController {
     private typealias Texts = L10n.Overlay.Coin
+    private typealias TextStyles = AppStyle.TextStyles.CoinOverlay
     
     // MARK: - Properties
     
@@ -18,16 +19,14 @@ final class AddCoinOverlayViewController: ViewController {
     
     private let descriptionLabel: Label = .make {
         $0.text = Texts.title
-        $0.font = .systemFont(ofSize: 17, weight: .regular)
-        $0.textColor = .darkGray
+        $0.apply(TextStyles.description)
         $0.textAlignment = .center
     }
     
-    private let amountTextField: UITextField = .make {
+    private let amountTextField: TextField = .make {
         $0.textAlignment = .center
         $0.keyboardType = .decimalPad
-        $0.font = .systemFont(ofSize: 30, weight: .semibold)
-        $0.tintColor = .black
+        $0.apply(TextStyles.amount)
     }
     
     private let textFieldBottomLine = View(backgroundColor: .darkGray)
