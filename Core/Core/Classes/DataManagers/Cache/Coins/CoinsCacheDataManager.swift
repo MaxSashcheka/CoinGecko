@@ -11,7 +11,7 @@ import Utils
 
 public final class CoinsCacheDataManager: CoinsCacheDataManagerProtocol {
     private let coreDataSource: CoreDataSource
-    private var cachedCoins = [Coin]()
+    public var cachedCoins = [Coin]()
     
     public init(coreDataSource: CoreDataSource) {
         self.coreDataSource = coreDataSource

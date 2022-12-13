@@ -13,10 +13,12 @@ import Utils
 
 final class CoinDetailsNavigationBarView: View {
     private typealias TextStyles = AppStyle.TextStyles.CoinDetails.NavigationBar
+    private typealias Colors = AppStyle.Colors.CoinDetails.NavigationBar
+    private typealias Images = Assets.Images
     
     // MARK: - Properties
     
-    private let closeButton = Button(image: Assets.Images.cross.image)
+    private let closeButton = Button(image: Images.cross.image)
     
     private let titleLabel: Label = .make {
         $0.apply(TextStyles.title)
@@ -33,9 +35,13 @@ final class CoinDetailsNavigationBarView: View {
         return imageView
     }()
     
+    private let browserButton = Button(image: UIImage(.network))
+    
     private let favouriteButton = Button()
     
     private let separatorLine = View(backgroundColor: .lightGray.withAlphaComponent(0.7))
+    
+    var rightBarButtons: [Button] { [browserButton, favouriteButton] }
     
     var viewModel: ViewModel? {
         didSet {
@@ -83,11 +89,19 @@ final class CoinDetailsNavigationBarView: View {
             make.trailing.equalToSuperview()
         }
         
-        addSubview(favouriteButton)
-        favouriteButton.snp.makeConstraints { make in
-            make.centerY.equalTo(closeButton)
+        let rightBarButtonsStackView = UIStackView(axis: .horizontal, spacing: 10, distribution: .fillEqually)
+        addSubview(rightBarButtonsStackView)
+        rightBarButtonsStackView.addArrangedSubviews(rightBarButtons)
+        
+        rightBarButtons.forEach {
+            $0.snp.makeConstraints { make in
+                make.size.equalTo(30)
+            }
+        }
+  
+        rightBarButtonsStackView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-25)
-            make.size.equalTo(30)
+            make.centerY.equalToSuperview()
         }
         
         addSubview(separatorLine)
@@ -112,7 +126,7 @@ final class CoinDetailsNavigationBarView: View {
         
         viewModel.isFavourite
             .sink { [weak favouriteButton] in
-                favouriteButton?.setImage($0 ? UIImage(.heart.fill) : UIImage(.heart), for: .normal)
+                favouriteButton?.setImage(UIImage($0 ? .heart.fill : .heart), for: .normal)
             }
             .store(in: &cancellables)
 
@@ -123,9 +137,13 @@ final class CoinDetailsNavigationBarView: View {
         favouriteButton.tapPublisher()
             .bind(to: viewModel.addToFavouriteSubject)
             .store(in: &cancellables)
+        
+        browserButton.tapPublisher()
+            .bind(to: viewModel.browserButtonSubject)
+            .store(in: &cancellables)
     }
     
     func setupData() {
-        backgroundColor = .white
+        backgroundColor = Colors.background
     }
 }

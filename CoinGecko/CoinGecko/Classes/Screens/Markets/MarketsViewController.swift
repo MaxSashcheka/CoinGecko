@@ -42,7 +42,7 @@ final class MarketsViewController: ViewController {
     
     private let separatorLine = View(backgroundColor: Colors.separatorLine)
     
-    private let coinsTableView: TableView = .make(style: .plain) {
+    private let coinsTableView: TableView = .make {
         $0.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
@@ -63,13 +63,14 @@ final class MarketsViewController: ViewController {
         
         // TODO: - add pull to refresh
         viewModel.errorHandlerClosure = errorHandler
-        viewModel.fetchCoins(mode: .all)
+        
         viewModel.fetchGlobalData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        viewModel.fetchCoins()
         viewModel.fetchFavouritesCoins()
     }
     
@@ -160,9 +161,9 @@ final class MarketsViewController: ViewController {
             }
             .store(in: &cancellables)
         
-        viewModel.pageButtonsCollectionViewModel.selectModeSubject
-            .sink { [weak viewModel] in
-                viewModel?.fetchCoins(mode: $0)
+        viewModel.pageButtonsCollectionViewModel.selectedMode
+            .sink { [weak viewModel] _ in
+                viewModel?.fetchCoins()
             }
             .store(in: &cancellables)
         

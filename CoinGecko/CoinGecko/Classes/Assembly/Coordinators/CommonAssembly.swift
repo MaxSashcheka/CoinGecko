@@ -20,6 +20,7 @@ extension CommonAssembly {
         let viewController = CoinDetailsViewController()
         let viewModel = CoinDetailsViewModel(
             coinId: coinId,
+            externalLinkBuilder: resolver.resolve(ExternalLinkBuilder.self),
             coinsInteractor: InteractorsAssembly.makeCoinsInteractor(resolver: resolver),
             isAddToPortfolioEnabled: isAddToPortfolioEnabled
         )

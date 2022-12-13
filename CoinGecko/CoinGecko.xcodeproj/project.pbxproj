@@ -50,6 +50,7 @@
 		1C97B9D328EA2E460085C979 /* PageButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9D228EA2E460085C979 /* PageButtonViewModel.swift */; };
 		1C97B9D728EA32550085C979 /* PageButtonsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9D628EA32550085C979 /* PageButtonsCollectionView.swift */; };
 		1C97B9D928EA325F0085C979 /* PageButtonsCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9D828EA325F0085C979 /* PageButtonsCollectionViewModel.swift */; };
+		1C9961AE294130E800F9A7AE /* PriceConverable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9961AD294130E800F9A7AE /* PriceConverable.swift */; };
 		1CA3D3A628D3CFA7009D43E9 /* CoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D3A528D3CFA7009D43E9 /* CoinCell.swift */; };
 		1CA3D3A828D3CFAF009D43E9 /* CoinCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D3A728D3CFAF009D43E9 /* CoinCellViewModel.swift */; };
 		1CAD2B33293F66990004E4AA /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD2B32293F66990004E4AA /* AppStyle.swift */; };
@@ -148,6 +149,7 @@
 		1C97B9D228EA2E460085C979 /* PageButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageButtonViewModel.swift; sourceTree = "<group>"; };
 		1C97B9D628EA32550085C979 /* PageButtonsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageButtonsCollectionView.swift; sourceTree = "<group>"; };
 		1C97B9D828EA325F0085C979 /* PageButtonsCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageButtonsCollectionViewModel.swift; sourceTree = "<group>"; };
+		1C9961AD294130E800F9A7AE /* PriceConverable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceConverable.swift; sourceTree = "<group>"; };
 		1CA3D3A528D3CFA7009D43E9 /* CoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCell.swift; sourceTree = "<group>"; };
 		1CA3D3A728D3CFAF009D43E9 /* CoinCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCellViewModel.swift; sourceTree = "<group>"; };
 		1CAD2B32293F66990004E4AA /* AppStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
@@ -540,6 +542,7 @@
 			children = (
 				1C5E031529185B35008A7495 /* CoinBottomSheetPresentable.swift */,
 				1CB0B4E9293FF24600C874C4 /* InAppWebBrowserPresentable.swift */,
+				1C9961AD294130E800F9A7AE /* PriceConverable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -832,6 +835,7 @@
 				1CB0B4EA293FF24600C874C4 /* InAppWebBrowserPresentable.swift in Sources */,
 				1CFA294928D27B510088A051 /* TrendingCoordinator.swift in Sources */,
 				1CAD2B33293F66990004E4AA /* AppStyle.swift in Sources */,
+				1C9961AE294130E800F9A7AE /* PriceConverable.swift in Sources */,
 				1C7200BA28D77FED001DDBD5 /* CoinDetailsViewModel.swift in Sources */,
 				1CE2AE7228F3777200642D00 /* HomeViewController.swift in Sources */,
 				1C60D9F428E8A3F600B675DA /* MarketsViewModel.swift in Sources */,
@@ -1011,8 +1015,8 @@
 				INFOPLIST_FILE = CoinGecko/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1039,8 +1043,8 @@
 				INFOPLIST_FILE = CoinGecko/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

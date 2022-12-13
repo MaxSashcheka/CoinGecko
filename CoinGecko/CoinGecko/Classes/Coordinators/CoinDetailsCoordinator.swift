@@ -40,6 +40,7 @@ extension CoinDetailsCoordinator {
         viewModel.openBottomSheetTransition = { [weak self] in
             self?.showAddCoinBottomSheet(coinId: coinId)
         }
+        viewModel.openBrowserTransition = showInAppWebBrowserTransition
 
         pushViewController(viewController, animated: false)
     }
@@ -50,12 +51,14 @@ extension CoinDetailsCoordinator: UIViewControllerTransitioningDelegate {
     public func presentationController(forPresented presented: UIViewController,
                                        presenting: UIViewController?,
                                        source: UIViewController) -> UIPresentationController? {
-        let dismissAction: Closure.Void = { [weak self] in self?.dismissModalController() }
-        return PresentationController(presentedViewController: presented,
-                                      presentingViewController: presenting,
-                                      dismissAction: dismissAction)
+        PresentationController(presentedViewController: presented,
+                               presentingViewController: presenting,
+                               dismissAction: { [weak self] in self?.dismissModalController() })
     }
 }
 
 // MARK: - CoinDetailsCoordinator+CoinBottomSheetPresentable
 extension CoinDetailsCoordinator: CoinBottomSheetPresentable { }
+
+// MARK: - CoinDetailsCoordinator+InAppWebBrowserPresentable
+extension CoinDetailsCoordinator: InAppWebBrowserPresentable { }

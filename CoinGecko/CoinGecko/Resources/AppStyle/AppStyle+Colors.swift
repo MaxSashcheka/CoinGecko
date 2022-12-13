@@ -55,10 +55,10 @@ extension AppStyle {
         
         enum CoinDetails {
             enum NavigationBar {
-                
+                static var background: UIColor { Background.primary }
             }
             
-            static var background: UIColor { Generated.white.color }
+            static var background: UIColor { Background.primary }
             static var currentPrice: UIColor { Generated.black.color }
             static var priceChange: UIColor { Generated.green.color }
             static var addButton: UIColor { button.withAlphaComponent(0.65) }
@@ -128,5 +128,11 @@ extension AppStyle {
             static var table: UIColor { clear }
         }
         
+        enum Chart {
+            static var background: UIColor { clear }
+            static var chart: UIColor { button }
+            static var maxPrice: UIColor { Generated.green.color }
+            static var minPrice: UIColor { Generated.red.color }
+        }
     }
 }

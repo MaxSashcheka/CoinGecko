@@ -25,7 +25,9 @@ final class DataSourcesAssembly: Assembly {
                                                                 in: .userDomainMask).first else {
             fatalError("Unable to find documentsDirectory")
         }
-        let dataBaseFileURL = documentsDirectory.appendingPathComponent(Constants.directoryName).appendingPathComponent(databaseName)
+        let dataBaseFileURL = documentsDirectory
+            .appendingPathComponent(Constants.directoryName)
+            .appendingPathComponent(databaseName)
         
         return CoreDataSource(modelURL: modelURL, databaseURL: dataBaseFileURL)
     }

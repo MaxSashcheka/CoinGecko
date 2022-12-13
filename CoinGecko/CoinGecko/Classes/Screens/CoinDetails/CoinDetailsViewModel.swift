@@ -11,17 +11,19 @@ import Core
 import Utils
 
 extension CoinDetailsViewController {
-    final class ViewModel: ErrorHandableViewModel {
+    final class ViewModel: ErrorHandableViewModel, PriceConvertable {
         enum RangeButtonConfig: CaseIterable {
             case hour, day, week, month, halfYear, year, all
         }
         
+        private let externalLinkBuilder: ExternalLinkBuilder
         private let coinsInteractor: CoinsInteractorProtocol
         private let coinId: String
         let isAddToPortfolioEnabled: Bool
         
         var closeTransition: Closure.Void?
         var openBottomSheetTransition: Closure.Void?
+        var openBrowserTransition: Closure.URL?
         
         let navigationBarViewModel = CoinDetailsNavigationBarView.ViewModel()
         let chartViewModel = ChartView.ViewModel()
@@ -34,9 +36,11 @@ extension CoinDetailsViewController {
         let hideAddButtonSubject = PassthroughSubject<Void, Never>()
         
         init(coinId: String,
+             externalLinkBuilder: ExternalLinkBuilder,
              coinsInteractor: CoinsInteractorProtocol,
              isAddToPortfolioEnabled: Bool) {
             self.coinId = coinId
+            self.externalLinkBuilder = externalLinkBuilder
             self.coinsInteractor = coinsInteractor
             self.isAddToPortfolioEnabled = isAddToPortfolioEnabled
             
@@ -74,7 +78,7 @@ extension CoinDetailsViewController.ViewModel {
             self.navigationBarViewModel.description.send(coinDetails.symbol.uppercased())
             self.navigationBarViewModel.imageURL.send(coinDetails.imageURL)
             
-            self.currentPriceText.send(StringConverter.roundedValueString(coinDetails.currentPrice))
+            self.currentPriceText.send(self.roundedValueString(coinDetails.currentPrice))
             self.currentPrice.send(coinDetails.currentPrice)
             
             ActivityIndicator.hide()
@@ -151,6 +155,14 @@ extension CoinDetailsViewController.ViewModel {
         }, failure: errorHandlerClosure)
     }
     
+    func didTapBrowserButton() {
+        coinsInteractor.getStoredCoin(withId: coinId, success: { [weak self] coin in
+            guard let url = self?.externalLinkBuilder.buildGoogleSearchURL(query: (coin?.name).orEmpty()) else { return }
+            self?.openBrowserTransition?(url)
+            
+        }, failure: errorHandlerClosure)
+    }
+    
     func didTapOpenBottomSheetButton() {
         openBottomSheetTransition?()
     }
@@ -159,6 +171,7 @@ extension CoinDetailsViewController.ViewModel {
 // MARK: - RangeButtonConfig+ComputedProperties
 extension CoinDetailsViewController.ViewModel.RangeButtonConfig {
     private typealias Texts = L10n.RangeButton.Title
+    
     var title: String {
         switch self {
         case .hour: return Texts.hour

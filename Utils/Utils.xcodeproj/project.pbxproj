@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1C1E6A0A292113B800A04434 /* ErrorHandableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E6A09292113B800A04434 /* ErrorHandableViewModel.swift */; };
-		1C1E6A0C29216CA300A04434 /* StringConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E6A0B29216CA300A04434 /* StringConverter.swift */; };
 		1C2A63DB28D63F160007877D /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63DA28D63F160007877D /* View.swift */; };
 		1C2A63EB28D645E90007877D /* GeneralClosures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63EA28D645E90007877D /* GeneralClosures.swift */; };
 		1C2A63ED28D647290007877D /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63EC28D647290007877D /* UIView+Extensions.swift */; };
@@ -60,7 +59,6 @@
 /* Begin PBXFileReference section */
 		04E1F3DEFE54A2141D0058A8 /* Pods-Utils.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Utils.debug.xcconfig"; path = "Target Support Files/Pods-Utils/Pods-Utils.debug.xcconfig"; sourceTree = "<group>"; };
 		1C1E6A09292113B800A04434 /* ErrorHandableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandableViewModel.swift; sourceTree = "<group>"; };
-		1C1E6A0B29216CA300A04434 /* StringConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConverter.swift; sourceTree = "<group>"; };
 		1C2A63DA28D63F160007877D /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		1C2A63EA28D645E90007877D /* GeneralClosures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralClosures.swift; sourceTree = "<group>"; };
 		1C2A63EC28D647290007877D /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -129,7 +127,6 @@
 				1CDABAA028DA4B0B00B7A632 /* TextStyle.swift */,
 				1CDABA9E28DA4ACC00B7A632 /* ActivityIndicator.swift */,
 				1C2A63EA28D645E90007877D /* GeneralClosures.swift */,
-				1C1E6A0B29216CA300A04434 /* StringConverter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -479,7 +476,6 @@
 				1C60DA1428E8FC0D00B675DA /* GeneralError.swift in Sources */,
 				1CDCB2CF28D12DED00624AB5 /* ContainerViewController.swift in Sources */,
 				1CAD2B30293F58960004E4AA /* TableView.swift in Sources */,
-				1C1E6A0C29216CA300A04434 /* StringConverter.swift in Sources */,
 				1C97B9CC28E9CDB70085C979 /* DispatchQueue+Extensions.swift in Sources */,
 				1C7200AC28D721ED001DDBD5 /* Double+Extensions.swift in Sources */,
 				1C97B9C028E9CC9D0085C979 /* TapSubscription.swift in Sources */,

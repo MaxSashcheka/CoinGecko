@@ -128,6 +128,12 @@ final class CoinDetailsViewController: ViewController {
             }
             .store(in: &cancellables)
         
+        viewModel.navigationBarViewModel.browserButtonSubject
+            .sink { [weak viewModel] in
+                viewModel?.didTapBrowserButton()
+            }
+            .store(in: &cancellables)
+        
         viewModel.buttonsCollectionViewModel.selectTimeIntervalSubject
             .removeDuplicates()
             .sink { [weak viewModel] in

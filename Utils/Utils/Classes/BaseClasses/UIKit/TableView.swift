@@ -9,7 +9,7 @@
 import UIKit.UITableView
 
 public final class TableView: UITableView {
-    public static func make(style: UITableView.Style,
+    public static func make(style: UITableView.Style = .plain,
                             closure: (TableView) -> Void) -> TableView {
         let tableView = TableView(frame: .zero, style: style)
         closure(tableView)

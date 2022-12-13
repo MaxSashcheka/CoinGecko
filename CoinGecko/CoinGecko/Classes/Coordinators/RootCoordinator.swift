@@ -15,6 +15,7 @@ final class RootCoordinator: TabCoordinator {
     override func registerContent() {
         register(DataSourcesAssembly.makeCoreDataSource())
         register(CacheDataManagerAssembly.makeCoinsCacheDataManager(resolver: self))
+        register(RootAssembly.makeExternalLinkBuilder())
     }
 
     func start(at window: UIWindow?) {

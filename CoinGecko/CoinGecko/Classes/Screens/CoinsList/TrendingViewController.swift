@@ -16,7 +16,7 @@ final class TrendingViewController: ViewController {
     
     // MARK: - Properties
     
-    private let coinsTableView: TableView = .make(style: .plain) {
+    private let coinsTableView: TableView = .make {
         $0.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
