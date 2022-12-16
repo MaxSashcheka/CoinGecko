@@ -27,8 +27,8 @@ public struct CoinResponse {
     public let totalVolume: Double?
     public let previousDayHighestPrice: Double?
     public let previousDayLowestPrice: Double?
-    public let priceChange24h: Double
-    public let priceChangePercentage24h: Double
+    public let priceChange24h: Double?
+    public let priceChangePercentage24h: Double?
 }
 
 extension CoinResponse: Decodable {

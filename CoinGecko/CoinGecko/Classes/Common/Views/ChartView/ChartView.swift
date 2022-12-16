@@ -11,6 +11,7 @@ import UIKit
 import Utils
 
 final class ChartView: View {
+    private typealias Colors = AppStyle.Colors.Chart
     
     // MARK: - Properties
 
@@ -34,7 +35,7 @@ final class ChartView: View {
     }
     
     override func initialize() {
-        backgroundColor = .white
+        backgroundColor = Colors.background
     }
     
     override func draw(_ rect: CGRect) {
@@ -62,7 +63,6 @@ final class ChartView: View {
         let yAxis = maxY - minY
 
         for index in sortedChartData.indices {
-            // TODO: - Refactor coordinate calculation for current and previous coordinates
             let currentXCoordinate = width / CGFloat(sortedChartData.count) * CGFloat(index + 1)
             let currentYCoordinate = (1 - CGFloat((sortedChartData[index] - minY) / yAxis)) * height
             if index == .zero {
@@ -89,7 +89,7 @@ final class ChartView: View {
             }
         }
 
-        Constants.Colors.chartColor.setStroke()
+        Colors.chart.setStroke()
         path.lineWidth = 2
         path.stroke()
     }
@@ -109,7 +109,7 @@ private extension ChartView {
         let label = Label(frame: .init(x: xCoordinate, y: yCoordinate, width: width, height: height))
         label.font = labelFont
         label.text = roundedPrice
-        label.textColor = type == .max ? Constants.Colors.maximumPrice : Constants.Colors.minimumPrice
+        label.textColor = type == .max ? Colors.maxPrice : Colors.minPrice
 
         addSubview(label)
     }
@@ -127,13 +127,9 @@ private extension ChartView {
     enum Constants {
         static let skipValuesCount = 10
         static let priceLabelInset: CGFloat = 15
+        
         enum Fonts {
             static let priceLabel: UIFont = .systemFont(ofSize: 10, weight: .medium)
-        }
-        enum Colors {
-            static let chartColor: UIColor = .systemBlue
-            static let maximumPrice: UIColor = .systemGreen
-            static let minimumPrice: UIColor = .systemRed
         }
     }
 }

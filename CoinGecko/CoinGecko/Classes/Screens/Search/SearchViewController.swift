@@ -11,34 +11,24 @@ import SnapKit
 import Utils
 
 final class SearchViewController: ViewController {
+    private typealias Colors = AppStyle.Colors.Search
     
     // MARK: - Properties
     
-    private let coinsTableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
-        tableView.separatorStyle = .none
-        tableView.showsVerticalScrollIndicator = false
-        tableView.backgroundColor = .clear
-        
-        return tableView
-    }()
+    private let coinsTableView: TableView = .make(style: .grouped) {
+        $0.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
+        $0.separatorStyle = .none
+        $0.showsVerticalScrollIndicator = false
+        $0.backgroundColor = Colors.table
+    }
     
     private let searchTextField = SearchTextField()
     
     private let searchHeaderView = View()
     
-    private let activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.hidesWhenStopped = true
-//        activityIndicator.activityitem
-        
-        return activityIndicator
-    }()
-    
     var viewModel: ViewModel!
     
-    override var backgroundColor: UIColor { Assets.Colors.platinum.color }
+    override var backgroundColor: UIColor { Colors.background }
     override var isNavigationBarHidden: Bool { false }
     override var isTabBarHidden: Bool { true }
     
@@ -64,11 +54,6 @@ final class SearchViewController: ViewController {
         view.addSubview(coinsTableView)
         coinsTableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-        }
-        
-        view.addSubview(activityIndicator)
-        activityIndicator.snp.makeConstraints { make in
-            make.center.equalToSuperview()
         }
     }
     
@@ -110,7 +95,7 @@ final class SearchViewController: ViewController {
 
 // MARK: - SearchViewController+UITableViewPresentable
 extension SearchViewController: UITableViewPresentable {
-    typealias Texts = L10n.Search.Table.Title
+    private typealias Texts = L10n.Search.Table.Title
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == .zero else { return nil }

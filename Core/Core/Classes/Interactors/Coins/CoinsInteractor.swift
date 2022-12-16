@@ -20,10 +20,14 @@ public class CoinsInteractor: CoinsInteractorProtocol {
     }
     
     // MARK: - API methods
-    public func getCoins(fromCache: Bool = true,
+    public func getCoins(fromCache: Bool = false,
                          currency: String, page: Int, pageSize: Int,
                          success: @escaping Closure.CoinsArray,
                          failure: @escaping Closure.GeneralError) {
+        if fromCache {
+            success(coinsCacheDataManager.cachedCoins)
+            return
+        }
         coinsAPIDataManager.getCoins(
             currency: currency,
             page: page,

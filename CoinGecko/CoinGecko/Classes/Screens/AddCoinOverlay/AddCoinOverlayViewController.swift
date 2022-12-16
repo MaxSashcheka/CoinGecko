@@ -10,35 +10,32 @@ import SnapKit
 import Utils
 
 final class AddCoinOverlayViewController: ViewController {
-    typealias Texts = L10n.Overlay.Coin
+    private typealias Texts = L10n.Overlay.Coin
+    private typealias TextStyles = AppStyle.TextStyles.CoinOverlay
+    private typealias Colors = AppStyle.Colors.CoinOverlay
     
     // MARK: - Properties
     
-    private let indicatorView = View(backgroundColor: .lightGray)
+    private let indicatorView = View(backgroundColor: Colors.indicator)
     
-    private let descriptionLabel: Label = {
-        let label = Label()
-        label.text = Texts.title
-        label.font = .systemFont(ofSize: 17, weight: .regular)
-        label.textColor = .darkGray
-        label.textAlignment = .center
-        
-        return label
-    }()
+    private let descriptionLabel: Label = .make {
+        $0.text = Texts.title
+        $0.apply(TextStyles.description)
+        $0.textAlignment = .center
+    }
     
-    private let amountTextField: UITextField = {
-        let textField = UITextField()
-        textField.textAlignment = .center
-        textField.keyboardType = .decimalPad
-        textField.font = .systemFont(ofSize: 30, weight: .semibold)
-        textField.tintColor = .black
-        
-        return textField
-    }()
+    private let amountTextField: TextField = .make {
+        $0.textAlignment = .center
+        $0.keyboardType = .decimalPad
+        $0.apply(TextStyles.amount)
+    }
     
     private let textFieldBottomLine = View(backgroundColor: .darkGray)
     
-    private let addButton = Button(title: Texts.Button.title, backgroundColor: .systemBlue.withAlphaComponent(0.65))
+    private let addButton: Button = .make {
+        $0.setTitle(Texts.Button.title, for: .normal)
+        $0.backgroundColor = Colors.addButton
+    }
     
     private var keyboardIsShown = false
     private var hasSetOriginPoint = false
@@ -136,8 +133,10 @@ final class AddCoinOverlayViewController: ViewController {
                       else { return }
                 let keyboardHeight = keyboardFrame.cgRectValue.height
                 UIView.animate(withDuration: animationDuration) {
-                    self.view.frame.origin = .init(x: .zero,
-                                                   y: UIScreen.main.bounds.height - keyboardHeight - self.view.frame.height)
+                    self.view.frame.origin = .init(
+                        x: .zero,
+                        y: UIScreen.main.bounds.height - keyboardHeight - self.view.frame.height
+                    )
                 }
                 self.keyboardIsShown.toggle()
             }
@@ -193,14 +192,13 @@ final class AddCoinOverlayViewController: ViewController {
             .store(in: &cancellables)
         
         viewModel.incorrectNumberSubject
-            .sink { [weak textFieldBottomLine] in
-                textFieldBottomLine?.backgroundColor = .red
-            }
+            .map { Colors.failure }
+            .bind(to: \.backgroundColor, on: textFieldBottomLine)
             .store(in: &cancellables)
     }
 }
 
-// MARK: - AddCoinOverlayViewController+Constants
+// MARK: - AddCoinOverlayViewController+updateBlurEffectAlpha
 private extension AddCoinOverlayViewController {
     func updateBlurEffectAlpha(translation: CGFloat) {
         let translationProgress = translation / view.frame.height

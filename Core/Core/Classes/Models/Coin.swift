@@ -50,8 +50,8 @@ public extension Coin {
             totalVolume: coinResponse.totalVolume ?? .zero,
             previousDayHighestPrice: coinResponse.previousDayHighestPrice ?? .zero,
             previousDayLowestPrice: coinResponse.previousDayLowestPrice ?? .zero,
-            change24h: coinResponse.priceChange24h,
-            changePercentage24h: coinResponse.priceChangePercentage24h
+            change24h: coinResponse.priceChange24h ?? .zero,
+            changePercentage24h: coinResponse.priceChangePercentage24h ?? .zero
         )
     }
 }

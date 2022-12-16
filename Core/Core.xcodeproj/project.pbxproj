@@ -30,6 +30,7 @@
 		1CA3D39D28D3C850009D43E9 /* CoinsInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D39C28D3C850009D43E9 /* CoinsInteractorProtocol.swift */; };
 		1CA3D39F28D3C8DE009D43E9 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D39E28D3C8DE009D43E9 /* Interactor.swift */; };
 		1CA3D3A128D3CD80009D43E9 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D3A028D3CD80009D43E9 /* Coin.swift */; };
+		1CB0B4ED293FF3FA00C874C4 /* ExternalLinkBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0B4EC293FF3FA00C874C4 /* ExternalLinkBuilder.swift */; };
 		1CC178F428E63BDA00550D3B /* CoinResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC178F328E63BDA00550D3B /* CoinResponse.swift */; };
 		1CC178F728E6463900550D3B /* CoinChartDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC178F628E6463900550D3B /* CoinChartDataResponse.swift */; };
 		1CD695B128CFBF8C007AE077 /* Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CD695B028CFBF8C007AE077 /* Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -77,6 +78,7 @@
 		1CA3D39C28D3C850009D43E9 /* CoinsInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsInteractorProtocol.swift; sourceTree = "<group>"; };
 		1CA3D39E28D3C8DE009D43E9 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		1CA3D3A028D3CD80009D43E9 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		1CB0B4EC293FF3FA00C874C4 /* ExternalLinkBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkBuilder.swift; sourceTree = "<group>"; };
 		1CC178F328E63BDA00550D3B /* CoinResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinResponse.swift; sourceTree = "<group>"; };
 		1CC178F628E6463900550D3B /* CoinChartDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinChartDataResponse.swift; sourceTree = "<group>"; };
 		1CD695AD28CFBF8C007AE077 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,6 +212,14 @@
 			path = Coins;
 			sourceTree = "<group>";
 		};
+		1CB0B4EB293FF3EE00C874C4 /* ExternalLinkBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				1CB0B4EC293FF3FA00C874C4 /* ExternalLinkBuilder.swift */,
+			);
+			path = ExternalLinkBuilder;
+			sourceTree = "<group>";
+		};
 		1CC178F528E63C2500550D3B /* Responces */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +262,7 @@
 		1CDCB2C328D122AE00624AB5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1CB0B4EB293FF3EE00C874C4 /* ExternalLinkBuilder */,
 				1CFD91E52912664E0010172D /* CoreData */,
 				1CA3D39728D3C803009D43E9 /* Models */,
 				1CC178F528E63C2500550D3B /* Responces */,
@@ -441,6 +452,7 @@
 				1C60DA0328E8C72F00B675DA /* ParametersProviders.swift in Sources */,
 				1C7E0EFA2916B75000742A5F /* CoinEntity+CoreDataClass.swift in Sources */,
 				1C60D9FF28E8C71200B675DA /* RequestDescriptions.swift in Sources */,
+				1CB0B4ED293FF3FA00C874C4 /* ExternalLinkBuilder.swift in Sources */,
 				1CC178F428E63BDA00550D3B /* CoinResponse.swift in Sources */,
 				1C3F8AE128ECD75A00E04740 /* GlobalDataResponse.swift in Sources */,
 				1CA3D39F28D3C8DE009D43E9 /* Interactor.swift in Sources */,

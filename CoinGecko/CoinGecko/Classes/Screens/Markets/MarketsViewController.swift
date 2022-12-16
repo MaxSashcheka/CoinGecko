@@ -12,58 +12,44 @@ import SnapKit
 import Utils
 
 final class MarketsViewController: ViewController {
-    typealias Texts = L10n.Markets
+    private typealias Texts = L10n.Markets
+    private typealias TextsStyles = AppStyle.TextStyles.Markets
+    private typealias Colors = AppStyle.Colors.Markets
+    
     // MARK: - Properties
     
-    private let statusPlaceholderLabel: Label = {
-        let label = Label()
-        label.font = .systemFont(ofSize: 28, weight: .medium)
-        
-        return label
-    }()
+    private let statusPlaceholderLabel: Label = .make {
+        $0.apply(TextsStyles.statusPlaceholder)
+    }
     
-    private let statusPercentageLabel: Label = {
-        let label = Label()
-        label.font = .systemFont(ofSize: 28, weight: .medium)
-        label.textColor = .systemRed
-        
-        return label
-    }()
+    private let statusPercentageLabel: Label = .make {
+        $0.apply(TextsStyles.statusPercentage)
+    }
     
     private let statusTriangleView = PriceTriangleView(backgroundColor: .clear)
     
-    private let statusTimePlaceholderLabel: Label = {
-        let label = Label()
-        label.font = .systemFont(ofSize: 18, weight: .regular)
-        label.textColor = .darkGray
-        label.text = Texts.TimePlaceholder.title
-        
-        return label
-    }()
+    private let statusTimePlaceholderLabel: Label = .make {
+        $0.apply(TextsStyles.statusTimePlaceholder)
+        $0.text = Texts.TimePlaceholder.title
+    }
     
-    private let searchButton: Button = {
-        let button = Button()
-        button.setImage(Assets.Images.search.image.withRenderingMode(.alwaysTemplate), for: .normal)
-        button.tintColor = .darkGray
-        
-        return button
-    }()
+    private let searchButton: Button = .make {
+        $0.setImage(Assets.Images.search.image.withRenderingMode(.alwaysTemplate), for: .normal)
+        $0.tintColor = Colors.tint
+    }
     
     private let pageButtonsCollectionView = PageButtonsCollectionView()
     
-    private let separatorLine = View(backgroundColor: .lightGray.withAlphaComponent(0.7))
+    private let separatorLine = View(backgroundColor: Colors.separatorLine)
     
-    private let coinsTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
-        tableView.separatorStyle = .none
-        tableView.showsVerticalScrollIndicator = false
-        tableView.backgroundColor = .clear
-        
-        return tableView
-    }()
+    private let coinsTableView: TableView = .make {
+        $0.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
+        $0.separatorStyle = .none
+        $0.showsVerticalScrollIndicator = false
+        $0.backgroundColor = Colors.table
+    }
     
-    override var backgroundColor: UIColor { Assets.Colors.platinum.color }
+    override var backgroundColor: UIColor { Colors.background }
     override var isNavigationBarHidden: Bool { true }
     override var tabBarTitle: String { L10n.Tabbar.Title.markets }
     override var tabBarImage: UIImage? { UIImage(.chart.pie) }
@@ -77,13 +63,14 @@ final class MarketsViewController: ViewController {
         
         // TODO: - add pull to refresh
         viewModel.errorHandlerClosure = errorHandler
-        viewModel.fetchCoins(mode: .all)
+        
         viewModel.fetchGlobalData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        viewModel.fetchCoins()
         viewModel.fetchFavouritesCoins()
     }
     
@@ -118,7 +105,7 @@ final class MarketsViewController: ViewController {
         }
         
         let searchButtonContainerView: View = {
-            let view = View(backgroundColor: .lightGray.withAlphaComponent(0.2))
+            let view = View(backgroundColor: Colors.searchContainer)
             view.cornerRadius = 20
             return view
         }()
@@ -174,9 +161,9 @@ final class MarketsViewController: ViewController {
             }
             .store(in: &cancellables)
         
-        viewModel.pageButtonsCollectionViewModel.selectModeSubject
-            .sink { [weak viewModel] in
-                viewModel?.fetchCoins(mode: $0)
+        viewModel.pageButtonsCollectionViewModel.selectedMode
+            .sink { [weak viewModel] _ in
+                viewModel?.fetchCoins()
             }
             .store(in: &cancellables)
         
@@ -199,7 +186,7 @@ final class MarketsViewController: ViewController {
                 // TODO: - this logic with creating priceChangeString should become reusable
                 
                 self?.statusPercentageLabel.text = priceChangeString
-                self?.statusPercentageLabel.textColor = isChangePercentagePositive ? .green : .red
+                self?.statusPercentageLabel.textColor = isChangePercentagePositive ? Colors.positiveChange : Colors.negativeChange
             }
             .store(in: &cancellables)
         

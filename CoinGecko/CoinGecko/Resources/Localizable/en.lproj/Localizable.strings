@@ -38,4 +38,5 @@
 "home.placeholder.title" = "No coins yet.";
 "home.placeholder.subtitle" = "Try to add coin to see portfolio";
 
-
+"home.networth_card.status.up" = "Day Gain";
+"home.networth_card.status.down" = "Day Loss";

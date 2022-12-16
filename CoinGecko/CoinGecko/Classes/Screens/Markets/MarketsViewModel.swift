@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension MarketsViewController {
-    final class ViewModel: ErrorHandableViewModel {
+    final class ViewModel: ErrorHandableViewModel, PriceConvertable {
         typealias DisplayMode = PageButton.ViewModel.DisplayMode
         
         private let coinsInteractor: CoinsInteractorProtocol
@@ -26,7 +26,7 @@ extension MarketsViewController {
         let isPriceChangePositive = CurrentValueSubject<Bool, Never>(false)
         let favouriteCoins = CurrentValueSubject<[Coin], Never>([])
         
-        private var presentMode = DisplayMode.all
+        private var selectedMode: DisplayMode { pageButtonsCollectionViewModel.selectedMode.value }
         
         init(coinsInteractor: CoinsInteractorProtocol) {
             self.coinsInteractor = coinsInteractor
@@ -50,7 +50,7 @@ extension MarketsViewController.ViewModel {
         coinsInteractor.getFavouritesCoins(success: { [weak self] in
             guard let self = self else { return }
             self.favouriteCoins.send($0)
-            if self.presentMode == .favourites { self.fetchCoins(mode: self.presentMode) }
+            if self.selectedMode == .favourites { self.fetchCoins() }
         }, failure: errorHandlerClosure)
     }
     
@@ -66,9 +66,9 @@ extension MarketsViewController.ViewModel {
         })
     }
     
-    func fetchCoins(mode: DisplayMode) {
-        presentMode = mode
-        coinsInteractor.getCoins(fromCache: false,
+    func fetchCoins() {
+        let mode = selectedMode
+        coinsInteractor.getCoins(fromCache: true,
                                  currency: "usd",
                                  page: 1,
                                  pageSize: 50,
@@ -95,7 +95,9 @@ extension MarketsViewController.ViewModel {
             self.coinsViewModels.send(
                 self.makeCoinViewModels(from: coins.filter(filterClosure))
             )
-        }, failure: errorHandlerClosure)
+        }, failure: { [weak self] error in
+            self?.errorHandlerClosure?(error)
+        })
     }
 }
 
@@ -104,7 +106,7 @@ private extension MarketsViewController.ViewModel {
     func makeCoinViewModels(from coins: [Coin]) -> [CoinCell.ViewModel] {
         coins.map { coin in
             let isPriceChangePositive = coin.priceDetails.changePercentage24h > 0
-            let priceChangeString = StringConverter.roundedValuePriceChangeString(
+            let priceChangeString = roundedValuePriceChangeString(
                 coin.priceDetails.changePercentage24h,
                 isChangePositive: isPriceChangePositive
             )
@@ -114,7 +116,7 @@ private extension MarketsViewController.ViewModel {
                 imageURL: coin.imageURL,
                 name: coin.name,
                 symbol: coin.symbol.uppercased(),
-                currentPrice: StringConverter.roundedValueString(coin.priceDetails.currentPrice),
+                currentPrice: roundedValueString(coin.priceDetails.currentPrice),
                 priceChangePercentage: priceChangeString,
                 isPriceChangePositive: isPriceChangePositive
             )

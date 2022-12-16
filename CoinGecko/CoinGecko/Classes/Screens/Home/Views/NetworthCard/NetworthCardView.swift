@@ -12,41 +12,27 @@ import Utils
 
 extension HomeViewController {
     final class NetworhCardView: View {
+        private typealias TextStyles = AppStyle.TextStyles.NetworthCard
+        private typealias Colors = AppStyle.Colors.Home.CardView
         
         // MARK: - Properties
         
-        private let balanceTitleLabel: Label = {
-            let label = Label()
-            label.font = .systemFont(ofSize: 24, weight: .regular)
-            label.textColor = .white
-            label.text = L10n.Home.NetworthCard.title
-            
-            return label
-        }()
+        private let balanceTitleLabel: Label = .make {
+            $0.apply(TextStyles.balanceTitle)
+            $0.text = L10n.Home.NetworthCard.title
+        }
         
-        private let balanceValueLabel: Label = {
-            let label = Label()
-            label.font = .systemFont(ofSize: 32, weight: .semibold)
-            label.textColor = .white
-            
-            return label
-        }()
+        private let balanceValueLabel: Label = .make {
+            $0.apply(TextStyles.balanceValue)
+        }
         
-        private let dayProfitTitleLabel: Label = {
-            let label = Label()
-            label.font = .systemFont(ofSize: 24, weight: .regular)
-            label.textColor = .white
-            
-            return label
-        }()
+        private let dayProfitTitleLabel: Label = .make {
+            $0.apply(TextStyles.dayProfitTitle)
+        }
         
-        private let dayProfitValueLabel: Label = {
-            let label = Label()
-            label.font = .systemFont(ofSize: 32, weight: .semibold)
-            label.textColor = .white
-            
-            return label
-        }()
+        private let dayProfitValueLabel: Label = .make {
+            $0.apply(TextStyles.dayProfitValue)
+        }
         
         var contentStackView: UIStackView {
             UIStackView(axis: .vertical, spacing: 5, distribution: .fill)
@@ -100,7 +86,7 @@ extension HomeViewController {
         }
         
         private func setupData() {
-            backgroundColor = .systemBlue.withAlphaComponent(0.65)
+            backgroundColor = Colors.background
         }
         
         override func layoutSubviews() {

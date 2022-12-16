@@ -12,20 +12,18 @@ import SnapKit
 import Utils
 
 final class TrendingViewController: ViewController {
+    private typealias Colors = AppStyle.Colors.Trending
     
     // MARK: - Properties
     
-    private let coinsTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
-        tableView.separatorStyle = .none
-        tableView.showsVerticalScrollIndicator = false
-        tableView.backgroundColor = .clear
-        
-        return tableView
-    }()
+    private let coinsTableView: TableView = .make {
+        $0.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
+        $0.separatorStyle = .none
+        $0.showsVerticalScrollIndicator = false
+        $0.backgroundColor = Colors.table
+    }
     
-    override var backgroundColor: UIColor { Assets.Colors.platinum.color }
+    override var backgroundColor: UIColor { Colors.background }
     override var prefersLargeTitles: Bool { true }
     override var tabBarTitle: String { L10n.Tabbar.Title.trending }
     override var tabBarImage: UIImage? { UIImage(.chart.lineUptrendXyaxis) }
