@@ -50,8 +50,15 @@
 		1C97B9D328EA2E460085C979 /* PageButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9D228EA2E460085C979 /* PageButtonViewModel.swift */; };
 		1C97B9D728EA32550085C979 /* PageButtonsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9D628EA32550085C979 /* PageButtonsCollectionView.swift */; };
 		1C97B9D928EA325F0085C979 /* PageButtonsCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9D828EA325F0085C979 /* PageButtonsCollectionViewModel.swift */; };
+		1C9961AE294130E800F9A7AE /* PriceConverable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9961AD294130E800F9A7AE /* PriceConverable.swift */; };
 		1CA3D3A628D3CFA7009D43E9 /* CoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D3A528D3CFA7009D43E9 /* CoinCell.swift */; };
 		1CA3D3A828D3CFAF009D43E9 /* CoinCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D3A728D3CFAF009D43E9 /* CoinCellViewModel.swift */; };
+		1CAD2B33293F66990004E4AA /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD2B32293F66990004E4AA /* AppStyle.swift */; };
+		1CAD2B35293F66AC0004E4AA /* AppStyle+TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD2B34293F66AC0004E4AA /* AppStyle+TextStyles.swift */; };
+		1CAD2B37293F66B30004E4AA /* AppStyle+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD2B36293F66B30004E4AA /* AppStyle+Colors.swift */; };
+		1CB0B4E7293FF15C00C874C4 /* InAppWebBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0B4E4293FF15C00C874C4 /* InAppWebBrowserViewController.swift */; };
+		1CB0B4E8293FF15C00C874C4 /* InAppWebBrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0B4E5293FF15C00C874C4 /* InAppWebBrowserViewModel.swift */; };
+		1CB0B4EA293FF24600C874C4 /* InAppWebBrowserPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0B4E9293FF24600C874C4 /* InAppWebBrowserPresentable.swift */; };
 		1CD6959728CFBDA7007AE077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CD6959628CFBDA7007AE077 /* Assets.xcassets */; };
 		1CD6959A28CFBDA7007AE077 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CD6959828CFBDA7007AE077 /* LaunchScreen.storyboard */; };
 		1CD695D028CFC326007AE077 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD695CF28CFC326007AE077 /* Core.framework */; };
@@ -142,8 +149,15 @@
 		1C97B9D228EA2E460085C979 /* PageButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageButtonViewModel.swift; sourceTree = "<group>"; };
 		1C97B9D628EA32550085C979 /* PageButtonsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageButtonsCollectionView.swift; sourceTree = "<group>"; };
 		1C97B9D828EA325F0085C979 /* PageButtonsCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageButtonsCollectionViewModel.swift; sourceTree = "<group>"; };
+		1C9961AD294130E800F9A7AE /* PriceConverable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceConverable.swift; sourceTree = "<group>"; };
 		1CA3D3A528D3CFA7009D43E9 /* CoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCell.swift; sourceTree = "<group>"; };
 		1CA3D3A728D3CFAF009D43E9 /* CoinCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCellViewModel.swift; sourceTree = "<group>"; };
+		1CAD2B32293F66990004E4AA /* AppStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
+		1CAD2B34293F66AC0004E4AA /* AppStyle+TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStyle+TextStyles.swift"; sourceTree = "<group>"; };
+		1CAD2B36293F66B30004E4AA /* AppStyle+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStyle+Colors.swift"; sourceTree = "<group>"; };
+		1CB0B4E4293FF15C00C874C4 /* InAppWebBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppWebBrowserViewController.swift; sourceTree = "<group>"; };
+		1CB0B4E5293FF15C00C874C4 /* InAppWebBrowserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppWebBrowserViewModel.swift; sourceTree = "<group>"; };
+		1CB0B4E9293FF24600C874C4 /* InAppWebBrowserPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppWebBrowserPresentable.swift; sourceTree = "<group>"; };
 		1CD6958A28CFBDA5007AE077 /* CoinGecko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinGecko.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD6959628CFBDA7007AE077 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1CD6959928CFBDA7007AE077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -373,6 +387,7 @@
 		1C7CD4F328D273F800068965 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1CB0B4E2293FF15000C874C4 /* InAppWebBrowser */,
 				1C80E75A29104F4D00B7502E /* AddCoinOverlay */,
 				1C7CD4F428D2741A00068965 /* CoinsList */,
 				1C7200B628D77FA4001DDBD5 /* CoinDetails */,
@@ -440,6 +455,25 @@
 			path = CoinCell;
 			sourceTree = "<group>";
 		};
+		1CAD2B31293F66910004E4AA /* AppStyle */ = {
+			isa = PBXGroup;
+			children = (
+				1CAD2B32293F66990004E4AA /* AppStyle.swift */,
+				1CAD2B34293F66AC0004E4AA /* AppStyle+TextStyles.swift */,
+				1CAD2B36293F66B30004E4AA /* AppStyle+Colors.swift */,
+			);
+			path = AppStyle;
+			sourceTree = "<group>";
+		};
+		1CB0B4E2293FF15000C874C4 /* InAppWebBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				1CB0B4E4293FF15C00C874C4 /* InAppWebBrowserViewController.swift */,
+				1CB0B4E5293FF15C00C874C4 /* InAppWebBrowserViewModel.swift */,
+			);
+			path = InAppWebBrowser;
+			sourceTree = "<group>";
+		};
 		1CD6958128CFBDA5007AE077 = {
 			isa = PBXGroup;
 			children = (
@@ -472,9 +506,9 @@
 			children = (
 				1C2A63DD28D644B70007877D /* MainDelegates */,
 				1C2A63E028D644D60007877D /* Common */,
-				1C7CD4F328D273F800068965 /* Screens */,
 				1CDCB2DE28D133C000624AB5 /* Assembly */,
 				1CDCB2DB28D1324F00624AB5 /* Coordinators */,
+				1C7CD4F328D273F800068965 /* Screens */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -507,6 +541,8 @@
 			isa = PBXGroup;
 			children = (
 				1C5E031529185B35008A7495 /* CoinBottomSheetPresentable.swift */,
+				1CB0B4E9293FF24600C874C4 /* InAppWebBrowserPresentable.swift */,
+				1C9961AD294130E800F9A7AE /* PriceConverable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -543,6 +579,7 @@
 		1CF466E628CFDEDE0012DE85 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1CAD2B31293F66910004E4AA /* AppStyle */,
 				1CF466E828CFDEEE0012DE85 /* Generated */,
 				1CF466E928CFDEF90012DE85 /* Localizable */,
 				1CD6959B28CFBDA7007AE077 /* Info.plist */,
@@ -769,6 +806,7 @@
 				1C7CD4F628D2743C00068965 /* TrendingViewController.swift in Sources */,
 				1CE2AE7428F3777700642D00 /* HomeViewModel.swift in Sources */,
 				1C12DD4C28F21DCB00E7D91E /* SearchTextFieldViewModel.swift in Sources */,
+				1CB0B4E7293FF15C00C874C4 /* InAppWebBrowserViewController.swift in Sources */,
 				1CFA294B28D27CBA0088A051 /* TrendingAssembly.swift in Sources */,
 				1C2A63DF28D644C00007877D /* SceneDelegate.swift in Sources */,
 				1CDCB2E028D1341500624AB5 /* RootAssembly.swift in Sources */,
@@ -779,12 +817,14 @@
 				1CF9BE28290EE258007D00A1 /* AddCoinOverlayViewController.swift in Sources */,
 				03460CEF290EB2F900F754FA /* CommonAssembly.swift in Sources */,
 				1C2A63EF28D649500007877D /* TitledDescriptionView.swift in Sources */,
+				1CAD2B35293F66AC0004E4AA /* AppStyle+TextStyles.swift in Sources */,
 				1C7200A628D714A7001DDBD5 /* APIDataManagerAssembly.swift in Sources */,
 				1CDCB2DD28D132D600624AB5 /* RootCoordinator.swift in Sources */,
 				1CE2AE7B28F37C2300642D00 /* HomeAssembly.swift in Sources */,
 				1C7200A828D714AF001DDBD5 /* CacheDataManagerAssembly.swift in Sources */,
 				1C564C4B290D5BFE00F4BFC6 /* PriceTriangleView.swift in Sources */,
 				1C97B9D128EA2E3C0085C979 /* PageButton.swift in Sources */,
+				1CB0B4E8293FF15C00C874C4 /* InAppWebBrowserViewModel.swift in Sources */,
 				1CE2AE7728F3778D00642D00 /* SettingsViewController.swift in Sources */,
 				1C564C49290D2C2B00F4BFC6 /* NetworthCardViewModel.swift in Sources */,
 				1C5E30F32909E06A0082E1B4 /* ProfileViewModel.swift in Sources */,
@@ -792,7 +832,10 @@
 				1C97B9D928EA325F0085C979 /* PageButtonsCollectionViewModel.swift in Sources */,
 				1C5E30F12909E0640082E1B4 /* ProfileViewController.swift in Sources */,
 				1C27A9B3290C767E00F19DC8 /* HomeNavigationBarViewModel.swift in Sources */,
+				1CB0B4EA293FF24600C874C4 /* InAppWebBrowserPresentable.swift in Sources */,
 				1CFA294928D27B510088A051 /* TrendingCoordinator.swift in Sources */,
+				1CAD2B33293F66990004E4AA /* AppStyle.swift in Sources */,
+				1C9961AE294130E800F9A7AE /* PriceConverable.swift in Sources */,
 				1C7200BA28D77FED001DDBD5 /* CoinDetailsViewModel.swift in Sources */,
 				1CE2AE7228F3777200642D00 /* HomeViewController.swift in Sources */,
 				1C60D9F428E8A3F600B675DA /* MarketsViewModel.swift in Sources */,
@@ -807,6 +850,7 @@
 				1C2A63E328D644F40007877D /* RemoteImageView.swift in Sources */,
 				1C60D9F228E8A3EA00B675DA /* MarketsViewController.swift in Sources */,
 				1C4287A728E0AFD800273979 /* RangePickerButton.swift in Sources */,
+				1CAD2B37293F66B30004E4AA /* AppStyle+Colors.swift in Sources */,
 				031F1BEE290E8A67003035C8 /* NetworthCoinCell.swift in Sources */,
 				1C5E031629185B35008A7495 /* CoinBottomSheetPresentable.swift in Sources */,
 				1CFD91E9291271480010172D /* DataSourcesAssembly.swift in Sources */,
@@ -971,8 +1015,8 @@
 				INFOPLIST_FILE = CoinGecko/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -999,8 +1043,8 @@
 				INFOPLIST_FILE = CoinGecko/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

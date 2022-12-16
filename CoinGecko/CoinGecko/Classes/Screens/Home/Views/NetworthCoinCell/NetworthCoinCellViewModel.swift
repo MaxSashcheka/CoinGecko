@@ -10,8 +10,8 @@ import Combine
 import Core
 
 extension NetworthCoinCell {
+    private typealias Texts = L10n.Home.Portfolio.Title
     typealias TitledDescriptionViewModel = TitledDescriptionView.ViewModel
-    typealias Texts = L10n.Home.Portfolio.Title
     
     final class ViewModel {
         let id: String

@@ -13,52 +13,36 @@ import Utils
 
 extension HomeViewController {
     final class HomeNavigationBarView: View {
-        typealias Texts = L10n.Home.NavigationBar.Title
+        private typealias Texts = L10n.Home.NavigationBar.Title
+        private typealias TextStyles = AppStyle.TextStyles.Home.NavigationBar
+        private typealias Colors = AppStyle.Colors.Home.NavigationBar
         
-        private let welcomeTitleLabel: Label = {
-            let label = Label()
-            label.font = .systemFont(ofSize: 30, weight: .semibold)
-            label.textColor = .darkGray
-            label.text = Texts.welcome
-            
-            return label
-        }()
+        private let welcomeTitleLabel: Label = .make {
+            $0.apply(TextStyles.welcomeTitle)
+            $0.text = Texts.welcome
+        }
         
-        private let nameTitleLabel: Label = {
-            let label = Label()
-            label.font = .systemFont(ofSize: 22, weight: .bold)
-            label.textColor = .black.withAlphaComponent(0.9)
-            label.text = Texts.name
-            
-            return label
-        }()
+        private let nameTitleLabel: Label = .make {
+            $0.apply(TextStyles.nameTitle)
+            $0.text = Texts.name
+        }
         
-        private let emailTitleLabel: Label = {
-            let label = Label()
-            label.font = .systemFont(ofSize: 19, weight: .bold)
-            label.textColor = .darkGray.withAlphaComponent(0.9)
-            label.text = Texts.email
-
-            return label
-        }()
+        private let emailTitleLabel: Label = .make {
+            $0.apply(TextStyles.emailTitle)
+            $0.text = Texts.email
+        }
         
-        private let settingsButton: Button = {
-            let button = Button()
-            button.setImage(Assets.Images.settings.image.withRenderingMode(.alwaysTemplate), for: .normal)
-            button.tintColor = .darkGray
-            
-            return button
-        }()
+        private let settingsButton: Button = .make {
+            $0.setImage(Assets.Images.settings.image.withRenderingMode(.alwaysTemplate), for: .normal)
+            $0.tintColor = Colors.tint
+        }
         
-        private let profileButton: Button = {
-            let button = Button()
-            button.setImage(UIImage(.person.cropCircle), for: .normal)
-            button.tintColor = .darkGray
-
-            return button
-        }()
+        private let profileButton: Button = .make {
+            $0.setImage(UIImage(.person.cropCircle), for: .normal)
+            $0.tintColor = Colors.tint
+        }
         
-        private let separatorLine = View(backgroundColor: .lightGray.withAlphaComponent(0.7))
+        private let separatorLine = View(backgroundColor: Colors.separatorLine)
         
         var viewModel: ViewModel? {
             didSet {
@@ -114,7 +98,6 @@ extension HomeViewController {
             settingsButton.tapPublisher()
                 .bind(to: viewModel.settingsButtonSubject)
                 .store(in: &cancellables)
-
         }
     }
 }

@@ -12,48 +12,43 @@ import SnapKit
 import Utils
 
 final class HomeViewController: ViewController {
+    private typealias Texts = L10n.Home.Placeholder
+    private typealias TextStyles = AppStyle.TextStyles.Home.Placeholder
+    private typealias Colors = AppStyle.Colors.Home
     
     // MARK: - Properties
     
     private let navigationBarView = HomeNavigationBarView()
     
-    private let coinsTableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.register(NetworthCoinCell.self, forCellReuseIdentifier: NetworthCoinCell.reuseIdentifier)
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = .clear
-        
-        return tableView
-    }()
+    private let coinsTableView: TableView = .make(style: .grouped) {
+        $0.register(NetworthCoinCell.self,
+                    forCellReuseIdentifier: NetworthCoinCell.reuseIdentifier)
+        $0.separatorStyle = .none
+        $0.backgroundColor = Colors.table
+    }
     
-    private let placeholderTitleLabel: Label = {
-        let label = Label()
-        label.text = "No coins yet."
-        label.font = .systemFont(ofSize: 24, weight: .semibold)
-        label.textColor = .black
-        label.textAlignment = .center
-        
-        return label
-    }()
+    private let placeholderTitleLabel: Label = .make {
+        $0.apply(TextStyles.title)
+        $0.text = Texts.title
+        $0.textAlignment = .center
+    }
     
-    private let placeholderSubtitleLabel: Label = {
-        let label = Label()
-        label.text = "Try to add coin to see portfolio"
-        label.font = .systemFont(ofSize: 21, weight: .semibold)
-        label.textColor = .darkGray
-        label.textAlignment = .center
-
-        return label
-    }()
+    private let placeholderSubtitleLabel: Label = .make {
+        $0.apply(TextStyles.subtitle)
+        $0.text = Texts.subtitle
+        $0.textAlignment = .center
+    }
     
-    private let placeholderStackView = UIStackView(axis: .vertical, spacing: 3, distribution: .equalSpacing)
+    private let placeholderStackView = UIStackView(axis: .vertical,
+                                                   spacing: 3,
+                                                   distribution: .equalSpacing)
     
     private let tableHeaderView = View()
     
     private let networhCardView = NetworhCardView()
     
     override var isNavigationBarHidden: Bool { true }
-    override var backgroundColor: UIColor { Assets.Colors.platinum.color }
+    override var backgroundColor: UIColor { Colors.background }
     override var tabBarTitle: String { L10n.Tabbar.Title.home }
     override var tabBarImage: UIImage? { UIImage(.house) }
     

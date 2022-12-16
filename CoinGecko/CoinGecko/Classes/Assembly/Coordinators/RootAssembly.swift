@@ -6,6 +6,7 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
+import Core
 import Utils
 
 final class RootAssembly: Assembly {
@@ -25,4 +26,13 @@ extension RootAssembly {
     static func makeHomeCoordinator(parent: Coordinator) -> HomeCoordinator {
         HomeCoordinator(parent: parent)
     }
+    
+    static func makeExternalLinkBuilder() -> ExternalLinkBuilder {
+        // TODO: Move url to config
+        ExternalLinkBuilder(webURL: "https://www.google.com")
+    }
 }
+
+// Resolvable
+extension ExternalLinkBuilder: Resolvable { }
+

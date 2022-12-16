@@ -56,6 +56,17 @@ open class Button: UIButton {
         setupContent()
     }
     
+    public static func make(_ closure: (Button) -> Void) -> Button {
+        let button = Button()
+        closure(button)
+        return button
+    }
+    
+    public func apply(_ style: TextStyle) {
+        self.font = style.font
+        self.textColor = style.textColor
+    }
+    
     private func setupContent() {
         imageView?.snp.makeConstraints { make in
             make.size.equalToSuperview()

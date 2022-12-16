@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension TrendingViewController {
-    final class ViewModel: ErrorHandableViewModel {
+    final class ViewModel: ErrorHandableViewModel, PriceConvertable {
         private let coinsInteractor: CoinsInteractorProtocol
         
         var showCoinDetailInfoTransition: Closure.String?
@@ -61,8 +61,8 @@ extension TrendingViewController.ViewModel {
             
             self.coinsViewModels.send(
                 self.coinsViewModels.value + coins.map { coin in
-                    let isPriceChangePositive = coin.priceDetails.changePercentage24h > 0
-                    let priceChangeString = StringConverter.roundedValuePriceChangeString(
+                    let isPriceChangePositive = coin.priceDetails.changePercentage24h > .zero
+                    let priceChangeString = self.roundedValuePriceChangeString(
                         coin.priceDetails.changePercentage24h,
                         isChangePositive: isPriceChangePositive
                     )
@@ -72,7 +72,7 @@ extension TrendingViewController.ViewModel {
                         imageURL: coin.imageURL,
                         name: coin.name,
                         symbol: coin.symbol.uppercased(),
-                        currentPrice: StringConverter.roundedValueString(coin.priceDetails.currentPrice),
+                        currentPrice: self.roundedValueString(coin.priceDetails.currentPrice),
                         priceChangePercentage: priceChangeString,
                         isPriceChangePositive: isPriceChangePositive
                     )
@@ -81,6 +81,7 @@ extension TrendingViewController.ViewModel {
             ActivityIndicator.hide()
         }, failure: { [weak self] in
             self?.isSearchPerforming = false
+            ActivityIndicator.hide()
             self?.errorHandlerClosure($0)
         })
     }

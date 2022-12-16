@@ -11,7 +11,9 @@ import Core
 import Utils
 
 extension HomeViewController {
-    final class ViewModel: ErrorHandableViewModel {
+    final class ViewModel: ErrorHandableViewModel, PriceConvertable {
+        private typealias Texts = L10n.Home.NetworthCard.Status
+        
         private let coinsInteractor: CoinsInteractorProtocol
         
         init(coinsInteractor: CoinsInteractorProtocol) {
@@ -67,12 +69,12 @@ private extension HomeViewController.ViewModel {
         }
 
         networthCardViewModel.networthValue.send(
-            StringConverter.roundedValueString(totalNetworth)
+            roundedValueString(totalNetworth)
         )
         networthCardViewModel.dayProfitValue.send(
-            StringConverter.roundedValueString(abs(dayProfit))
+            roundedValueString(abs(dayProfit))
         )
-        networthCardViewModel.dayProfitTitle.send(dayProfit > .zero ? "Day Gain" : "Day Loss")
+        networthCardViewModel.dayProfitTitle.send(dayProfit > .zero ? Texts.up : Texts.down)
     }
     
     func setupCoinsViewModels(with coins: [Coin]) {
@@ -81,7 +83,7 @@ private extension HomeViewController.ViewModel {
                 guard let amount = coin.amount else { return nil }
                 
                 let isPriceChangePositive = coin.priceDetails.changePercentage24h > .zero
-                let priceChangeString = StringConverter.roundedValuePriceChangeString(
+                let priceChangeString = roundedValuePriceChangeString(
                     coin.priceDetails.changePercentage24h,
                     isChangePositive: isPriceChangePositive
                 )
@@ -91,11 +93,11 @@ private extension HomeViewController.ViewModel {
                     imageURL: coin.imageURL,
                     name: coin.name,
                     symbol: coin.symbol.uppercased(),
-                    currentPrice: StringConverter.roundedValueString(coin.priceDetails.currentPrice),
+                    currentPrice: roundedValueString(coin.priceDetails.currentPrice),
                     priceChangePercentage: priceChangeString ,
                     isPriceChangePositive: isPriceChangePositive,
                     portfolioCount: amount,
-                    portfolioPrice: StringConverter.roundedValueString(amount * coin.priceDetails.currentPrice)
+                    portfolioPrice: roundedValueString(amount * coin.priceDetails.currentPrice)
                 )
             }
         )

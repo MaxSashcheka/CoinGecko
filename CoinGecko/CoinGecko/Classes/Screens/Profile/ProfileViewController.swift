@@ -17,5 +17,7 @@ final class ProfileViewController: ViewController {
         super.viewDidLoad()
         
         title = "Profile"
+        
+        // TODO: - Implement for Diplom
     }
 }

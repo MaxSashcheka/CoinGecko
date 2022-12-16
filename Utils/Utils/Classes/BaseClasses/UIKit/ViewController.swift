@@ -95,8 +95,6 @@ open class ViewController: UIViewController {
             self?.present(alert, animated: true, completion: nil)
         }
     }
-    
-
 }
 
 private extension UITabBarController {
@@ -112,10 +110,12 @@ private extension UITabBarController {
             guard let self = self else { return }
             
             self.tabBar.frame = self.tabBar.frame.offsetBy(dx: .zero, dy: offsetY)
-            self.selectedViewController?.view.frame = CGRect(x: .zero,
-                                                             y: .zero,
-                                                             width: vc.view.frame.width,
-                                                             height: vc.view.frame.height + offsetY)
+            self.selectedViewController?.view.frame = CGRect(
+                x: .zero,
+                y: .zero,
+                width: vc.view.frame.width,
+                height: vc.view.frame.height + offsetY
+            )
             self.view.setNeedsDisplay()
             self.view.layoutIfNeeded()
         }

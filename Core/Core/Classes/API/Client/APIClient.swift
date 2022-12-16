@@ -38,6 +38,7 @@ public class APIClient {
                         failure(.corrutpedDataResponse)
                         return
                     }
+                    failure(.unacceptableStatusCode)
                     // TODO: - Add decoding response error
                 }
             })

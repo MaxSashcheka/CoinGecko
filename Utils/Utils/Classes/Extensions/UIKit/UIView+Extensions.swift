@@ -9,6 +9,12 @@
 import UIKit.UIView
 
 public extension UIView {
+    static func make<T: UIView>(_ closure: (T) -> Void) -> T {
+        let view = T()
+        closure(view)
+        return view
+    }
+    
     func removeAllSubviews() {
         subviews.forEach { $0.removeFromSuperview() }
     }

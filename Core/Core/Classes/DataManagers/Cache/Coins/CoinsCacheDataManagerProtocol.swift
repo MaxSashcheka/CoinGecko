@@ -27,6 +27,8 @@ public protocol CoinsCacheDataManagerProtocol {
                        success: @escaping Closure.OptionalCoin,
                        failure: @escaping Closure.GeneralError)
     
+    var cachedCoins: [Coin] { get }
+    
     func addToCache(coins: [Coin])
     
     func cachedCoin(withId id: String) -> Coin?

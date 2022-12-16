@@ -30,12 +30,24 @@ internal enum L10n {
     internal enum NetworthCard {
       /// Balance
       internal static let title = L10n.tr("Localizable", "home.networth_card.title", fallback: #"Balance"#)
+      internal enum Status {
+        /// Day Loss
+        internal static let down = L10n.tr("Localizable", "home.networth_card.status.down", fallback: #"Day Loss"#)
+        /// Day Gain
+        internal static let up = L10n.tr("Localizable", "home.networth_card.status.up", fallback: #"Day Gain"#)
+      }
     }
     internal enum NetworthCell {
       internal enum DeleteButton {
         /// Delete
         internal static let title = L10n.tr("Localizable", "home.networth_cell.delete_button.title", fallback: #"Delete"#)
       }
+    }
+    internal enum Placeholder {
+      /// Try to add coin to see portfolio
+      internal static let subtitle = L10n.tr("Localizable", "home.placeholder.subtitle", fallback: #"Try to add coin to see portfolio"#)
+      /// No coins yet.
+      internal static let title = L10n.tr("Localizable", "home.placeholder.title", fallback: #"No coins yet."#)
     }
     internal enum Portfolio {
       internal enum Title {

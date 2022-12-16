@@ -1,5 +1,5 @@
 //
-//  PortfolioCoinCell.swift
+//  NetworthCoinCell.swift
 //  CoinGecko
 //
 //  Created by Max Sashcheka on 30.10.22.
@@ -10,15 +10,16 @@ import SnapKit
 import Utils
 
 final class NetworthCoinCell: TableCell {
+    private typealias Colors = AppStyle.Colors.Home.CoinCell
     
     // MARK: - Properties
     
     private let containerShadowView: View = {
-        let view = View(shadowColor: UIColor.black.withAlphaComponent(0.25),
+        let view = View(shadowColor: Colors.shadow,
                         shadowOffset: .zero,
                         shadowRadius: 3.0,
                         shadowOpacity: 1)
-        view.backgroundColor = .white
+        view.backgroundColor = Colors.shadowBackground
         view.cornerRadius = 15
         
         return view
@@ -39,10 +40,9 @@ final class NetworthCoinCell: TableCell {
     
     private let deleteButton: Button = {
         let button = Button()
-        button.backgroundColor = .red
+        button.backgroundColor = Colors.deleteButton
         button.setTitle(L10n.Home.NetworthCell.DeleteButton.title, for: .normal)
-        button.font = .systemFont(ofSize: 16, weight: .medium)
-        button.textColor = .white
+        button.apply(AppStyle.TextStyles.NetworthCoin.deleteButton)
         button.cornerRadius = 17.5
         
         return button
@@ -110,8 +110,9 @@ final class NetworthCoinCell: TableCell {
             .store(in: &cancellables)
         
         viewModel.isPriceChangePositive
+            .map { $0 ? Colors.positiveChange : Colors.negativeChange }
             .sink { [weak priceInfoTitledDescriptionView] in
-                priceInfoTitledDescriptionView?.setDescriptionLabelTextColor($0 ? .green : .red)
+                priceInfoTitledDescriptionView?.setDescriptionLabelTextColor($0)
             }
             .store(in: &cancellables)
         
@@ -131,7 +132,7 @@ final class NetworthCoinCell: TableCell {
         priceInfoTitledDescriptionView.setTextAlignment(to: .right)
         
         selectionStyle = .none
-        backgroundColor = .clear
+        backgroundColor = Colors.background
     }
     
     override func prepareForReuse() {

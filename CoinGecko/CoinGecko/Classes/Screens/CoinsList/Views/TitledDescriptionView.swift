@@ -10,12 +10,17 @@ import UIKit
 import Utils
 
 final class TitledDescriptionView: View {
+    private typealias TextStyles = AppStyle.TextStyles.TitledDescription
     
     // MARK: - Properties
     
-    private let titleLabel = Label(textPreferences: .title)
+    private let titleLabel: Label = .make {
+        $0.apply(TextStyles.title)
+    }
     
-    private let descriptionLabel = Label(textPreferences: .subtitle)
+    private let descriptionLabel: Label = .make {
+        $0.apply(TextStyles.description)
+    }
     
     var viewModel: ViewModel? {
         didSet {

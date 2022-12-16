@@ -20,6 +20,7 @@ extension CommonAssembly {
         let viewController = CoinDetailsViewController()
         let viewModel = CoinDetailsViewModel(
             coinId: coinId,
+            externalLinkBuilder: resolver.resolve(ExternalLinkBuilder.self),
             coinsInteractor: InteractorsAssembly.makeCoinsInteractor(resolver: resolver),
             isAddToPortfolioEnabled: isAddToPortfolioEnabled
         )
@@ -36,6 +37,15 @@ extension CommonAssembly {
             coinId: coinId,
             coinsInteractor: InteractorsAssembly.makeCoinsInteractor(resolver: resolver)
         )
+        viewController.viewModel = viewModel
+        
+        return (viewController, viewModel)
+    }
+    
+    typealias InAppWebBrowserViewModel = InAppWebBrowserViewController.ViewModel
+    static func makeInAppWebBroserScreen(url: URL) -> (InAppWebBrowserViewController, InAppWebBrowserViewModel) {
+        let viewController = InAppWebBrowserViewController(url: url)
+        let viewModel = InAppWebBrowserViewModel()
         viewController.viewModel = viewModel
         
         return (viewController, viewModel)

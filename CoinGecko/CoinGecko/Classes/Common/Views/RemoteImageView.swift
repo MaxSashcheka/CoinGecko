@@ -16,7 +16,7 @@ final class RemoteImageView: UIImageView, RemoteImageDownloadable {
         }
     }
     
-    let placeholder: RemoteImagePlaceholder?
+    var placeholder: RemoteImagePlaceholder?
     let imageBackgroundColor: UIColor?
     
     var didDownloadImage: Closure.Void?

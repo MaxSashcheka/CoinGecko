@@ -10,32 +10,24 @@ import UIKit
 import Utils
 
 final class SearchTextField: View {
+    private typealias Colors = AppStyle.Colors.Search.TextField
     
     // MARK: - Properties
     
-    private let innerTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = L10n.Search.TextField.Placeholder.title
-        
-        return textField
-    }()
+    private let innerTextField: UITextField = .make {
+        $0.placeholder = L10n.Search.TextField.Placeholder.title
+    }
     
-    private let iconImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = Assets.Images.search.image.withRenderingMode(.alwaysTemplate)
-        imageView.tintColor = .lightGray.withAlphaComponent(0.7)
-
-        return imageView
-    }()
+    private let iconImageView: UIImageView = .make {
+        $0.image = Assets.Images.search.image.withRenderingMode(.alwaysTemplate)
+        $0.tintColor = Colors.tint
+    }
     
-    private let clearButton: Button = {
-        let button = Button()
-        button.setImage(Assets.Images.cross.image.withRenderingMode(.alwaysTemplate), for: .normal)
-        button.tintColor = .lightGray.withAlphaComponent(0.7)
-        button.alpha = .zero
-        
-        return button
-    }()
+    private let clearButton: Button = .make {
+        $0.setImage(Assets.Images.cross.image.withRenderingMode(.alwaysTemplate), for: .normal)
+        $0.tintColor = Colors.tint
+        $0.alpha = .zero
+    }
     
     var viewModel: ViewModel? {
         didSet {
@@ -53,7 +45,7 @@ final class SearchTextField: View {
         
         backgroundColor = .white
         cornerRadius = 8
-        borderColor = .lightGray.withAlphaComponent(0.7)
+        borderColor = Colors.tint
         borderWidth = 1.5
         
         innerTextField.delegate = self
