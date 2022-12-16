@@ -1,3 +1,10 @@
+using_bundler = defined? Bundler
+unless using_bundler
+  puts "\nPlease re-run using:".red
+  puts "  bundle exec pod install\n\n"
+  exit(1)
+end
+
 platform :ios, '14.0'
 inhibit_all_warnings!
 use_frameworks! :linkage => :static
@@ -13,21 +20,18 @@ end
 
 def ui_pods
   pod 'SnapKit'
+  pod 'SDWebImage'
+  pod 'SVProgressHUD'
+  pod 'SafeSFSymbols'
 end
 
 def network_pods
   pod 'Alamofire'
 end
 
-def reactive_pods
-  pod 'RxSwift'
-  pod 'RxCocoa'
-end
-
 target 'CoinGecko' do
   common_pods
   ui_pods
-  reactive_pods
 
   project 'CoinGecko/CoinGecko.xcodeproj'
 end
