@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C1D85B3295861DC007BEDF4 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1D85B2295861DC007BEDF4 /* UITableView+Extensions.swift */; };
 		1C1E6A0A292113B800A04434 /* ErrorHandableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E6A09292113B800A04434 /* ErrorHandableViewModel.swift */; };
 		1C2A63DB28D63F160007877D /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63DA28D63F160007877D /* View.swift */; };
 		1C2A63EB28D645E90007877D /* GeneralClosures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63EA28D645E90007877D /* GeneralClosures.swift */; };
@@ -58,6 +59,7 @@
 
 /* Begin PBXFileReference section */
 		04E1F3DEFE54A2141D0058A8 /* Pods-Utils.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Utils.debug.xcconfig"; path = "Target Support Files/Pods-Utils/Pods-Utils.debug.xcconfig"; sourceTree = "<group>"; };
+		1C1D85B2295861DC007BEDF4 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		1C1E6A09292113B800A04434 /* ErrorHandableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandableViewModel.swift; sourceTree = "<group>"; };
 		1C2A63DA28D63F160007877D /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		1C2A63EA28D645E90007877D /* GeneralClosures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralClosures.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				1C4287AB28E0B34A00273979 /* UIStackView+Extensions.swift */,
 				1C97B9CD28E9CE6F0085C979 /* UIGestureRecognizer+Extensions.swift */,
 				1C3F8ADC28ECB48C00E04740 /* UIFeedbackGenerator.swift */,
+				1C1D85B2295861DC007BEDF4 /* UITableView+Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				1CDCB2E528D1375300624AB5 /* ViewController.swift in Sources */,
 				1C97B9C228E9CCAA0085C979 /* ControlEventSubscription.swift in Sources */,
 				1C60DA1428E8FC0D00B675DA /* GeneralError.swift in Sources */,
+				1C1D85B3295861DC007BEDF4 /* UITableView+Extensions.swift in Sources */,
 				1CDCB2CF28D12DED00624AB5 /* ContainerViewController.swift in Sources */,
 				1CAD2B30293F58960004E4AA /* TableView.swift in Sources */,
 				1C97B9CC28E9CDB70085C979 /* DispatchQueue+Extensions.swift in Sources */,

@@ -16,7 +16,7 @@ final class SearchViewController: ViewController {
     // MARK: - Properties
     
     private let coinsTableView: TableView = .make(style: .grouped) {
-        $0.register(CoinCell.self, forCellReuseIdentifier: CoinCell.reuseIdentifier)
+        $0.register(CoinCell.self)
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
         $0.backgroundColor = Colors.table
@@ -118,7 +118,7 @@ extension SearchViewController: UITableViewPresentable {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CoinCell.reuseIdentifier, for: indexPath) as? CoinCell else {
+        guard let cell = tableView.reuse(CoinCell.self, indexPath) else {
             assertionFailure("Cannot deque reusable cell for \(CoinCell.reuseIdentifier) identifier")
             return UITableViewCell()
         }
