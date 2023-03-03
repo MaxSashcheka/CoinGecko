@@ -1,5 +1,5 @@
 //
-//  RootCoordinator.swift
+//  AppCoordinator.swift
 //  CoinGecko
 //
 //  Created by Maksim Sashcheka on 14.09.22.
@@ -10,12 +10,12 @@ import SafeSFSymbols
 import Utils
 import UIKit
 
-final class RootCoordinator: TabCoordinator {
+final class AppCoordinator: TabCoordinator {
 
     override func registerContent() {
-        register(DataSourcesAssembly.makeCoreDataSource())
-        register(CacheDataManagerAssembly.makeCoinsCacheDataManager(resolver: self))
-        register(RootAssembly.makeExternalLinkBuilder())
+        register(DataSourcesAssembly.coreDataSource())
+        register(SessionsAssembly.coinsCacheDataManager(resolver: self))
+        register(AppAssembly.externalLinkBuilder())
     }
 
     func start(at window: UIWindow?) {
@@ -28,7 +28,7 @@ final class RootCoordinator: TabCoordinator {
     }
 }
 
-private extension RootCoordinator {
+private extension AppCoordinator {
     func setupAppearance() {
         let navigationAppearance = UINavigationBarAppearance()
         let backButtonImage = UIImage(.chevron.left).withBaselineOffset(fromBottom: 2)
@@ -48,11 +48,11 @@ private extension RootCoordinator {
     }
 }
 
-private extension RootCoordinator {
+private extension AppCoordinator {
     func initializeTabsCoordinatorsAndShow() {
-        let homeCoordinator = RootAssembly.makeTrendingCoordinator(parent: self)
-        let marketsCoordinator = RootAssembly.makeMarketsCoordinator(parent: self)
-        let profileCoordinator = RootAssembly.makeHomeCoordinator(parent: self)
+        let homeCoordinator = AppAssembly.trendingCoordinator(parent: self)
+        let marketsCoordinator = AppAssembly.marketsCoordinator(parent: self)
+        let profileCoordinator = AppAssembly.homeCoordinator(parent: self)
 
         setTabsCoordinators([homeCoordinator, marketsCoordinator, profileCoordinator])
     }

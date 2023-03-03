@@ -11,27 +11,41 @@ import Core
 import Utils
 
 extension SearchViewController {
-    final class ViewModel: ErrorHandableViewModel {
-        private let coinsInteractor: CoinsInteractorProtocol
-        
-        var showCoinDetailInfoTransition: Closure.String?
+    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+        private let services: Services
+        let transitions: Transitions
         
         let coinsViewModels = CurrentValueSubject<[CoinCell.ViewModel], Never>([])
         let nftsViewModels = CurrentValueSubject<[CoinCell.ViewModel], Never>([])
         
         var searchTextFieldViewModel = SearchTextField.ViewModel()
         
-        init(coinsInteractor: CoinsInteractorProtocol) {
-            self.coinsInteractor = coinsInteractor
-            
+        init(transitions: Transitions, services: Services) {
+            self.transitions = transitions
+            self.services = services
         }
     }
 }
 
-// MARK: - SearchViewController.ViewModel+Search
+// MARK: - SearchViewModel+NestedTypes
+extension SearchViewController.ViewModel {
+    struct Transitions: ScreenTransitions {
+        let coinDetails: Closure.String
+    }
+    
+    final class Services {
+        let coins: CoinsServiceProtocol
+        
+        init(coins: CoinsServiceProtocol) {
+            self.coins = coins
+        }
+    }
+}
+
+// MARK: - SearchViewModel+Search
 extension SearchViewController.ViewModel {
     func search(query: String) {
-        coinsInteractor.search(query: query, success: { [weak self] searchResult in
+        services.coins.search(query: query, success: { [weak self] searchResult in
             guard let self = self else { return }
             
             self.coinsViewModels.send(
@@ -56,7 +70,7 @@ extension SearchViewController.ViewModel {
     }
 }
 
-// MARK: - SearchViewController.ViewModel+TableMethods
+// MARK: - SearchViewModel+TableMethods
 extension SearchViewController.ViewModel {
     var coinsCount: Int { coinsViewModels.value.count }
     var nftsCount: Int { nftsViewModels.value.count }
@@ -69,6 +83,6 @@ extension SearchViewController.ViewModel {
     
     func didSelectCoin(at indexPath: IndexPath) {
         guard indexPath.section == .zero else { return }
-        showCoinDetailInfoTransition?(coinsViewModels.value[indexPath.row].id)
+        transitions.coinDetails(coinsViewModels.value[indexPath.row].id)
     }
 }

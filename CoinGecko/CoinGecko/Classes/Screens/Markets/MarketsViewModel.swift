@@ -11,13 +11,11 @@ import Core
 import Utils
 
 extension MarketsViewController {
-    final class ViewModel: ErrorHandableViewModel, PriceConvertable {
+    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, PriceConvertable {
         typealias DisplayMode = PageButton.ViewModel.DisplayMode
-        
-        private let coinsInteractor: CoinsInteractorProtocol
-        
-        var showCoinDetailInfoTransition: Closure.String?
-        var showSearchTransition: Closure.Void?
+
+        private let services: Services
+        let transitions: Transitions
         
         let pageButtonsCollectionViewModel = PageButtonsCollectionView.ViewModel()
         
@@ -28,9 +26,10 @@ extension MarketsViewController {
         
         private var selectedMode: DisplayMode { pageButtonsCollectionViewModel.selectedMode.value }
         
-        init(coinsInteractor: CoinsInteractorProtocol) {
-            self.coinsInteractor = coinsInteractor
-            
+        init(transitions: Transitions, services: Services) {
+            self.transitions = transitions
+            self.services = services
+
             super.init()
             
             pageButtonsCollectionViewModel.buttonsViewModels.send(
@@ -44,10 +43,26 @@ extension MarketsViewController {
     }
 }
 
-// MARK: - MarketsViewController.ViewModel+Fetch
+// MARK: - MarketsViewModel+NestedTypes
+extension MarketsViewController.ViewModel {
+    struct Transitions: ScreenTransitions {
+        let coinDetails: Closure.String
+        let search: Transition
+    }
+    
+    final class Services {
+        let coins: CoinsServiceProtocol
+        
+        init(coins: CoinsServiceProtocol) {
+            self.coins = coins
+        }
+    }
+}
+
+// MARK: - MarketsViewModel+Fetch
 extension MarketsViewController.ViewModel {
     func fetchFavouritesCoins() {
-        coinsInteractor.getFavouritesCoins(success: { [weak self] in
+        services.coins.getFavouritesCoins(success: { [weak self] in
             guard let self = self else { return }
             self.favouriteCoins.send($0)
             if self.selectedMode == .favourites { self.fetchCoins() }
@@ -56,7 +71,7 @@ extension MarketsViewController.ViewModel {
     
     func fetchGlobalData() {
         ActivityIndicator.show()
-        coinsInteractor.getGlobalData(success: { [weak self] globalData in
+        services.coins.getGlobalData(success: { [weak self] globalData in
             self?.isPriceChangePositive.send(globalData.previousDayChangePercentage > .zero)
             self?.changePercentage.send(globalData.previousDayChangePercentage)
             ActivityIndicator.hide()
@@ -68,7 +83,7 @@ extension MarketsViewController.ViewModel {
     
     func fetchCoins() {
         let mode = selectedMode
-        coinsInteractor.getCoins(fromCache: true,
+        services.coins.getCoins(fromCache: true,
                                  currency: "usd",
                                  page: 1,
                                  pageSize: 50,
@@ -101,7 +116,7 @@ extension MarketsViewController.ViewModel {
     }
 }
 
-// MARK: - MarketsViewController.ViewModel+MakeViewModels
+// MARK: - MarketsViewModel+MakeViewModels
 private extension MarketsViewController.ViewModel {
     func makeCoinViewModels(from coins: [Coin]) -> [CoinCell.ViewModel] {
         coins.map { coin in
@@ -124,14 +139,14 @@ private extension MarketsViewController.ViewModel {
     }
 }
 
-// MARK: - MarketsViewController.ViewModel+TapActions
+// MARK: - MarketsViewModel+TapActions
 extension MarketsViewController.ViewModel {
     func didTapSearchButton() {
-        showSearchTransition?()
+        transitions.search()
     }
 }
 
-// MARK: - MarketsViewController.ViewModel+TableMethods
+// MARK: - MarketsViewModel+TableMethods
 extension MarketsViewController.ViewModel {
     var coinsCount: Int { coinsViewModels.value.count }
     
@@ -140,6 +155,6 @@ extension MarketsViewController.ViewModel {
     }
     
     func didSelectCoin(at indexPath: IndexPath) {
-        showCoinDetailInfoTransition?(coinsViewModels.value[indexPath.row].id)
+        transitions.coinDetails(coinsViewModels.value[indexPath.row].id)
     }
 }

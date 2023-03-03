@@ -11,14 +11,20 @@ import UIKit
 import Utils
 
 final class CoinDetailsCoordinator: NavigationCoordinator {
+    // TODO: Remove this closure
     var presentationControllerDidDismissed: Closure.Void?
-    var closeClosure: Closure.Void?
-     
+    
+    struct Transitions {
+        let close: Transition
+    }
+    
+    private let transitions: Transitions
+    
     init(parent: Coordinator?,
+         transitions: Transitions,
          coinId: String,
-         isAddToPortfolioEnabled: Bool = true,
-         closeClosure: @escaping Closure.Void) {
-        self.closeClosure = closeClosure
+         isAddToPortfolioEnabled: Bool = true) {
+        self.transitions = transitions
         
         super.init(parent: parent)
         
@@ -29,20 +35,20 @@ final class CoinDetailsCoordinator: NavigationCoordinator {
 // MARK: - CoinDetailsCoordinator+SreensAssembly
 extension CoinDetailsCoordinator {
     func showCoinDetailInfoScreen(coinId: String, isAddToPortfolioEnabled: Bool) {
-        let (viewController, viewModel) = CommonAssembly.makeCoinDetailsScreen(
+        let transitions = CoinDetailsViewController.ViewModel.Transitions(
+            close: { [weak self] in self?.transitions.close() },
+            bottomSheet: { [weak self] in self?.showAddCoinBottomSheet(coinId: coinId) },
+            browser: showInAppWebBrowserTransition
+        )
+        
+        let screen = CommonAssembly.coinDetailsScreen(
+            transitions: transitions,
             resolver: self,
             coinId: coinId,
             isAddToPortfolioEnabled: isAddToPortfolioEnabled
         )
-        viewModel.closeTransition = { [weak self] in
-            self?.closeClosure?()
-        }
-        viewModel.openBottomSheetTransition = { [weak self] in
-            self?.showAddCoinBottomSheet(coinId: coinId)
-        }
-        viewModel.openBrowserTransition = showInAppWebBrowserTransition
 
-        pushViewController(viewController, animated: false)
+        pushViewController(screen, animated: false)
     }
 }
 

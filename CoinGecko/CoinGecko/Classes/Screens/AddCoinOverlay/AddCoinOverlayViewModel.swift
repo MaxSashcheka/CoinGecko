@@ -11,9 +11,11 @@ import Core
 import Utils
 
 extension AddCoinOverlayViewController {
-    final class ViewModel: ErrorHandableViewModel {
+    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+        private let services: Services
+        let transitions: Transitions
+        
         private let coinId: String
-        private let coinsInteractor: CoinsInteractorProtocol
         
         let amountText = CurrentValueSubject<String, Never>(.empty)
         let incorrectNumberSubject = PassthroughSubject<Void, Never>()
@@ -24,14 +26,27 @@ extension AddCoinOverlayViewController {
             return formatter
         }()
         
-        var closeTransition: Closure.Void?
-        
-        init(coinId: String,
-             coinsInteractor: CoinsInteractorProtocol) {
+        init(transitions: Transitions,
+             services: Services,
+             coinId: String) {
+            self.transitions = transitions
+            self.services = services
             self.coinId = coinId
-            self.coinsInteractor = coinsInteractor
-            
-            super.init()
+        }
+    }
+}
+
+// MARK: - AddCoinOverlayViewViewModel+NestedTypes
+extension AddCoinOverlayViewController.ViewModel {
+    struct Transitions: ScreenTransitions {
+        let close: Transition
+    }
+    
+    final class Services {
+        let coins: CoinsServiceProtocol
+        
+        init(coins: CoinsServiceProtocol) {
+            self.coins = coins
         }
     }
 }
@@ -39,7 +54,7 @@ extension AddCoinOverlayViewController {
 // MARK: - AddCoinOverlayViewController.ViewModel+FillData
 extension AddCoinOverlayViewController.ViewModel {
     func fillAmountInfoIfPossible() {
-        coinsInteractor.getStoredCoin(withId: coinId, success: { [weak self] coin in
+        services.coins.getStoredCoin(withId: coinId, success: { [weak self] coin in
             guard let coin = coin,
                   let amount = coin.amount,
                   amount != .zero else { return }
@@ -51,7 +66,7 @@ extension AddCoinOverlayViewController.ViewModel {
 // MARK: - AddCoinOverlayViewController.ViewModel+TapActions
 extension AddCoinOverlayViewController.ViewModel {
     func didTriggerCloseAction() {
-        closeTransition?()
+        transitions.close()
     }
 
     func didTapAddButton(amountText: String) {
@@ -61,15 +76,15 @@ extension AddCoinOverlayViewController.ViewModel {
             return
         }
 
-        coinsInteractor.getStoredCoin(withId: coinId, success: { [weak self] coin in
+        services.coins.getStoredCoin(withId: coinId, success: { [weak self] coin in
             guard let self = self else { return }
             guard var coin = coin else {
-                self.closeTransition?()
+                self.transitions.close()
                 return
             }
             coin.amount = amount
-            self.coinsInteractor.createOrUpdate(coin: coin, success: { [weak self] in
-                self?.closeTransition?()
+            self.services.coins.createOrUpdate(coin: coin, success: { [weak self] in
+                self?.transitions.close()
             }, failure: self.errorHandlerClosure)
         }, failure: errorHandlerClosure)
     }

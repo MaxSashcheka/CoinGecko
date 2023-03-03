@@ -11,25 +11,40 @@ import Core
 import Utils
 
 extension TrendingViewController {
-    final class ViewModel: ErrorHandableViewModel, PriceConvertable {
-        private let coinsInteractor: CoinsInteractorProtocol
-        
-        var showCoinDetailInfoTransition: Closure.String?
+    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, PriceConvertable {
+        private let services: Services
+        let transitions: Transitions
         
         let coinsViewModels = CurrentValueSubject<[CoinCell.ViewModel], Never>([])
         
         private var isSearchPerforming = false
         private var currentPage = 0
 
-        init(coinsInteractor: CoinsInteractorProtocol) {
-            self.coinsInteractor = coinsInteractor
+        init(transitions: Transitions, services: Services) {
+            self.transitions = transitions
+            self.services = services
 
             super.init()
         }
     }
 }
 
-// MARK: - TrendingViewController.ViewModel+TableMethods
+// MARK: - TrendingViewModel+NestedTypes
+extension TrendingViewController.ViewModel {
+    struct Transitions: ScreenTransitions {
+        let coinDetails: Closure.String
+    }
+    
+    final class Services {
+        let coins: CoinsServiceProtocol
+        
+        init(coins: CoinsServiceProtocol) {
+            self.coins = coins
+        }
+    }
+}
+
+// MARK: - TrendingViewModel+TableMethods
 extension TrendingViewController.ViewModel {
     var coinsCount: Int { coinsViewModels.value.count }
     
@@ -38,11 +53,11 @@ extension TrendingViewController.ViewModel {
     }
     
     func didSelectCoin(at indexPath: IndexPath) {
-        showCoinDetailInfoTransition?(coinsViewModels.value[indexPath.row].id)
+        transitions.coinDetails(coinsViewModels.value[indexPath.row].id)
     }
 }
 
-// MARK: - TrendingViewController.ViewModel+Fetch
+// MARK: - TrendingViewModel+Fetch
 extension TrendingViewController.ViewModel {
     func fetchCoins() {
         guard !isSearchPerforming else { return }
@@ -51,7 +66,7 @@ extension TrendingViewController.ViewModel {
         currentPage += 1
         
         ActivityIndicator.show()
-        coinsInteractor.getCoins(fromCache: false,
+        services.coins.getCoins(fromCache: false,
                                  currency: "usd",
                                  page: currentPage,
                                  pageSize: 20,

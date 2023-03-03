@@ -11,19 +11,12 @@ import Core
 import Utils
 
 extension CoinDetailsViewController {
-    final class ViewModel: ErrorHandableViewModel, PriceConvertable {
-        enum RangeButtonConfig: CaseIterable {
-            case hour, day, week, month, halfYear, year, all
-        }
-        
-        private let externalLinkBuilder: ExternalLinkBuilder
-        private let coinsInteractor: CoinsInteractorProtocol
+    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, PriceConvertable {
+        private let services: Services
+        let transitions: Transitions
+
         private let coinId: String
         let isAddToPortfolioEnabled: Bool
-        
-        var closeTransition: Closure.Void?
-        var openBottomSheetTransition: Closure.Void?
-        var openBrowserTransition: Closure.URL?
         
         let navigationBarViewModel = CoinDetailsNavigationBarView.ViewModel()
         let chartViewModel = ChartView.ViewModel()
@@ -35,13 +28,13 @@ extension CoinDetailsViewController {
         let isPriceChangePositive = CurrentValueSubject<Bool, Never>(false)
         let hideAddButtonSubject = PassthroughSubject<Void, Never>()
         
-        init(coinId: String,
-             externalLinkBuilder: ExternalLinkBuilder,
-             coinsInteractor: CoinsInteractorProtocol,
+        init(transitions: Transitions,
+             services: Services,
+             coinId: String,
              isAddToPortfolioEnabled: Bool) {
+            self.services = services
+            self.transitions = transitions
             self.coinId = coinId
-            self.externalLinkBuilder = externalLinkBuilder
-            self.coinsInteractor = coinsInteractor
             self.isAddToPortfolioEnabled = isAddToPortfolioEnabled
             
             super.init()
@@ -59,10 +52,33 @@ extension CoinDetailsViewController {
     }
 }
 
-// MARK: - CoinDetailsViewController.ViewModel+Fetch
+// MARK: - CoinDetailsViewModel+NestedTypes
+extension CoinDetailsViewController.ViewModel {
+    enum RangeButtonConfig: CaseIterable {
+        case hour, day, week, month, halfYear, year, all
+    }
+    
+    struct Transitions: ScreenTransitions {
+        let close: Transition
+        let bottomSheet: Transition
+        let browser: Closure.URL
+    }
+    
+    final class Services {
+        let coins: CoinsServiceProtocol
+        let externalLinkBuilder: ExternalLinkBuilder
+        
+        init(coins: CoinsServiceProtocol, externalLinkBuilder: ExternalLinkBuilder) {
+            self.coins = coins
+            self.externalLinkBuilder = externalLinkBuilder
+        }
+    }
+}
+
+// MARK: - CoinDetailsViewModel+Fetch
 extension CoinDetailsViewController.ViewModel {
     func fetchStoredCoin() {
-        coinsInteractor.getStoredCoin(withId: coinId, success: { [weak navigationBarViewModel] coin in
+        services.coins.getStoredCoin(withId: coinId, success: { [weak navigationBarViewModel] coin in
             guard let coin = coin else { return }
             navigationBarViewModel?.isFavourite.send(coin.isFavourite ?? false)
         }, failure: { [weak self] error in
@@ -71,7 +87,7 @@ extension CoinDetailsViewController.ViewModel {
     }
     
     func fetchCoinDetails() {
-        coinsInteractor.getCoinDetails(id: coinId,
+        services.coins.getCoinDetails(id: coinId,
                                        success: { [weak self] coinDetails in
             guard let self = self else { return }
             self.navigationBarViewModel.title.send(coinDetails.name)
@@ -90,7 +106,7 @@ extension CoinDetailsViewController.ViewModel {
     
     func fetchCoinChartData(for timeInterval: TimeInterval) {
         ActivityIndicator.show()
-        coinsInteractor.getCoinMarketChart(id: coinId, currency: "usd",
+        services.coins.getCoinMarketChart(id: coinId, currency: "usd",
                                            startTimeInterval: timeInterval.offsetFromCurrentTime,
                                            endTimeInterval: .intervalSince1970,
                                            success: { [weak self] chartData in
@@ -134,14 +150,14 @@ extension CoinDetailsViewController.ViewModel {
     }
 }
 
-// MARK: - CoinDetailsViewController.ViewModel+TapActions
+// MARK: - CoinDetailsViewModel+TapActions
 extension CoinDetailsViewController.ViewModel {
     func didTapCloseButton() {
-        closeTransition?()
+        transitions.close()
     }
     
     func didTapAddToFavouriteButton() {
-        coinsInteractor.getStoredCoin(withId: coinId, success: { [weak self] coin in
+        services.coins.getStoredCoin(withId: coinId, success: { [weak self] coin in
             guard let self = self else { return }
             guard var coin = coin else {
                 self.errorHandlerClosure(.coreDataError)
@@ -149,22 +165,22 @@ extension CoinDetailsViewController.ViewModel {
             }
             let newFavouriteState = !(coin.isFavourite ?? false)
             coin.isFavourite = newFavouriteState
-            self.coinsInteractor.createOrUpdate(coin: coin, success: { [weak self] in
+            self.services.coins.createOrUpdate(coin: coin, success: { [weak self] in
                 self?.navigationBarViewModel.isFavourite.send(newFavouriteState)
             }, failure: self.errorHandlerClosure)
         }, failure: errorHandlerClosure)
     }
     
     func didTapBrowserButton() {
-        coinsInteractor.getStoredCoin(withId: coinId, success: { [weak self] coin in
-            guard let url = self?.externalLinkBuilder.buildGoogleSearchURL(query: (coin?.name).orEmpty()) else { return }
-            self?.openBrowserTransition?(url)
+        services.coins.getStoredCoin(withId: coinId, success: { [weak self] coin in
+            guard let url = self?.services.externalLinkBuilder.buildGoogleSearchURL(query: (coin?.name).orEmpty()) else { return }
+            self?.transitions.browser(url)
             
         }, failure: errorHandlerClosure)
     }
     
     func didTapOpenBottomSheetButton() {
-        openBottomSheetTransition?()
+        transitions.bottomSheet()
     }
 }
 

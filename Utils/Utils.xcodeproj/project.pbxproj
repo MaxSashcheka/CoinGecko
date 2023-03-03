@@ -17,6 +17,7 @@
 		1C57B50B28D5E92700E91F7C /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B50A28D5E92700E91F7C /* Optional+Extensions.swift */; };
 		1C60DA1228E8F8F400B675DA /* Publisher+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60DA1128E8F8F400B675DA /* Publisher+Extensions.swift */; };
 		1C60DA1428E8FC0D00B675DA /* GeneralError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60DA1328E8FC0D00B675DA /* GeneralError.swift */; };
+		1C68714629ACF33400A9C59B /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C68714529ACF33400A9C59B /* CGFloat+Extensions.swift */; };
 		1C7200AA28D717D5001DDBD5 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7200A928D717D5001DDBD5 /* String+Extensions.swift */; };
 		1C7200AC28D721ED001DDBD5 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7200AB28D721ED001DDBD5 /* Double+Extensions.swift */; };
 		1C97B9BE28E9CC940085C979 /* TapPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9BD28E9CC940085C979 /* TapPublisher.swift */; };
@@ -46,7 +47,6 @@
 		1CDCB2D528D12EE500624AB5 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2D428D12EE500624AB5 /* Resolver.swift */; };
 		1CDCB2D728D12EFF00624AB5 /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2D628D12EFF00624AB5 /* TabCoordinator.swift */; };
 		1CDCB2D928D12FFE00624AB5 /* InteractiveDismissalHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2D828D12FFE00624AB5 /* InteractiveDismissalHandler.swift */; };
-		1CDCB2E228D1345600624AB5 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2E128D1345600624AB5 /* Assembly.swift */; };
 		1CDCB2E528D1375300624AB5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2E428D1375300624AB5 /* ViewController.swift */; };
 		1CDCB2E728D1375800624AB5 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2E628D1375800624AB5 /* Button.swift */; };
 		1CDCB2E928D1375C00624AB5 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCB2E828D1375C00624AB5 /* Label.swift */; };
@@ -69,6 +69,7 @@
 		1C57B50A28D5E92700E91F7C /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
 		1C60DA1128E8F8F400B675DA /* Publisher+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extensions.swift"; sourceTree = "<group>"; };
 		1C60DA1328E8FC0D00B675DA /* GeneralError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralError.swift; sourceTree = "<group>"; };
+		1C68714529ACF33400A9C59B /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		1C7200A928D717D5001DDBD5 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		1C7200AB28D721ED001DDBD5 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		1C97B9BD28E9CC940085C979 /* TapPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapPublisher.swift; sourceTree = "<group>"; };
@@ -99,7 +100,6 @@
 		1CDCB2D428D12EE500624AB5 /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		1CDCB2D628D12EFF00624AB5 /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		1CDCB2D828D12FFE00624AB5 /* InteractiveDismissalHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveDismissalHandler.swift; sourceTree = "<group>"; };
-		1CDCB2E128D1345600624AB5 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		1CDCB2E428D1375300624AB5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1CDCB2E628D1375800624AB5 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		1CDCB2E828D1375C00624AB5 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
@@ -151,6 +151,7 @@
 				1C97B9CB28E9CDB70085C979 /* DispatchQueue+Extensions.swift */,
 				1CE2AE6A28F3671100642D00 /* CGColor+Extensions.swift */,
 				1CF0CB782917038E00E7E3AB /* NSPredicate+Extensions.swift */,
+				1C68714529ACF33400A9C59B /* CGFloat+Extensions.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -277,7 +278,6 @@
 			children = (
 				1CDCB2E328D1372000624AB5 /* UIKit */,
 				1CDCB2D428D12EE500624AB5 /* Resolver.swift */,
-				1CDCB2E128D1345600624AB5 /* Assembly.swift */,
 				1C1E6A09292113B800A04434 /* ErrorHandableViewModel.swift */,
 			);
 			path = BaseClasses;
@@ -449,7 +449,6 @@
 				1C60DA1228E8F8F400B675DA /* Publisher+Extensions.swift in Sources */,
 				1C2A63ED28D647290007877D /* UIView+Extensions.swift in Sources */,
 				1C3F8ADD28ECB48C00E04740 /* UIFeedbackGenerator.swift in Sources */,
-				1CDCB2E228D1345600624AB5 /* Assembly.swift in Sources */,
 				1CA3D3A428D3CF38009D43E9 /* TableCell.swift in Sources */,
 				1CDCB2CB28D12D7C00624AB5 /* ContainerCoordinator.swift in Sources */,
 				1CDCB2C728D12CCA00624AB5 /* Coordinator.swift in Sources */,
@@ -482,6 +481,7 @@
 				1CAD2B30293F58960004E4AA /* TableView.swift in Sources */,
 				1C97B9CC28E9CDB70085C979 /* DispatchQueue+Extensions.swift in Sources */,
 				1C7200AC28D721ED001DDBD5 /* Double+Extensions.swift in Sources */,
+				1C68714629ACF33400A9C59B /* CGFloat+Extensions.swift in Sources */,
 				1C97B9C028E9CC9D0085C979 /* TapSubscription.swift in Sources */,
 				1CDCB2D128D12E1000624AB5 /* ContainerViewControllerTransitionContext.swift in Sources */,
 				1C4287AC28E0B34A00273979 /* UIStackView+Extensions.swift in Sources */,

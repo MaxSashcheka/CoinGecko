@@ -28,31 +28,38 @@ final class HomeCoordinator: NavigationCoordinator {
 // MARK: - HomeCoordinator+SreensAssembly
 extension HomeCoordinator {
     func showHomeScreen() {
-        let (viewController, viewModel) = HomeAssembly.makeHomeScreen(resolver: self)
-        viewModel.openSettingsTransition = { [weak self] in
-            self?.showSettingsScreen()
-        }
-        viewModel.openProfileTransition = { [weak self] in
-            self?.showProfileScreen()
-        }
-        viewModel.openBottomSheetTransition = showAddCoinBottomSheetTransition
+        let transitions = HomeViewController.ViewModel.Transitions(
+            settings: { [weak self] in self?.showSettingsScreen() },
+            profile: { [weak self] in self?.showProfileScreen() },
+            bottomSheet: showAddCoinBottomSheetTransition
+        )
+        let screen = HomeAssembly.homeScreen(
+            transitions: transitions,
+            resolver: self
+        )
         
         // TODO: - Try to fix this logic for detecting presentation controller dismissed in home view model
-        homeViewModel = viewModel
+//        homeViewModel = viewModel
         
-        pushViewController(viewController, animated: false)
+        pushViewController(screen, animated: false)
     }
     
     func showSettingsScreen() {
-        let (viewController, _) = HomeAssembly.makeSettingsScreen(resolver: self)
+        let screen = HomeAssembly.settingsScreen(
+            transitions: .init(),
+            resolver: self
+        )
         
-        pushViewController(viewController, animated: true)
+        pushViewController(screen, animated: true)
     }
     
     func showProfileScreen() {
-        let (viewController, _) = HomeAssembly.makeProfileScreen(resolver: self)
+        let screen = HomeAssembly.profileScreen(
+            transitions: .init(),
+            resolver: self
+        )
         
-        pushViewController(viewController, animated: true)
+        pushViewController(screen, animated: true)
     }
 }
 

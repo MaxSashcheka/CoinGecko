@@ -1,5 +1,5 @@
 //
-//  CoinsInteractorProtocol.swift
+//  CoinsServiceProtocol.swift
 //  Core
 //
 //  Created by Maksim Sashcheka on 15.09.22.
@@ -8,7 +8,7 @@
 
 import Utils
 
-public protocol CoinsInteractorProtocol: Interactor {
+public protocol CoinsServiceProtocol {
     // MARK: - API Methods
     func getCoins(fromCache: Bool,
                   currency: String, page: Int, pageSize: Int,
