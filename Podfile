@@ -23,6 +23,7 @@ def ui_pods
   pod 'SDWebImage'
   pod 'SVProgressHUD'
   pod 'SafeSFSymbols'
+  pod 'Charts'
 end
 
 def network_pods

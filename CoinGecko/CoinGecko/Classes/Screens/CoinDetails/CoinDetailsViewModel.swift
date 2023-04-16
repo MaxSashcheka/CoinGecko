@@ -91,7 +91,6 @@ extension CoinDetailsViewController.ViewModel {
                                        success: { [weak self] coinDetails in
             guard let self = self else { return }
             self.navigationBarViewModel.title.send(coinDetails.name)
-            self.navigationBarViewModel.description.send(coinDetails.symbol.uppercased())
             self.navigationBarViewModel.imageURL.send(coinDetails.imageURL)
             
             self.currentPriceText.send(self.roundedValueString(coinDetails.currentPrice))
@@ -111,11 +110,9 @@ extension CoinDetailsViewController.ViewModel {
                                            endTimeInterval: .intervalSince1970,
                                            success: { [weak self] chartData in
             guard let self = self else { return }
-            self.chartViewModel.dataSubject.send(
-                chartData.prices.map { CGFloat($0) }
-            )
+            self.chartViewModel.dataSubject.send(chartData.pricesWithData)
             
-            let chartDataFirstPrice = chartData.prices.first ?? .zero
+            let chartDataFirstPrice = chartData.pricesWithData.first?.price ?? .zero
             let isPriceChangePositive = self.currentPrice.value > chartDataFirstPrice
             var priceChangeText = preciseRound(
                 self.currentPrice.value - chartDataFirstPrice,

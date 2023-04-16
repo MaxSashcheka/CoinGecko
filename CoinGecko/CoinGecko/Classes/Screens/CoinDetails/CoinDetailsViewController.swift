@@ -7,6 +7,7 @@
 //
 
 import Combine
+import Charts
 import SnapKit
 import Utils
 
@@ -92,7 +93,7 @@ final class CoinDetailsViewController: ViewController {
             make.top.equalTo(currentPriceLabel.snp.bottom).offset(35)
             make.leading.trailing.equalToSuperview()
             make.centerX.equalToSuperview()
-            make.height.equalTo(chartView.snp.width).multipliedBy(0.8)
+            make.height.equalTo(chartView.snp.width).multipliedBy(1.15)
         }
         
         scrollView.addSubview(buttonsCollectionView)
