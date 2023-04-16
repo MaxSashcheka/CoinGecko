@@ -35,6 +35,11 @@ final class TrendingViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem.barButtonItem(
+            image: UIImage(.person.cropCircle),
+            action: { [weak viewModel] in viewModel?.didTapComposeUserButton() }
+        )
+        
         viewModel.fetchCoins()
         viewModel.errorHandlerClosure = errorHandler
     }

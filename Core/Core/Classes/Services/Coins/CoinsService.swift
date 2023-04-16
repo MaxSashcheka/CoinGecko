@@ -1,5 +1,5 @@
 //
-//  CoinsInteractor.swift
+//  CoinsService.swift
 //  Core
 //
 //  Created by Maksim Sashcheka on 15.09.22.

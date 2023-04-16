@@ -30,6 +30,12 @@
 		1C564C47290D2C2300F4BFC6 /* NetworthCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C564C46290D2C2300F4BFC6 /* NetworthCardView.swift */; };
 		1C564C49290D2C2B00F4BFC6 /* NetworthCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C564C48290D2C2B00F4BFC6 /* NetworthCardViewModel.swift */; };
 		1C564C4B290D5BFE00F4BFC6 /* PriceTriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C564C4A290D5BFE00F4BFC6 /* PriceTriangleView.swift */; };
+		1C590F2D29EC7DFF00D700D1 /* ComposeUserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C590F2C29EC7DFF00D700D1 /* ComposeUserCoordinator.swift */; };
+		1C590F3229EC7F1A00D700D1 /* ComposeUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C590F3129EC7F1A00D700D1 /* ComposeUserInfoViewController.swift */; };
+		1C590F3429EC7F1F00D700D1 /* ComposeUserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C590F3329EC7F1F00D700D1 /* ComposeUserInfoViewModel.swift */; };
+		1C590F3629EC7F2C00D700D1 /* ComposeUserPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C590F3529EC7F2C00D700D1 /* ComposeUserPhotoViewController.swift */; };
+		1C590F3829EC7F3200D700D1 /* ComposeUserPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C590F3729EC7F3200D700D1 /* ComposeUserPhotoViewModel.swift */; };
+		1C590F3A29EC812E00D700D1 /* ComposeUserAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C590F3929EC812E00D700D1 /* ComposeUserAssembly.swift */; };
 		1C5E031629185B35008A7495 /* CoinBottomSheetPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5E031529185B35008A7495 /* CoinBottomSheetPresentable.swift */; };
 		1C5E30F12909E0640082E1B4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5E30F02909E0640082E1B4 /* ProfileViewController.swift */; };
 		1C5E30F32909E06A0082E1B4 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5E30F22909E06A0082E1B4 /* ProfileViewModel.swift */; };
@@ -133,6 +139,12 @@
 		1C564C46290D2C2300F4BFC6 /* NetworthCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworthCardView.swift; sourceTree = "<group>"; };
 		1C564C48290D2C2B00F4BFC6 /* NetworthCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworthCardViewModel.swift; sourceTree = "<group>"; };
 		1C564C4A290D5BFE00F4BFC6 /* PriceTriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTriangleView.swift; sourceTree = "<group>"; };
+		1C590F2C29EC7DFF00D700D1 /* ComposeUserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeUserCoordinator.swift; sourceTree = "<group>"; };
+		1C590F3129EC7F1A00D700D1 /* ComposeUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeUserInfoViewController.swift; sourceTree = "<group>"; };
+		1C590F3329EC7F1F00D700D1 /* ComposeUserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeUserInfoViewModel.swift; sourceTree = "<group>"; };
+		1C590F3529EC7F2C00D700D1 /* ComposeUserPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeUserPhotoViewController.swift; sourceTree = "<group>"; };
+		1C590F3729EC7F3200D700D1 /* ComposeUserPhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeUserPhotoViewModel.swift; sourceTree = "<group>"; };
+		1C590F3929EC812E00D700D1 /* ComposeUserAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeUserAssembly.swift; sourceTree = "<group>"; };
 		1C5E031529185B35008A7495 /* CoinBottomSheetPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinBottomSheetPresentable.swift; sourceTree = "<group>"; };
 		1C5E30F02909E0640082E1B4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1C5E30F22909E06A0082E1B4 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -338,6 +350,41 @@
 			path = NetworthCard;
 			sourceTree = "<group>";
 		};
+		1C590F2E29EC7EA000D700D1 /* ComposeUser */ = {
+			isa = PBXGroup;
+			children = (
+				1C590F2F29EC7EAA00D700D1 /* ComposeUserInfo */,
+				1C590F3029EC7EB000D700D1 /* ComposeUserPhoto */,
+			);
+			path = ComposeUser;
+			sourceTree = "<group>";
+		};
+		1C590F2F29EC7EAA00D700D1 /* ComposeUserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				1C590F3E29EC979600D700D1 /* Views */,
+				1C590F3129EC7F1A00D700D1 /* ComposeUserInfoViewController.swift */,
+				1C590F3329EC7F1F00D700D1 /* ComposeUserInfoViewModel.swift */,
+			);
+			path = ComposeUserInfo;
+			sourceTree = "<group>";
+		};
+		1C590F3029EC7EB000D700D1 /* ComposeUserPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				1C590F3529EC7F2C00D700D1 /* ComposeUserPhotoViewController.swift */,
+				1C590F3729EC7F3200D700D1 /* ComposeUserPhotoViewModel.swift */,
+			);
+			path = ComposeUserPhoto;
+			sourceTree = "<group>";
+		};
+		1C590F3E29EC979600D700D1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		1C5E30EF2909E0520082E1B4 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +421,7 @@
 				1CFA294A28D27CBA0088A051 /* TrendingAssembly.swift */,
 				1C60D9F528E8A4C900B675DA /* MarketsAssembly.swift */,
 				1CE2AE7A28F37C2300642D00 /* HomeAssembly.swift */,
+				1C590F3929EC812E00D700D1 /* ComposeUserAssembly.swift */,
 				03460CEE290EB2F900F754FA /* CommonAssembly.swift */,
 			);
 			path = Flows;
@@ -408,6 +456,7 @@
 				1C60D9EB28E8853500B675DA /* MarketsCoordinator.swift */,
 				1CE2AE6C28F3752B00642D00 /* HomeCoordinator.swift */,
 				03460CF1290EB9EB00F754FA /* CoinDetailsCoordinator.swift */,
+				1C590F2C29EC7DFF00D700D1 /* ComposeUserCoordinator.swift */,
 			);
 			name = Coordinators;
 			path = Assembly/Coordinators;
@@ -435,9 +484,10 @@
 		1C7CD4F328D273F800068965 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1C590F2E29EC7EA000D700D1 /* ComposeUser */,
 				1CB0B4E2293FF15000C874C4 /* InAppWebBrowser */,
 				1C80E75A29104F4D00B7502E /* AddCoinOverlay */,
-				1C7CD4F428D2741A00068965 /* CoinsList */,
+				1C7CD4F428D2741A00068965 /* Trending */,
 				1C7200B628D77FA4001DDBD5 /* CoinDetails */,
 				1C60D9F028E8A2EB00B675DA /* Markets */,
 				1CE8A3C628F182360052E34B /* Search */,
@@ -448,14 +498,14 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		1C7CD4F428D2741A00068965 /* CoinsList */ = {
+		1C7CD4F428D2741A00068965 /* Trending */ = {
 			isa = PBXGroup;
 			children = (
 				1C2A63DC28D644970007877D /* Views */,
 				1C7CD4F528D2743C00068965 /* TrendingViewController.swift */,
 				1C7CD4F728D2744300068965 /* TrendingViewModel.swift */,
 			);
-			path = CoinsList;
+			path = Trending;
 			sourceTree = "<group>";
 		};
 		1C80E75A29104F4D00B7502E /* AddCoinOverlay */ = {
@@ -809,6 +859,7 @@
 				1C4287A028E0732100273979 /* ChartView.swift in Sources */,
 				1C12DD5028F2365700E7D91E /* UITableViewPresentable.swift in Sources */,
 				1CF466EE28CFDF5F0012DE85 /* Fonts.swift in Sources */,
+				1C590F2D29EC7DFF00D700D1 /* ComposeUserCoordinator.swift in Sources */,
 				1C68714C29ACF6CC00A9C59B /* Aliases.swift in Sources */,
 				1C7200BF28D78619001DDBD5 /* CoinDetailsNavigationBarViewModel.swift in Sources */,
 				1C2A63F128D6496F0007877D /* TitledDescriptionViewModel.swift in Sources */,
@@ -817,6 +868,8 @@
 				1C68714929ACF4C200A9C59B /* Assembly.swift in Sources */,
 				1C2A63E628D645250007877D /* RemoteImageDownloadable.swift in Sources */,
 				1C68714F29ACFE6700A9C59B /* ProvidersAssembly.swift in Sources */,
+				1C590F3229EC7F1A00D700D1 /* ComposeUserInfoViewController.swift in Sources */,
+				1C590F3429EC7F1F00D700D1 /* ComposeUserInfoViewModel.swift in Sources */,
 				1C12DD4E28F2340500E7D91E /* EndEditingTappable.swift in Sources */,
 				1CCB08CA29AD4F8A00596FED /* DataSourcesAssembly.swift in Sources */,
 				1C97B9D328EA2E460085C979 /* PageButtonViewModel.swift in Sources */,
@@ -854,6 +907,7 @@
 				1C9961AE294130E800F9A7AE /* PriceConverable.swift in Sources */,
 				1C7200BA28D77FED001DDBD5 /* CoinDetailsViewModel.swift in Sources */,
 				1CE2AE7228F3777200642D00 /* HomeViewController.swift in Sources */,
+				1C590F3A29EC812E00D700D1 /* ComposeUserAssembly.swift in Sources */,
 				1C60D9F428E8A3F600B675DA /* MarketsViewModel.swift in Sources */,
 				1C4287AA28E0B0C300273979 /* RangePickerButtonViewModel.swift in Sources */,
 				1CF466ED28CFDF5F0012DE85 /* Assets.swift in Sources */,
@@ -862,6 +916,7 @@
 				1CE8A3C828F182450052E34B /* SearchViewController.swift in Sources */,
 				1CA3D3A628D3CFA7009D43E9 /* CoinCell.swift in Sources */,
 				1C1E81AC29AE840200CABF79 /* DependencyInjectable.swift in Sources */,
+				1C590F3629EC7F2C00D700D1 /* ComposeUserPhotoViewController.swift in Sources */,
 				1C7200B828D77FB3001DDBD5 /* CoinDetailsViewController.swift in Sources */,
 				1CF466EF28CFDF5F0012DE85 /* Localizable.swift in Sources */,
 				1C2A63E328D644F40007877D /* RemoteImageView.swift in Sources */,
@@ -880,6 +935,7 @@
 				03460CF2290EB9EB00F754FA /* CoinDetailsCoordinator.swift in Sources */,
 				1CA3D3A828D3CFAF009D43E9 /* CoinCellViewModel.swift in Sources */,
 				1CF969CC28E393AC00F49456 /* ButtonsCollectionView.swift in Sources */,
+				1C590F3829EC7F3200D700D1 /* ComposeUserPhotoViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

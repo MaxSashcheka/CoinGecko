@@ -13,7 +13,7 @@ enum TrendingAssembly: Assembly { }
 // MARK: - Screens
 
 extension TrendingAssembly {
-    static func coinsListScreen(
+    static func trendingScreen(
         transitions: TrendingViewController.ViewModel.Transitions,
         resolver: DependencyResolver
     ) -> TrendingViewController {

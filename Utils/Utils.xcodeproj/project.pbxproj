@@ -15,6 +15,7 @@
 		1C3F8ADD28ECB48C00E04740 /* UIFeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3F8ADC28ECB48C00E04740 /* UIFeedbackGenerator.swift */; };
 		1C4287AC28E0B34A00273979 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4287AB28E0B34A00273979 /* UIStackView+Extensions.swift */; };
 		1C57B50B28D5E92700E91F7C /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B50A28D5E92700E91F7C /* Optional+Extensions.swift */; };
+		1C590F2B29EC780E00D700D1 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C590F2A29EC780E00D700D1 /* UIBarButtonItem.swift */; };
 		1C60DA1228E8F8F400B675DA /* Publisher+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60DA1128E8F8F400B675DA /* Publisher+Extensions.swift */; };
 		1C60DA1428E8FC0D00B675DA /* GeneralError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60DA1328E8FC0D00B675DA /* GeneralError.swift */; };
 		1C68714629ACF33400A9C59B /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C68714529ACF33400A9C59B /* CGFloat+Extensions.swift */; };
@@ -68,6 +69,7 @@
 		1C3F8ADC28ECB48C00E04740 /* UIFeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFeedbackGenerator.swift; sourceTree = "<group>"; };
 		1C4287AB28E0B34A00273979 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		1C57B50A28D5E92700E91F7C /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
+		1C590F2A29EC780E00D700D1 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		1C60DA1128E8F8F400B675DA /* Publisher+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extensions.swift"; sourceTree = "<group>"; };
 		1C60DA1328E8FC0D00B675DA /* GeneralError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralError.swift; sourceTree = "<group>"; };
 		1C68714529ACF33400A9C59B /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				1CA3D3A928D3D1C2009D43E9 /* CollectionCell.swift */,
 				1CAD2B2F293F58950004E4AA /* TableView.swift */,
 				1CAD2B38293F73180004E4AA /* TextField.swift */,
+				1C590F2A29EC780E00D700D1 /* UIBarButtonItem.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				1C4287AC28E0B34A00273979 /* UIStackView+Extensions.swift in Sources */,
 				1C97B9C828E9CCD60085C979 /* PublisherProvider+ControlEventPublisher.swift in Sources */,
 				1C57B50B28D5E92700E91F7C /* Optional+Extensions.swift in Sources */,
+				1C590F2B29EC780E00D700D1 /* UIBarButtonItem.swift in Sources */,
 				1CDABAA128DA4B0B00B7A632 /* TextStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
