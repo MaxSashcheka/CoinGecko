@@ -7,11 +7,23 @@
 //
 
 import Combine
+import Core
 import Foundation
 
 extension ChartView {
     final class ViewModel {
-        let dataSubject = CurrentValueSubject<[CGFloat], Never>([])
-        var chartData: [CGFloat] { dataSubject.value }
+        let dataSubject = CurrentValueSubject<[PriceMetadata], Never>([])
+        let selectedMetadata = CurrentValueSubject<PriceMetadata?, Never>(nil)
+        let updateMetadataSubject = PassthroughSubject<PriceMetadata, Never>()
+        var chartData: [PriceMetadata] { dataSubject.value }
+        
+        func didSelectMetadata(at index: Int) {
+            selectedMetadata.send(chartData[index])
+        }
+        
+        func didEndPanning() {
+            guard let metadata = selectedMetadata.value else { return }
+            updateMetadataSubject.send(metadata)
+        }
     }
 }

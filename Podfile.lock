@@ -1,16 +1,22 @@
 PODS:
   - Alamofire (5.6.2)
+  - Charts (4.1.0):
+    - Charts/Core (= 4.1.0)
+  - Charts/Core (4.1.0):
+    - SwiftAlgorithms (~> 1.0)
   - SafeSFSymbols (1.1.4)
   - SDWebImage (5.13.2):
     - SDWebImage/Core (= 5.13.2)
   - SDWebImage/Core (5.13.2)
   - SnapKit (5.6.0)
   - SVProgressHUD (2.2.5)
+  - SwiftAlgorithms (1.0.0)
   - SwiftGen (6.6.1)
   - SwiftLint (0.48.0)
 
 DEPENDENCIES:
   - Alamofire
+  - Charts
   - SafeSFSymbols
   - SDWebImage
   - SnapKit
@@ -21,22 +27,26 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Charts
     - SafeSFSymbols
     - SDWebImage
     - SnapKit
     - SVProgressHUD
+    - SwiftAlgorithms
     - SwiftGen
     - SwiftLint
 
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
+  Charts: 354f86803d11d9c35de280587fef50d1af063978
   SafeSFSymbols: 01a76621736d73afd4a19f31da8602a37badd0a2
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   SwiftGen: 787181d7895fa2f5e7313d05de92c387010149c2
   SwiftLint: 284cea64b6187c5d6bd83e9a548a64104d546447
 
-PODFILE CHECKSUM: 884aab28ad7bc3f4aff78d1a0c3c8223ce5cb723
+PODFILE CHECKSUM: 564f5c6d2d08f6995784faaf78115583b21559c0
 
 COCOAPODS: 1.11.3

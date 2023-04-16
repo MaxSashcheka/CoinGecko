@@ -24,10 +24,6 @@ final class CoinDetailsNavigationBarView: View {
         $0.apply(TextStyles.title)
     }
     
-    private let descriptionLabel: Label = .make {
-        $0.apply(TextStyles.description)
-    }
-    
     private let coinImageView: RemoteImageView = {
         let imageView = RemoteImageView(placeholder: .color(.gray))
         imageView.contentMode = .scaleAspectFit
@@ -80,12 +76,6 @@ final class CoinDetailsNavigationBarView: View {
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalTo(coinImageView)
             make.leading.equalTo(coinImageView.snp.trailing).offset(5)
-        }
-        
-        infoContainerView.addSubview(descriptionLabel)
-        descriptionLabel.snp.makeConstraints { make in
-            make.leading.equalTo(titleLabel.snp.trailing).offset(3)
-            make.bottom.equalTo(titleLabel).offset(-3)
             make.trailing.equalToSuperview()
         }
         
@@ -114,10 +104,6 @@ final class CoinDetailsNavigationBarView: View {
     func bindData(with viewModel: ViewModel) {
         viewModel.title
             .bind(to: \.text, on: titleLabel)
-            .store(in: &cancellables)
-        
-        viewModel.description
-            .bind(to: \.text, on: descriptionLabel)
             .store(in: &cancellables)
         
         viewModel.imageURL
