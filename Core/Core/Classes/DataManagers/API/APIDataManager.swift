@@ -1,20 +1,20 @@
 //
-//  APIClient.swift
+//  APIDataManager.swift
 //  Core
 //
-//  Created by Maksim Sashcheka on 1.10.22.
-//  Copyright © 2022 BSUIR. All rights reserved.
+//  Created by Maksim Sashcheka on 16.04.23.
+//  Copyright © 2023 BSUIR. All rights reserved.
 //
 
 import Alamofire
 import Utils
 
-public class APIClient {
-    private static var baseURL: String = "https://api.coingecko.com/api/v3/"
+public class APIDataManager {
+    private var baseURL: String = "https://api.coingecko.com/api/v3/"
     
-    // TODO: rework
+    public init() { }
     
-    public static func makeDataRequest(for endpoint: RequestDescription) -> DataRequest {
+    public func makeDataRequest(for endpoint: RequestDescription) -> DataRequest {
         AF.request(
             baseURL + endpoint.path,
             method: endpoint.method,
@@ -24,9 +24,9 @@ public class APIClient {
         )
     }
     
-    public static func execute(request: DataRequest,
-                               success: @escaping Closure.OptionalData,
-                               failure: @escaping Closure.GeneralError) {
+    public func execute(request: DataRequest,
+                        success: @escaping Closure.OptionalData,
+                        failure: @escaping Closure.GeneralError) {
         request
             .validate()
             .response(completionHandler: { response in
@@ -45,9 +45,12 @@ public class APIClient {
             .resume()
     }
     
-    public static func execute<ResultType>(request: DataRequest,
-                                           success: @escaping (ResultType) -> Void,
-                                           failure: @escaping Closure.GeneralError) where ResultType: APIResponse {
+    public func execute<ResultType>(
+        request: DataRequest,
+        responseType: ResultType.Type,
+        success: @escaping (ResultType) -> Void,
+        failure: @escaping Closure.GeneralError
+    ) where ResultType: APIResponse {
         execute(request: request, success: { data in
             do {
                 guard let data = data else {
@@ -64,9 +67,9 @@ public class APIClient {
         }, failure: failure)
     }
     
-    public static func execute(request: DataRequest,
-                               success: @escaping Closure.Void,
-                               failure: @escaping Closure.GeneralError) {
+    public func execute(request: DataRequest,
+                        success: @escaping Closure.Void,
+                        failure: @escaping Closure.GeneralError) {
         execute(request: request, success: { _ in success() }, failure: failure)
     }
 }
