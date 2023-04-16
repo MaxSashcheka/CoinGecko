@@ -9,32 +9,43 @@
 import Combine
 import Utils
 
-public final class CoinsAPIDataManager: CoinsAPIDataManagerProtocol {
-    public init() { }
-    
+public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProtocol {
     public func getCoins(currency: String,
                          page: Int,
                          pageSize: Int,
                          success: @escaping Closure.CoinsArray,
                          failure: @escaping Closure.GeneralError) {
-        APIClient.getCoinsMarkets(
-            currency: currency,
-            page: page,
-            pageSize: pageSize,
-            success: { coinsResponces in
-                success(coinsResponces.map { Coin(coinResponse: $0) })
-        }, failure: failure)
+        let endpoint = RequestDescription.Coins.getCoinsMarkets
+            .replacingQueryParameters(
+                .getCoinsMarkets(
+                    currency: currency,
+                    page: page,
+                    pageSize: pageSize
+                )
+            )
+        
+        execute(
+            request: makeDataRequest(for: endpoint),
+            responseType: [CoinResponse].self,
+            success: { success($0.map { Coin(coinResponse: $0) }) },
+            failure: failure
+        )
     }
     
     public func getCoinDetails(id: String,
                                success: @escaping Closure.CoinDetails,
                                failure: @escaping Closure.GeneralError) {
-        APIClient.getCoinDetails(
-            id: id,
+        let endpoint = RequestDescription.Coins.getCoinDetails
+            .replacingInlineArguments(
+                .id(id)
+            )
+        
+        execute(
+            request: makeDataRequest(for: endpoint),
+            responseType: CoinDetailsResponse.self,
             success: { success(CoinDetails(coinDetailsResponse: $0)) },
             failure: failure
         )
-    
     }
     
     public func getCoinMarketChart(id: String,
@@ -43,11 +54,21 @@ public final class CoinsAPIDataManager: CoinsAPIDataManagerProtocol {
                                    endTimeInterval: TimeInterval,
                                    success: @escaping Closure.CoinChartData,
                                    failure: @escaping Closure.GeneralError) {
-        APIClient.getCoinMarketChart(
-            id: id,
-            currency: currency,
-            startTimeInterval: startTimeInterval,
-            endTimeInterval: endTimeInterval,
+        let endpoint = RequestDescription.Coins.getCoinMarketChart
+            .replacingQueryParameters(
+                .getCoinMarketChart(
+                    currency: currency,
+                    startTimeInterval: startTimeInterval,
+                    endTimeInterval: endTimeInterval
+                )
+            )
+            .replacingInlineArguments(
+                .id(id)
+            )
+        
+        execute(
+            request: makeDataRequest(for: endpoint),
+            responseType: CoinChartDataResponse.self,
             success: { success(CoinChartData(coinChartDataResponse: $0)) },
             failure: failure
         )
@@ -56,8 +77,16 @@ public final class CoinsAPIDataManager: CoinsAPIDataManagerProtocol {
     public func search(query: String,
                        success: @escaping Closure.SearchResult,
                        failure: @escaping Closure.GeneralError) {
-        APIClient.search(
-            query: query,
+        let endpoint = RequestDescription.Search.search
+            .replacingQueryParameters(
+                .search(
+                    query: query
+                )
+            )
+        
+        execute(
+            request: makeDataRequest(for: endpoint),
+            responseType: SearchResponse.self,
             success: { success(SearchResult(searchResponse: $0)) },
             failure: failure
         )
@@ -65,7 +94,11 @@ public final class CoinsAPIDataManager: CoinsAPIDataManagerProtocol {
     
     public func getGlobalData(success: @escaping Closure.GlobalData,
                               failure: @escaping Closure.GeneralError) {
-        APIClient.getGlobalData(
+        let endpoint = RequestDescription.Global.getGlobalData
+        
+        execute(
+            request: makeDataRequest(for: endpoint),
+            responseType: GlobalDataResponse.self,
             success: { success(GlobalData(globalDataResponse: $0)) },
             failure: failure
         )
