@@ -21,8 +21,7 @@ final class HomeViewController: ViewController {
     private let navigationBarView = HomeNavigationBarView()
     
     private let coinsTableView: TableView = .make(style: .grouped) {
-        $0.register(NetworthCoinCell.self,
-                    forCellReuseIdentifier: NetworthCoinCell.reuseIdentifier)
+        $0.register(NetworthCoinCell.self)
         $0.separatorStyle = .none
         $0.backgroundColor = Colors.table
     }
@@ -169,7 +168,7 @@ extension HomeViewController: UITableViewPresentable {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: NetworthCoinCell.reuseIdentifier, for: indexPath) as? NetworthCoinCell else {
+        guard let cell = tableView.reuse(NetworthCoinCell.self, indexPath) else {
             assertionFailure("Cannot deque reusable cell for \(NetworthCoinCell.reuseIdentifier) identifier")
             return UITableViewCell()
         }

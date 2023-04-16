@@ -20,17 +20,20 @@ extension CoinBottomSheetPresentable where Self: Coordinator & UIViewControllerT
     }
     
     func showAddCoinBottomSheet(coinId: String) {
-        let (viewController, viewModel) = CommonAssembly.makeAddCoinBottomSheet(
+        let transitions = AddCoinOverlayViewController.ViewModel.Transitions(
+            close: { [weak self] in
+                self?.presentationControllerDidDismissed?()
+                self?.dismissModalController()
+            }
+        )
+        let screen = CommonAssembly.addCoinBottomSheet(
+            transitions: transitions,
             resolver: self,
             coinId: coinId
         )
-        viewModel.closeTransition = { [weak self] in
-            self?.presentationControllerDidDismissed?()
-            self?.dismissModalController()
-        }
         
-        viewController.transitioningDelegate = self
+        screen.transitioningDelegate = self
         
-        presentModal(controller: viewController, presentationStyle: .custom, animated: true)
+        presentModal(controller: screen, presentationStyle: .custom, animated: true)
     }
 }

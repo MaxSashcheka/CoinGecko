@@ -9,7 +9,7 @@
 import Combine
 import Utils
 
-public class CoinsInteractor: CoinsInteractorProtocol {
+public class CoinsService: CoinsServiceProtocol {
     private let coinsAPIDataManager: CoinsAPIDataManagerProtocol
     private let coinsCacheDataManager: CoinsCacheDataManagerProtocol
     

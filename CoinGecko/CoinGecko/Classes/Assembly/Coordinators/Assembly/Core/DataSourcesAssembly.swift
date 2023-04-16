@@ -2,15 +2,14 @@
 //  DataSourcesAssembly.swift
 //  CoinGecko
 //
-//  Created by Maksim Sashcheka on 2.11.22.
-//  Copyright © 2022 BSUIR. All rights reserved.
+//  Created by Maksim Sashcheka on 27.02.23.
+//  Copyright © 2023 BSUIR. All rights reserved.
 //
 
 import Core
-import Utils
 
-final class DataSourcesAssembly: Assembly {
-    static func makeCoreDataSource() -> CoreDataSource {
+enum DataSourcesAssembly: Assembly {
+    static func coreDataSource() -> CoreDataSource {
         // TODO: - Implement fetching dbFileURL for current user when it will be implemented on backend
         let userId = "some"
         let databaseName = userId + "_data_base"
@@ -41,4 +40,4 @@ private extension DataSourcesAssembly {
     }
 }
 
-extension CoreDataSource: Resolvable { }
+extension CoreDataSource: DependencyResolvable { }

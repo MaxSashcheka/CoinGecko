@@ -11,20 +11,16 @@ import Core
 import Utils
 
 extension HomeViewController {
-    final class ViewModel: ErrorHandableViewModel, PriceConvertable {
+    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, PriceConvertable {
         private typealias Texts = L10n.Home.NetworthCard.Status
         
-        private let coinsInteractor: CoinsInteractorProtocol
+        private let services: Services
+        let transitions: Transitions
         
-        init(coinsInteractor: CoinsInteractorProtocol) {
-            self.coinsInteractor = coinsInteractor
-            
-            super.init()
+        init(transitions: Transitions, services: Services) {
+            self.transitions = transitions
+            self.services = services
         }
-        
-        var openSettingsTransition: Closure.Void?
-        var openProfileTransition: Closure.Void?
-        var openBottomSheetTransition: Closure.String?
         
         let navigationBarViewModel = HomeNavigationBarView.ViewModel()
         let networthCardViewModel = NetworhCardView.ViewModel()
@@ -34,24 +30,41 @@ extension HomeViewController {
     }
 }
 
+// MARK: - HomeViewModel+NestedTypes
+extension HomeViewController.ViewModel {
+    struct Transitions: ScreenTransitions {
+        let settings: Transition
+        let profile: Transition
+        let bottomSheet: Closure.String
+    }
+    
+    final class Services {
+        let coins: CoinsServiceProtocol
+        
+        init(coins: CoinsServiceProtocol) {
+            self.coins = coins
+        }
+    }
+}
+
 // MARK: - HomeViewController.ViewModel+Fetch
 extension HomeViewController.ViewModel {
     func fetchPortfolioCoins() {
-        coinsInteractor.getPortfolioCoins(success: { [weak self] coins in
+        services.coins.getPortfolioCoins(success: { [weak self] coins in
             self?.setupNethwordCardViewModel(with: coins)
             self?.setupCoinsViewModels(with: coins)
         }, failure: errorHandlerClosure)
     }
     
     func deleteCoin(withId id: String) {
-        coinsInteractor.getStoredCoin(withId: id, success: { [weak self] coin in
+        services.coins.getStoredCoin(withId: id, success: { [weak self] coin in
             guard let self = self else { return }
             guard var coin = coin else {
                 self.errorHandlerClosure(.coreDataError)
                 return
             }
             coin.amount = .zero
-            self.coinsInteractor.createOrUpdate(coin: coin, success: { [weak self] in
+            self.services.coins.createOrUpdate(coin: coin, success: { [weak self] in
                 self?.fetchPortfolioCoins()
             }, failure: self.errorHandlerClosure)
         }, failure: errorHandlerClosure)
@@ -113,18 +126,18 @@ extension HomeViewController.ViewModel {
     }
     
     func didSelectCoin(at indexPath: IndexPath) {
-        openBottomSheetTransition?(coinsViewModels.value[indexPath.row].id)
+        transitions.bottomSheet(coinsViewModels.value[indexPath.row].id)
     }
 }
 
 // MARK: - HomeViewController.ViewModel+TapActions
 extension HomeViewController.ViewModel {
     func didTapSettingsButton() {
-        openSettingsTransition?()
+        transitions.settings()
     }
     
     func didTapProfileButton() {
-        openProfileTransition?()
+        transitions.profile()
     }
     
     func presentationControllerDidDismissed() {

@@ -14,11 +14,15 @@ protocol InAppWebBrowserPresentable {
 
 extension InAppWebBrowserPresentable where Self: NavigationCoordinator {
     func showInAppWebBrowser(url: URL) {
-        let (viewController, viewModel) = CommonAssembly.makeInAppWebBroserScreen(url: url)
-        viewModel.closeTransition = { [weak self] in
-            self?.dismissModalController()
-        }
-        presentModal(controller: viewController)
+        let transitions = InAppWebBrowserViewController.ViewModel.Transitions(
+            close: { [weak self] in self?.dismissModalController() }
+        )
+        let screen = CommonAssembly.inAppWebBroserScreen(
+            transitions: transitions,
+            url: url
+        )
+        
+        presentModal(controller: screen)
     }
     
     var showInAppWebBrowserTransition: Closure.URL {

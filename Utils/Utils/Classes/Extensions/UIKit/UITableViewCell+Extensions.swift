@@ -9,6 +9,11 @@
 import UIKit.UITableViewCell
 
 public extension UITableViewCell {
-    static var nib: UINib { UINib(nibName: reuseIdentifier, bundle: nil) }
-    static var reuseIdentifier: String { String(describing: self) }
+    static var reuseIdentifier: String {
+        String(describing: self)
+    }
+
+    var reuseIdentifier: String {
+        type(of: self).reuseIdentifier
+    }
 }
