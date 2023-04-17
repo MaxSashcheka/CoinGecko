@@ -88,16 +88,16 @@ public protocol TextInputTraits: AnyObject {
 
 public extension TextInputTraits where Self: UITextField {
     var textInputTraitsOptions: [TextInputTraitsOptions] {
-        get {
-            [.autocapitalizationType(autocapitalizationType),
-             .autocorrectionType(autocorrectionType),
-             .keyboardType(keyboardType),
-             .keyboardAppearance(keyboardAppearance),
-             .returnKeyType(returnKeyType),
-             .contentType(textContentType)]
-        }
+        get {[
+            .autocapitalizationType(autocapitalizationType),
+            .autocorrectionType(autocorrectionType),
+            .keyboardType(keyboardType),
+            .keyboardAppearance(keyboardAppearance),
+            .returnKeyType(returnKeyType),
+            .contentType(textContentType)
+        ]}
         set {
-            newValue.forEach({
+            newValue.forEach {
                 switch $0 {
                 case .autocapitalizationType(let value): autocapitalizationType = value
                 case .autocorrectionType(let value): autocorrectionType = value
@@ -106,23 +106,21 @@ public extension TextInputTraits where Self: UITextField {
                 case .returnKeyType(let value): returnKeyType = value
                 case .contentType(let value): textContentType = value
                 }
-            })
+            }
         }
     }
 }
 
 public extension TextInputTraits where Self: UITextView {
     var textInputTraitsOptions: [TextInputTraitsOptions] {
-        get {
-            [
-                .autocapitalizationType(autocapitalizationType),
-                .autocorrectionType(autocorrectionType),
-                .keyboardType(keyboardType),
-                .keyboardAppearance(keyboardAppearance),
-                .returnKeyType(returnKeyType),
-                .contentType(textContentType)
-            ]
-        }
+        get {[
+            .autocapitalizationType(autocapitalizationType),
+            .autocorrectionType(autocorrectionType),
+            .keyboardType(keyboardType),
+            .keyboardAppearance(keyboardAppearance),
+            .returnKeyType(returnKeyType),
+            .contentType(textContentType)
+        ]}
         set {
             newValue.forEach {
                 switch $0 {

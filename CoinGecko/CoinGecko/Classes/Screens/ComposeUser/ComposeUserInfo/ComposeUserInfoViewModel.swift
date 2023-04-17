@@ -57,26 +57,31 @@ extension ComposeUserInfoViewController {
 
             super.init()
             
-            usernameTitledTextFieldViewModel.saveTextClosure = { [weak self] _ in
-                print("usernameTitledTextFieldViewModel saveTextClosure")
-            }
-            
-            loginTitledTextFieldViewModel.saveTextClosure = { [weak self] _ in
-                print("loginTitledTextFieldViewModel saveTextClosure")
-            }
-            
-            passwordTitledTextFieldViewModel.saveTextClosure = { [weak self] _ in
-                print("passwordTitledTextFieldViewModel saveTextClosure")
-            }
-            
-            emailTitledTextFieldViewModel.saveTextClosure = { [weak self] _ in
-                print("emailTitledTextFieldViewModel saveTextClosure")
-            }
-            
-            personalWebPageTitledTextFieldViewModel.saveTextClosure = { [weak self] _ in
-                print("personalWebPageTitledTextFieldViewModel saveTextClosure")
-            }
+            setupTextFieldsViewModels()
+        }
+    }
+}
+
+private extension ComposeUserInfoViewController.ViewModel {
+    func setupTextFieldsViewModels() {
+        usernameTitledTextFieldViewModel.saveTextClosure = { [weak self] in
+            self?.services.composeUser.username = $0
+        }
         
+        loginTitledTextFieldViewModel.saveTextClosure = { [weak self] in
+            self?.services.composeUser.login = $0
+        }
+        
+        passwordTitledTextFieldViewModel.saveTextClosure = { [weak self] in
+            self?.services.composeUser.password = $0
+        }
+        
+        emailTitledTextFieldViewModel.saveTextClosure = { [weak self] in
+            self?.services.composeUser.email = $0
+        }
+        
+        personalWebPageTitledTextFieldViewModel.saveTextClosure = { [weak self] in
+            self?.services.composeUser.personalWebLink = $0
         }
     }
 }
@@ -89,11 +94,11 @@ extension ComposeUserInfoViewController.ViewModel {
     }
     
     final class Services {
-//        let coins: CoinsServiceProtocol
-//
-//        init(coins: CoinsServiceProtocol) {
-//            self.coins = coins
-//        }
+        let composeUser: ComposeUserServiceProtocol
+        
+        init(composeUser: ComposeUserServiceProtocol) {
+            self.composeUser = composeUser
+        }
     }
 }
 
@@ -103,42 +108,42 @@ extension ComposeUserInfoViewController.ViewModel {
     }
     
     func didTapShowComposeUserPhotoButton() {
-        textFieldViewModels.forEach { $0.isErrorVisible.send(false) }
-        
-        if usernameTitledTextFieldViewModel.text.value.isEmpty {
-            usernameTitledTextFieldViewModel.isErrorVisible.send(true)
-        }
-        
-        if loginTitledTextFieldViewModel.text.value.isEmpty {
-            loginTitledTextFieldViewModel.isErrorVisible.send(true)
-        }
-        
-        if passwordTitledTextFieldViewModel.text.value.isEmpty {
-            passwordTitledTextFieldViewModel.isErrorVisible.send(true)
-        }
-        
-        if !emailTitledTextFieldViewModel.text.value.isValidEmail {
-            emailTitledTextFieldViewModel.isErrorVisible.send(true)
-            emailTitledTextFieldViewModel.errorHintText.send("Incorrect email format")
-        }
-        
-        if emailTitledTextFieldViewModel.text.value.isEmpty {
-            emailTitledTextFieldViewModel.isErrorVisible.send(true)
-            emailTitledTextFieldViewModel.errorHintText.send("Email should not be empty")
-        }
-        
-        if showPersonalWebPageOptionPickerViewModel.selectedOption.value {
-            if !personalWebPageTitledTextFieldViewModel.text.value.isValidURL {
-                personalWebPageTitledTextFieldViewModel.isErrorVisible.send(true)
-                personalWebPageTitledTextFieldViewModel.errorHintText.send("Web page url is incorrect")
-            }
-            if personalWebPageTitledTextFieldViewModel.text.value.isEmpty {
-                personalWebPageTitledTextFieldViewModel.isErrorVisible.send(true)
-                personalWebPageTitledTextFieldViewModel.errorHintText.send("Web page url should not be empty")
-            }
-        }
-        
-        guard !textFieldViewModels.contains(where: { $0.isErrorVisible.value }) else { return }
+//        textFieldViewModels.forEach { $0.isErrorVisible.send(false) }
+//
+//        if usernameTitledTextFieldViewModel.text.value.isEmpty {
+//            usernameTitledTextFieldViewModel.isErrorVisible.send(true)
+//        }
+//
+//        if loginTitledTextFieldViewModel.text.value.isEmpty {
+//            loginTitledTextFieldViewModel.isErrorVisible.send(true)
+//        }
+//
+//        if passwordTitledTextFieldViewModel.text.value.isEmpty {
+//            passwordTitledTextFieldViewModel.isErrorVisible.send(true)
+//        }
+//
+//        if !emailTitledTextFieldViewModel.text.value.isValidEmail {
+//            emailTitledTextFieldViewModel.isErrorVisible.send(true)
+//            emailTitledTextFieldViewModel.errorHintText.send("Incorrect email format")
+//        }
+//
+//        if emailTitledTextFieldViewModel.text.value.isEmpty {
+//            emailTitledTextFieldViewModel.isErrorVisible.send(true)
+//            emailTitledTextFieldViewModel.errorHintText.send("Email should not be empty")
+//        }
+//
+//        if showPersonalWebPageOptionPickerViewModel.selectedOption.value {
+//            if !personalWebPageTitledTextFieldViewModel.text.value.isValidURL {
+//                personalWebPageTitledTextFieldViewModel.isErrorVisible.send(true)
+//                personalWebPageTitledTextFieldViewModel.errorHintText.send("Web page url is incorrect")
+//            }
+//            if personalWebPageTitledTextFieldViewModel.text.value.isEmpty {
+//                personalWebPageTitledTextFieldViewModel.isErrorVisible.send(true)
+//                personalWebPageTitledTextFieldViewModel.errorHintText.send("Web page url should not be empty")
+//            }
+//        }
+//
+//        guard !textFieldViewModels.contains(where: { $0.isErrorVisible.value }) else { return }
         transitions.composeUserPhoto()
     }
 }

@@ -15,6 +15,10 @@ enum SessionsAssembly: Assembly {
             coreDataSource: resolver.resolve(CoreDataSource.self)
         )
     }
+    
+    static func composeUserCacheDataManager(resolver: DependencyResolver) -> ComposeUserCacheDataManager {
+        ComposeUserCacheDataManager()
+    }
 }
 
 // MARK: - API Assembly
@@ -26,3 +30,5 @@ enum APIAssembly: Assembly {
 }
 
 extension CoinsCacheDataManager: DependencyResolvable { }
+extension ComposeUserCacheDataManager: DependencyResolvable { }
+

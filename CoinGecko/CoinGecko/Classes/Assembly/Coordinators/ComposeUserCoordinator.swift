@@ -23,6 +23,10 @@ final class ComposeUserCoordinator: NavigationCoordinator {
         
         showComposeUserInfoScreen()
     }
+    
+    override func registerContent() {
+        register(SessionsAssembly.composeUserCacheDataManager(resolver: self))
+    }
 }
 
 extension ComposeUserCoordinator {
@@ -40,12 +44,27 @@ extension ComposeUserCoordinator {
     
     func showComposeUserPhotoInfoScreen() {
         let transitions = ComposeUserPhotoViewController.ViewModel.Transitions(
-            close: { [weak self] in self?.transitions.close() }
+            close: { [weak self] in self?.transitions.close() },
+            pickImage: { [weak self] completion in
+                self?.showImagePickerScreen(completion: { image in
+                    completion(image)
+                    self?.dismissModalController()
+                })
+            }
         )
         let screen = ComposeUserAssembly.composeUserPhotoScreen(
             transitions: transitions,
             resolver: self
         )
         pushViewController(screen)
+    }
+    
+    func showImagePickerScreen(completion: @escaping Closure.UIImage) {
+        let transitions = ImagePickerViewController.ViewModel.Transitions(
+            close: { [weak self] in self?.dismissModalController() },
+            completion: completion
+        )
+        let screen = CommonAssembly.imagePickerScreen(transitions: transitions)
+        presentModal(controller: screen)
     }
 }

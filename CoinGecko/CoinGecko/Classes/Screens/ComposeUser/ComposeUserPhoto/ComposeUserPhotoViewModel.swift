@@ -8,12 +8,15 @@
 
 import Combine
 import Core
+import UIKit.UIImage
 import Utils
 
 extension ComposeUserPhotoViewController {
     final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
         private let services: Services
         let transitions: Transitions
+        
+        let selectedImage = CurrentValueSubject<UIImage?, Never>(nil)
         
         init(transitions: Transitions, services: Services) {
             self.transitions = transitions
@@ -28,14 +31,15 @@ extension ComposeUserPhotoViewController {
 extension ComposeUserPhotoViewController.ViewModel {
     struct Transitions: ScreenTransitions {
         let close: Closure.Void
+        let pickImage: (@escaping Closure.UIImage) -> Void
     }
     
     final class Services {
-//        let coins: CoinsServiceProtocol
-//
-//        init(coins: CoinsServiceProtocol) {
-//            self.coins = coins
-//        }
+        let composeUser: ComposeUserServiceProtocol
+        
+        init(composeUser: ComposeUserServiceProtocol) {
+            self.composeUser = composeUser
+        }
     }
 }
 
@@ -44,7 +48,13 @@ extension ComposeUserPhotoViewController.ViewModel {
         transitions.close()
     }
     
-    func didTapCompleteUserComposeButton() {
+    func didTapPickPhotoButton() {
+        transitions.pickImage { [weak self] image in
+            self?.selectedImage.send(image)
+        }
+    }
+    
+    func didTapFinishButton() {
         transitions.close()
     }
 }

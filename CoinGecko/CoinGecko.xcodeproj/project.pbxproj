@@ -65,6 +65,8 @@
 		1C9961AE294130E800F9A7AE /* PriceConverable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9961AD294130E800F9A7AE /* PriceConverable.swift */; };
 		1CA3D3A628D3CFA7009D43E9 /* CoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D3A528D3CFA7009D43E9 /* CoinCell.swift */; };
 		1CA3D3A828D3CFAF009D43E9 /* CoinCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D3A728D3CFAF009D43E9 /* CoinCellViewModel.swift */; };
+		1CAC0F2329ED9C510098D5B4 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAC0F2229ED9C510098D5B4 /* ImagePickerViewController.swift */; };
+		1CAC0F2529ED9C560098D5B4 /* ImagePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAC0F2429ED9C560098D5B4 /* ImagePickerViewModel.swift */; };
 		1CAD2B33293F66990004E4AA /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD2B32293F66990004E4AA /* AppStyle.swift */; };
 		1CAD2B35293F66AC0004E4AA /* AppStyle+TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD2B34293F66AC0004E4AA /* AppStyle+TextStyles.swift */; };
 		1CAD2B37293F66B30004E4AA /* AppStyle+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD2B36293F66B30004E4AA /* AppStyle+Colors.swift */; };
@@ -177,6 +179,8 @@
 		1C9961AD294130E800F9A7AE /* PriceConverable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceConverable.swift; sourceTree = "<group>"; };
 		1CA3D3A528D3CFA7009D43E9 /* CoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCell.swift; sourceTree = "<group>"; };
 		1CA3D3A728D3CFAF009D43E9 /* CoinCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCellViewModel.swift; sourceTree = "<group>"; };
+		1CAC0F2229ED9C510098D5B4 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
+		1CAC0F2429ED9C560098D5B4 /* ImagePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewModel.swift; sourceTree = "<group>"; };
 		1CAD2B32293F66990004E4AA /* AppStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
 		1CAD2B34293F66AC0004E4AA /* AppStyle+TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStyle+TextStyles.swift"; sourceTree = "<group>"; };
 		1CAD2B36293F66B30004E4AA /* AppStyle+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStyle+Colors.swift"; sourceTree = "<group>"; };
@@ -509,6 +513,7 @@
 		1C7CD4F328D273F800068965 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1CAC0F2129ED9C2E0098D5B4 /* ImagePicker */,
 				1C590F2E29EC7EA000D700D1 /* ComposeUser */,
 				1CB0B4E2293FF15000C874C4 /* InAppWebBrowser */,
 				1C80E75A29104F4D00B7502E /* AddCoinOverlay */,
@@ -576,6 +581,15 @@
 				1CA3D3A728D3CFAF009D43E9 /* CoinCellViewModel.swift */,
 			);
 			path = CoinCell;
+			sourceTree = "<group>";
+		};
+		1CAC0F2129ED9C2E0098D5B4 /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				1CAC0F2229ED9C510098D5B4 /* ImagePickerViewController.swift */,
+				1CAC0F2429ED9C560098D5B4 /* ImagePickerViewModel.swift */,
+			);
+			path = ImagePicker;
 			sourceTree = "<group>";
 		};
 		1CAD2B31293F66910004E4AA /* AppStyle */ = {
@@ -879,6 +893,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CAC0F2329ED9C510098D5B4 /* ImagePickerViewController.swift in Sources */,
 				1CF969CE28E3959900F49456 /* ButtonCollectionViewModel.swift in Sources */,
 				1CEEC76D28D2801800F8DC7A /* AppDelegate.swift in Sources */,
 				1C4287A028E0732100273979 /* ChartView.swift in Sources */,
@@ -937,6 +952,7 @@
 				1CE2AE7228F3777200642D00 /* HomeViewController.swift in Sources */,
 				1C590F3A29EC812E00D700D1 /* ComposeUserAssembly.swift in Sources */,
 				1C60D9F428E8A3F600B675DA /* MarketsViewModel.swift in Sources */,
+				1CAC0F2529ED9C560098D5B4 /* ImagePickerViewModel.swift in Sources */,
 				1C4287AA28E0B0C300273979 /* RangePickerButtonViewModel.swift in Sources */,
 				1CF466ED28CFDF5F0012DE85 /* Assets.swift in Sources */,
 				031F1BF0290E8A6B003035C8 /* NetworthCoinCellViewModel.swift in Sources */,

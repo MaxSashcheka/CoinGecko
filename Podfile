@@ -16,6 +16,7 @@ workspace 'CoinGecko'
 def common_pods
   pod 'SwiftLint'
   pod 'SwiftGen'
+  pod 'Alamofire'
 end
 
 def ui_pods

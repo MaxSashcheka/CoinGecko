@@ -44,12 +44,12 @@ extension ComposeUserAssembly {
 
 extension ComposeUserInfoViewController.ViewModel.Services: DependencyInjectable {
     static func inject(from resolver: DependencyResolver) -> Self {
-        Self()
+        Self(composeUser: ServicesAssembly.composeUser(resolver: resolver))
     }
 }
 
 extension ComposeUserPhotoViewController.ViewModel.Services: DependencyInjectable {
     static func inject(from resolver: DependencyResolver) -> Self {
-        Self()
+        Self(composeUser: ServicesAssembly.composeUser(resolver: resolver))
     }
 }
