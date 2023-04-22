@@ -50,6 +50,7 @@ extension ComposeUserInfoViewController.ViewModel.Services: DependencyInjectable
 
 extension ComposeUserPhotoViewController.ViewModel.Services: DependencyInjectable {
     static func inject(from resolver: DependencyResolver) -> Self {
-        Self(composeUser: ServicesAssembly.composeUser(resolver: resolver))
+        Self(composeUser: ServicesAssembly.composeUser(resolver: resolver),
+             firebaseProvider: ProvidersAssembly.firebase())
     }
 }

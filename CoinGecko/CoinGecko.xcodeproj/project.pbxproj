@@ -73,6 +73,8 @@
 		1CB0B4E7293FF15C00C874C4 /* InAppWebBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0B4E4293FF15C00C874C4 /* InAppWebBrowserViewController.swift */; };
 		1CB0B4E8293FF15C00C874C4 /* InAppWebBrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0B4E5293FF15C00C874C4 /* InAppWebBrowserViewModel.swift */; };
 		1CB0B4EA293FF24600C874C4 /* InAppWebBrowserPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0B4E9293FF24600C874C4 /* InAppWebBrowserPresentable.swift */; };
+		1CC329BC29F07FA40061EB04 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CC329BB29F07FA40061EB04 /* GoogleService-Info.plist */; };
+		1CC329BF29F083780061EB04 /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC329BE29F083780061EB04 /* FirebaseProvider.swift */; };
 		1CCB08CA29AD4F8A00596FED /* DataSourcesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCB08C929AD4F8A00596FED /* DataSourcesAssembly.swift */; };
 		1CCB08CC29AD560900596FED /* ScreenTransitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCB08CB29AD560900596FED /* ScreenTransitionable.swift */; };
 		1CD6959728CFBDA7007AE077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CD6959628CFBDA7007AE077 /* Assets.xcassets */; };
@@ -187,6 +189,8 @@
 		1CB0B4E4293FF15C00C874C4 /* InAppWebBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppWebBrowserViewController.swift; sourceTree = "<group>"; };
 		1CB0B4E5293FF15C00C874C4 /* InAppWebBrowserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppWebBrowserViewModel.swift; sourceTree = "<group>"; };
 		1CB0B4E9293FF24600C874C4 /* InAppWebBrowserPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppWebBrowserPresentable.swift; sourceTree = "<group>"; };
+		1CC329BB29F07FA40061EB04 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1CC329BE29F083780061EB04 /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
 		1CCB08C929AD4F8A00596FED /* DataSourcesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourcesAssembly.swift; sourceTree = "<group>"; };
 		1CCB08CB29AD560900596FED /* ScreenTransitionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTransitionable.swift; sourceTree = "<group>"; };
 		1CD6958A28CFBDA5007AE077 /* CoinGecko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinGecko.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -291,6 +295,7 @@
 		1C2A63E028D644D60007877D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1CC329BD29F0836E0061EB04 /* Providers */,
 				1C2A63E428D645190007877D /* Protocols */,
 				1C2A63E128D644DC0007877D /* Views */,
 				1C68714B29ACF6CC00A9C59B /* Aliases.swift */,
@@ -611,6 +616,30 @@
 			path = InAppWebBrowser;
 			sourceTree = "<group>";
 		};
+		1CC329BD29F0836E0061EB04 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				1CC329BE29F083780061EB04 /* FirebaseProvider.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		1CC8B3C229EE036C0062712A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1CC8B3C329EE03710062712A /* GoogleServices */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		1CC8B3C329EE03710062712A /* GoogleServices */ = {
+			isa = PBXGroup;
+			children = (
+				1CC329BB29F07FA40061EB04 /* GoogleService-Info.plist */,
+			);
+			path = GoogleServices;
+			sourceTree = "<group>";
+		};
 		1CD6958128CFBDA5007AE077 = {
 			isa = PBXGroup;
 			children = (
@@ -681,6 +710,7 @@
 		1CF466E628CFDEDE0012DE85 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1CC8B3C229EE036C0062712A /* Settings */,
 				1CAD2B31293F66910004E4AA /* AppStyle */,
 				1CF466E828CFDEEE0012DE85 /* Generated */,
 				1CF466E928CFDEF90012DE85 /* Localizable */,
@@ -803,6 +833,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CD6959A28CFBDA7007AE077 /* LaunchScreen.storyboard in Resources */,
+				1CC329BC29F07FA40061EB04 /* GoogleService-Info.plist in Resources */,
 				1CD6959728CFBDA7007AE077 /* Assets.xcassets in Resources */,
 				1CD695E128CFD364007AE077 /* Localizable.strings in Resources */,
 			);
@@ -954,6 +985,7 @@
 				1C60D9F428E8A3F600B675DA /* MarketsViewModel.swift in Sources */,
 				1CAC0F2529ED9C560098D5B4 /* ImagePickerViewModel.swift in Sources */,
 				1C4287AA28E0B0C300273979 /* RangePickerButtonViewModel.swift in Sources */,
+				1CC329BF29F083780061EB04 /* FirebaseProvider.swift in Sources */,
 				1CF466ED28CFDF5F0012DE85 /* Assets.swift in Sources */,
 				031F1BF0290E8A6B003035C8 /* NetworthCoinCellViewModel.swift in Sources */,
 				1C80E75C29104F7600B7502E /* AddCoinOverlayViewModel.swift in Sources */,

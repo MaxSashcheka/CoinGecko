@@ -27,8 +27,25 @@ enum APIAssembly: Assembly {
     static func coinsAPIDataManager() -> CoinsAPIDataManager {
         CoinsAPIDataManager()
     }
+    
+    static func usersAPIDataManager() -> UsersAPIDataManager {
+        UsersAPIDataManager()
+    }
+}
+
+// MARK: - DataManagers Assembly
+
+//enum DataManagersAssembly: Assembly {
+//    static func firebaseDataManager() -> FirebaseDataManager {
+//        FirebaseDataManager()
+//    }
+//}
+
+enum ProvidersAssembly {
+    static func firebase() -> FirebaseProvider {
+        FirebaseProvider()
+    }
 }
 
 extension CoinsCacheDataManager: DependencyResolvable { }
 extension ComposeUserCacheDataManager: DependencyResolvable { }
-

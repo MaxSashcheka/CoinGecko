@@ -61,9 +61,19 @@ final class ComposeUserPhotoViewController: ViewController {
             .bind(to: \.image, on: photoImageView)
             .store(in: &cancellables)
         
-        viewModel.selectedImage
-            .map { !$0.isNil }
+        let selectedImageSubject = viewModel.selectedImage.map { !$0.isNil }
+        
+        selectedImageSubject
             .bind(to: \.isHidden, on: cameraPlaceholderImage)
+            .store(in: &cancellables)
+        
+        selectedImageSubject
+            .bind(to: \.isEnabled, on: finishButton)
+            .store(in: &cancellables)
+        
+        selectedImageSubject
+            .map { Assets.Colors.blue.color.withAlphaComponent($0 ? 0.7 : 0.25) }
+            .bind(to: \.backgroundColor, on: finishButton)
             .store(in: &cancellables)
         
         pickPhotoButton.tapPublisher()

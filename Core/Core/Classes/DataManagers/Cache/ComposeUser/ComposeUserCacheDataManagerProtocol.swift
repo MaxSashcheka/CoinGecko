@@ -13,6 +13,7 @@ public protocol ComposeUserCacheDataManagerProtocol: AnyObject {
     var login: String? { get set }
     var password: String? { get set }
     var email: String? { get set }
+    var role: String? { get set }
     var personalWebLink: String? { get set }
     var image: UIImage? { get set }
 }

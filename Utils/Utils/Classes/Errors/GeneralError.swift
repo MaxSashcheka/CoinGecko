@@ -13,6 +13,9 @@ public enum GeneralError: String, Error {
     case corruptedResponse = "Corrupted response"
     case coreDataError = "Error during fetching data from database"
     case unacceptableStatusCode = "Some server error"
+    
+    // TODO: - Remove this error
+    case defaultError = "Some error appeared"
 }
 
 public extension Closure {

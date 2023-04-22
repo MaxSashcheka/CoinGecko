@@ -11,7 +11,6 @@ import SnapKit
 import Utils
 
 final class ComposeUserInfoViewController: ViewController {
-    
     private let contentScrollView = UIScrollView()
     
     private let contentStackView: UIStackView = .make {
@@ -35,6 +34,10 @@ final class ComposeUserInfoViewController: ViewController {
     private let emailTitledTextField: TitledTextField = .make {
         $0.setTextInputTraitsOptions(TextInputTraitsOptions.email)
     }
+    
+    private let userRoleSegmentedControl = UISegmentedControl(
+        items: ViewModel.UserRole.allCases.map { $0.title }
+    )
 
     private let showPersonalWebPageOptionPickerView = OptionPickerView()
     
@@ -46,6 +49,7 @@ final class ComposeUserInfoViewController: ViewController {
         super.viewDidLoad()
         
         continueButton.transform = CGAffineTransform(scaleX: .zero, y: .zero)
+        userRoleSegmentedControl.selectedSegmentIndex = .zero
         
         activateEndEditingTap(at: view)
         
@@ -100,6 +104,7 @@ final class ComposeUserInfoViewController: ViewController {
             loginTitledTextField,
             passwordTitledTextField,
             emailTitledTextField,
+            userRoleSegmentedControl,
             showPersonalWebPageOptionPickerView,
             personalWebPageTitledTextField
         ])
@@ -117,8 +122,13 @@ final class ComposeUserInfoViewController: ViewController {
         super.bindData()
         
         continueButton.tapPublisher()
-            .sink { [weak viewModel] in
-                viewModel?.didTapShowComposeUserPhotoButton()
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.viewModel.didTapShowComposeUserPhotoButton(
+                    userRole: ViewModel.UserRole(
+                        rawValue: self.userRoleSegmentedControl.selectedSegmentIndex
+                    ) ?? .user
+                )
             }
             .store(in: &cancellables)
         

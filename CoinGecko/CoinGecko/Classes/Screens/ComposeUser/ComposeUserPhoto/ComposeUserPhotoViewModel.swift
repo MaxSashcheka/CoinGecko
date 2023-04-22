@@ -36,9 +36,12 @@ extension ComposeUserPhotoViewController.ViewModel {
     
     final class Services {
         let composeUser: ComposeUserServiceProtocol
+        let firebaseProvider: FirebaseProvider
         
-        init(composeUser: ComposeUserServiceProtocol) {
+        init(composeUser: ComposeUserServiceProtocol,
+             firebaseProvider: FirebaseProvider) {
             self.composeUser = composeUser
+            self.firebaseProvider = firebaseProvider
         }
     }
 }
@@ -51,10 +54,31 @@ extension ComposeUserPhotoViewController.ViewModel {
     func didTapPickPhotoButton() {
         transitions.pickImage { [weak self] image in
             self?.selectedImage.send(image)
+            self?.services.composeUser.image = image
         }
     }
     
     func didTapFinishButton() {
-        transitions.close()
+        guard let image = services.composeUser.image else { return }
+        ActivityIndicator.show()
+        services.firebaseProvider.uploadImage(
+            image: image,
+            success: { [weak self] imageURL in
+                self?.services.composeUser.submitUser(
+                    imageURL: imageURL,
+                    success: { [weak self] in
+                        ActivityIndicator.hide()
+                        self?.transitions.close()
+                    },
+                    failure: { [weak self] error in
+                        ActivityIndicator.hide()
+                        self?.errorHandlerClosure(error)
+                    }
+                )
+            },
+            failure: { [weak self] error in
+                self?.errorHandlerClosure(error)
+                ActivityIndicator.hide()
+            })
     }
 }

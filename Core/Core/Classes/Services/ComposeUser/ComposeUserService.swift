@@ -6,42 +6,83 @@
 //  Copyright © 2023 BSUIR. All rights reserved.
 //
 
+import Utils
 import UIKit.UIImage
 
 public class ComposeUserService: ComposeUserServiceProtocol {
     private let composeUserCacheDataManager: ComposeUserCacheDataManagerProtocol
+    private let usersAPIDataManager: UsersAPIDataManagerProtocol
     
-    public var username: String? {
+    public init(composeUserCacheDataManager: ComposeUserCacheDataManagerProtocol,
+                usersAPIDataManager: UsersAPIDataManagerProtocol) {
+        self.composeUserCacheDataManager = composeUserCacheDataManager
+        self.usersAPIDataManager = usersAPIDataManager
+    }
+}
+
+// MARK: ComposeUserService+ComputedProperties
+public extension ComposeUserService {
+    var username: String? {
         get { composeUserCacheDataManager.username }
         set { composeUserCacheDataManager.username = newValue }
     }
     
-    public var login: String? {
+    var login: String? {
         get { composeUserCacheDataManager.login }
         set { composeUserCacheDataManager.login = newValue }
     }
     
-    public var password: String? {
+    var password: String? {
         get { composeUserCacheDataManager.password }
         set { composeUserCacheDataManager.password = newValue }
     }
     
-    public var email: String? {
+    var email: String? {
         get { composeUserCacheDataManager.email }
         set { composeUserCacheDataManager.email = newValue }
     }
     
-    public var personalWebLink: String? {
+    var role: String? {
+        get { composeUserCacheDataManager.role }
+        set { composeUserCacheDataManager.role = newValue }
+    }
+    
+    var personalWebLink: String? {
         get { composeUserCacheDataManager.personalWebLink }
         set { composeUserCacheDataManager.personalWebLink = newValue }
     }
     
-    public var image: UIImage? {
+    var image: UIImage? {
         get { composeUserCacheDataManager.image }
         set { composeUserCacheDataManager.image = newValue }
     }
-    
-    public init(composeUserCacheDataManager: ComposeUserCacheDataManagerProtocol) {
-        self.composeUserCacheDataManager = composeUserCacheDataManager
+}
+
+// MARK: ComposeUserService+Methods
+public extension ComposeUserService {
+    func submitUser(imageURL: String,
+                    success: @escaping Closure.Void,
+                    failure: @escaping Closure.GeneralError) {
+        guard let username = username,
+              let login = login,
+              let password = password,
+              let email = email,
+              let role = role else {
+            failure(.defaultError)
+            return
+        }
+        usersAPIDataManager.createUser(
+            username: username,
+            login: login,
+            password: password,
+            email: email,
+            role: role,
+            personalWebLink: personalWebLink.orEmpty(),
+            imageURL: imageURL,
+            success: { user in
+                success()
+            },
+            failure: failure
+        )
     }
 }

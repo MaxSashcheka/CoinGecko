@@ -9,6 +9,7 @@
 import Combine
 import Core
 import Utils
+import FirebaseStorage
 
 extension ComposeUserInfoViewController {
     final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
@@ -100,6 +101,18 @@ extension ComposeUserInfoViewController.ViewModel {
             self.composeUser = composeUser
         }
     }
+    
+    enum UserRole: Int, CaseIterable {
+        case user
+        case admin
+        
+        var title: String {
+            switch self {
+            case .user: return "User"
+            case .admin: return "Admin"
+            }
+        }
+    }
 }
 
 extension ComposeUserInfoViewController.ViewModel {
@@ -107,43 +120,44 @@ extension ComposeUserInfoViewController.ViewModel {
         transitions.close()
     }
     
-    func didTapShowComposeUserPhotoButton() {
-//        textFieldViewModels.forEach { $0.isErrorVisible.send(false) }
-//
-//        if usernameTitledTextFieldViewModel.text.value.isEmpty {
-//            usernameTitledTextFieldViewModel.isErrorVisible.send(true)
-//        }
-//
-//        if loginTitledTextFieldViewModel.text.value.isEmpty {
-//            loginTitledTextFieldViewModel.isErrorVisible.send(true)
-//        }
-//
-//        if passwordTitledTextFieldViewModel.text.value.isEmpty {
-//            passwordTitledTextFieldViewModel.isErrorVisible.send(true)
-//        }
-//
-//        if !emailTitledTextFieldViewModel.text.value.isValidEmail {
-//            emailTitledTextFieldViewModel.isErrorVisible.send(true)
-//            emailTitledTextFieldViewModel.errorHintText.send("Incorrect email format")
-//        }
-//
-//        if emailTitledTextFieldViewModel.text.value.isEmpty {
-//            emailTitledTextFieldViewModel.isErrorVisible.send(true)
-//            emailTitledTextFieldViewModel.errorHintText.send("Email should not be empty")
-//        }
-//
-//        if showPersonalWebPageOptionPickerViewModel.selectedOption.value {
-//            if !personalWebPageTitledTextFieldViewModel.text.value.isValidURL {
-//                personalWebPageTitledTextFieldViewModel.isErrorVisible.send(true)
-//                personalWebPageTitledTextFieldViewModel.errorHintText.send("Web page url is incorrect")
-//            }
-//            if personalWebPageTitledTextFieldViewModel.text.value.isEmpty {
-//                personalWebPageTitledTextFieldViewModel.isErrorVisible.send(true)
-//                personalWebPageTitledTextFieldViewModel.errorHintText.send("Web page url should not be empty")
-//            }
-//        }
-//
-//        guard !textFieldViewModels.contains(where: { $0.isErrorVisible.value }) else { return }
+    func didTapShowComposeUserPhotoButton(userRole: UserRole) {
+        services.composeUser.role = userRole.title
+        textFieldViewModels.forEach { $0.isErrorVisible.send(false) }
+
+        if usernameTitledTextFieldViewModel.text.value.isEmpty {
+            usernameTitledTextFieldViewModel.isErrorVisible.send(true)
+        }
+
+        if loginTitledTextFieldViewModel.text.value.isEmpty {
+            loginTitledTextFieldViewModel.isErrorVisible.send(true)
+        }
+
+        if passwordTitledTextFieldViewModel.text.value.isEmpty {
+            passwordTitledTextFieldViewModel.isErrorVisible.send(true)
+        }
+
+        if !emailTitledTextFieldViewModel.text.value.isValidEmail {
+            emailTitledTextFieldViewModel.isErrorVisible.send(true)
+            emailTitledTextFieldViewModel.errorHintText.send("Incorrect email format")
+        }
+
+        if emailTitledTextFieldViewModel.text.value.isEmpty {
+            emailTitledTextFieldViewModel.isErrorVisible.send(true)
+            emailTitledTextFieldViewModel.errorHintText.send("Email should not be empty")
+        }
+
+        if showPersonalWebPageOptionPickerViewModel.selectedOption.value {
+            if !personalWebPageTitledTextFieldViewModel.text.value.isValidURL {
+                personalWebPageTitledTextFieldViewModel.isErrorVisible.send(true)
+                personalWebPageTitledTextFieldViewModel.errorHintText.send("Web page url is incorrect")
+            }
+            if personalWebPageTitledTextFieldViewModel.text.value.isEmpty {
+                personalWebPageTitledTextFieldViewModel.isErrorVisible.send(true)
+                personalWebPageTitledTextFieldViewModel.errorHintText.send("Web page url should not be empty")
+            }
+        }
+
+        guard !textFieldViewModels.contains(where: { $0.isErrorVisible.value }) else { return }
         transitions.composeUserPhoto()
     }
 }

@@ -8,6 +8,7 @@ end
 platform :ios, '14.0'
 inhibit_all_warnings!
 use_frameworks! :linkage => :static
+#$firebase_version = '~> 9.2.0'
 
 source 'https://cdn.cocoapods.org/'
 
@@ -16,7 +17,6 @@ workspace 'CoinGecko'
 def common_pods
   pod 'SwiftLint'
   pod 'SwiftGen'
-  pod 'Alamofire'
 end
 
 def ui_pods
@@ -34,6 +34,8 @@ end
 target 'CoinGecko' do
   common_pods
   ui_pods
+  pod 'Firebase'
+  pod 'Firebase/Storage'
 
   project 'CoinGecko/CoinGecko.xcodeproj'
 end

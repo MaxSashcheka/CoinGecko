@@ -14,6 +14,7 @@ public final class ComposeUserCacheDataManager: ComposeUserCacheDataManagerProto
     public var login: String?
     public var password: String?
     public var email: String?
+    public var role: String?
     public var personalWebLink: String?
     public var image: UIImage?
     

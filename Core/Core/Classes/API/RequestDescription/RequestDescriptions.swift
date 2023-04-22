@@ -11,7 +11,7 @@ import Foundation
 
 public extension RequestDescription {
     class Coins {
-        private static let basePath = "coins"
+        private static let basePath = "https://api.coingecko.com/api/v3/coins"
         
         public static let getCoinsMarkets = RequestDescription(
             path: basePath + "/markets",
@@ -33,7 +33,7 @@ public extension RequestDescription {
     }
     
     class Search {
-        private static let basePath = "/search"
+        private static let basePath = "https://api.coingecko.com/api/v3/search"
         
         public static let search = RequestDescription(
             path: basePath,
@@ -43,11 +43,21 @@ public extension RequestDescription {
     }
     
     class Global {
-        private static let basePath = "/global"
+        private static let basePath = "https://api.coingecko.com/api/v3/global"
         
         public static let getGlobalData = RequestDescription(
             path: basePath,
             method: .get,
+            isAuthRequired: false
+        )
+    }
+    
+    class Users {
+        private static let basePath = "http://localhost:8080/users"
+        
+        public static let createUser = RequestDescription(
+            path: basePath,
+            method: .post,
             isAuthRequired: false
         )
     }
