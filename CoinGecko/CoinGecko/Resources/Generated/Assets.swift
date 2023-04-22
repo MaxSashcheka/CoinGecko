@@ -37,6 +37,7 @@ internal enum Assets {
   }
   internal enum Images {
     internal static let back = ImageAsset(name: "back")
+    internal static let camera = ImageAsset(name: "camera")
     internal static let cross = ImageAsset(name: "cross")
     internal static let search = ImageAsset(name: "search")
     internal static let settings = ImageAsset(name: "settings")

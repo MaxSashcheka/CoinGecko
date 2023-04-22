@@ -30,3 +30,14 @@ public extension UIView {
         layer.cornerRadius = cornerRadius
     }
 }
+
+// MARK: UIView+firstResponder
+public extension UIView {
+    var firstResponder: UIView? {
+        guard !self.isFirstResponder else { return self }
+        guard let firstResponder = subviews.first(where: { $0.isFirstResponder }) else {
+            return subviews.compactMap { $0.firstResponder }.first
+        }
+        return firstResponder
+    }
+}

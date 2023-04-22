@@ -10,13 +10,13 @@ import Alamofire
 import Utils
 
 public class APIDataManager {
-    private var baseURL: String = "https://api.coingecko.com/api/v3/"
+//    private var baseURL: String = ""
     
     public init() { }
     
     public func makeDataRequest(for endpoint: RequestDescription) -> DataRequest {
         AF.request(
-            baseURL + endpoint.path,
+            endpoint.path,
             method: endpoint.method,
             parameters: endpoint.parameters,
             encoding: endpoint.encoding,

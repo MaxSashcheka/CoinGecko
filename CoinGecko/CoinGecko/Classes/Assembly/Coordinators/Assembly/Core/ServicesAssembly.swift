@@ -15,4 +15,11 @@ enum ServicesAssembly: Assembly {
             coinsCacheDataManager: resolver.resolve(CoinsCacheDataManager.self)
         )
     }
+    
+    static func composeUser(resolver: DependencyResolver) -> ComposeUserServiceProtocol {
+        ComposeUserService(
+            composeUserCacheDataManager: resolver.resolve(ComposeUserCacheDataManager.self),
+            usersAPIDataManager: APIAssembly.usersAPIDataManager()
+        )
+    }
 }

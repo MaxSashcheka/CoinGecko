@@ -36,4 +36,24 @@ public extension ParametersProvider {
     static func search(query: String) -> [String: String] {
         ["query": query]
     }
+    
+    static func createUser(id: String,
+                           name: String,
+                           login: String,
+                           password: String,
+                           role: String,
+                           imageURL: String,
+                           email: String,
+                           personalWebPageURL: String) -> [String: String] {
+        [
+            "id": id,
+            "name": name,
+            "login": login,
+            "password": password,
+            "role": role,
+            "imageURL": imageURL,
+            "email": email,
+            "personalWebPageURL": personalWebPageURL
+        ]
+    }
 }

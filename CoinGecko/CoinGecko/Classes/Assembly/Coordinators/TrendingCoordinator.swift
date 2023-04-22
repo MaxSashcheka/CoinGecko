@@ -13,18 +13,28 @@ final class TrendingCoordinator: NavigationCoordinator {
     override init(parent: Coordinator?) {
         super.init(parent: parent)
         
-        showCoinsListScreen()
+        showTrendingScreen()
     }
 }
 
 extension TrendingCoordinator {
-    func showCoinsListScreen() {
+    func showTrendingScreen() {
         let transitions = TrendingViewController.ViewModel.Transitions(
-            coinDetails: { [weak self] in self?.showCoinDetailsCoordinator(coinId: $0) }
+            coinDetails: { [weak self] in self?.showCoinDetailsCoordinator(coinId: $0) },
+            composeUser: { [weak self] in self?.showComposeUserCoordinator() }
         )
-        let screen = TrendingAssembly.coinsListScreen(transitions: transitions, resolver: self)
+        let screen = TrendingAssembly.trendingScreen(transitions: transitions, resolver: self)
 
         pushViewController(screen, animated: false)
+    }
+    
+    func showComposeUserCoordinator() {
+        let transitions = ComposeUserCoordinator.Transitions(
+            close: { [weak self] in self?.dismissModalCoordinator() }
+        )
+        let coordinator = ComposeUserCoordinator(parent: self, transitions: transitions)
+        
+        presentModal(coordinator: coordinator, presentationStyle: .fullScreen)
     }
     
     func showCoinDetailsCoordinator(coinId: String) {

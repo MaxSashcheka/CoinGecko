@@ -25,3 +25,4 @@ extension CoinChartDataResponse: APIResponse { }
 extension [CoinResponse]: APIResponse { }
 extension GlobalDataResponse: APIResponse { }
 extension SearchResponse: APIResponse { }
+extension UserResponse: APIResponse { }

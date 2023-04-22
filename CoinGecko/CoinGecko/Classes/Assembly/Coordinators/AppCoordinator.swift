@@ -7,8 +7,8 @@
 //
 
 import SafeSFSymbols
-import Utils
 import UIKit
+import Utils
 
 final class AppCoordinator: TabCoordinator {
 

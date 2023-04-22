@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0CDD5C6D191386F9E9337121 /* Pods_Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8B2BF1CDE9E49C0B08AA38 /* Pods_Core.framework */; };
+		1C01EDC129EEA1860088AEE7 /* UsersAPIDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C01EDC029EEA1860088AEE7 /* UsersAPIDataManagerProtocol.swift */; };
+		1C01EDC329EEA18A0088AEE7 /* UsersAPIDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C01EDC229EEA18A0088AEE7 /* UsersAPIDataManager.swift */; };
+		1C01EDC529EEAAA00088AEE7 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C01EDC429EEAAA00088AEE7 /* UserResponse.swift */; };
 		1C12DD5228F238F900E7D91E /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C12DD5128F238F900E7D91E /* SearchResponse.swift */; };
 		1C2A63D928D5FA1F0007877D /* CoinsAPIDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63D828D5FA1F0007877D /* CoinsAPIDataManager.swift */; };
 		1C3F8AE128ECD75A00E04740 /* GlobalDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3F8AE028ECD75A00E04740 /* GlobalDataResponse.swift */; };
@@ -15,6 +18,7 @@
 		1C4287A428E07DFD00273979 /* CoinChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4287A328E07DFD00273979 /* CoinChartData.swift */; };
 		1C57B50D28D5E9B600E91F7C /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C57B50C28D5E9B600E91F7C /* Utils.framework */; };
 		1C57B50E28D5E9B600E91F7C /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1C57B50C28D5E9B600E91F7C /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1C590F3D29EC96D800D700D1 /* ComposeUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C590F3C29EC96D800D700D1 /* ComposeUserService.swift */; };
 		1C60D9F828E8C68500B675DA /* APIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60D9F728E8C68500B675DA /* APIHelpers.swift */; };
 		1C60D9FD28E8C70A00B675DA /* RequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60D9FC28E8C70A00B675DA /* RequestDescription.swift */; };
 		1C60D9FF28E8C71200B675DA /* RequestDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60D9FE28E8C71200B675DA /* RequestDescriptions.swift */; };
@@ -24,13 +28,19 @@
 		1C72009E28D70E9D001DDBD5 /* CoinsAPIDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C72009D28D70E9D001DDBD5 /* CoinsAPIDataManagerProtocol.swift */; };
 		1C7E0EF72916B52D00742A5F /* DataBaseDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1CFD91EB291273940010172D /* DataBaseDataModel.xcdatamodeld */; };
 		1C7E0EFA2916B75000742A5F /* CoinEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7E0EF82916B75000742A5F /* CoinEntity+CoreDataClass.swift */; };
-		1CA3D39B28D3C847009D43E9 /* CoinsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D39A28D3C847009D43E9 /* CoinsInteractor.swift */; };
+		1C872DD129F3DEDC00F6D83F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DD029F3DEDC00F6D83F /* User.swift */; };
+		1CA3D39B28D3C847009D43E9 /* CoinsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D39A28D3C847009D43E9 /* CoinsService.swift */; };
 		1CA3D39D28D3C850009D43E9 /* CoinsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D39C28D3C850009D43E9 /* CoinsServiceProtocol.swift */; };
 		1CA3D3A128D3CD80009D43E9 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D3A028D3CD80009D43E9 /* Coin.swift */; };
+		1CAC0F1B29ED8ABE0098D5B4 /* ComposeUserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAC0F1A29ED8ABE0098D5B4 /* ComposeUserServiceProtocol.swift */; };
+		1CAC0F1E29ED8ADC0098D5B4 /* ComposeUserCacheDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAC0F1D29ED8ADC0098D5B4 /* ComposeUserCacheDataManager.swift */; };
+		1CAC0F2029ED8AF50098D5B4 /* ComposeUserCacheDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAC0F1F29ED8AF50098D5B4 /* ComposeUserCacheDataManagerProtocol.swift */; };
 		1CB0B4ED293FF3FA00C874C4 /* ExternalLinkBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0B4EC293FF3FA00C874C4 /* ExternalLinkBuilder.swift */; };
 		1CB3353E29EC2C7A003D08EB /* APIDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB3353D29EC2C7A003D08EB /* APIDataManager.swift */; };
 		1CC178F428E63BDA00550D3B /* CoinResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC178F328E63BDA00550D3B /* CoinResponse.swift */; };
 		1CC178F728E6463900550D3B /* CoinChartDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC178F628E6463900550D3B /* CoinChartDataResponse.swift */; };
+		1CC329B829F070A80061EB04 /* FirebaseDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC329B729F070A80061EB04 /* FirebaseDataManager.swift */; };
+		1CC329BA29F070B00061EB04 /* FirebaseDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC329B929F070B00061EB04 /* FirebaseDataManagerProtocol.swift */; };
 		1CD695B128CFBF8C007AE077 /* Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CD695B028CFBF8C007AE077 /* Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CE2AE6528F2C7A000642D00 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2AE6428F2C7A000642D00 /* SearchResult.swift */; };
 		1CE2AE6728F3333000642D00 /* CoinDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2AE6628F3333000642D00 /* CoinDetails.swift */; };
@@ -56,12 +66,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1C01EDC029EEA1860088AEE7 /* UsersAPIDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersAPIDataManagerProtocol.swift; sourceTree = "<group>"; };
+		1C01EDC229EEA18A0088AEE7 /* UsersAPIDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersAPIDataManager.swift; sourceTree = "<group>"; };
+		1C01EDC429EEAAA00088AEE7 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		1C12DD5128F238F900E7D91E /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		1C2A63D828D5FA1F0007877D /* CoinsAPIDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsAPIDataManager.swift; sourceTree = "<group>"; };
 		1C3F8AE028ECD75A00E04740 /* GlobalDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataResponse.swift; sourceTree = "<group>"; };
 		1C3F8AE228ECD92D00E04740 /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		1C4287A328E07DFD00273979 /* CoinChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinChartData.swift; sourceTree = "<group>"; };
 		1C57B50C28D5E9B600E91F7C /* Utils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C590F3C29EC96D800D700D1 /* ComposeUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeUserService.swift; sourceTree = "<group>"; };
 		1C60D9F728E8C68500B675DA /* APIHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelpers.swift; sourceTree = "<group>"; };
 		1C60D9FC28E8C70A00B675DA /* RequestDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDescription.swift; sourceTree = "<group>"; };
 		1C60D9FE28E8C71200B675DA /* RequestDescriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDescriptions.swift; sourceTree = "<group>"; };
@@ -70,13 +84,19 @@
 		1C60DA0C28E8E64000B675DA /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		1C72009D28D70E9D001DDBD5 /* CoinsAPIDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsAPIDataManagerProtocol.swift; sourceTree = "<group>"; };
 		1C7E0EF82916B75000742A5F /* CoinEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoinEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		1CA3D39A28D3C847009D43E9 /* CoinsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsInteractor.swift; sourceTree = "<group>"; };
+		1C872DD029F3DEDC00F6D83F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1CA3D39A28D3C847009D43E9 /* CoinsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsService.swift; sourceTree = "<group>"; };
 		1CA3D39C28D3C850009D43E9 /* CoinsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsServiceProtocol.swift; sourceTree = "<group>"; };
 		1CA3D3A028D3CD80009D43E9 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		1CAC0F1A29ED8ABE0098D5B4 /* ComposeUserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeUserServiceProtocol.swift; sourceTree = "<group>"; };
+		1CAC0F1D29ED8ADC0098D5B4 /* ComposeUserCacheDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeUserCacheDataManager.swift; sourceTree = "<group>"; };
+		1CAC0F1F29ED8AF50098D5B4 /* ComposeUserCacheDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeUserCacheDataManagerProtocol.swift; sourceTree = "<group>"; };
 		1CB0B4EC293FF3FA00C874C4 /* ExternalLinkBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkBuilder.swift; sourceTree = "<group>"; };
 		1CB3353D29EC2C7A003D08EB /* APIDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDataManager.swift; sourceTree = "<group>"; };
 		1CC178F328E63BDA00550D3B /* CoinResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinResponse.swift; sourceTree = "<group>"; };
 		1CC178F628E6463900550D3B /* CoinChartDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinChartDataResponse.swift; sourceTree = "<group>"; };
+		1CC329B729F070A80061EB04 /* FirebaseDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataManager.swift; sourceTree = "<group>"; };
+		1CC329B929F070B00061EB04 /* FirebaseDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataManagerProtocol.swift; sourceTree = "<group>"; };
 		1CD695AD28CFBF8C007AE077 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD695B028CFBF8C007AE077 /* Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
 		1CE2AE6428F2C7A000642D00 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
@@ -105,6 +125,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C01EDBF29EEA16E0088AEE7 /* UsersAPIDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				1C01EDC029EEA1860088AEE7 /* UsersAPIDataManagerProtocol.swift */,
+				1C01EDC229EEA18A0088AEE7 /* UsersAPIDataManager.swift */,
+			);
+			path = UsersAPIDataManager;
+			sourceTree = "<group>";
+		};
 		1C57B4F828D5E43800E91F7C /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,8 +150,18 @@
 			children = (
 				1C60DA0A28E8E45400B675DA /* API */,
 				1C60DA0B28E8E45800B675DA /* Cache */,
+				1CC329B529F0708F0061EB04 /* Other */,
 			);
 			path = DataManagers;
+			sourceTree = "<group>";
+		};
+		1C590F3B29EC96BF00D700D1 /* ComposeUser */ = {
+			isa = PBXGroup;
+			children = (
+				1C590F3C29EC96D800D700D1 /* ComposeUserService.swift */,
+				1CAC0F1A29ED8ABE0098D5B4 /* ComposeUserServiceProtocol.swift */,
+			);
+			path = ComposeUser;
 			sourceTree = "<group>";
 		};
 		1C60D9F928E8C6B200B675DA /* RequestDescription */ = {
@@ -147,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				1CB3353D29EC2C7A003D08EB /* APIDataManager.swift */,
+				1C01EDBF29EEA16E0088AEE7 /* UsersAPIDataManager */,
 				1C72009C28D70E7C001DDBD5 /* Coins */,
 			);
 			path = API;
@@ -155,6 +195,7 @@
 		1C60DA0B28E8E45800B675DA /* Cache */ = {
 			isa = PBXGroup;
 			children = (
+				1CAC0F1C29ED8ACE0098D5B4 /* ComposeUser */,
 				1CFD91FB291285030010172D /* Coins */,
 			);
 			path = Cache;
@@ -177,6 +218,7 @@
 				1C4287A328E07DFD00273979 /* CoinChartData.swift */,
 				1C3F8AE228ECD92D00E04740 /* GlobalData.swift */,
 				1CE2AE6428F2C7A000642D00 /* SearchResult.swift */,
+				1C872DD029F3DEDC00F6D83F /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -184,6 +226,7 @@
 		1CA3D39828D3C807009D43E9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1C590F3B29EC96BF00D700D1 /* ComposeUser */,
 				1CA3D39928D3C835009D43E9 /* Coins */,
 			);
 			path = Services;
@@ -192,10 +235,19 @@
 		1CA3D39928D3C835009D43E9 /* Coins */ = {
 			isa = PBXGroup;
 			children = (
+				1CA3D39A28D3C847009D43E9 /* CoinsService.swift */,
 				1CA3D39C28D3C850009D43E9 /* CoinsServiceProtocol.swift */,
-				1CA3D39A28D3C847009D43E9 /* CoinsInteractor.swift */,
 			);
 			path = Coins;
+			sourceTree = "<group>";
+		};
+		1CAC0F1C29ED8ACE0098D5B4 /* ComposeUser */ = {
+			isa = PBXGroup;
+			children = (
+				1CAC0F1D29ED8ADC0098D5B4 /* ComposeUserCacheDataManager.swift */,
+				1CAC0F1F29ED8AF50098D5B4 /* ComposeUserCacheDataManagerProtocol.swift */,
+			);
+			path = ComposeUser;
 			sourceTree = "<group>";
 		};
 		1CB0B4EB293FF3EE00C874C4 /* ExternalLinkBuilder */ = {
@@ -214,8 +266,26 @@
 				1CC178F628E6463900550D3B /* CoinChartDataResponse.swift */,
 				1C3F8AE028ECD75A00E04740 /* GlobalDataResponse.swift */,
 				1C12DD5128F238F900E7D91E /* SearchResponse.swift */,
+				1C01EDC429EEAAA00088AEE7 /* UserResponse.swift */,
 			);
 			path = Responces;
+			sourceTree = "<group>";
+		};
+		1CC329B529F0708F0061EB04 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				1CC329B629F070990061EB04 /* Firebase */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		1CC329B629F070990061EB04 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				1CC329B729F070A80061EB04 /* FirebaseDataManager.swift */,
+				1CC329B929F070B00061EB04 /* FirebaseDataManagerProtocol.swift */,
+			);
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		1CD695A328CFBF8C007AE077 = {
@@ -289,8 +359,8 @@
 		1CFD91FB291285030010172D /* Coins */ = {
 			isa = PBXGroup;
 			children = (
-				1CFD91FE291285210010172D /* CoinsCacheDataManagerProtocol.swift */,
 				1CFD91FC291285120010172D /* CoinsCacheDataManager.swift */,
+				1CFD91FE291285210010172D /* CoinsCacheDataManagerProtocol.swift */,
 			);
 			path = Coins;
 			sourceTree = "<group>";
@@ -425,8 +495,9 @@
 				1C7E0EF72916B52D00742A5F /* DataBaseDataModel.xcdatamodeld in Sources */,
 				1CE2AE6528F2C7A000642D00 /* SearchResult.swift in Sources */,
 				1C60DA0128E8C72700B675DA /* ParametersProvider.swift in Sources */,
-				1CA3D39B28D3C847009D43E9 /* CoinsInteractor.swift in Sources */,
+				1CA3D39B28D3C847009D43E9 /* CoinsService.swift in Sources */,
 				1C2A63D928D5FA1F0007877D /* CoinsAPIDataManager.swift in Sources */,
+				1C01EDC529EEAAA00088AEE7 /* UserResponse.swift in Sources */,
 				1C4287A428E07DFD00273979 /* CoinChartData.swift in Sources */,
 				1C60D9F828E8C68500B675DA /* APIHelpers.swift in Sources */,
 				1CFD91E72912665B0010172D /* CoreDataSource.swift in Sources */,
@@ -438,16 +509,25 @@
 				1C7E0EFA2916B75000742A5F /* CoinEntity+CoreDataClass.swift in Sources */,
 				1C60D9FF28E8C71200B675DA /* RequestDescriptions.swift in Sources */,
 				1CB3353E29EC2C7A003D08EB /* APIDataManager.swift in Sources */,
+				1CAC0F1E29ED8ADC0098D5B4 /* ComposeUserCacheDataManager.swift in Sources */,
+				1C872DD129F3DEDC00F6D83F /* User.swift in Sources */,
 				1CB0B4ED293FF3FA00C874C4 /* ExternalLinkBuilder.swift in Sources */,
 				1CC178F428E63BDA00550D3B /* CoinResponse.swift in Sources */,
+				1CAC0F1B29ED8ABE0098D5B4 /* ComposeUserServiceProtocol.swift in Sources */,
+				1CAC0F2029ED8AF50098D5B4 /* ComposeUserCacheDataManagerProtocol.swift in Sources */,
+				1C01EDC329EEA18A0088AEE7 /* UsersAPIDataManager.swift in Sources */,
 				1C3F8AE128ECD75A00E04740 /* GlobalDataResponse.swift in Sources */,
 				1C12DD5228F238F900E7D91E /* SearchResponse.swift in Sources */,
 				1CFD91FD291285120010172D /* CoinsCacheDataManager.swift in Sources */,
+				1CC329BA29F070B00061EB04 /* FirebaseDataManagerProtocol.swift in Sources */,
+				1CC329B829F070A80061EB04 /* FirebaseDataManager.swift in Sources */,
 				1CF0CB772916BCD800E7E3AB /* CoinEntity+Extensions.swift in Sources */,
 				1CA3D3A128D3CD80009D43E9 /* Coin.swift in Sources */,
 				1CA3D39D28D3C850009D43E9 /* CoinsServiceProtocol.swift in Sources */,
 				1CC178F728E6463900550D3B /* CoinChartDataResponse.swift in Sources */,
 				1C60D9FD28E8C70A00B675DA /* RequestDescription.swift in Sources */,
+				1C590F3D29EC96D800D700D1 /* ComposeUserService.swift in Sources */,
+				1C01EDC129EEA1860088AEE7 /* UsersAPIDataManagerProtocol.swift in Sources */,
 				1C60DA0D28E8E64000B675DA /* APIResponse.swift in Sources */,
 				1CE2AE6728F3333000642D00 /* CoinDetails.swift in Sources */,
 			);

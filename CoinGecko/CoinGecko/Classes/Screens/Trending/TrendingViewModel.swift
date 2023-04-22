@@ -33,6 +33,7 @@ extension TrendingViewController {
 extension TrendingViewController.ViewModel {
     struct Transitions: ScreenTransitions {
         let coinDetails: Closure.String
+        let composeUser: Closure.Void
     }
     
     final class Services {
@@ -54,6 +55,13 @@ extension TrendingViewController.ViewModel {
     
     func didSelectCoin(at indexPath: IndexPath) {
         transitions.coinDetails(coinsViewModels.value[indexPath.row].id)
+    }
+}
+
+// MARK: - TrendingViewModel+TapActions
+extension TrendingViewController.ViewModel {
+    func didTapComposeUserButton() {
+        transitions.composeUser()
     }
 }
 

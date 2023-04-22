@@ -1,24 +1,22 @@
 //
 //  EndEditingTappable.swift
-//  CoinGecko
+//  Utils
 //
-//  Created by Maksim Sashcheka on 9.10.22.
-//  Copyright © 2022 BSUIR. All rights reserved.
+//  Created by Maksim Sashcheka on 17.04.23.
+//  Copyright © 2023 BSUIR. All rights reserved.
 //
 
 import Combine
 import UIKit
-import Utils
 
 /// Allows to add endEditing behavior for specific view
 public protocol EndEditingTappable: AnyObject {
     func activateEndEditingTap(at view: UIView)
 }
 
-public extension EndEditingTappable where Self: ViewController {
+public extension EndEditingTappable {
     func activateEndEditingTap(at view: UIView) {
         view.tapPublisher()
-            .sink { $0.view?.endEditing(true) }
-            .store(in: &cancellables)
+            .strongSink { $0.view?.endEditing(true) }
     }
 }

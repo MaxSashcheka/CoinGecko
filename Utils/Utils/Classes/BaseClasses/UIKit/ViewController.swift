@@ -23,6 +23,8 @@ open class ViewController: UIViewController {
     public var cancellables: [AnyCancellable] = []
     public private(set) var isAppearFirstTime = true
     
+    public let keyboardObserver = KeyboardHeightObserver()
+    
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         

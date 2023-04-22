@@ -59,6 +59,16 @@ extension CommonAssembly {
         
         return viewController
     }
+    
+    static func imagePickerScreen(
+        transitions: ImagePickerViewController.ViewModel.Transitions
+    ) -> ImagePickerViewController {
+        let viewController = ImagePickerViewController()
+        let viewModel = ImagePickerViewController.ViewModel(transitions: transitions)
+        viewController.viewModel = viewModel
+        
+        return viewController
+    }
 }
 
 // MARK: - DI
