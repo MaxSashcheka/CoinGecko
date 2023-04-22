@@ -30,25 +30,6 @@ public protocol CoinsServiceProtocol {
     
     func cachedCoin(withId id: String) -> Coin?
     
-    // MARK: - Core data methods
-    func getPortfolioCoins(success: @escaping Closure.CoinsArray,
-                           failure: @escaping Closure.GeneralError)
-    
-    func getFavouritesCoins(success: @escaping Closure.CoinsArray,
-                            failure: @escaping Closure.GeneralError)
-    
-    func getStoredCoin(withId id: String,
-                       success: @escaping Closure.OptionalCoin,
-                       failure: @escaping Closure.GeneralError)
-    
-    func createOrUpdate(coins: [Coin],
-                        success: @escaping Closure.Void,
-                        failure: @escaping Closure.GeneralError)
-    
-    func createOrUpdate(coin: Coin,
-                        success: @escaping Closure.Void,
-                        failure: @escaping Closure.GeneralError)
-    
     // TODO: - Implement search api data manager
     func search(query: String,
                 success: @escaping Closure.SearchResult,

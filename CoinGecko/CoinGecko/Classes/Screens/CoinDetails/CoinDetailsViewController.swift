@@ -17,8 +17,6 @@ final class CoinDetailsViewController: ViewController {
     
     // MARK: - Properties
     
-    private let navigationBarView = CoinDetailsNavigationBarView()
-    
     private let scrollView = UIScrollView()
     
     private let currentPriceLabel: Label = .make {
@@ -38,7 +36,13 @@ final class CoinDetailsViewController: ViewController {
         $0.backgroundColor = Colors.addButton
     }
     
-    override var isNavigationBarHidden: Bool { true }
+    private let coinImageView = RemoteImageView(
+        imageURL: URL(string: "https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579")!
+    )
+    
+    private let coinTitleLabel: Label = .make {
+        $0.text = "Bitcoin Bitcoin"
+    }
     
     var viewModel: ViewModel!
     
@@ -50,6 +54,16 @@ final class CoinDetailsViewController: ViewController {
         super.viewDidLoad()
         
         viewModel.errorHandlerClosure = errorHandler
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem.barButtonItem(
+            image: Assets.Images.cross.image,
+            action: { [weak viewModel] in viewModel?.didTapCloseButton() }
+        )
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem.barButtonItem(
+            image: UIImage(.network),
+            action: { [weak viewModel] in viewModel?.didTapBrowserButton() }
+        )
     }
     
     override func viewDidLayoutSubviews() {
@@ -63,24 +77,38 @@ final class CoinDetailsViewController: ViewController {
     override func arrangeSubviews() {
         super.arrangeSubviews()
         
-        view.addSubview(navigationBarView)
-        navigationBarView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(53)
+        let infoContainerView = View()
+        infoContainerView.addSubview(coinImageView)
+        infoContainerView.addSubview(coinTitleLabel)
+        
+        coinImageView.snp.makeConstraints { make in
+            make.size.equalTo(30)
+            make.leading.top.bottom.equalToSuperview()
         }
         
+        coinTitleLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(coinImageView)
+            make.leading.equalTo(coinImageView.snp.trailing).offset(5)
+            make.trailing.equalToSuperview()
+        }
+        
+        navigationItem.titleView = infoContainerView
+          
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
-            make.top.equalTo(navigationBarView.snp.bottom)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.trailing.bottom.equalToSuperview()
         }
+        scrollView.backgroundColor = .red.withAlphaComponent(0.3)
+        currentPriceLabel.backgroundColor = .green.withAlphaComponent(0.3)
+        priceChangeLabel.backgroundColor = .yellow.withAlphaComponent(0.3)
         
         scrollView.addSubview(currentPriceLabel)
         currentPriceLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.leading.equalToSuperview().offset(15)
         }
+        currentPriceLabel.text = "1234.34"
         
         scrollView.addSubview(priceChangeLabel)
         priceChangeLabel.snp.makeConstraints { make in
@@ -117,23 +145,17 @@ final class CoinDetailsViewController: ViewController {
     override func bindData() {
         super.bindData()
         
-        viewModel.navigationBarViewModel.closeButtonSubject
-            .sink { [weak viewModel] in
-                viewModel?.didTapCloseButton()
-            }
-            .store(in: &cancellables)
-        
-        viewModel.navigationBarViewModel.addToFavouriteSubject
-            .sink { [weak viewModel] in
-                viewModel?.didTapAddToFavouriteButton()
-            }
-            .store(in: &cancellables)
-        
-        viewModel.navigationBarViewModel.browserButtonSubject
-            .sink { [weak viewModel] in
-                viewModel?.didTapBrowserButton()
-            }
-            .store(in: &cancellables)
+//        viewModel.navigationBarViewModel.closeButtonSubject
+//            .sink { [weak viewModel] in
+//                viewModel?.didTapCloseButton()
+//            }
+//            .store(in: &cancellables)
+//
+//        viewModel.navigationBarViewModel.browserButtonSubject
+//            .sink { [weak viewModel] in
+//                viewModel?.didTapBrowserButton()
+//            }
+//            .store(in: &cancellables)
         
         viewModel.buttonsCollectionViewModel.selectTimeIntervalSubject
             .removeDuplicates()
@@ -142,8 +164,12 @@ final class CoinDetailsViewController: ViewController {
             }
             .store(in: &cancellables)
         
-        viewModel.currentPriceText
-            .bind(to: \.text, on: currentPriceLabel)
+        viewModel.coinTitle
+            .bind(to: \.text, on: coinTitleLabel)
+            .store(in: &cancellables)
+        
+        viewModel.coinImageURL
+            .bind(to: \.imageURL, on: coinImageView)
             .store(in: &cancellables)
         
         viewModel.priceChangeText
@@ -154,18 +180,11 @@ final class CoinDetailsViewController: ViewController {
             .map { $0 ? UIColor.systemGreen : .systemRed }
             .bind(to: \.textColor, on: priceChangeLabel)
             .store(in: &cancellables)
-        
-        addToPortfolioButton.tapPublisher()
-            .sink { [weak viewModel] in
-                viewModel?.didTapOpenBottomSheetButton()
-            }
-            .store(in: &cancellables)
     }
     
     override func setupData() {
         super.setupData()
         
-        navigationBarView.viewModel = viewModel.navigationBarViewModel
         chartView.viewModel = viewModel.chartViewModel
         buttonsCollectionView.viewModel = viewModel.buttonsCollectionViewModel
     }

@@ -34,9 +34,7 @@ public class CoinsService: CoinsServiceProtocol {
             pageSize: pageSize,
             success: { [weak self] coins in
                 self?.coinsCacheDataManager.addToCache(coins: coins)
-                self?.coinsCacheDataManager.createOrUpdate(coins: coins, success: {
-                    success(coins)
-                }, failure: failure)
+                success(coins)
             }, failure: failure)
     }
     
@@ -91,48 +89,5 @@ public class CoinsService: CoinsServiceProtocol {
     
     public func cachedCoin(withId id: String) -> Coin? {
         coinsCacheDataManager.cachedCoin(withId: id)
-    }
-    
-    // MARK: - Core data methods
-    public func getPortfolioCoins(success: @escaping Closure.CoinsArray,
-                                  failure: @escaping Closure.GeneralError) {
-        coinsCacheDataManager.getPortfolioCoins(
-            success: success,
-            failure: failure
-        )
-    }
-    
-    public func getFavouritesCoins(success: @escaping Closure.CoinsArray,
-                                   failure: @escaping Closure.GeneralError) {
-        coinsCacheDataManager.getFavouritesCoins(
-            success: success,
-            failure: failure
-        )
-    }
-    
-    public func getStoredCoin(withId id: String,
-                              success: @escaping Closure.OptionalCoin,
-                              failure: @escaping Closure.GeneralError) {
-        coinsCacheDataManager.getStoredCoin(
-            withId: id,
-            success: success,
-            failure: failure
-        )
-    }
-    
-    public func createOrUpdate(coins: [Coin],
-                               success: @escaping Closure.Void,
-                               failure: @escaping Closure.GeneralError) {
-        coinsCacheDataManager.createOrUpdate(
-            coins: coins,
-            success: success,
-            failure: failure
-        )
-    }
-    
-    public func createOrUpdate(coin: Coin,
-                               success: @escaping Closure.Void,
-                               failure: @escaping Closure.GeneralError) {
-        createOrUpdate(coins: [coin], success: success, failure: failure)
     }
 }

@@ -55,26 +55,3 @@ public extension Coin {
         )
     }
 }
-
-// MARK: Coin+CoinEntity
-public extension Coin {
-    init(coinEntity: CoinEntity) {
-        self.id = coinEntity.id ?? .empty
-        self.symbol = coinEntity.symbol ?? .empty
-        self.name = coinEntity.name ?? .empty
-        self.imageURL = coinEntity.imageURL
-        self.amount = coinEntity.amount
-        self.isFavourite = coinEntity.isFavourite
-        
-        self.priceDetails = PriceDetails(
-            currentPrice: coinEntity.currentPrice,
-            marketCap: Int(coinEntity.marketCap),
-            marketCapRank: Int(coinEntity.marketCapRank),
-            totalVolume: coinEntity.totalVolume,
-            previousDayHighestPrice: coinEntity.previousDayHighestPrice,
-            previousDayLowestPrice: coinEntity.previousDayLowestPrice,
-            change24h: coinEntity.change24h,
-            changePercentage24h: coinEntity.changePercentage24h
-        )
-    }
-}

@@ -60,15 +60,7 @@ extension MarketsViewController.ViewModel {
 }
 
 // MARK: - MarketsViewModel+Fetch
-extension MarketsViewController.ViewModel {
-    func fetchFavouritesCoins() {
-        services.coins.getFavouritesCoins(success: { [weak self] in
-            guard let self = self else { return }
-            self.favouriteCoins.send($0)
-            if self.selectedMode == .favourites { self.fetchCoins() }
-        }, failure: errorHandlerClosure)
-    }
-    
+extension MarketsViewController.ViewModel {    
     func fetchGlobalData() {
         ActivityIndicator.show()
         services.coins.getGlobalData(success: { [weak self] globalData in

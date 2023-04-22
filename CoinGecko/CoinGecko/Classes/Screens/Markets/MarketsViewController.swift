@@ -71,7 +71,6 @@ final class MarketsViewController: ViewController {
         super.viewWillAppear(animated)
         
         viewModel.fetchCoins()
-        viewModel.fetchFavouritesCoins()
     }
     
     // MARK: - Methods

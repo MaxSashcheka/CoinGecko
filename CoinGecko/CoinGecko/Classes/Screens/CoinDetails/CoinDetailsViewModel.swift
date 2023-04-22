@@ -18,10 +18,11 @@ extension CoinDetailsViewController {
         private let coinId: String
         let isAddToPortfolioEnabled: Bool
         
-        let navigationBarViewModel = CoinDetailsNavigationBarView.ViewModel()
         let chartViewModel = ChartView.ViewModel()
         let buttonsCollectionViewModel = ButtonsCollectionView.ViewModel()
         
+        let coinTitle = CurrentValueSubject<String, Never>(.empty)
+        let coinImageURL = CurrentValueSubject<URL?, Never>(nil)
         let currentPrice = CurrentValueSubject<Double, Never>(.zero)
         let currentPriceText = CurrentValueSubject<String, Never>(.empty)
         let priceChangeText = CurrentValueSubject<String, Never>(.empty)
@@ -45,7 +46,6 @@ extension CoinDetailsViewController {
                 }
             )
             
-            fetchStoredCoin()
             fetchCoinDetails()
             fetchCoinChartData(for: .hour)
         }
@@ -60,7 +60,6 @@ extension CoinDetailsViewController.ViewModel {
     
     struct Transitions: ScreenTransitions {
         let close: Transition
-        let bottomSheet: Transition
         let browser: Closure.URL
     }
     
@@ -77,30 +76,23 @@ extension CoinDetailsViewController.ViewModel {
 
 // MARK: - CoinDetailsViewModel+Fetch
 extension CoinDetailsViewController.ViewModel {
-    func fetchStoredCoin() {
-        services.coins.getStoredCoin(withId: coinId, success: { [weak navigationBarViewModel] coin in
-            guard let coin = coin else { return }
-            navigationBarViewModel?.isFavourite.send(coin.isFavourite ?? false)
-        }, failure: { [weak self] error in
-            self?.errorHandlerClosure(error)
-        })
-    }
-    
     func fetchCoinDetails() {
-        services.coins.getCoinDetails(id: coinId,
-                                       success: { [weak self] coinDetails in
-            guard let self = self else { return }
-            self.navigationBarViewModel.title.send(coinDetails.name)
-            self.navigationBarViewModel.imageURL.send(coinDetails.imageURL)
-            
-            self.currentPriceText.send(self.roundedValueString(coinDetails.currentPrice))
-            self.currentPrice.send(coinDetails.currentPrice)
-            
-            ActivityIndicator.hide()
-        }, failure: { [weak self] error in
-            self?.errorHandlerClosure(error)
-            ActivityIndicator.hide()
-        })
+        services.coins.getCoinDetails(
+            id: coinId,
+            success: { [weak self] coinDetails in
+                guard let self = self else { return }
+                self.coinTitle.send(coinDetails.name)
+                self.coinImageURL.send(coinDetails.imageURL)
+                
+                self.currentPriceText.send(self.roundedValueString(coinDetails.currentPrice))
+                self.currentPrice.send(coinDetails.currentPrice)
+                
+                ActivityIndicator.hide()
+            }, failure: { [weak self] error in
+                self?.errorHandlerClosure(error)
+                ActivityIndicator.hide()
+            }
+        )
     }
     
     func fetchCoinChartData(for timeInterval: TimeInterval) {
@@ -153,31 +145,12 @@ extension CoinDetailsViewController.ViewModel {
         transitions.close()
     }
     
-    func didTapAddToFavouriteButton() {
-        services.coins.getStoredCoin(withId: coinId, success: { [weak self] coin in
-            guard let self = self else { return }
-            guard var coin = coin else {
-                self.errorHandlerClosure(.coreDataError)
-                return
-            }
-            let newFavouriteState = !(coin.isFavourite ?? false)
-            coin.isFavourite = newFavouriteState
-            self.services.coins.createOrUpdate(coin: coin, success: { [weak self] in
-                self?.navigationBarViewModel.isFavourite.send(newFavouriteState)
-            }, failure: self.errorHandlerClosure)
-        }, failure: errorHandlerClosure)
-    }
-    
     func didTapBrowserButton() {
-        services.coins.getStoredCoin(withId: coinId, success: { [weak self] coin in
-            guard let url = self?.services.externalLinkBuilder.buildGoogleSearchURL(query: (coin?.name).orEmpty()) else { return }
-            self?.transitions.browser(url)
-            
-        }, failure: errorHandlerClosure)
-    }
-    
-    func didTapOpenBottomSheetButton() {
-        transitions.bottomSheet()
+//        services.coins.getStoredCoin(withId: coinId, success: { [weak self] coin in
+//            guard let url = self?.services.externalLinkBuilder.buildGoogleSearchURL(query: (coin?.name).orEmpty()) else { return }
+//            self?.transitions.browser(url)
+//
+//        }, failure: errorHandlerClosure)
     }
 }
 

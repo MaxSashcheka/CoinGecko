@@ -11,9 +11,7 @@ import Core
 // MARK: - SessionsAssembly
 enum SessionsAssembly: Assembly {
     static func coinsCacheDataManager(resolver: DependencyResolver) -> CoinsCacheDataManager {
-        CoinsCacheDataManager(
-            coreDataSource: resolver.resolve(CoreDataSource.self)
-        )
+        CoinsCacheDataManager()
     }
     
     static func composeUserCacheDataManager(resolver: DependencyResolver) -> ComposeUserCacheDataManager {

@@ -13,7 +13,6 @@ import Utils
 final class AppCoordinator: TabCoordinator {
 
     override func registerContent() {
-        register(DataSourcesAssembly.coreDataSource())
         register(SessionsAssembly.coinsCacheDataManager(resolver: self))
         register(AppAssembly.externalLinkBuilder())
     }

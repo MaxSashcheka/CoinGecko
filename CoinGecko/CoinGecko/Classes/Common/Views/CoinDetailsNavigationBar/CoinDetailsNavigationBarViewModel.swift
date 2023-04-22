@@ -13,8 +13,6 @@ extension CoinDetailsNavigationBarView {
     class ViewModel {
         let title = CurrentValueSubject<String, Never>(.empty)
         let imageURL = CurrentValueSubject<URL?, Never>(nil)
-        let addToFavouriteSubject = PassthroughSubject<Void, Never>()
-        let isFavourite = CurrentValueSubject<Bool, Never>(false)
         let closeButtonSubject = PassthroughSubject<Void, Never>()
         let browserButtonSubject = PassthroughSubject<Void, Never>()
         

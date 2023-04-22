@@ -33,11 +33,9 @@ final class CoinDetailsNavigationBarView: View {
     
     private let browserButton = Button(image: UIImage(.network))
     
-    private let favouriteButton = Button()
-    
     private let separatorLine = View(backgroundColor: .lightGray.withAlphaComponent(0.7))
     
-    var rightBarButtons: [Button] { [browserButton, favouriteButton] }
+    var rightBarButtons: [Button] { [browserButton] }
     
     var viewModel: ViewModel? {
         didSet {
@@ -109,19 +107,9 @@ final class CoinDetailsNavigationBarView: View {
         viewModel.imageURL
             .bind(to: \.imageURL, on: coinImageView)
             .store(in: &cancellables)
-        
-        viewModel.isFavourite
-            .sink { [weak favouriteButton] in
-                favouriteButton?.setImage(UIImage($0 ? .heart.fill : .heart), for: .normal)
-            }
-            .store(in: &cancellables)
 
         closeButton.tapPublisher()
             .bind(to: viewModel.closeButtonSubject)
-            .store(in: &cancellables)
-        
-        favouriteButton.tapPublisher()
-            .bind(to: viewModel.addToFavouriteSubject)
             .store(in: &cancellables)
         
         browserButton.tapPublisher()

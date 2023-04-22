@@ -31,22 +31,6 @@ extension CommonAssembly {
         return viewController
     }
     
-    static func addCoinBottomSheet(
-        transitions: AddCoinOverlayViewController.ViewModel.Transitions,
-        resolver: DependencyResolver,
-        coinId: String
-    ) -> AddCoinOverlayViewController {
-        let viewController = AddCoinOverlayViewController()
-        let viewModel = AddCoinOverlayViewController.ViewModel(
-            transitions: transitions,
-            services: .inject(from: resolver),
-            coinId: coinId
-        )
-        viewController.viewModel = viewModel
-        
-        return viewController
-    }
-    
     static func inAppWebBroserScreen(
         transitions: InAppWebBrowserViewController.ViewModel.Transitions,
         url: URL
@@ -77,11 +61,5 @@ extension CoinDetailsViewController.ViewModel.Services: DependencyInjectable {
     static func inject(from resolver: DependencyResolver) -> Self {
         Self(coins: ServicesAssembly.coins(resolver: resolver),
              externalLinkBuilder: resolver.resolve(ExternalLinkBuilder.self))
-    }
-}
-
-extension AddCoinOverlayViewController.ViewModel.Services: DependencyInjectable {
-    static func inject(from resolver: DependencyResolver) -> Self {
-        Self(coins: ServicesAssembly.coins(resolver: resolver))
     }
 }

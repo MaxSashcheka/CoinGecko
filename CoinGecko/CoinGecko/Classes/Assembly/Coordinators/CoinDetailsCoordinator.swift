@@ -37,7 +37,6 @@ extension CoinDetailsCoordinator {
     func showCoinDetailInfoScreen(coinId: String, isAddToPortfolioEnabled: Bool) {
         let transitions = CoinDetailsViewController.ViewModel.Transitions(
             close: { [weak self] in self?.transitions.close() },
-            bottomSheet: { [weak self] in self?.showAddCoinBottomSheet(coinId: coinId) },
             browser: showInAppWebBrowserTransition
         )
         
@@ -51,20 +50,5 @@ extension CoinDetailsCoordinator {
         pushViewController(screen, animated: false)
     }
 }
-
-// MARK: - CoinDetailsCoordinator+UIViewControllerTransitioningDelegate
-extension CoinDetailsCoordinator: UIViewControllerTransitioningDelegate {
-    public func presentationController(forPresented presented: UIViewController,
-                                       presenting: UIViewController?,
-                                       source: UIViewController) -> UIPresentationController? {
-        PresentationController(presentedViewController: presented,
-                               presentingViewController: presenting,
-                               dismissAction: { [weak self] in self?.dismissModalController() })
-    }
-}
-
-// MARK: - CoinDetailsCoordinator+CoinBottomSheetPresentable
-extension CoinDetailsCoordinator: CoinBottomSheetPresentable { }
-
 // MARK: - CoinDetailsCoordinator+InAppWebBrowserPresentable
 extension CoinDetailsCoordinator: InAppWebBrowserPresentable { }
