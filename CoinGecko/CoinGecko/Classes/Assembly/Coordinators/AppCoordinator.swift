@@ -51,8 +51,9 @@ private extension AppCoordinator {
     func initializeTabsCoordinatorsAndShow() {
         let homeCoordinator = AppAssembly.trendingCoordinator(parent: self)
         let marketsCoordinator = AppAssembly.marketsCoordinator(parent: self)
+        let newsCoordinator = AppAssembly.newsCoordinator(parent: self)
         let profileCoordinator = AppAssembly.homeCoordinator(parent: self)
 
-        setTabsCoordinators([homeCoordinator, marketsCoordinator, profileCoordinator])
+        setTabsCoordinators([homeCoordinator, marketsCoordinator, newsCoordinator, profileCoordinator])
     }
 }

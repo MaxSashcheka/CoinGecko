@@ -25,7 +25,9 @@ extension AppAssembly {
         MarketsCoordinator(parent: parent)
     }
     
-    
+    static func newsCoordinator(parent: Coordinator) -> NewsCoordinator {
+        NewsCoordinator(parent: parent)
+    }
     
     static func homeCoordinator(parent: Coordinator) -> HomeCoordinator {
         HomeCoordinator(parent: parent)

@@ -30,7 +30,7 @@ extension ComposeUserPhotoViewController {
 // MARK: - ComposeUserPhotoViewModel+NestedTypes
 extension ComposeUserPhotoViewController.ViewModel {
     struct Transitions: ScreenTransitions {
-        let close: Closure.Void
+        let close: Transition
         let pickImage: (@escaping Closure.UIImage) -> Void
     }
     

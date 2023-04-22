@@ -7,13 +7,9 @@
 //
 
 import Core
-import UIKit
 import Utils
 
 final class CoinDetailsCoordinator: NavigationCoordinator {
-    // TODO: Remove this closure
-    var presentationControllerDidDismissed: Closure.Void?
-    
     struct Transitions {
         let close: Transition
     }

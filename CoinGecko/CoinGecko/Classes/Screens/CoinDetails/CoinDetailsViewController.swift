@@ -6,8 +6,8 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
-import Combine
 import Charts
+import Combine
 import SnapKit
 import Utils
 
@@ -36,13 +36,9 @@ final class CoinDetailsViewController: ViewController {
         $0.backgroundColor = Colors.addButton
     }
     
-    private let coinImageView = RemoteImageView(
-        imageURL: URL(string: "https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579")!
-    )
+    private let coinImageView = RemoteImageView()
     
-    private let coinTitleLabel: Label = .make {
-        $0.text = "Bitcoin Bitcoin"
-    }
+    private let coinTitleLabel = Label()
     
     var viewModel: ViewModel!
     
