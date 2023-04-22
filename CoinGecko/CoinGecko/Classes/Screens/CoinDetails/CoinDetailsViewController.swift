@@ -99,9 +99,6 @@ final class CoinDetailsViewController: ViewController {
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.trailing.bottom.equalToSuperview()
         }
-        scrollView.backgroundColor = .red.withAlphaComponent(0.3)
-        currentPriceLabel.backgroundColor = .green.withAlphaComponent(0.3)
-        priceChangeLabel.backgroundColor = .yellow.withAlphaComponent(0.3)
         
         scrollView.addSubview(currentPriceLabel)
         currentPriceLabel.snp.makeConstraints { make in
@@ -144,18 +141,6 @@ final class CoinDetailsViewController: ViewController {
     
     override func bindData() {
         super.bindData()
-        
-//        viewModel.navigationBarViewModel.closeButtonSubject
-//            .sink { [weak viewModel] in
-//                viewModel?.didTapCloseButton()
-//            }
-//            .store(in: &cancellables)
-//
-//        viewModel.navigationBarViewModel.browserButtonSubject
-//            .sink { [weak viewModel] in
-//                viewModel?.didTapBrowserButton()
-//            }
-//            .store(in: &cancellables)
         
         viewModel.buttonsCollectionViewModel.selectTimeIntervalSubject
             .removeDuplicates()

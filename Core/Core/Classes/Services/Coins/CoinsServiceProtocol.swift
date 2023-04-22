@@ -25,17 +25,10 @@ public protocol CoinsServiceProtocol {
                             success: @escaping Closure.CoinChartData,
                             failure: @escaping Closure.GeneralError)
     
-    // MARK: - Cache Methods
-    func addToCache(coins: [Coin])
-    
-    func cachedCoin(withId id: String) -> Coin?
-    
-    // TODO: - Implement search api data manager
     func search(query: String,
                 success: @escaping Closure.SearchResult,
                 failure: @escaping Closure.GeneralError)
     
-    // TODO: - Implement global data api data manager
     func getGlobalData(success: @escaping Closure.GlobalData,
                        failure: @escaping Closure.GeneralError)
 }

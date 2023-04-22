@@ -25,7 +25,7 @@ public class CoinsService: CoinsServiceProtocol {
                          success: @escaping Closure.CoinsArray,
                          failure: @escaping Closure.GeneralError) {
         if fromCache {
-            success(coinsCacheDataManager.cachedCoins)
+            success(coinsCacheDataManager.cachedCoins.allItems)
             return
         }
         coinsAPIDataManager.getCoins(
@@ -33,7 +33,7 @@ public class CoinsService: CoinsServiceProtocol {
             page: page,
             pageSize: pageSize,
             success: { [weak self] coins in
-                self?.coinsCacheDataManager.addToCache(coins: coins)
+                self?.coinsCacheDataManager.cachedCoins.append(contentsOf: coins)
                 success(coins)
             }, failure: failure)
     }
@@ -80,14 +80,5 @@ public class CoinsService: CoinsServiceProtocol {
             success: success,
             failure: failure
         )
-    }
-    
-    // MARK: - Cache methods
-    public func addToCache(coins: [Coin]) {
-        coinsCacheDataManager.addToCache(coins: coins)
-    }
-    
-    public func cachedCoin(withId id: String) -> Coin? {
-        coinsCacheDataManager.cachedCoin(withId: id)
     }
 }

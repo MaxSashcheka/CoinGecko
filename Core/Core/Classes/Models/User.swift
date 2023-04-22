@@ -19,7 +19,7 @@ public struct User {
         case admin = "Admin"
     }
     
-    public let id: String
+    public let id: UUID
     public let name: String
     public let login: String
     public let email: String
@@ -30,7 +30,7 @@ public struct User {
 
 public extension User {
     init(userResponse: UserResponse) {
-        self.id = userResponse.id
+        self.id = UUID(uuidString: userResponse.id) ?? UUID()
         self.name = userResponse.name
         self.login = userResponse.login
         self.email = userResponse.email

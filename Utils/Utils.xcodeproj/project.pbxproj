@@ -23,6 +23,7 @@
 		1C68714629ACF33400A9C59B /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C68714529ACF33400A9C59B /* CGFloat+Extensions.swift */; };
 		1C7200AA28D717D5001DDBD5 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7200A928D717D5001DDBD5 /* String+Extensions.swift */; };
 		1C7200AC28D721ED001DDBD5 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7200AB28D721ED001DDBD5 /* Double+Extensions.swift */; };
+		1C872DD429F4031800F6D83F /* CacheContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DD329F4031800F6D83F /* CacheContainer.swift */; };
 		1C97B9BE28E9CC940085C979 /* TapPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9BD28E9CC940085C979 /* TapPublisher.swift */; };
 		1C97B9C028E9CC9D0085C979 /* TapSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9BF28E9CC9D0085C979 /* TapSubscription.swift */; };
 		1C97B9C228E9CCAA0085C979 /* ControlEventSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9C128E9CCAA0085C979 /* ControlEventSubscription.swift */; };
@@ -79,6 +80,7 @@
 		1C68714529ACF33400A9C59B /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		1C7200A928D717D5001DDBD5 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		1C7200AB28D721ED001DDBD5 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
+		1C872DD329F4031800F6D83F /* CacheContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheContainer.swift; sourceTree = "<group>"; };
 		1C97B9BD28E9CC940085C979 /* TapPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapPublisher.swift; sourceTree = "<group>"; };
 		1C97B9BF28E9CC9D0085C979 /* TapSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapSubscription.swift; sourceTree = "<group>"; };
 		1C97B9C128E9CCAA0085C979 /* ControlEventSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlEventSubscription.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				1C590F4929ECB0F900D700D1 /* KeyboardObserver.swift */,
 				1C590F4D29ECB27500D700D1 /* EndEditingTappable.swift */,
 				1CAC0F1629ED7C670098D5B4 /* TextInputTraitsOptions.swift */,
+				1C872DD329F4031800F6D83F /* CacheContainer.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				1CA3D3B028D3D2BF009D43E9 /* UICollectionViewCell+Extensions.swift in Sources */,
 				1CDCB2D728D12EFF00624AB5 /* TabCoordinator.swift in Sources */,
 				1C7200AA28D717D5001DDBD5 /* String+Extensions.swift in Sources */,
+				1C872DD429F4031800F6D83F /* CacheContainer.swift in Sources */,
 				1CF969D028E399E400F49456 /* TimeInterval+Extensions.swift in Sources */,
 				1C60DA1228E8F8F400B675DA /* Publisher+Extensions.swift in Sources */,
 				1C2A63ED28D647290007877D /* UIView+Extensions.swift in Sources */,

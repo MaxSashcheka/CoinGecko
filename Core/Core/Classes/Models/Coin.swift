@@ -55,3 +55,8 @@ public extension Coin {
         )
     }
 }
+
+// MARK: Coin+CacheContainerConformable
+extension Coin: CacheContainerConformable {
+    public var cacheItemIdentifer: String { id }
+}

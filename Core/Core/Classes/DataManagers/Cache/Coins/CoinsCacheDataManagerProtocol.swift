@@ -10,9 +10,5 @@ import CoreData
 import Utils
 
 public protocol CoinsCacheDataManagerProtocol {
-    var cachedCoins: [Coin] { get }
-    
-    func addToCache(coins: [Coin])
-    
-    func cachedCoin(withId id: String) -> Coin?
+    var cachedCoins: CacheContainer<String, Coin> { get }
 }
