@@ -43,14 +43,10 @@ extension ComposeUserCoordinator {
     }
     
     func showComposeUserPhotoInfoScreen() {
-        let transitions = ComposeUserPhotoViewController.ViewModel.Transitions(
+        let transitions = ComposeUserPhotoViewModel.Transitions(
             close: { [weak self] in self?.transitions.close() },
-            pickImage: { [weak self] completion in
-                self?.showImagePickerScreen(completion: { image in
-                    completion(image)
-                    self?.dismissModalController()
-                })
-            }
+            completion: { [weak self] in self?.transitions.close() },
+            pickImage: showImagePickerScreenTransition
         )
         let screen = ComposeUserAssembly.composeUserPhotoScreen(
             transitions: transitions,
@@ -58,13 +54,7 @@ extension ComposeUserCoordinator {
         )
         pushViewController(screen)
     }
-    
-    func showImagePickerScreen(completion: @escaping Closure.UIImage) {
-        let transitions = ImagePickerViewController.ViewModel.Transitions(
-            close: { [weak self] in self?.dismissModalController() },
-            completion: completion
-        )
-        let screen = CommonAssembly.imagePickerScreen(transitions: transitions)
-        presentModal(controller: screen)
-    }
 }
+
+// MARK: - ComposeUserCoordinator+ImagePickerPresentable
+extension ComposeUserCoordinator: ImagePickerPresentable { }

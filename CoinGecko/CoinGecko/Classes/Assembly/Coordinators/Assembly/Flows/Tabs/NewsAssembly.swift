@@ -47,7 +47,7 @@ extension NewsAssembly {
 
 extension NewsListViewController.ViewModel.Services: DependencyInjectable {
     static func inject(from resolver: DependencyResolver) -> Self {
-        Self()
+        Self(posts: ServicesAssembly.posts(resolver: resolver))
     }
 }
 

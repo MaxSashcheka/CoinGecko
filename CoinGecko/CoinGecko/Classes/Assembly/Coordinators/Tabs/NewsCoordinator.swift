@@ -20,7 +20,8 @@ final class NewsCoordinator: NavigationCoordinator {
 extension NewsCoordinator {
     func showNewsListScreen() {
         let transitions = NewsListViewController.ViewModel.Transitions(
-            postDetails: { [weak self] in self?.showPostDetailsCoordinator(postId: $0) }
+            postDetails: { [weak self] in self?.showPostDetailsCoordinator(postId: $0) },
+            composePost: { [weak self] in self?.showComposePostCoordinator(completion: $0) }
         )
         let screen = NewsAssembly.newsListScreen(
             transitions: transitions,
@@ -42,4 +43,15 @@ extension NewsCoordinator {
         presentModal(coordinator: coordinator, presentationStyle: .fullScreen)
     }
     
+    func showComposePostCoordinator(completion: @escaping Closure.Void) {
+        let transitions = ComposePostCoordinator.Transitions(
+            close: { [weak self] in self?.dismissModalCoordinator() }
+        )
+        let coordinator = ComposePostCoordinator(
+            parent: self,
+            transitions: transitions,
+            completion: completion
+        )
+        presentModal(coordinator: coordinator, presentationStyle: .fullScreen)
+    }
 }

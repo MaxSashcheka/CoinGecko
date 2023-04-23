@@ -24,11 +24,23 @@ public extension PublisherProvider where Self: UIControl {
 }
 
 public extension PublisherProvider where Self: UITextField {
-    func optionalTextPublisher() -> AnyPublisher<String?, Never> {
+    var optionalTextPublisher: AnyPublisher<String?, Never> {
         publisher(for: .editingChanged).map { $0.text }.eraseToAnyPublisher()
     }
     
-    func textPublisher() -> AnyPublisher<String, Never> {
-        optionalTextPublisher().replaceNil(with: .empty).eraseToAnyPublisher()
+    var textPublisher: AnyPublisher<String, Never> {
+        optionalTextPublisher.replaceNil(with: .empty).eraseToAnyPublisher()
+    }
+}
+
+public extension PublisherProvider where Self: UITextView {
+    var optionalTextPublisher: AnyPublisher<String?, Never> {
+        NotificationCenter.default.publisher(for: UITextView.textDidChangeNotification)
+            .map { ($0.object as? UITextView)?.text }
+            .eraseToAnyPublisher()
+    }
+
+    var textPublisher: AnyPublisher<String, Never> {
+        optionalTextPublisher.replaceNil(with: .empty).eraseToAnyPublisher()
     }
 }

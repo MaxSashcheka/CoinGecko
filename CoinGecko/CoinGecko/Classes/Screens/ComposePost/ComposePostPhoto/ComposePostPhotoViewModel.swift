@@ -1,8 +1,8 @@
 //
-//  ComposeUserPhotoViewModel.swift
+//  ComposePostPhotoViewModel.swift
 //  CoinGecko
 //
-//  Created by Maksim Sashcheka on 16.04.23.
+//  Created by Maksim Sashcheka on 23.04.23.
 //  Copyright © 2023 BSUIR. All rights reserved.
 //
 
@@ -11,21 +11,21 @@ import Core
 import UIKit.UIImage
 import Utils
 
-class ComposeUserPhotoViewModel: BaseComposePhotoViewModel {
-    private let services: ComposeUserServices
+class ComposePostPhotoViewModel: BaseComposePhotoViewModel {
+    private let services: ComposePostServices
     
-    init(transitions: Transitions, services: ComposeUserServices) {
+    init(transitions: Transitions, services: ComposePostServices) {
         self.services = services
 
         super.init(transitions: transitions, services: services)
     }
     
     override func handleFinishImageUpload(imageURL: String) {
-        services.composeUser.submitUser(
+        services.composePost.submitPost(
             imageURL: imageURL,
             success: { [weak self] in
                 ActivityIndicator.hide()
-                self?.transitions.close()
+                self?.transitions.completion()
             },
             failure: { [weak self] error in
                 ActivityIndicator.hide()
@@ -35,17 +35,17 @@ class ComposeUserPhotoViewModel: BaseComposePhotoViewModel {
     }
     
     override func saveImage(_ image: UIImage) {
-        services.composeUser.image = image
+        services.composePost.image = image
     }
 }
 
-extension ComposeUserPhotoViewModel {
-    final class ComposeUserServices: BaseServices {
-        let composeUser: ComposeUserServiceProtocol
+extension ComposePostPhotoViewModel {
+    final class ComposePostServices: BaseServices {
+        let composePost: ComposePostServiceProtocol
         
-        init(composeUser: ComposeUserServiceProtocol,
+        init(composePost: ComposePostServiceProtocol,
              firebaseProvider: FirebaseProvider) {
-            self.composeUser = composeUser
+            self.composePost = composePost
             
             super.init(firebaseProvider: firebaseProvider)
         }

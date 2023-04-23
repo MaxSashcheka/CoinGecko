@@ -11,6 +11,9 @@ import SnapKit
 import Utils
 
 final class ComposeUserInfoViewController: ViewController {
+    
+    // MARK: - UI Components
+    
     private let contentScrollView = UIScrollView()
     
     private let contentStackView: UIStackView = .make {

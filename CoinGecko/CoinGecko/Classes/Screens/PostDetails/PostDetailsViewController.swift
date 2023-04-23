@@ -13,7 +13,7 @@ import Utils
 
 final class PostDetailsViewController: ViewController {
     
-    override var backgroundColor: UIColor { .green }
+    override var backgroundColor: UIColor { Assets.Colors.white.color }
     
     var viewModel: ViewModel!
     

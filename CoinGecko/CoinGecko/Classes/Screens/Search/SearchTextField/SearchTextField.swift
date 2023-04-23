@@ -52,7 +52,7 @@ final class SearchTextField: View {
     }
     
     private func bindData(with viewModel: ViewModel) {
-        innerTextField.textPublisher()
+        innerTextField.textPublisher
             .sink { [weak self] query in
                 self?.viewModel?.updateQuery(with: query)
                 UIView.animate(withDuration: 0.15) {

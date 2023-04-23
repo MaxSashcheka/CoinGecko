@@ -13,6 +13,12 @@
 		1C12DD4C28F21DCB00E7D91E /* SearchTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C12DD4B28F21DCB00E7D91E /* SearchTextFieldViewModel.swift */; };
 		1C12DD5028F2365700E7D91E /* UITableViewPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C12DD4F28F2365700E7D91E /* UITableViewPresentable.swift */; };
 		1C1E81AC29AE840200CABF79 /* DependencyInjectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E81AB29AE840200CABF79 /* DependencyInjectable.swift */; };
+		1C289BA729F5531E005A231C /* ComposePostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C289BA629F5531E005A231C /* ComposePostCoordinator.swift */; };
+		1C289BA929F55441005A231C /* ImagePickerPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C289BA829F55441005A231C /* ImagePickerPresentable.swift */; };
+		1C289BAC29F556D8005A231C /* ComposePostPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C289BAB29F556D8005A231C /* ComposePostPhotoViewController.swift */; };
+		1C289BAE29F556DD005A231C /* ComposePostPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C289BAD29F556DD005A231C /* ComposePostPhotoViewModel.swift */; };
+		1C289BD029F5A8B7005A231C /* PostTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C289BCF29F5A8B7005A231C /* PostTableCell.swift */; };
+		1C289BD229F5A9AF005A231C /* PostTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C289BD129F5A9AF005A231C /* PostTableCellViewModel.swift */; };
 		1C2A63DF28D644C00007877D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63DE28D644C00007877D /* SceneDelegate.swift */; };
 		1C2A63E328D644F40007877D /* RemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63E228D644F40007877D /* RemoteImageView.swift */; };
 		1C2A63E628D645250007877D /* RemoteImageDownloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63E528D645250007877D /* RemoteImageDownloadable.swift */; };
@@ -53,6 +59,11 @@
 		1C872DE029F40A4A00F6D83F /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DDF29F40A4A00F6D83F /* PostDetailsViewController.swift */; };
 		1C872DE229F40A4F00F6D83F /* PostDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DE129F40A4F00F6D83F /* PostDetailsViewModel.swift */; };
 		1C872DE429F4151400F6D83F /* PostDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DE329F4151400F6D83F /* PostDetailsCoordinator.swift */; };
+		1C872DE629F4178100F6D83F /* ComposePostAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DE529F4178100F6D83F /* ComposePostAssembly.swift */; };
+		1C872DEB29F418C400F6D83F /* ComposePostInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DEA29F418C400F6D83F /* ComposePostInfoViewController.swift */; };
+		1C872DED29F418C800F6D83F /* ComposePostInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DEC29F418C800F6D83F /* ComposePostInfoViewModel.swift */; };
+		1C872DF029F41B2500F6D83F /* BaseComposePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DEF29F41B2500F6D83F /* BaseComposePhotoViewController.swift */; };
+		1C872DF229F41B2E00F6D83F /* BaseComposePhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DF129F41B2E00F6D83F /* BaseComposePhotoViewModel.swift */; };
 		1C97B9D128EA2E3C0085C979 /* PageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9D028EA2E3C0085C979 /* PageButton.swift */; };
 		1C97B9D328EA2E460085C979 /* PageButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9D228EA2E460085C979 /* PageButtonViewModel.swift */; };
 		1C97B9D728EA32550085C979 /* PageButtonsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9D628EA32550085C979 /* PageButtonsCollectionView.swift */; };
@@ -120,6 +131,12 @@
 		1C12DD4B28F21DCB00E7D91E /* SearchTextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextFieldViewModel.swift; sourceTree = "<group>"; };
 		1C12DD4F28F2365700E7D91E /* UITableViewPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewPresentable.swift; sourceTree = "<group>"; };
 		1C1E81AB29AE840200CABF79 /* DependencyInjectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjectable.swift; sourceTree = "<group>"; };
+		1C289BA629F5531E005A231C /* ComposePostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePostCoordinator.swift; sourceTree = "<group>"; };
+		1C289BA829F55441005A231C /* ImagePickerPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerPresentable.swift; sourceTree = "<group>"; };
+		1C289BAB29F556D8005A231C /* ComposePostPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePostPhotoViewController.swift; sourceTree = "<group>"; };
+		1C289BAD29F556DD005A231C /* ComposePostPhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePostPhotoViewModel.swift; sourceTree = "<group>"; };
+		1C289BCF29F5A8B7005A231C /* PostTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableCell.swift; sourceTree = "<group>"; };
+		1C289BD129F5A9AF005A231C /* PostTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableCellViewModel.swift; sourceTree = "<group>"; };
 		1C2A63DE28D644C00007877D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1C2A63E228D644F40007877D /* RemoteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageView.swift; sourceTree = "<group>"; };
 		1C2A63E528D645250007877D /* RemoteImageDownloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageDownloadable.swift; sourceTree = "<group>"; };
@@ -160,6 +177,11 @@
 		1C872DDF29F40A4A00F6D83F /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
 		1C872DE129F40A4F00F6D83F /* PostDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewModel.swift; sourceTree = "<group>"; };
 		1C872DE329F4151400F6D83F /* PostDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsCoordinator.swift; sourceTree = "<group>"; };
+		1C872DE529F4178100F6D83F /* ComposePostAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePostAssembly.swift; sourceTree = "<group>"; };
+		1C872DEA29F418C400F6D83F /* ComposePostInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePostInfoViewController.swift; sourceTree = "<group>"; };
+		1C872DEC29F418C800F6D83F /* ComposePostInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePostInfoViewModel.swift; sourceTree = "<group>"; };
+		1C872DEF29F41B2500F6D83F /* BaseComposePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComposePhotoViewController.swift; sourceTree = "<group>"; };
+		1C872DF129F41B2E00F6D83F /* BaseComposePhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComposePhotoViewModel.swift; sourceTree = "<group>"; };
 		1C97B9D028EA2E3C0085C979 /* PageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageButton.swift; sourceTree = "<group>"; };
 		1C97B9D228EA2E460085C979 /* PageButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageButtonViewModel.swift; sourceTree = "<group>"; };
 		1C97B9D628EA32550085C979 /* PageButtonsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageButtonsCollectionView.swift; sourceTree = "<group>"; };
@@ -233,6 +255,37 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		1C289BA529F552FF005A231C /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				1CFA294828D27B510088A051 /* TrendingCoordinator.swift */,
+				1C60D9EB28E8853500B675DA /* MarketsCoordinator.swift */,
+				1C872DD529F4096D00F6D83F /* NewsCoordinator.swift */,
+				1CE2AE6C28F3752B00642D00 /* HomeCoordinator.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		1C289BAA29F5568B005A231C /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				1CFA294A28D27CBA0088A051 /* TrendingAssembly.swift */,
+				1C60D9F528E8A4C900B675DA /* MarketsAssembly.swift */,
+				1C872DD729F409B800F6D83F /* NewsAssembly.swift */,
+				1CE2AE7A28F37C2300642D00 /* HomeAssembly.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		1C289BCE29F5A8A1005A231C /* PostTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				1C289BCF29F5A8B7005A231C /* PostTableCell.swift */,
+				1C289BD129F5A9AF005A231C /* PostTableCellViewModel.swift */,
+			);
+			path = PostTableCell;
 			sourceTree = "<group>";
 		};
 		1C2A63DC28D644970007877D /* Views */ = {
@@ -338,6 +391,7 @@
 		1C590F3029EC7EB000D700D1 /* ComposeUserPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				1C872DEE29F41B0E00F6D83F /* BaseComposePhoto */,
 				1C590F3529EC7F2C00D700D1 /* ComposeUserPhotoViewController.swift */,
 				1C590F3729EC7F3200D700D1 /* ComposeUserPhotoViewModel.swift */,
 			);
@@ -395,11 +449,9 @@
 			isa = PBXGroup;
 			children = (
 				1CDCB2DF28D1341500624AB5 /* AppAssembly.swift */,
-				1CFA294A28D27CBA0088A051 /* TrendingAssembly.swift */,
-				1C60D9F528E8A4C900B675DA /* MarketsAssembly.swift */,
-				1C872DD729F409B800F6D83F /* NewsAssembly.swift */,
-				1CE2AE7A28F37C2300642D00 /* HomeAssembly.swift */,
+				1C289BAA29F5568B005A231C /* Tabs */,
 				1C590F3929EC812E00D700D1 /* ComposeUserAssembly.swift */,
+				1C872DE529F4178100F6D83F /* ComposePostAssembly.swift */,
 				03460CEE290EB2F900F754FA /* CommonAssembly.swift */,
 			);
 			path = Flows;
@@ -418,6 +470,7 @@
 			isa = PBXGroup;
 			children = (
 				1CB0B4E9293FF24600C874C4 /* InAppWebBrowserPresentable.swift */,
+				1C289BA829F55441005A231C /* ImagePickerPresentable.swift */,
 			);
 			path = Presentable;
 			sourceTree = "<group>";
@@ -425,16 +478,14 @@
 		1C7200A128D713CF001DDBD5 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				1CDCB2DC28D132D600624AB5 /* AppCoordinator.swift */,
 				1C68715229ACFFD300A9C59B /* Presentable */,
 				1C68714729ACF4A200A9C59B /* Assembly */,
-				1CDCB2DC28D132D600624AB5 /* AppCoordinator.swift */,
-				1CFA294828D27B510088A051 /* TrendingCoordinator.swift */,
-				1C60D9EB28E8853500B675DA /* MarketsCoordinator.swift */,
-				1C872DD529F4096D00F6D83F /* NewsCoordinator.swift */,
-				1CE2AE6C28F3752B00642D00 /* HomeCoordinator.swift */,
+				1C289BA529F552FF005A231C /* Tabs */,
 				03460CF1290EB9EB00F754FA /* CoinDetailsCoordinator.swift */,
 				1C872DE329F4151400F6D83F /* PostDetailsCoordinator.swift */,
 				1C590F2C29EC7DFF00D700D1 /* ComposeUserCoordinator.swift */,
+				1C289BA629F5531E005A231C /* ComposePostCoordinator.swift */,
 			);
 			name = Coordinators;
 			path = Assembly/Coordinators;
@@ -453,6 +504,7 @@
 		1C7CD4F328D273F800068965 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1C872DE729F418A500F6D83F /* ComposePost */,
 				1C872DDA29F40A2C00F6D83F /* PostDetails */,
 				1C872DD929F40A1E00F6D83F /* NewsList */,
 				1CAC0F2129ED9C2E0098D5B4 /* ImagePicker */,
@@ -487,6 +539,7 @@
 		1C872DD929F40A1E00F6D83F /* NewsList */ = {
 			isa = PBXGroup;
 			children = (
+				1C289BCE29F5A8A1005A231C /* PostTableCell */,
 				1C872DDB29F40A3D00F6D83F /* NewsListViewController.swift */,
 				1C872DDD29F40A4100F6D83F /* NewsListViewModel.swift */,
 			);
@@ -500,6 +553,42 @@
 				1C872DE129F40A4F00F6D83F /* PostDetailsViewModel.swift */,
 			);
 			path = PostDetails;
+			sourceTree = "<group>";
+		};
+		1C872DE729F418A500F6D83F /* ComposePost */ = {
+			isa = PBXGroup;
+			children = (
+				1C872DE829F418AD00F6D83F /* ComposePostInfo */,
+				1C872DE929F418B300F6D83F /* ComposePostPhoto */,
+			);
+			path = ComposePost;
+			sourceTree = "<group>";
+		};
+		1C872DE829F418AD00F6D83F /* ComposePostInfo */ = {
+			isa = PBXGroup;
+			children = (
+				1C872DEA29F418C400F6D83F /* ComposePostInfoViewController.swift */,
+				1C872DEC29F418C800F6D83F /* ComposePostInfoViewModel.swift */,
+			);
+			path = ComposePostInfo;
+			sourceTree = "<group>";
+		};
+		1C872DE929F418B300F6D83F /* ComposePostPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				1C289BAB29F556D8005A231C /* ComposePostPhotoViewController.swift */,
+				1C289BAD29F556DD005A231C /* ComposePostPhotoViewModel.swift */,
+			);
+			path = ComposePostPhoto;
+			sourceTree = "<group>";
+		};
+		1C872DEE29F41B0E00F6D83F /* BaseComposePhoto */ = {
+			isa = PBXGroup;
+			children = (
+				1C872DEF29F41B2500F6D83F /* BaseComposePhotoViewController.swift */,
+				1C872DF129F41B2E00F6D83F /* BaseComposePhotoViewModel.swift */,
+			);
+			path = BaseComposePhoto;
 			sourceTree = "<group>";
 		};
 		1C97B9CF28EA2E2A0085C979 /* Views */ = {
@@ -865,10 +954,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C872DE629F4178100F6D83F /* ComposePostAssembly.swift in Sources */,
+				1C289BA729F5531E005A231C /* ComposePostCoordinator.swift in Sources */,
 				1C872DDC29F40A3D00F6D83F /* NewsListViewController.swift in Sources */,
 				1C872DE429F4151400F6D83F /* PostDetailsCoordinator.swift in Sources */,
 				1C872DE229F40A4F00F6D83F /* PostDetailsViewModel.swift in Sources */,
 				1CAC0F2329ED9C510098D5B4 /* ImagePickerViewController.swift in Sources */,
+				1C872DEB29F418C400F6D83F /* ComposePostInfoViewController.swift in Sources */,
 				1CF969CE28E3959900F49456 /* ButtonCollectionViewModel.swift in Sources */,
 				1CEEC76D28D2801800F8DC7A /* AppDelegate.swift in Sources */,
 				1C4287A028E0732100273979 /* ChartView.swift in Sources */,
@@ -883,8 +975,10 @@
 				1C68714929ACF4C200A9C59B /* Assembly.swift in Sources */,
 				1C2A63E628D645250007877D /* RemoteImageDownloadable.swift in Sources */,
 				1C68714F29ACFE6700A9C59B /* ProvidersAssembly.swift in Sources */,
+				1C289BAE29F556DD005A231C /* ComposePostPhotoViewModel.swift in Sources */,
 				1C590F3229EC7F1A00D700D1 /* ComposeUserInfoViewController.swift in Sources */,
 				1C590F3429EC7F1F00D700D1 /* ComposeUserInfoViewModel.swift in Sources */,
+				1C289BA929F55441005A231C /* ImagePickerPresentable.swift in Sources */,
 				1C872DD829F409B800F6D83F /* NewsAssembly.swift in Sources */,
 				1C590F4329EC980900D700D1 /* TitledTextFieldViewModel.swift in Sources */,
 				1C97B9D328EA2E460085C979 /* PageButtonViewModel.swift in Sources */,
@@ -892,6 +986,7 @@
 				1CE2AE7428F3777700642D00 /* HomeViewModel.swift in Sources */,
 				1C12DD4C28F21DCB00E7D91E /* SearchTextFieldViewModel.swift in Sources */,
 				1CB0B4E7293FF15C00C874C4 /* InAppWebBrowserViewController.swift in Sources */,
+				1C289BD029F5A8B7005A231C /* PostTableCell.swift in Sources */,
 				1CFA294B28D27CBA0088A051 /* TrendingAssembly.swift in Sources */,
 				1C2A63DF28D644C00007877D /* SceneDelegate.swift in Sources */,
 				1CDCB2E028D1341500624AB5 /* AppAssembly.swift in Sources */,
@@ -906,9 +1001,11 @@
 				1CCB08CC29AD560900596FED /* ScreenTransitionable.swift in Sources */,
 				1C590F4129EC97FF00D700D1 /* TitledTextField.swift in Sources */,
 				1C97B9D128EA2E3C0085C979 /* PageButton.swift in Sources */,
+				1C872DED29F418C800F6D83F /* ComposePostInfoViewModel.swift in Sources */,
 				1CB0B4E8293FF15C00C874C4 /* InAppWebBrowserViewModel.swift in Sources */,
 				1CE2AE6D28F3752B00642D00 /* HomeCoordinator.swift in Sources */,
 				1C97B9D928EA325F0085C979 /* PageButtonsCollectionViewModel.swift in Sources */,
+				1C289BAC29F556D8005A231C /* ComposePostPhotoViewController.swift in Sources */,
 				1CB0B4EA293FF24600C874C4 /* InAppWebBrowserPresentable.swift in Sources */,
 				1C590F4629ECA83100D700D1 /* OptionPickerView.swift in Sources */,
 				1C590F4829ECA83900D700D1 /* OptionPickerViewModel.swift in Sources */,
@@ -918,6 +1015,7 @@
 				1C7200BA28D77FED001DDBD5 /* CoinDetailsViewModel.swift in Sources */,
 				1C872DD629F4096D00F6D83F /* NewsCoordinator.swift in Sources */,
 				1CE2AE7228F3777200642D00 /* HomeViewController.swift in Sources */,
+				1C289BD229F5A9AF005A231C /* PostTableCellViewModel.swift in Sources */,
 				1C590F3A29EC812E00D700D1 /* ComposeUserAssembly.swift in Sources */,
 				1C60D9F428E8A3F600B675DA /* MarketsViewModel.swift in Sources */,
 				1CAC0F2529ED9C560098D5B4 /* ImagePickerViewModel.swift in Sources */,
@@ -931,6 +1029,7 @@
 				1C7200B828D77FB3001DDBD5 /* CoinDetailsViewController.swift in Sources */,
 				1CF466EF28CFDF5F0012DE85 /* Localizable.swift in Sources */,
 				1C2A63E328D644F40007877D /* RemoteImageView.swift in Sources */,
+				1C872DF229F41B2E00F6D83F /* BaseComposePhotoViewModel.swift in Sources */,
 				1C60D9F228E8A3EA00B675DA /* MarketsViewController.swift in Sources */,
 				1C872DE029F40A4A00F6D83F /* PostDetailsViewController.swift in Sources */,
 				1C4287A728E0AFD800273979 /* RangePickerButton.swift in Sources */,
@@ -941,6 +1040,7 @@
 				1C68715129ACFE6F00A9C59B /* ServicesAssembly.swift in Sources */,
 				1C60D9F628E8A4C900B675DA /* MarketsAssembly.swift in Sources */,
 				03460CF2290EB9EB00F754FA /* CoinDetailsCoordinator.swift in Sources */,
+				1C872DF029F41B2500F6D83F /* BaseComposePhotoViewController.swift in Sources */,
 				1CA3D3A828D3CFAF009D43E9 /* CoinCellViewModel.swift in Sources */,
 				1CF969CC28E393AC00F49456 /* ButtonsCollectionView.swift in Sources */,
 				1C590F3829EC7F3200D700D1 /* ComposeUserPhotoViewModel.swift in Sources */,

@@ -27,11 +27,11 @@ extension ComposeUserAssembly {
     }
     
     static func composeUserPhotoScreen(
-        transitions: ComposeUserPhotoViewController.ViewModel.Transitions,
+        transitions: ComposeUserPhotoViewModel.Transitions,
         resolver: DependencyResolver
     ) -> ComposeUserPhotoViewController {
         let viewController = ComposeUserPhotoViewController()
-        let viewModel = ComposeUserPhotoViewController.ViewModel(
+        let viewModel = ComposeUserPhotoViewModel(
             transitions: transitions, services: .inject(from: resolver)
         )
         viewController.viewModel = viewModel
@@ -48,7 +48,7 @@ extension ComposeUserInfoViewController.ViewModel.Services: DependencyInjectable
     }
 }
 
-extension ComposeUserPhotoViewController.ViewModel.Services: DependencyInjectable {
+extension ComposeUserPhotoViewModel.ComposeUserServices: DependencyInjectable {
     static func inject(from resolver: DependencyResolver) -> Self {
         Self(composeUser: ServicesAssembly.composeUser(resolver: resolver),
              firebaseProvider: ProvidersAssembly.firebase())

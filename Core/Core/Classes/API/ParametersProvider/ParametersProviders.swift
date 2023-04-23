@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TODO: - Make multiple extensions
 public extension ParametersProvider {
     static func id(_ id: String) -> [String: String] {
         ["id": id]
@@ -54,6 +55,20 @@ public extension ParametersProvider {
             "imageURL": imageURL,
             "email": email,
             "personalWebPageURL": personalWebPageURL
+        ]
+    }
+    
+    static func createPost(id: String,
+                           title: String,
+                           content: String,
+                           authorId: String,
+                           imageURL: String) -> [String: String] {
+        [
+            "id": id,
+            "title": title,
+            "content": content,
+            "authorId": authorId,
+            "imageURL": imageURL
         ]
     }
 }

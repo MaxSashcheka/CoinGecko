@@ -22,7 +22,8 @@ extension CoinsMarketResponse: APIResponse { }
 extension CoinResponse: APIResponse { }
 extension CoinDetailsResponse: APIResponse { }
 extension CoinChartDataResponse: APIResponse { }
-extension [CoinResponse]: APIResponse { }
 extension GlobalDataResponse: APIResponse { }
 extension SearchResponse: APIResponse { }
 extension UserResponse: APIResponse { }
+extension PostResponse: APIResponse { }
+extension Array: APIResponse where Element: APIResponse, Element: Decodable { }

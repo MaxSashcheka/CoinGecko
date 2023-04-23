@@ -9,7 +9,6 @@
 import Utils
 
 public protocol CoinsServiceProtocol {
-    // MARK: - API Methods
     func getCoins(fromCache: Bool,
                   currency: String, page: Int, pageSize: Int,
                   success: @escaping Closure.CoinsArray,

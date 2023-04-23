@@ -51,7 +51,7 @@ final class TitledTextField: View {
 
 private extension TitledTextField {
     func bindData(with viewModel: ViewModel) {
-        textField.textPublisher()
+        textField.textPublisher
             .sink { [weak viewModel] in
                 viewModel?.didEnterText($0)
             }

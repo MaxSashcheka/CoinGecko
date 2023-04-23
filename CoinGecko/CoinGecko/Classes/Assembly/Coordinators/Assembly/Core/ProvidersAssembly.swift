@@ -14,8 +14,16 @@ enum SessionsAssembly: Assembly {
         CoinsCacheDataManager()
     }
     
+    static func postsCacheDataManager(resolver: DependencyResolver) -> PostsCacheDataManager {
+        PostsCacheDataManager()
+    }
+    
     static func composeUserCacheDataManager(resolver: DependencyResolver) -> ComposeUserCacheDataManager {
         ComposeUserCacheDataManager()
+    }
+    
+    static func composePostCacheDataManager(resolver: DependencyResolver) -> ComposePostCacheDataManager {
+        ComposePostCacheDataManager()
     }
 }
 
@@ -28,6 +36,10 @@ enum APIAssembly: Assembly {
     
     static func usersAPIDataManager() -> UsersAPIDataManager {
         UsersAPIDataManager()
+    }
+    
+    static func postsAPIDataManager() -> PostsAPIDataManager {
+        PostsAPIDataManager()
     }
 }
 
@@ -46,4 +58,6 @@ enum ProvidersAssembly {
 }
 
 extension CoinsCacheDataManager: DependencyResolvable { }
+extension PostsCacheDataManager: DependencyResolvable { }
 extension ComposeUserCacheDataManager: DependencyResolvable { }
+extension ComposePostCacheDataManager: DependencyResolvable { }

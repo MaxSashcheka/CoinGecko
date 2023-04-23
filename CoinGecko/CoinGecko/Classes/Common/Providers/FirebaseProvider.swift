@@ -7,8 +7,8 @@
 //
 
 import FirebaseStorage
-import Utils
 import UIKit
+import Utils
 
 final class FirebaseProvider {
     func uploadImage(image: UIImage,
@@ -16,7 +16,7 @@ final class FirebaseProvider {
                      failure: @escaping Closure.GeneralError) {
         let storageRef = Storage.storage().reference()
         
-        guard let imageData = image.jpegData(compressionQuality: 0.8) else { return }
+        guard let imageData = image.jpegData(compressionQuality: 0.6) else { return }
 
         let path = "images/\(UUID().uuidString).jpg"
         let fileRef = storageRef.child(path)

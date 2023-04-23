@@ -45,6 +45,18 @@ public class CacheContainer<CacheItemUniqueKey, CacheItemType: CacheContainerCon
         }
     }
     
+    public func addFront(contentsOf items: [CacheItemType]) {
+        items.reversed().forEach { addFront($0) }
+    }
+    
+    public func addFront(_ item: CacheItemType) {
+        if let index = items.firstIndex(where: { $0.cacheItemIdentifer == item.cacheItemIdentifer }) {
+            items[index] = item
+        } else {
+            items.insert(item, at: .zero)
+        }
+    }
+    
     public func removeItem(_ item: CacheItemType) {
         removeItem(with: item.cacheItemIdentifer)
     }

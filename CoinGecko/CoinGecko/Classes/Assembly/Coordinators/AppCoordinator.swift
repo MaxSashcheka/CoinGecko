@@ -11,9 +11,9 @@ import UIKit
 import Utils
 
 final class AppCoordinator: TabCoordinator {
-
     override func registerContent() {
         register(SessionsAssembly.coinsCacheDataManager(resolver: self))
+        register(SessionsAssembly.postsCacheDataManager(resolver: self))
         register(AppAssembly.externalLinkBuilder())
     }
 

@@ -30,4 +30,8 @@ public extension Array where Element: Hashable {
             self[index] = newElement
         }
     }
+    
+    subscript (safe index: Index) -> Element? {
+        indices.contains(index) ? self[index] : nil
+    }
 }

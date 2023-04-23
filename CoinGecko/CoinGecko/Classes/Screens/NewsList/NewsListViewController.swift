@@ -13,7 +13,13 @@ import Utils
 
 final class NewsListViewController: ViewController {
     
-    override var backgroundColor: UIColor { .red }
+    private let postsTableView: UITableView = .make {
+        $0.register(PostTableCell.self)
+        $0.separatorStyle = .none
+        $0.backgroundColor = Assets.Colors.platinum.color
+    }
+    
+    override var backgroundColor: UIColor { Assets.Colors.platinum.color }
     override var tabBarTitle: String { "News" }
     override var tabBarImage: UIImage? { UIImage(.newspaper) }
     
@@ -24,6 +30,56 @@ final class NewsListViewController: ViewController {
         
         title = "News"
         
+        viewModel.fetchPosts()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem.barButtonItem(
+            image: UIImage(.plus),
+            action: { [weak viewModel] in viewModel?.didTapComposePostButton() }
+        )
+        
         viewModel.errorHandlerClosure = errorHandler
+    }
+    
+    override func arrangeSubviews() {
+        super.arrangeSubviews()
+        
+        view.addSubview(postsTableView)
+        postsTableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    override func bindData() {
+        super.bindData()
+        
+        viewModel.postsViewModels
+            .sink { [weak self] _ in self?.postsTableView.reloadData() }
+            .store(in: &cancellables)
+    }
+    
+    override func setupData() {
+        super.setupData()
+        
+        postsTableView.delegate = self
+        postsTableView.dataSource = self
+    }
+}
+
+// MARK: - NewsListViewController+UITableViewPresentable
+extension NewsListViewController: UITableViewPresentable {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
+        viewModel.numberOfItems
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.reuse(PostTableCell.self, indexPath) else {
+            assertionFailure("Cannot deque reusable cell for \(PostTableCell.reuseIdentifier) identifier")
+            return UITableViewCell()
+        }
+        cell.viewModel = viewModel.cellViewModel(for: indexPath)
+        
+        return cell
     }
 }

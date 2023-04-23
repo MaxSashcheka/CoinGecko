@@ -102,7 +102,6 @@ final class CoinCell: TableCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        // TODO: - check if it is required to remove subviews
         viewModel = nil
     }
 }
