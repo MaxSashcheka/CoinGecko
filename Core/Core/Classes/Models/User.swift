@@ -14,6 +14,16 @@ public extension Closure {
 }
 
 public struct User {
+    public init(id: UUID, name: String, login: String, email: String, role: User.Role, imageURL: URL? = nil, webPageURL: URL? = nil) {
+        self.id = id
+        self.name = name
+        self.login = login
+        self.email = email
+        self.role = role
+        self.imageURL = imageURL
+        self.webPageURL = webPageURL
+    }
+    
     public enum Role: String {
         case user = "User"
         case admin = "Admin"
@@ -26,6 +36,8 @@ public struct User {
     public let role: Role
     public let imageURL: URL?
     public let webPageURL: URL?
+    
+    
 }
 
 public extension User {
@@ -38,4 +50,8 @@ public extension User {
         self.webPageURL = URL(string: userResponse.personalWebPageURL)
         self.role = Role(rawValue: userResponse.role) ?? .user
     }
+}
+
+extension User: CacheContainerConformable {
+    public var cacheItemIdentifer: UUID { id }
 }

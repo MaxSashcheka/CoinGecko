@@ -33,7 +33,7 @@ extension TrendingViewController {
 extension TrendingViewController.ViewModel {
     struct Transitions: ScreenTransitions {
         let coinDetails: Closure.String
-        let composeUser: Closure.Void
+        let composeUser: (@escaping Closure.Void) -> Void
     }
     
     final class Services {
@@ -61,7 +61,9 @@ extension TrendingViewController.ViewModel {
 // MARK: - TrendingViewModel+TapActions
 extension TrendingViewController.ViewModel {
     func didTapComposeUserButton() {
-        transitions.composeUser()
+        transitions.composeUser {
+            print("user compose finished")
+        }
     }
 }
 

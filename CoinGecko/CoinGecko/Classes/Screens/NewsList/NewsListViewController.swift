@@ -53,7 +53,9 @@ final class NewsListViewController: ViewController {
         super.bindData()
         
         viewModel.postsViewModels
-            .sink { [weak self] _ in self?.postsTableView.reloadData() }
+            .sink { [weak self] _ in
+                self?.postsTableView.reloadData()
+            }
             .store(in: &cancellables)
     }
     

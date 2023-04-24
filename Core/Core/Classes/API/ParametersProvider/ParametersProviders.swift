@@ -71,4 +71,11 @@ public extension ParametersProvider {
             "imageURL": imageURL
         ]
     }
+    
+    static func login(login: String, password: String) -> [String: String] {
+        [
+            "login": login,
+            "password": password
+        ]
+    }
 }

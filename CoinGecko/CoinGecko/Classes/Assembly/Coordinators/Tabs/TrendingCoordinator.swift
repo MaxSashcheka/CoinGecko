@@ -21,20 +21,11 @@ extension TrendingCoordinator {
     func showTrendingScreen() {
         let transitions = TrendingViewController.ViewModel.Transitions(
             coinDetails: { [weak self] in self?.showCoinDetailsCoordinator(coinId: $0) },
-            composeUser: { [weak self] in self?.showComposeUserCoordinator() }
+            composeUser: showComposeUserCoordinator
         )
         let screen = TrendingAssembly.trendingScreen(transitions: transitions, resolver: self)
 
         pushViewController(screen, animated: false)
-    }
-    
-    func showComposeUserCoordinator() {
-        let transitions = ComposeUserCoordinator.Transitions(
-            close: { [weak self] in self?.dismissModalCoordinator() }
-        )
-        let coordinator = ComposeUserCoordinator(parent: self, transitions: transitions)
-        
-        presentModal(coordinator: coordinator, presentationStyle: .fullScreen)
     }
     
     func showCoinDetailsCoordinator(coinId: String) {
@@ -49,3 +40,6 @@ extension TrendingCoordinator {
         presentModal(coordinator: coordinator, presentationStyle: .fullScreen)
     }
 }
+
+// MARK: - TrendingCoordinator+ComposeUserCoordinatorPresentable
+extension TrendingCoordinator: ComposeUserCoordinatorPresentable { }

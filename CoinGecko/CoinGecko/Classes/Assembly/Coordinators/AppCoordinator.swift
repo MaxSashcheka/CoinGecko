@@ -14,6 +14,7 @@ final class AppCoordinator: TabCoordinator {
     override func registerContent() {
         register(SessionsAssembly.coinsCacheDataManager(resolver: self))
         register(SessionsAssembly.postsCacheDataManager(resolver: self))
+        register(SessionsAssembly.usersCacheDataManager(resolver: self))
         register(AppAssembly.externalLinkBuilder())
     }
 

@@ -32,7 +32,6 @@ extension HomeAssembly {
 
 extension HomeViewController.ViewModel.Services: DependencyInjectable {
     static func inject(from resolver: DependencyResolver) -> Self {
-        Self(coins: ServicesAssembly.coins(resolver: resolver))
+        Self(auth: ServicesAssembly.auth(resolver: resolver))
     }
 }
-

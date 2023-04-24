@@ -10,9 +10,16 @@ import Core
 
 // TODO: - Remove manually pointing cache data manager types
 enum ServicesAssembly: Assembly {
+    static func auth(resolver: DependencyResolver) -> AuthServiceProtocol {
+        AuthService(
+            usersCacheDataManager: resolver.resolve(UsersCacheDataManager.self),
+            authAPIDataManager: APIAssembly.auth()
+        )
+    }
+    
     static func coins(resolver: DependencyResolver) -> CoinsServiceProtocol {
         CoinsService(
-            coinsAPIDataManager: APIAssembly.coinsAPIDataManager(),
+            coinsAPIDataManager: APIAssembly.coins(),
             coinsCacheDataManager: resolver.resolve(CoinsCacheDataManager.self)
         )
     }
@@ -20,14 +27,14 @@ enum ServicesAssembly: Assembly {
     static func posts(resolver: DependencyResolver) -> PostsServiceProtocol {
         PostsService(
             postsCacheDataManager: resolver.resolve(PostsCacheDataManager.self),
-            postsAPIDataManager: APIAssembly.postsAPIDataManager()
+            postsAPIDataManager: APIAssembly.posts()
         )
     }
     
     static func composeUser(resolver: DependencyResolver) -> ComposeUserServiceProtocol {
         ComposeUserService(
             composeUserCacheDataManager: resolver.resolve(ComposeUserCacheDataManager.self),
-            usersAPIDataManager: APIAssembly.usersAPIDataManager()
+            usersAPIDataManager: APIAssembly.users()
         )
     }
     
@@ -35,7 +42,7 @@ enum ServicesAssembly: Assembly {
         ComposePostService(
             composePostCacheDataManager: resolver.resolve(ComposePostCacheDataManager.self),
             postsCacheDataManager: resolver.resolve(PostsCacheDataManager.self),
-            postsAPIDataManager: APIAssembly.postsAPIDataManager()
+            postsAPIDataManager: APIAssembly.posts()
         )
     }
 }

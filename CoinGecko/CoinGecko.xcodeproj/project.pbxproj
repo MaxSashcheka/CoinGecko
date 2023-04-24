@@ -26,6 +26,16 @@
 		1C2A63E628D645250007877D /* RemoteImageDownloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63E528D645250007877D /* RemoteImageDownloadable.swift */; };
 		1C2A63EF28D649500007877D /* TitledDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63EE28D649500007877D /* TitledDescriptionView.swift */; };
 		1C2A63F128D6496F0007877D /* TitledDescriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63F028D6496F0007877D /* TitledDescriptionViewModel.swift */; };
+		1C2DE53529F6D6C500665876 /* ComposeUserCoordinatorPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE53429F6D6C500665876 /* ComposeUserCoordinatorPresentable.swift */; };
+		1C2DE53729F6DF9700665876 /* SignInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE53629F6DF9700665876 /* SignInCoordinator.swift */; };
+		1C2DE53A29F6E39700665876 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE53929F6E39600665876 /* SignInViewController.swift */; };
+		1C2DE53C29F6E39B00665876 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE53B29F6E39B00665876 /* SignInViewModel.swift */; };
+		1C2DE53E29F6E77400665876 /* SignInCoordinatorPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE53D29F6E77400665876 /* SignInCoordinatorPresentable.swift */; };
+		1C2DE54129F6EDFC00665876 /* ProfileTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE54029F6EDFC00665876 /* ProfileTableCell.swift */; };
+		1C2DE54329F6EE0100665876 /* ProfileTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE54229F6EE0100665876 /* ProfileTableCellViewModel.swift */; };
+		1C2DE54729F6FACE00665876 /* BaseProfileTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE54629F6FACE00665876 /* BaseProfileTableCellViewModel.swift */; };
+		1C2DE54929F6FB4C00665876 /* ActionTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE54829F6FB4C00665876 /* ActionTableCell.swift */; };
+		1C2DE54B29F6FB8700665876 /* ActionTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE54A29F6FB8700665876 /* ActionTableCellViewModel.swift */; };
 		1C4287A028E0732100273979 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C42879F28E0732100273979 /* ChartView.swift */; };
 		1C4287A228E0732600273979 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4287A128E0732600273979 /* ChartViewModel.swift */; };
 		1C4287A728E0AFD800273979 /* RangePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4287A628E0AFD800273979 /* RangePickerButton.swift */; };
@@ -146,6 +156,16 @@
 		1C2A63E528D645250007877D /* RemoteImageDownloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageDownloadable.swift; sourceTree = "<group>"; };
 		1C2A63EE28D649500007877D /* TitledDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledDescriptionView.swift; sourceTree = "<group>"; };
 		1C2A63F028D6496F0007877D /* TitledDescriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledDescriptionViewModel.swift; sourceTree = "<group>"; };
+		1C2DE53429F6D6C500665876 /* ComposeUserCoordinatorPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeUserCoordinatorPresentable.swift; sourceTree = "<group>"; };
+		1C2DE53629F6DF9700665876 /* SignInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCoordinator.swift; sourceTree = "<group>"; };
+		1C2DE53929F6E39600665876 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		1C2DE53B29F6E39B00665876 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		1C2DE53D29F6E77400665876 /* SignInCoordinatorPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCoordinatorPresentable.swift; sourceTree = "<group>"; };
+		1C2DE54029F6EDFC00665876 /* ProfileTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableCell.swift; sourceTree = "<group>"; };
+		1C2DE54229F6EE0100665876 /* ProfileTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableCellViewModel.swift; sourceTree = "<group>"; };
+		1C2DE54629F6FACE00665876 /* BaseProfileTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProfileTableCellViewModel.swift; sourceTree = "<group>"; };
+		1C2DE54829F6FB4C00665876 /* ActionTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTableCell.swift; sourceTree = "<group>"; };
+		1C2DE54A29F6FB8700665876 /* ActionTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTableCellViewModel.swift; sourceTree = "<group>"; };
 		1C42879F28E0732100273979 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		1C4287A128E0732600273979 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 		1C4287A628E0AFD800273979 /* RangePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangePickerButton.swift; sourceTree = "<group>"; };
@@ -266,6 +286,7 @@
 		1C27A9AE290C764D00F19DC8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1C2DE54429F6FAAB00665876 /* TableCells */,
 				1C05EE3729F6849200A9306C /* SignInPlaceholderView */,
 			);
 			path = Views;
@@ -353,6 +374,43 @@
 				1C1E81AB29AE840200CABF79 /* DependencyInjectable.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1C2DE53829F6E38900665876 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				1C2DE53929F6E39600665876 /* SignInViewController.swift */,
+				1C2DE53B29F6E39B00665876 /* SignInViewModel.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		1C2DE53F29F6EDE200665876 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				1C2DE54029F6EDFC00665876 /* ProfileTableCell.swift */,
+				1C2DE54229F6EE0100665876 /* ProfileTableCellViewModel.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		1C2DE54429F6FAAB00665876 /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				1C2DE54629F6FACE00665876 /* BaseProfileTableCellViewModel.swift */,
+				1C2DE54529F6FABD00665876 /* Action */,
+				1C2DE53F29F6EDE200665876 /* Profile */,
+			);
+			path = TableCells;
+			sourceTree = "<group>";
+		};
+		1C2DE54529F6FABD00665876 /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				1C2DE54829F6FB4C00665876 /* ActionTableCell.swift */,
+				1C2DE54A29F6FB8700665876 /* ActionTableCellViewModel.swift */,
+			);
+			path = Action;
 			sourceTree = "<group>";
 		};
 		1C42879E28E0730100273979 /* ChartView */ = {
@@ -485,6 +543,8 @@
 			children = (
 				1CB0B4E9293FF24600C874C4 /* InAppWebBrowserPresentable.swift */,
 				1C289BA829F55441005A231C /* ImagePickerPresentable.swift */,
+				1C2DE53429F6D6C500665876 /* ComposeUserCoordinatorPresentable.swift */,
+				1C2DE53D29F6E77400665876 /* SignInCoordinatorPresentable.swift */,
 			);
 			path = Presentable;
 			sourceTree = "<group>";
@@ -500,6 +560,7 @@
 				1C872DE329F4151400F6D83F /* PostDetailsCoordinator.swift */,
 				1C590F2C29EC7DFF00D700D1 /* ComposeUserCoordinator.swift */,
 				1C289BA629F5531E005A231C /* ComposePostCoordinator.swift */,
+				1C2DE53629F6DF9700665876 /* SignInCoordinator.swift */,
 			);
 			name = Coordinators;
 			path = Assembly/Coordinators;
@@ -518,6 +579,7 @@
 		1C7CD4F328D273F800068965 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1C2DE53829F6E38900665876 /* SignIn */,
 				1C872DE729F418A500F6D83F /* ComposePost */,
 				1C872DDA29F40A2C00F6D83F /* PostDetails */,
 				1C872DD929F40A1E00F6D83F /* NewsList */,
@@ -970,10 +1032,12 @@
 			files = (
 				1C872DE629F4178100F6D83F /* ComposePostAssembly.swift in Sources */,
 				1C289BA729F5531E005A231C /* ComposePostCoordinator.swift in Sources */,
+				1C2DE54729F6FACE00665876 /* BaseProfileTableCellViewModel.swift in Sources */,
 				1C872DDC29F40A3D00F6D83F /* NewsListViewController.swift in Sources */,
 				1C872DE429F4151400F6D83F /* PostDetailsCoordinator.swift in Sources */,
 				1C872DE229F40A4F00F6D83F /* PostDetailsViewModel.swift in Sources */,
 				1CAC0F2329ED9C510098D5B4 /* ImagePickerViewController.swift in Sources */,
+				1C2DE53529F6D6C500665876 /* ComposeUserCoordinatorPresentable.swift in Sources */,
 				1C872DEB29F418C400F6D83F /* ComposePostInfoViewController.swift in Sources */,
 				1CF969CE28E3959900F49456 /* ButtonCollectionViewModel.swift in Sources */,
 				1CEEC76D28D2801800F8DC7A /* AppDelegate.swift in Sources */,
@@ -985,6 +1049,7 @@
 				1C68714C29ACF6CC00A9C59B /* Aliases.swift in Sources */,
 				1C2A63F128D6496F0007877D /* TitledDescriptionViewModel.swift in Sources */,
 				1C7CD4F828D2744300068965 /* TrendingViewModel.swift in Sources */,
+				1C2DE53729F6DF9700665876 /* SignInCoordinator.swift in Sources */,
 				1C4287A228E0732600273979 /* ChartViewModel.swift in Sources */,
 				1C68714929ACF4C200A9C59B /* Assembly.swift in Sources */,
 				1C2A63E628D645250007877D /* RemoteImageDownloadable.swift in Sources */,
@@ -994,9 +1059,11 @@
 				1C05EE3929F684AC00A9306C /* SignInPlaceholderView.swift in Sources */,
 				1C590F3429EC7F1F00D700D1 /* ComposeUserInfoViewModel.swift in Sources */,
 				1C289BA929F55441005A231C /* ImagePickerPresentable.swift in Sources */,
+				1C2DE53A29F6E39700665876 /* SignInViewController.swift in Sources */,
 				1C872DD829F409B800F6D83F /* NewsAssembly.swift in Sources */,
 				1C590F4329EC980900D700D1 /* TitledTextFieldViewModel.swift in Sources */,
 				1C97B9D328EA2E460085C979 /* PageButtonViewModel.swift in Sources */,
+				1C2DE54B29F6FB8700665876 /* ActionTableCellViewModel.swift in Sources */,
 				1C7CD4F628D2743C00068965 /* TrendingViewController.swift in Sources */,
 				1CE2AE7428F3777700642D00 /* HomeViewModel.swift in Sources */,
 				1C12DD4C28F21DCB00E7D91E /* SearchTextFieldViewModel.swift in Sources */,
@@ -1018,8 +1085,10 @@
 				1C97B9D128EA2E3C0085C979 /* PageButton.swift in Sources */,
 				1C872DED29F418C800F6D83F /* ComposePostInfoViewModel.swift in Sources */,
 				1CB0B4E8293FF15C00C874C4 /* InAppWebBrowserViewModel.swift in Sources */,
+				1C2DE53E29F6E77400665876 /* SignInCoordinatorPresentable.swift in Sources */,
 				1CE2AE6D28F3752B00642D00 /* HomeCoordinator.swift in Sources */,
 				1C97B9D928EA325F0085C979 /* PageButtonsCollectionViewModel.swift in Sources */,
+				1C2DE54129F6EDFC00665876 /* ProfileTableCell.swift in Sources */,
 				1C289BAC29F556D8005A231C /* ComposePostPhotoViewController.swift in Sources */,
 				1CB0B4EA293FF24600C874C4 /* InAppWebBrowserPresentable.swift in Sources */,
 				1C590F4629ECA83100D700D1 /* OptionPickerView.swift in Sources */,
@@ -1033,6 +1102,8 @@
 				1C289BD229F5A9AF005A231C /* PostTableCellViewModel.swift in Sources */,
 				1C590F3A29EC812E00D700D1 /* ComposeUserAssembly.swift in Sources */,
 				1C60D9F428E8A3F600B675DA /* MarketsViewModel.swift in Sources */,
+				1C2DE54329F6EE0100665876 /* ProfileTableCellViewModel.swift in Sources */,
+				1C2DE53C29F6E39B00665876 /* SignInViewModel.swift in Sources */,
 				1CAC0F2529ED9C560098D5B4 /* ImagePickerViewModel.swift in Sources */,
 				1C4287AA28E0B0C300273979 /* RangePickerButtonViewModel.swift in Sources */,
 				1CC329BF29F083780061EB04 /* FirebaseProvider.swift in Sources */,
@@ -1057,6 +1128,7 @@
 				1C60D9F628E8A4C900B675DA /* MarketsAssembly.swift in Sources */,
 				03460CF2290EB9EB00F754FA /* CoinDetailsCoordinator.swift in Sources */,
 				1C872DF029F41B2500F6D83F /* BaseComposePhotoViewController.swift in Sources */,
+				1C2DE54929F6FB4C00665876 /* ActionTableCell.swift in Sources */,
 				1CA3D3A828D3CFAF009D43E9 /* CoinCellViewModel.swift in Sources */,
 				1CF969CC28E393AC00F49456 /* ButtonsCollectionView.swift in Sources */,
 				1C590F3829EC7F3200D700D1 /* ComposeUserPhotoViewModel.swift in Sources */,

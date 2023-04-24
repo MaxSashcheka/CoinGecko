@@ -11,6 +11,12 @@
 		1C01EDC129EEA1860088AEE7 /* UsersAPIDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C01EDC029EEA1860088AEE7 /* UsersAPIDataManagerProtocol.swift */; };
 		1C01EDC329EEA18A0088AEE7 /* UsersAPIDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C01EDC229EEA18A0088AEE7 /* UsersAPIDataManager.swift */; };
 		1C01EDC529EEAAA00088AEE7 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C01EDC429EEAAA00088AEE7 /* UserResponse.swift */; };
+		1C05EE3E29F68D8C00A9306C /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05EE3D29F68D8C00A9306C /* AuthServiceProtocol.swift */; };
+		1C05EE4029F68D9200A9306C /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05EE3F29F68D9200A9306C /* AuthService.swift */; };
+		1C05EE4329F68E0E00A9306C /* AuthAPIDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05EE4229F68E0E00A9306C /* AuthAPIDataManager.swift */; };
+		1C05EE4529F68E1100A9306C /* AuthAPIDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05EE4429F68E1100A9306C /* AuthAPIDataManagerProtocol.swift */; };
+		1C05EE4829F68E8700A9306C /* UsersCacheDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05EE4729F68E8700A9306C /* UsersCacheDataManager.swift */; };
+		1C05EE4A29F68E8B00A9306C /* UsersCacheDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05EE4929F68E8B00A9306C /* UsersCacheDataManagerProtocol.swift */; };
 		1C12DD5228F238F900E7D91E /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C12DD5128F238F900E7D91E /* SearchResponse.swift */; };
 		1C289BB129F55725005A231C /* ComposePostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C289BB029F55725005A231C /* ComposePostService.swift */; };
 		1C289BB329F55729005A231C /* ComposePostServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C289BB229F55729005A231C /* ComposePostServiceProtocol.swift */; };
@@ -77,6 +83,12 @@
 		1C01EDC029EEA1860088AEE7 /* UsersAPIDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersAPIDataManagerProtocol.swift; sourceTree = "<group>"; };
 		1C01EDC229EEA18A0088AEE7 /* UsersAPIDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersAPIDataManager.swift; sourceTree = "<group>"; };
 		1C01EDC429EEAAA00088AEE7 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		1C05EE3D29F68D8C00A9306C /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
+		1C05EE3F29F68D9200A9306C /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		1C05EE4229F68E0E00A9306C /* AuthAPIDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPIDataManager.swift; sourceTree = "<group>"; };
+		1C05EE4429F68E1100A9306C /* AuthAPIDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPIDataManagerProtocol.swift; sourceTree = "<group>"; };
+		1C05EE4729F68E8700A9306C /* UsersCacheDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCacheDataManager.swift; sourceTree = "<group>"; };
+		1C05EE4929F68E8B00A9306C /* UsersCacheDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCacheDataManagerProtocol.swift; sourceTree = "<group>"; };
 		1C12DD5128F238F900E7D91E /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		1C289BB029F55725005A231C /* ComposePostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePostService.swift; sourceTree = "<group>"; };
 		1C289BB229F55729005A231C /* ComposePostServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePostServiceProtocol.swift; sourceTree = "<group>"; };
@@ -148,6 +160,33 @@
 				1C01EDC229EEA18A0088AEE7 /* UsersAPIDataManager.swift */,
 			);
 			path = UsersAPIDataManager;
+			sourceTree = "<group>";
+		};
+		1C05EE3C29F68D8400A9306C /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				1C05EE3D29F68D8C00A9306C /* AuthServiceProtocol.swift */,
+				1C05EE3F29F68D9200A9306C /* AuthService.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		1C05EE4129F68E0200A9306C /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				1C05EE4429F68E1100A9306C /* AuthAPIDataManagerProtocol.swift */,
+				1C05EE4229F68E0E00A9306C /* AuthAPIDataManager.swift */,
+			);
+			name = Auth;
+			sourceTree = "<group>";
+		};
+		1C05EE4629F68E7C00A9306C /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				1C05EE4929F68E8B00A9306C /* UsersCacheDataManagerProtocol.swift */,
+				1C05EE4729F68E8700A9306C /* UsersCacheDataManager.swift */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 		1C289BAF29F5571B005A231C /* ComposePost */ = {
@@ -247,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				1CB3353D29EC2C7A003D08EB /* APIDataManager.swift */,
+				1C05EE4129F68E0200A9306C /* Auth */,
 				1C289BB929F584AC005A231C /* PostsAPIDataManager */,
 				1C01EDBF29EEA16E0088AEE7 /* UsersAPIDataManager */,
 				1C72009C28D70E7C001DDBD5 /* Coins */,
@@ -257,6 +297,7 @@
 		1C60DA0B28E8E45800B675DA /* Cache */ = {
 			isa = PBXGroup;
 			children = (
+				1C05EE4629F68E7C00A9306C /* Users */,
 				1C289BC429F59F42005A231C /* Posts */,
 				1C289BB429F58480005A231C /* ComposePost */,
 				1CAC0F1C29ED8ACE0098D5B4 /* ComposeUser */,
@@ -291,6 +332,7 @@
 		1CA3D39828D3C807009D43E9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1C05EE3C29F68D8400A9306C /* Auth */,
 				1C289BC929F59FFE005A231C /* Posts */,
 				1C289BAF29F5571B005A231C /* ComposePost */,
 				1C590F3B29EC96BF00D700D1 /* ComposeUser */,
@@ -538,7 +580,9 @@
 				1CA3D39B28D3C847009D43E9 /* CoinsService.swift in Sources */,
 				1C2A63D928D5FA1F0007877D /* CoinsAPIDataManager.swift in Sources */,
 				1C01EDC529EEAAA00088AEE7 /* UserResponse.swift in Sources */,
+				1C05EE4529F68E1100A9306C /* AuthAPIDataManagerProtocol.swift in Sources */,
 				1C4287A428E07DFD00273979 /* CoinChartData.swift in Sources */,
+				1C05EE4029F68D9200A9306C /* AuthService.swift in Sources */,
 				1C289BCD29F5A00E005A231C /* PostsServiceProtocol.swift in Sources */,
 				1C60D9F828E8C68500B675DA /* APIHelpers.swift in Sources */,
 				1CFD91FF291285210010172D /* CoinsCacheDataManagerProtocol.swift in Sources */,
@@ -562,14 +606,18 @@
 				1C289BBF29F588EF005A231C /* PostResponse.swift in Sources */,
 				1C289BB829F58498005A231C /* ComposePostCacheDataManagerProtocol.swift in Sources */,
 				1C01EDC329EEA18A0088AEE7 /* UsersAPIDataManager.swift in Sources */,
+				1C05EE4329F68E0E00A9306C /* AuthAPIDataManager.swift in Sources */,
 				1C3F8AE128ECD75A00E04740 /* GlobalDataResponse.swift in Sources */,
 				1C12DD5228F238F900E7D91E /* SearchResponse.swift in Sources */,
 				1C289BBD29F584C2005A231C /* PostsAPIDataManager.swift in Sources */,
+				1C05EE3E29F68D8C00A9306C /* AuthServiceProtocol.swift in Sources */,
 				1CFD91FD291285120010172D /* CoinsCacheDataManager.swift in Sources */,
 				1CC329BA29F070B00061EB04 /* FirebaseDataManagerProtocol.swift in Sources */,
 				1CC329B829F070A80061EB04 /* FirebaseDataManager.swift in Sources */,
+				1C05EE4829F68E8700A9306C /* UsersCacheDataManager.swift in Sources */,
 				1C289BC129F5892E005A231C /* Post.swift in Sources */,
 				1CA3D3A128D3CD80009D43E9 /* Coin.swift in Sources */,
+				1C05EE4A29F68E8B00A9306C /* UsersCacheDataManagerProtocol.swift in Sources */,
 				1C289BC829F59F6E005A231C /* PostsCacheDataManagerProtocol.swift in Sources */,
 				1CA3D39D28D3C850009D43E9 /* CoinsServiceProtocol.swift in Sources */,
 				1CC178F728E6463900550D3B /* CoinChartDataResponse.swift in Sources */,

@@ -25,7 +25,7 @@ class ComposeUserPhotoViewModel: BaseComposePhotoViewModel {
             imageURL: imageURL,
             success: { [weak self] in
                 ActivityIndicator.hide()
-                self?.transitions.close()
+                self?.transitions.completion()
             },
             failure: { [weak self] error in
                 ActivityIndicator.hide()

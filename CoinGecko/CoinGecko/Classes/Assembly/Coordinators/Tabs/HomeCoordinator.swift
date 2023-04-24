@@ -23,7 +23,10 @@ final class HomeCoordinator: NavigationCoordinator {
 // MARK: - HomeCoordinator+SreensAssembly
 extension HomeCoordinator {
     func showHomeScreen() {
-        let transitions = HomeViewController.ViewModel.Transitions()
+        let transitions = HomeViewController.ViewModel.Transitions(
+            signIn: showSignInCoordinatorTransition,
+            signUp: showComposeUserCoordinatorTransition
+        )
         let screen = HomeAssembly.homeScreen(
             transitions: transitions,
             resolver: self
@@ -32,3 +35,9 @@ extension HomeCoordinator {
         pushViewController(screen, animated: false)
     }
 }
+
+// MARK: - HomeCoordinator+ComposeUserCoordinatorPresentable
+extension HomeCoordinator: ComposeUserCoordinatorPresentable { }
+
+// MARK: - HomeCoordinator+SignInCoordinatorPresentable
+extension HomeCoordinator: SignInCoordinatorPresentable { }

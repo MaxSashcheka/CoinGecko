@@ -10,6 +10,10 @@ import Core
 
 // MARK: - SessionsAssembly
 enum SessionsAssembly: Assembly {
+    static func usersCacheDataManager(resolver: DependencyResolver) -> UsersCacheDataManager {
+        UsersCacheDataManager()
+    }
+    
     static func coinsCacheDataManager(resolver: DependencyResolver) -> CoinsCacheDataManager {
         CoinsCacheDataManager()
     }
@@ -30,26 +34,24 @@ enum SessionsAssembly: Assembly {
 // MARK: - API Assembly
 
 enum APIAssembly: Assembly {
-    static func coinsAPIDataManager() -> CoinsAPIDataManager {
+    static func auth() -> AuthAPIDataManager {
+        AuthAPIDataManager()
+    }
+    
+    static func coins() -> CoinsAPIDataManager {
         CoinsAPIDataManager()
     }
     
-    static func usersAPIDataManager() -> UsersAPIDataManager {
+    static func users() -> UsersAPIDataManager {
         UsersAPIDataManager()
     }
     
-    static func postsAPIDataManager() -> PostsAPIDataManager {
+    static func posts() -> PostsAPIDataManager {
         PostsAPIDataManager()
     }
 }
 
-// MARK: - DataManagers Assembly
-
-//enum DataManagersAssembly: Assembly {
-//    static func firebaseDataManager() -> FirebaseDataManager {
-//        FirebaseDataManager()
-//    }
-//}
+// MARK: - Providers Assembly
 
 enum ProvidersAssembly {
     static func firebase() -> FirebaseProvider {
@@ -57,6 +59,7 @@ enum ProvidersAssembly {
     }
 }
 
+extension UsersCacheDataManager: DependencyResolvable { }
 extension CoinsCacheDataManager: DependencyResolvable { }
 extension PostsCacheDataManager: DependencyResolvable { }
 extension ComposeUserCacheDataManager: DependencyResolvable { }

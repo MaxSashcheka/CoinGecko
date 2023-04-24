@@ -38,6 +38,19 @@ extension ComposeUserAssembly {
         
         return viewController
     }
+    
+    static func signInScreen(
+        transitions: SignInViewController.ViewModel.Transitions,
+        resolver: DependencyResolver
+    ) -> SignInViewController {
+        let viewController = SignInViewController()
+        let viewModel = SignInViewController.ViewModel(
+            transitions: transitions, services: .inject(from: resolver)
+        )
+        viewController.viewModel = viewModel
+        
+        return viewController
+    }
 }
 
 // MARK: - DI
@@ -52,5 +65,11 @@ extension ComposeUserPhotoViewModel.ComposeUserServices: DependencyInjectable {
     static func inject(from resolver: DependencyResolver) -> Self {
         Self(composeUser: ServicesAssembly.composeUser(resolver: resolver),
              firebaseProvider: ProvidersAssembly.firebase())
+    }
+}
+
+extension SignInViewController.ViewModel.Services: DependencyInjectable {
+    static func inject(from resolver: DependencyResolver) -> Self {
+        Self(auth: ServicesAssembly.auth(resolver: resolver))
     }
 }

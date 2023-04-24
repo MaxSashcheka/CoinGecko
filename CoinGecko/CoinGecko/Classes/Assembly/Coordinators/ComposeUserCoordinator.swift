@@ -15,9 +15,13 @@ final class ComposeUserCoordinator: NavigationCoordinator {
     }
     
     private let transitions: Transitions
+    private let completionClosure: Closure.Void
     
-    init(parent: Coordinator?, transitions: Transitions) {
+    init(parent: Coordinator?,
+         transitions: Transitions,
+         completion: @escaping Closure.Void) {
         self.transitions = transitions
+        self.completionClosure = completion
         
         super.init(parent: parent)
         
@@ -45,7 +49,10 @@ extension ComposeUserCoordinator {
     func showComposeUserPhotoInfoScreen() {
         let transitions = ComposeUserPhotoViewModel.Transitions(
             close: { [weak self] in self?.transitions.close() },
-            completion: { [weak self] in self?.transitions.close() },
+            completion: { [weak self] in
+                self?.completionClosure()
+                self?.transitions.close()
+            },
             pickImage: showImagePickerScreenTransition
         )
         let screen = ComposeUserAssembly.composeUserPhotoScreen(

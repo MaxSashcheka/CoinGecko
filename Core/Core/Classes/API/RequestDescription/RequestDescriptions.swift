@@ -53,17 +53,23 @@ public extension RequestDescription {
     }
     
     class Users {
-        private static let basePath = "https://667b-2a00-1760-8006-5b-89b3-bde2-88e8-5817.eu.ngrok.io/users"
+        private static let basePath = "https://a433-2a00-1760-8006-5b-b5af-6d99-187e-b4e8.eu.ngrok.io"
         
         public static let createUser = RequestDescription(
-            path: basePath,
+            path: basePath + "/users",
+            method: .post,
+            isAuthRequired: false
+        )
+        
+        public static let login = RequestDescription(
+            path: basePath + "/login",
             method: .post,
             isAuthRequired: false
         )
     }
     
     class Posts {
-        private static let basePath = "https://667b-2a00-1760-8006-5b-89b3-bde2-88e8-5817.eu.ngrok.io/posts"
+        private static let basePath = "https://a433-2a00-1760-8006-5b-b5af-6d99-187e-b4e8.eu.ngrok.io/posts"
         
         public static let createPost = RequestDescription(
             path: basePath,
