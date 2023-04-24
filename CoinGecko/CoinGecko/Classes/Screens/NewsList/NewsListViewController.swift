@@ -82,4 +82,8 @@ extension NewsListViewController: UITableViewPresentable {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelectCell(at: indexPath)
+    }
 }

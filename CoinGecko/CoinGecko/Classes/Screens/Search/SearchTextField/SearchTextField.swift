@@ -61,7 +61,7 @@ final class SearchTextField: View {
             }
             .store(in: &cancellables)
         
-        clearButton.tapPublisher()
+        clearButton.tapPublisher
             .sink { [weak self] in
                 self?.innerTextField.text = .empty
                 UIView.animate(withDuration: 0.15) {

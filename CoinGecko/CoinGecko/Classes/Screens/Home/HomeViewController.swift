@@ -12,13 +12,10 @@ import SnapKit
 import Utils
 
 final class HomeViewController: ViewController {
-    private typealias Texts = L10n.Home.Placeholder
-    private typealias TextStyles = AppStyle.TextStyles.Home.Placeholder
-    private typealias Colors = AppStyle.Colors.Home
+
+    private let placeholderView = SignInPlaceholderView()
     
-    // MARK: - Properties
-    
-    override var backgroundColor: UIColor { Colors.background }
+    override var backgroundColor: UIColor { Assets.Colors.platinum.color }
     override var tabBarTitle: String { L10n.Tabbar.Title.home }
     override var tabBarImage: UIImage? { UIImage(.house) }
     
@@ -29,6 +26,8 @@ final class HomeViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Home"
+        
         viewModel.errorHandlerClosure = errorHandler
     }
     
@@ -37,16 +36,36 @@ final class HomeViewController: ViewController {
     override func arrangeSubviews() {
         super.arrangeSubviews()
         
-
+        view.addSubview(placeholderView)
+        placeholderView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(45)
+        }
     }
     
     override func bindData() {
         super.bindData()
         
+        viewModel.placeholderViewModel.tapSubject
+            .filter { $0 == .signIn }
+            .sink { [weak viewModel] _ in
+                print("didTapSignInButton")
+                viewModel?.didTapSignInButton()
+            }
+            .store(in: &cancellables)
+        
+        viewModel.placeholderViewModel.tapSubject
+            .filter { $0 == .signUp }
+            .sink { [weak viewModel] _ in
+                print("didTapSignUpButton")
+                viewModel?.didTapSignUpButton()
+            }
+            .store(in: &cancellables)
     }
     
     override func setupData() {
         super.setupData()
     
+        placeholderView.viewModel = viewModel.placeholderViewModel
     }
 }

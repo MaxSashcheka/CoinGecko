@@ -14,6 +14,8 @@ extension HomeViewController {
     final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, PriceConvertable {
         private typealias Texts = L10n.Home.NetworthCard.Status
         
+        let placeholderViewModel = HomeViewController.SignInPlaceholderView.ViewModel()
+        
         private let services: Services
         let transitions: Transitions
         
@@ -36,5 +38,16 @@ extension HomeViewController.ViewModel {
         init(coins: CoinsServiceProtocol) {
             self.coins = coins
         }
+    }
+}
+
+// MARK: - HomeViewModel+TapActions
+extension HomeViewController.ViewModel {
+    func didTapSignInButton() {
+        
+    }
+    
+    func didTapSignUpButton() {
+        
     }
 }

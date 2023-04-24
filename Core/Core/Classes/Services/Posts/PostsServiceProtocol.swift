@@ -12,4 +12,9 @@ public protocol PostsServiceProtocol {
     func getPosts(fromCache: Bool,
                   success: @escaping Closure.PostsArray,
                   failure: @escaping Closure.GeneralError)
+    
+    func getPost(id: UUID,
+                 fromCache: Bool,
+                 success: @escaping Closure.Post,
+                 failure: @escaping Closure.GeneralError)
 }

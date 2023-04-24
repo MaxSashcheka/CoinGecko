@@ -18,4 +18,8 @@ public protocol PostsAPIDataManagerProtocol {
     
     func getAllPosts(success: @escaping Closure.PostsArray,
                      failure: @escaping Closure.GeneralError)
+    
+    func getPost(id: UUID,
+                 success: @escaping Closure.Post,
+                 failure: @escaping Closure.GeneralError)
 }

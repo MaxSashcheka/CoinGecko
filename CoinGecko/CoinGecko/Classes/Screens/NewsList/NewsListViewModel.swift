@@ -50,6 +50,10 @@ extension NewsListViewController.ViewModel {
     func cellViewModel(for indexPath: IndexPath) -> PostTableCell.ViewModel {
         postsViewModels.value[indexPath.row]
     }
+    
+    func didSelectCell(at indexPath: IndexPath) {
+        transitions.postDetails(cellViewModel(for: indexPath).id)
+    }
 }
 
 // MARK: - NewsListViewModel+FetchData
@@ -61,6 +65,7 @@ extension NewsListViewController.ViewModel {
                 self?.postsViewModels.send(
                     posts.map {
                         PostTableCell.ViewModel(
+                            id: $0.id,
                             imageURL: $0.imageURL,
                             title: $0.title
                         )

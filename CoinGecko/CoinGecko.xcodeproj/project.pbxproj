@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		03460CEF290EB2F900F754FA /* CommonAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03460CEE290EB2F900F754FA /* CommonAssembly.swift */; };
 		03460CF2290EB9EB00F754FA /* CoinDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03460CF1290EB9EB00F754FA /* CoinDetailsCoordinator.swift */; };
+		1C05EE3929F684AC00A9306C /* SignInPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05EE3829F684AC00A9306C /* SignInPlaceholderView.swift */; };
+		1C05EE3B29F684AF00A9306C /* SignInPlaceholderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05EE3A29F684AF00A9306C /* SignInPlaceholderViewModel.swift */; };
 		1C12DD4A28F21DC000E7D91E /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C12DD4928F21DC000E7D91E /* SearchTextField.swift */; };
 		1C12DD4C28F21DCB00E7D91E /* SearchTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C12DD4B28F21DCB00E7D91E /* SearchTextFieldViewModel.swift */; };
 		1C12DD5028F2365700E7D91E /* UITableViewPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C12DD4F28F2365700E7D91E /* UITableViewPresentable.swift */; };
@@ -127,6 +129,8 @@
 		03460CEE290EB2F900F754FA /* CommonAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonAssembly.swift; sourceTree = "<group>"; };
 		03460CF1290EB9EB00F754FA /* CoinDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsCoordinator.swift; sourceTree = "<group>"; };
 		0530E47261D69862E678A972 /* Pods-CoinGecko.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinGecko.debug.xcconfig"; path = "Target Support Files/Pods-CoinGecko/Pods-CoinGecko.debug.xcconfig"; sourceTree = "<group>"; };
+		1C05EE3829F684AC00A9306C /* SignInPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPlaceholderView.swift; sourceTree = "<group>"; };
+		1C05EE3A29F684AF00A9306C /* SignInPlaceholderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPlaceholderViewModel.swift; sourceTree = "<group>"; };
 		1C12DD4928F21DC000E7D91E /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		1C12DD4B28F21DCB00E7D91E /* SearchTextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextFieldViewModel.swift; sourceTree = "<group>"; };
 		1C12DD4F28F2365700E7D91E /* UITableViewPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewPresentable.swift; sourceTree = "<group>"; };
@@ -241,6 +245,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C05EE3729F6849200A9306C /* SignInPlaceholderView */ = {
+			isa = PBXGroup;
+			children = (
+				1C05EE3829F684AC00A9306C /* SignInPlaceholderView.swift */,
+				1C05EE3A29F684AF00A9306C /* SignInPlaceholderViewModel.swift */,
+			);
+			path = SignInPlaceholderView;
+			sourceTree = "<group>";
+		};
 		1C12DD4828F21DB000E7D91E /* SearchTextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +266,7 @@
 		1C27A9AE290C764D00F19DC8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1C05EE3729F6849200A9306C /* SignInPlaceholderView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -977,6 +991,7 @@
 				1C68714F29ACFE6700A9C59B /* ProvidersAssembly.swift in Sources */,
 				1C289BAE29F556DD005A231C /* ComposePostPhotoViewModel.swift in Sources */,
 				1C590F3229EC7F1A00D700D1 /* ComposeUserInfoViewController.swift in Sources */,
+				1C05EE3929F684AC00A9306C /* SignInPlaceholderView.swift in Sources */,
 				1C590F3429EC7F1F00D700D1 /* ComposeUserInfoViewModel.swift in Sources */,
 				1C289BA929F55441005A231C /* ImagePickerPresentable.swift in Sources */,
 				1C872DD829F409B800F6D83F /* NewsAssembly.swift in Sources */,
@@ -1033,6 +1048,7 @@
 				1C60D9F228E8A3EA00B675DA /* MarketsViewController.swift in Sources */,
 				1C872DE029F40A4A00F6D83F /* PostDetailsViewController.swift in Sources */,
 				1C4287A728E0AFD800273979 /* RangePickerButton.swift in Sources */,
+				1C05EE3B29F684AF00A9306C /* SignInPlaceholderViewModel.swift in Sources */,
 				1C68714429ACF20900A9C59B /* ScreenDependent.swift in Sources */,
 				1CAD2B37293F66B30004E4AA /* AppStyle+Colors.swift in Sources */,
 				1CE8A3CA28F1824C0052E34B /* SearchViewModel.swift in Sources */,

@@ -11,10 +11,12 @@ import Core
 
 extension PostTableCell {
     final class ViewModel {
+        let id: UUID
         let imageURL = CurrentValueSubject<URL?, Never>(nil)
         let title = CurrentValueSubject<String, Never>(.empty)
         
-        init(imageURL: URL?, title: String) {
+        init(id: UUID, imageURL: URL?, title: String) {
+            self.id = id
             self.imageURL.send(imageURL)
             self.title.send(title)
         }

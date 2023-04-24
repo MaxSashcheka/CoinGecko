@@ -21,16 +21,34 @@ public final class PostsService: PostsServiceProtocol {
     public func getPosts(fromCache: Bool,
                          success: @escaping Closure.PostsArray,
                          failure: @escaping Closure.GeneralError) {
-        guard !fromCache else {
+        if fromCache {
             success(postsCacheDataManager.cachedPosts.allItems)
-            return
+        } else {
+            postsAPIDataManager.getAllPosts(
+                success: { [weak self] in
+                    self?.postsCacheDataManager.cachedPosts.append(contentsOf: $0)
+                    success($0)
+                },
+                failure: failure
+            )
         }
-        postsAPIDataManager.getAllPosts(
-            success: { [weak self] in
-                self?.postsCacheDataManager.cachedPosts.append(contentsOf: $0)
-                success($0)
-            },
-            failure: failure
-        )
+    }
+    
+    public func getPost(id: UUID,
+                        fromCache: Bool,
+                        success: @escaping Closure.Post,
+                        failure: @escaping Closure.GeneralError) {
+        if let cachedPost = postsCacheDataManager.cachedPosts[id], fromCache {
+            success(cachedPost)
+        } else {
+            postsAPIDataManager.getPost(
+                id: id,
+                success: { [weak self] in
+                    self?.postsCacheDataManager.cachedPosts.append($0)
+                    success($0)
+                },
+                failure: failure
+            )
+        }
     }
 }

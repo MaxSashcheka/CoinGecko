@@ -124,7 +124,7 @@ final class ComposeUserInfoViewController: ViewController {
     override func bindData() {
         super.bindData()
         
-        continueButton.tapPublisher()
+        continueButton.tapPublisher
             .sink { [weak self] in
                 guard let self = self else { return }
                 self.viewModel.didTapShowComposeUserPhotoButton(

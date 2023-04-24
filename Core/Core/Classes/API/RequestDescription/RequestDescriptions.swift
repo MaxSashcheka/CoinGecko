@@ -53,7 +53,7 @@ public extension RequestDescription {
     }
     
     class Users {
-        private static let basePath = "https://f6e2-2a00-1760-8006-5b-89a6-bbf3-67d9-ebfa.eu.ngrok.io/users"
+        private static let basePath = "https://667b-2a00-1760-8006-5b-89b3-bde2-88e8-5817.eu.ngrok.io/users"
         
         public static let createUser = RequestDescription(
             path: basePath,
@@ -63,7 +63,7 @@ public extension RequestDescription {
     }
     
     class Posts {
-        private static let basePath = "https://f6e2-2a00-1760-8006-5b-89a6-bbf3-67d9-ebfa.eu.ngrok.io/posts"
+        private static let basePath = "https://667b-2a00-1760-8006-5b-89b3-bde2-88e8-5817.eu.ngrok.io/posts"
         
         public static let createPost = RequestDescription(
             path: basePath,
@@ -76,6 +76,13 @@ public extension RequestDescription {
             method: .get,
             isAuthRequired: false
         )
+        
+        public static let getPost = RequestDescription(
+            path: basePath + "/{id}",
+            method: .get,
+            isAuthRequired: false
+        )
     }
 }
+//https://firebasestorage.googleapis.com:443/v0/b/imagestorage-a16f8.appspot.com/o/images%2FC3313956-7A9B-431C-B21C-EEBB527093BC.jpg?alt=media&token=b453f3d0-77a4-4885-a944-795a2af1d357
 

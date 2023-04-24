@@ -9,6 +9,7 @@
 import Utils
 
 public extension Closure {
+    typealias OptionalPost = (Core.Post?) -> Swift.Void
     typealias Post = (Core.Post) -> Swift.Void
     typealias PostsArray = ([Core.Post]) -> Swift.Void
 }

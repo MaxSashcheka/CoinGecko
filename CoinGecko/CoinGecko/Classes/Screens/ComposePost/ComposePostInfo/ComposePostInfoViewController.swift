@@ -122,7 +122,7 @@ final class ComposePostInfoViewController: ViewController {
     override func bindData() {
         super.bindData()
         
-        continueButton.tapPublisher()
+        continueButton.tapPublisher
             .sink { [weak viewModel] in viewModel?.didTapContinueButton() }
             .store(in: &cancellables)
         

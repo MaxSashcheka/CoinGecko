@@ -55,12 +55,12 @@ private extension OptionPickerView {
             .bind(to: \.text, on: titleLabel)
             .store(in: &cancellables)
         
-        yesButton.tapPublisher()
+        yesButton.tapPublisher
             .map { true }
             .bind(to: viewModel.selectedOption)
             .store(in: &cancellables)
         
-        noButton.tapPublisher()
+        noButton.tapPublisher
             .map { false }
             .bind(to: viewModel.selectedOption)
             .store(in: &cancellables)

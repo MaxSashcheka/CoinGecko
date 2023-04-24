@@ -75,13 +75,13 @@ class BaseComposePhotoViewController<ViewModel: BaseComposePhotoViewModel>: View
             .bind(to: \.backgroundColor, on: finishButton)
             .store(in: &cancellables)
         
-        pickPhotoButton.tapPublisher()
+        pickPhotoButton.tapPublisher
             .sink { [weak viewModel] in
                 viewModel?.didTapPickPhotoButton()
             }
             .store(in: &cancellables)
         
-        finishButton.tapPublisher()
+        finishButton.tapPublisher
             .sink { [weak viewModel] in
                 viewModel?.didTapFinishButton()
             }

@@ -195,7 +195,7 @@ final class MarketsViewController: ViewController {
             }
             .store(in: &cancellables)
         
-        searchButton.tapPublisher()
+        searchButton.tapPublisher
             .sink { [weak viewModel] in
                 viewModel?.didTapSearchButton()
             }

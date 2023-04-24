@@ -45,4 +45,20 @@ public final class PostsAPIDataManager: APIDataManager, PostsAPIDataManagerProto
             failure: failure
         )
     }
+    
+    public func getPost(id: UUID,
+                        success: @escaping Closure.Post,
+                        failure: @escaping Closure.GeneralError) {
+        let endpoint = RequestDescription.Posts.getPost
+            .replacingInlineArguments(
+                .id(id.uuidString)
+            )
+        
+        execute(
+            request: makeDataRequest(for: endpoint),
+            responseType: PostResponse.self,
+            success: { success(Post(postResponse: $0)) },
+            failure: failure
+        )
+    }
 }

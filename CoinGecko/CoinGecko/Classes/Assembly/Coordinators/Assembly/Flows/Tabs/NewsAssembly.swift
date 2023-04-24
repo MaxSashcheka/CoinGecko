@@ -53,6 +53,6 @@ extension NewsListViewController.ViewModel.Services: DependencyInjectable {
 
 extension PostDetailsViewController.ViewModel.Services: DependencyInjectable {
     static func inject(from resolver: DependencyResolver) -> Self {
-        Self()
+        Self(posts: ServicesAssembly.posts(resolver: resolver))
     }
 }

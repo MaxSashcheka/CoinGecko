@@ -13,9 +13,12 @@ import Utils
 extension PostDetailsViewController {
     final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
         private let services: Services
+        private let postId: UUID
         let transitions: Transitions
         
-        private let postId: UUID
+        let imageURL = CurrentValueSubject<URL?, Never>(nil)
+        let titleText = CurrentValueSubject<String, Never>(.empty)
+        let contentText = CurrentValueSubject<String, Never>(.empty)
         
         init(id: UUID,
              transitions: Transitions,
@@ -25,6 +28,8 @@ extension PostDetailsViewController {
             self.postId = id
             
             super.init()
+            
+            fetchPost()
         }
     }
 }
@@ -36,9 +41,29 @@ extension PostDetailsViewController.ViewModel {
     }
     
     final class Services {
-        init() {
-            
+        let posts: PostsServiceProtocol
+        
+        init(posts: PostsServiceProtocol) {
+            self.posts = posts
         }
+    }
+}
+
+// MARK: - PostDetailsViewModel+FetchData
+extension PostDetailsViewController.ViewModel {
+    func fetchPost() {
+        services.posts.getPost(
+            id: postId,
+            fromCache: true,
+            success: { [weak self] post in
+                self?.imageURL.send(post.imageURL)
+                self?.titleText.send(post.title)
+                self?.contentText.send(post.content)
+            },
+            failure: { [weak self] in
+                self?.errorHandlerClosure($0)
+            }
+        )
     }
 }
 

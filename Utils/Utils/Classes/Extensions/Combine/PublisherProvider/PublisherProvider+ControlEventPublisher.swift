@@ -18,7 +18,7 @@ public extension PublisherProvider where Self: UIControl {
         ControlEventPublisher(control: self, events: events).mapToVoid().eraseToAnyPublisher()
     }
     
-    func tapPublisher() -> AnyPublisher<Void, Never> {
+    var tapPublisher: AnyPublisher<Void, Never> {
         voidPublisher(for: .touchUpInside).eraseToAnyPublisher()
     }
 }
