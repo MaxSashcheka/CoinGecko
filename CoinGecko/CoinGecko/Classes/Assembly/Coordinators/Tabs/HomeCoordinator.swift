@@ -11,8 +11,6 @@ import UIKit
 import Utils
 
 final class HomeCoordinator: NavigationCoordinator {
-    var homeViewModel: HomeViewController.ViewModel!
-    
     override init(parent: Coordinator?) {
         super.init(parent: parent)
         
@@ -25,7 +23,9 @@ extension HomeCoordinator {
     func showHomeScreen() {
         let transitions = HomeViewController.ViewModel.Transitions(
             signIn: showSignInCoordinatorTransition,
-            signUp: showComposeUserCoordinatorTransition
+            signUp: showComposeUserCoordinatorTransition,
+            personalWebPage: showInAppWebBrowserTransition,
+            accountWallets: { [weak self] in self?.showAccountWalletsScreen() }
         )
         let screen = HomeAssembly.homeScreen(
             transitions: transitions,
@@ -34,6 +34,31 @@ extension HomeCoordinator {
         
         pushViewController(screen, animated: false)
     }
+    
+    func showAccountWalletsScreen() {
+        let transitions = AccountWalletsViewController.ViewModel.Transitions(
+            composeWallet: { [weak self] in self?.showComposeWalletCoordinator(completion: $0) }
+        )
+        
+        let screen = HomeAssembly.accountWalletsScreen(
+            transitions: transitions,
+            resolver: self
+        )
+        
+        pushViewController(screen)
+    }
+    
+    func showComposeWalletCoordinator(completion: @escaping Closure.Void) {
+        let transitions = ComposeWalletCoordinator.Transitions(
+            close: { [weak self] in self?.dismissModalCoordinator() }
+        )
+        let coordinator = ComposeWalletCoordinator(
+            parent: self,
+            transitions: transitions,
+            completion: completion
+        )
+        presentModal(coordinator: coordinator, presentationStyle: .fullScreen)
+    }
 }
 
 // MARK: - HomeCoordinator+ComposeUserCoordinatorPresentable
@@ -41,3 +66,6 @@ extension HomeCoordinator: ComposeUserCoordinatorPresentable { }
 
 // MARK: - HomeCoordinator+SignInCoordinatorPresentable
 extension HomeCoordinator: SignInCoordinatorPresentable { }
+
+// MARK: - HomeCoordinator+ExternalLinkPresentable
+extension HomeCoordinator: InAppWebBrowserPresentable { }

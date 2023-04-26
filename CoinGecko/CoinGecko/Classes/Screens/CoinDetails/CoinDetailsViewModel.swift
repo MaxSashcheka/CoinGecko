@@ -146,11 +146,14 @@ extension CoinDetailsViewController.ViewModel {
     }
     
     func didTapBrowserButton() {
-//        services.coins.getStoredCoin(withId: coinId, success: { [weak self] coin in
-//            guard let url = self?.services.externalLinkBuilder.buildGoogleSearchURL(query: (coin?.name).orEmpty()) else { return }
-//            self?.transitions.browser(url)
-//
-//        }, failure: errorHandlerClosure)
+        services.coins.getStoredCoin(
+            id: coinId,
+            success: { [weak self] in
+                guard let url = self?.services.externalLinkBuilder.buildGoogleSearchURL(query: $0.name) else { return }
+                self?.transitions.browser(url)
+            },
+            failure: { [weak self] in self?.errorHandlerClosure($0)}
+        )
     }
 }
 

@@ -9,11 +9,14 @@
 import Utils
 
 public final class AuthService: AuthServiceProtocol {
+    private let appPropertiesDataManager: AppPropertiesDataManager
     private let usersCacheDataManager: UsersCacheDataManagerProtocol
     private let authAPIDataManager: AuthAPIDataManagerProtocol
     
-    public init(usersCacheDataManager: UsersCacheDataManagerProtocol,
+    public init(appPropertiesDataManager: AppPropertiesDataManager,
+                usersCacheDataManager: UsersCacheDataManagerProtocol,
                 authAPIDataManager: AuthAPIDataManagerProtocol) {
+        self.appPropertiesDataManager = appPropertiesDataManager
         self.usersCacheDataManager = usersCacheDataManager
         self.authAPIDataManager = authAPIDataManager
     }
@@ -26,6 +29,7 @@ public final class AuthService: AuthServiceProtocol {
             login: login,
             password: password,
             success: { [weak self] in
+                self?.appPropertiesDataManager[.user] = $0
                 self?.usersCacheDataManager.updateCurrentUser($0)
                 success()
             },

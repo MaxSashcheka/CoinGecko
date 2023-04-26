@@ -38,6 +38,8 @@ final class SignInViewController: ViewController {
         activateEndEditingTap(at: view)
         
         title = "Sign In"
+        
+        viewModel.errorHandlerClosure = errorHandler
     }
     
     override func viewWillAppear(_ animated: Bool) {

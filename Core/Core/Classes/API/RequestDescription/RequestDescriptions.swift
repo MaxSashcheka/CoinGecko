@@ -10,8 +10,13 @@ import Alamofire
 import Foundation
 
 public extension RequestDescription {
+    enum BasePath {
+        static let coinGecko = "https://api.coingecko.com/api/v3"
+        static let localhost = "https://8850-2a00-1760-8006-5b-b467-6443-bb39-bd9.eu.ngrok.io"
+    }
+    
     class Coins {
-        private static let basePath = "https://api.coingecko.com/api/v3/coins"
+        private static let basePath = BasePath.coinGecko + "/coins"
         
         public static let getCoinsMarkets = RequestDescription(
             path: basePath + "/markets",
@@ -33,7 +38,7 @@ public extension RequestDescription {
     }
     
     class Search {
-        private static let basePath = "https://api.coingecko.com/api/v3/search"
+        private static let basePath = BasePath.coinGecko + "/search"
         
         public static let search = RequestDescription(
             path: basePath,
@@ -43,7 +48,7 @@ public extension RequestDescription {
     }
     
     class Global {
-        private static let basePath = "https://api.coingecko.com/api/v3/global"
+        private static let basePath = BasePath.coinGecko + "/global"
         
         public static let getGlobalData = RequestDescription(
             path: basePath,
@@ -53,7 +58,7 @@ public extension RequestDescription {
     }
     
     class Users {
-        private static let basePath = "https://a433-2a00-1760-8006-5b-b5af-6d99-187e-b4e8.eu.ngrok.io"
+        private static let basePath = BasePath.localhost
         
         public static let createUser = RequestDescription(
             path: basePath + "/users",
@@ -69,7 +74,7 @@ public extension RequestDescription {
     }
     
     class Posts {
-        private static let basePath = "https://a433-2a00-1760-8006-5b-b5af-6d99-187e-b4e8.eu.ngrok.io/posts"
+        private static let basePath = BasePath.localhost + "/posts"
         
         public static let createPost = RequestDescription(
             path: basePath,
@@ -89,6 +94,27 @@ public extension RequestDescription {
             isAuthRequired: false
         )
     }
+    
+    class Wallets {
+        private static let basePath = BasePath.localhost + "/wallets"
+        
+        public static let createWallet = RequestDescription(
+            path: basePath,
+            method: .post,
+            isAuthRequired: false
+        )
+        
+        public static let getWalletsByUserId = RequestDescription(
+            path: basePath + "/{id}",
+            method: .get,
+            isAuthRequired: false
+        )
+        
+        public static let deleteWalletById = RequestDescription(
+            path: basePath + "/{id}",
+            method: .delete,
+            isAuthRequired: false
+        )
+    }
 }
-//https://firebasestorage.googleapis.com:443/v0/b/imagestorage-a16f8.appspot.com/o/images%2FC3313956-7A9B-431C-B21C-EEBB527093BC.jpg?alt=media&token=b453f3d0-77a4-4885-a944-795a2af1d357
 

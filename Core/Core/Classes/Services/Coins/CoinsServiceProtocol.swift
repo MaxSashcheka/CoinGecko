@@ -9,6 +9,10 @@
 import Utils
 
 public protocol CoinsServiceProtocol {
+    func getStoredCoin(id: String,
+                       success: @escaping Closure.Coin,
+                       failure: @escaping Closure.GeneralError)
+    
     func getCoins(fromCache: Bool,
                   currency: String, page: Int, pageSize: Int,
                   success: @escaping Closure.CoinsArray,

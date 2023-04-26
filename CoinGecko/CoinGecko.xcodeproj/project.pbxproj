@@ -91,9 +91,17 @@
 		1CB0B4E7293FF15C00C874C4 /* InAppWebBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0B4E4293FF15C00C874C4 /* InAppWebBrowserViewController.swift */; };
 		1CB0B4E8293FF15C00C874C4 /* InAppWebBrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0B4E5293FF15C00C874C4 /* InAppWebBrowserViewModel.swift */; };
 		1CB0B4EA293FF24600C874C4 /* InAppWebBrowserPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0B4E9293FF24600C874C4 /* InAppWebBrowserPresentable.swift */; };
+		1CC2B5A129F99AF800C26190 /* ComposeWalletCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5A029F99AF800C26190 /* ComposeWalletCoordinator.swift */; };
+		1CC2B5A329F99B7A00C26190 /* ComposeWalletAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5A229F99B7A00C26190 /* ComposeWalletAssembly.swift */; };
+		1CC2B5A629F99BB500C26190 /* ComposeWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5A529F99BB500C26190 /* ComposeWalletViewController.swift */; };
+		1CC2B5A829F99BB800C26190 /* ComposeWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5A729F99BB800C26190 /* ComposeWalletViewModel.swift */; };
+		1CC2B5AB29F9AD0800C26190 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5AA29F9AD0800C26190 /* ColorPickerViewController.swift */; };
+		1CC2B5AD29F9AD1200C26190 /* ColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5AC29F9AD1200C26190 /* ColorPickerViewModel.swift */; };
 		1CC329BC29F07FA40061EB04 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CC329BB29F07FA40061EB04 /* GoogleService-Info.plist */; };
 		1CC329BF29F083780061EB04 /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC329BE29F083780061EB04 /* FirebaseProvider.swift */; };
 		1CCB08CC29AD560900596FED /* ScreenTransitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCB08CB29AD560900596FED /* ScreenTransitionable.swift */; };
+		1CD2581529F87EE200EE96DD /* AccountWalletsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD2581429F87EE200EE96DD /* AccountWalletsViewController.swift */; };
+		1CD2581729F87EE700EE96DD /* AccountWalletsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD2581629F87EE700EE96DD /* AccountWalletsViewModel.swift */; };
 		1CD6959728CFBDA7007AE077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CD6959628CFBDA7007AE077 /* Assets.xcassets */; };
 		1CD6959A28CFBDA7007AE077 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CD6959828CFBDA7007AE077 /* LaunchScreen.storyboard */; };
 		1CD695D028CFC326007AE077 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD695CF28CFC326007AE077 /* Core.framework */; };
@@ -221,9 +229,17 @@
 		1CB0B4E4293FF15C00C874C4 /* InAppWebBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppWebBrowserViewController.swift; sourceTree = "<group>"; };
 		1CB0B4E5293FF15C00C874C4 /* InAppWebBrowserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppWebBrowserViewModel.swift; sourceTree = "<group>"; };
 		1CB0B4E9293FF24600C874C4 /* InAppWebBrowserPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppWebBrowserPresentable.swift; sourceTree = "<group>"; };
+		1CC2B5A029F99AF800C26190 /* ComposeWalletCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeWalletCoordinator.swift; sourceTree = "<group>"; };
+		1CC2B5A229F99B7A00C26190 /* ComposeWalletAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeWalletAssembly.swift; sourceTree = "<group>"; };
+		1CC2B5A529F99BB500C26190 /* ComposeWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeWalletViewController.swift; sourceTree = "<group>"; };
+		1CC2B5A729F99BB800C26190 /* ComposeWalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeWalletViewModel.swift; sourceTree = "<group>"; };
+		1CC2B5AA29F9AD0800C26190 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
+		1CC2B5AC29F9AD1200C26190 /* ColorPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewModel.swift; sourceTree = "<group>"; };
 		1CC329BB29F07FA40061EB04 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1CC329BE29F083780061EB04 /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
 		1CCB08CB29AD560900596FED /* ScreenTransitionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTransitionable.swift; sourceTree = "<group>"; };
+		1CD2581429F87EE200EE96DD /* AccountWalletsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountWalletsViewController.swift; sourceTree = "<group>"; };
+		1CD2581629F87EE700EE96DD /* AccountWalletsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountWalletsViewModel.swift; sourceTree = "<group>"; };
 		1CD6958A28CFBDA5007AE077 /* CoinGecko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinGecko.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD6959628CFBDA7007AE077 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1CD6959928CFBDA7007AE077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -413,6 +429,15 @@
 			path = Action;
 			sourceTree = "<group>";
 		};
+		1C2EF9B329F87EBB00052211 /* AccountWallets */ = {
+			isa = PBXGroup;
+			children = (
+				1CD2581429F87EE200EE96DD /* AccountWalletsViewController.swift */,
+				1CD2581629F87EE700EE96DD /* AccountWalletsViewModel.swift */,
+			);
+			path = AccountWallets;
+			sourceTree = "<group>";
+		};
 		1C42879E28E0730100273979 /* ChartView */ = {
 			isa = PBXGroup;
 			children = (
@@ -524,6 +549,7 @@
 				1C289BAA29F5568B005A231C /* Tabs */,
 				1C590F3929EC812E00D700D1 /* ComposeUserAssembly.swift */,
 				1C872DE529F4178100F6D83F /* ComposePostAssembly.swift */,
+				1CC2B5A229F99B7A00C26190 /* ComposeWalletAssembly.swift */,
 				03460CEE290EB2F900F754FA /* CommonAssembly.swift */,
 			);
 			path = Flows;
@@ -559,6 +585,7 @@
 				03460CF1290EB9EB00F754FA /* CoinDetailsCoordinator.swift */,
 				1C872DE329F4151400F6D83F /* PostDetailsCoordinator.swift */,
 				1C590F2C29EC7DFF00D700D1 /* ComposeUserCoordinator.swift */,
+				1CC2B5A029F99AF800C26190 /* ComposeWalletCoordinator.swift */,
 				1C289BA629F5531E005A231C /* ComposePostCoordinator.swift */,
 				1C2DE53629F6DF9700665876 /* SignInCoordinator.swift */,
 			);
@@ -579,6 +606,9 @@
 		1C7CD4F328D273F800068965 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1CC2B5A929F9ACFE00C26190 /* ColorPicker */,
+				1CC2B5A429F99BA900C26190 /* ComposeWallet */,
+				1C2EF9B329F87EBB00052211 /* AccountWallets */,
 				1C2DE53829F6E38900665876 /* SignIn */,
 				1C872DE729F418A500F6D83F /* ComposePost */,
 				1C872DDA29F40A2C00F6D83F /* PostDetails */,
@@ -729,6 +759,24 @@
 				1CB0B4E5293FF15C00C874C4 /* InAppWebBrowserViewModel.swift */,
 			);
 			path = InAppWebBrowser;
+			sourceTree = "<group>";
+		};
+		1CC2B5A429F99BA900C26190 /* ComposeWallet */ = {
+			isa = PBXGroup;
+			children = (
+				1CC2B5A529F99BB500C26190 /* ComposeWalletViewController.swift */,
+				1CC2B5A729F99BB800C26190 /* ComposeWalletViewModel.swift */,
+			);
+			path = ComposeWallet;
+			sourceTree = "<group>";
+		};
+		1CC2B5A929F9ACFE00C26190 /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				1CC2B5AA29F9AD0800C26190 /* ColorPickerViewController.swift */,
+				1CC2B5AC29F9AD1200C26190 /* ColorPickerViewModel.swift */,
+			);
+			path = ColorPicker;
 			sourceTree = "<group>";
 		};
 		1CC329BD29F0836E0061EB04 /* Providers */ = {
@@ -1056,6 +1104,7 @@
 				1C68714F29ACFE6700A9C59B /* ProvidersAssembly.swift in Sources */,
 				1C289BAE29F556DD005A231C /* ComposePostPhotoViewModel.swift in Sources */,
 				1C590F3229EC7F1A00D700D1 /* ComposeUserInfoViewController.swift in Sources */,
+				1CC2B5AD29F9AD1200C26190 /* ColorPickerViewModel.swift in Sources */,
 				1C05EE3929F684AC00A9306C /* SignInPlaceholderView.swift in Sources */,
 				1C590F3429EC7F1F00D700D1 /* ComposeUserInfoViewModel.swift in Sources */,
 				1C289BA929F55441005A231C /* ImagePickerPresentable.swift in Sources */,
@@ -1067,15 +1116,19 @@
 				1C7CD4F628D2743C00068965 /* TrendingViewController.swift in Sources */,
 				1CE2AE7428F3777700642D00 /* HomeViewModel.swift in Sources */,
 				1C12DD4C28F21DCB00E7D91E /* SearchTextFieldViewModel.swift in Sources */,
+				1CD2581729F87EE700EE96DD /* AccountWalletsViewModel.swift in Sources */,
+				1CC2B5AB29F9AD0800C26190 /* ColorPickerViewController.swift in Sources */,
 				1CB0B4E7293FF15C00C874C4 /* InAppWebBrowserViewController.swift in Sources */,
 				1C289BD029F5A8B7005A231C /* PostTableCell.swift in Sources */,
 				1CFA294B28D27CBA0088A051 /* TrendingAssembly.swift in Sources */,
+				1CD2581529F87EE200EE96DD /* AccountWalletsViewController.swift in Sources */,
 				1C2A63DF28D644C00007877D /* SceneDelegate.swift in Sources */,
 				1CDCB2E028D1341500624AB5 /* AppAssembly.swift in Sources */,
 				1C12DD4A28F21DC000E7D91E /* SearchTextField.swift in Sources */,
 				1C60D9EC28E8853500B675DA /* MarketsCoordinator.swift in Sources */,
 				03460CEF290EB2F900F754FA /* CommonAssembly.swift in Sources */,
 				1C2A63EF28D649500007877D /* TitledDescriptionView.swift in Sources */,
+				1CC2B5A329F99B7A00C26190 /* ComposeWalletAssembly.swift in Sources */,
 				1CAD2B35293F66AC0004E4AA /* AppStyle+TextStyles.swift in Sources */,
 				1CDCB2DD28D132D600624AB5 /* AppCoordinator.swift in Sources */,
 				1CE2AE7B28F37C2300642D00 /* HomeAssembly.swift in Sources */,
@@ -1085,6 +1138,7 @@
 				1C97B9D128EA2E3C0085C979 /* PageButton.swift in Sources */,
 				1C872DED29F418C800F6D83F /* ComposePostInfoViewModel.swift in Sources */,
 				1CB0B4E8293FF15C00C874C4 /* InAppWebBrowserViewModel.swift in Sources */,
+				1CC2B5A829F99BB800C26190 /* ComposeWalletViewModel.swift in Sources */,
 				1C2DE53E29F6E77400665876 /* SignInCoordinatorPresentable.swift in Sources */,
 				1CE2AE6D28F3752B00642D00 /* HomeCoordinator.swift in Sources */,
 				1C97B9D928EA325F0085C979 /* PageButtonsCollectionViewModel.swift in Sources */,
@@ -1112,6 +1166,7 @@
 				1CA3D3A628D3CFA7009D43E9 /* CoinCell.swift in Sources */,
 				1C1E81AC29AE840200CABF79 /* DependencyInjectable.swift in Sources */,
 				1C590F3629EC7F2C00D700D1 /* ComposeUserPhotoViewController.swift in Sources */,
+				1CC2B5A629F99BB500C26190 /* ComposeWalletViewController.swift in Sources */,
 				1C7200B828D77FB3001DDBD5 /* CoinDetailsViewController.swift in Sources */,
 				1CF466EF28CFDF5F0012DE85 /* Localizable.swift in Sources */,
 				1C2A63E328D644F40007877D /* RemoteImageView.swift in Sources */,
@@ -1124,6 +1179,7 @@
 				1CAD2B37293F66B30004E4AA /* AppStyle+Colors.swift in Sources */,
 				1CE8A3CA28F1824C0052E34B /* SearchViewModel.swift in Sources */,
 				1C97B9D728EA32550085C979 /* PageButtonsCollectionView.swift in Sources */,
+				1CC2B5A129F99AF800C26190 /* ComposeWalletCoordinator.swift in Sources */,
 				1C68715129ACFE6F00A9C59B /* ServicesAssembly.swift in Sources */,
 				1C60D9F628E8A4C900B675DA /* MarketsAssembly.swift in Sources */,
 				03460CF2290EB9EB00F754FA /* CoinDetailsCoordinator.swift in Sources */,

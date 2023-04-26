@@ -18,6 +18,8 @@ extension HomeViewController {
         let placeholderViewModel = HomeViewController.SignInPlaceholderView.ViewModel()
         
         let cellsViewModels = CurrentValueSubject<[[BaseProfileTableCellViewModel]], Never>([])
+        let profileImageURL = CurrentValueSubject<URL?, Never>(nil)
+        let isTableVisible = CurrentValueSubject<Bool, Never>(false)
         
         private let services: Services
         let transitions: Transitions
@@ -28,9 +30,7 @@ extension HomeViewController {
             
             super.init()
             
-            setupData(with:
-                        User(id: UUID(), name: "Maksim Sashcheka", login: "sashheko", email: "sashchekam@gmail.com", role: .admin, imageURL: URL(string: "https://firebasestorage.googleapis.com:443/v0/b/imagestorage-a16f8.appspot.com/o/images%2F3641BC6A-23C9-4638-805C-6F5CC2136152.jpg?alt=media&token=8c5c2d04-f887-43c7-8840-384fe9cd1ac1"), webPageURL: URL(string: "https://www.google.com/?client=safari"))
-            )
+            fetchCurrentUserData()
         }
     }
 }
@@ -40,13 +40,18 @@ extension HomeViewController.ViewModel {
     struct Transitions: ScreenTransitions {
         let signIn: (@escaping Closure.Void) -> Void
         let signUp: (@escaping Closure.Void) -> Void
+        let personalWebPage: Closure.URL
+        let accountWallets: Transition
     }
     
     final class Services {
         let auth: AuthServiceProtocol
+        let users: UsersServiceProtocol
         
-        init(auth: AuthServiceProtocol) {
+        init(auth: AuthServiceProtocol,
+             users: UsersServiceProtocol) {
             self.auth = auth
+            self.users = users
         }
     }
 }
@@ -70,6 +75,16 @@ extension HomeViewController.ViewModel {
 
 // MARK: - HomeViewModel+Private
 private extension HomeViewController.ViewModel {
+    func fetchCurrentUserData() {
+        guard let user = services.users.currentUser else {
+            isTableVisible.send(false)
+            return
+        }
+        isTableVisible.send(true)
+        profileImageURL.send(user.imageURL)
+        setupData(with: user)
+    }
+    
     func setupData(with user: User) {
         var infoViewModels = [[BaseProfileTableCellViewModel]]()
         infoViewModels.append(
@@ -81,6 +96,17 @@ private extension HomeViewController.ViewModel {
                 ProfileCellViewModel(title: "User Role", description: user.role.rawValue, isSeparatorLineHidden: true)
             ]
         )
+        
+        infoViewModels.append([
+            ProfileCellViewModel(
+                title: "Wallets",
+                description: .empty,
+                isSeparatorLineHidden: true,
+                type: .action,
+                selectClosure: { [weak self] in self?.transitions.accountWallets() }
+            )
+        ])
+        
         if !user.webPageURL.isNil {
             infoViewModels.append([
                 ProfileCellViewModel(
@@ -89,7 +115,8 @@ private extension HomeViewController.ViewModel {
                     isSeparatorLineHidden: true,
                     type: .action,
                     selectClosure: { [weak self] in
-                        print("select web page")
+                        guard let url = user.webPageURL else { return }
+                        self?.transitions.personalWebPage(url)
                     }
                 )
             ])
@@ -99,7 +126,8 @@ private extension HomeViewController.ViewModel {
             HomeViewController.ActionTableCell.ViewModel(
                 title: "Log Out",
                 selectClosure: { [weak self] in
-                    print("log out action")
+                    self?.services.users.clearCurrentUser()
+                    self?.fetchCurrentUserData()
                 }
             )
         ])
@@ -110,15 +138,15 @@ private extension HomeViewController.ViewModel {
 
 // MARK: - HomeViewModel+TapActions
 extension HomeViewController.ViewModel {
+    var signInClosure: Closure.Void {
+        { [weak self] in self?.fetchCurrentUserData() }
+    }
+    
     func didTapSignInButton() {
-        transitions.signIn {
-            print("sign in finished")
-        }
+        transitions.signIn(signInClosure)
     }
     
     func didTapSignUpButton() {
-        transitions.signUp {
-            print("sign up finished")
-        }
+        transitions.signUp(signInClosure)
     }
 }

@@ -231,8 +231,12 @@ open class Coordinator: NSObject, Container {
     /// Clear unused children coordinators
     open func clearUnusedChildCoordinators() {
         children
-            .filter({ baseViewController.children.contains($0.baseViewController) && $0 != modallyShownCoordinator })
-            .forEach({ $0.removeFromParent() })
+            .filter { baseViewController.children.contains($0.baseViewController) && $0 != modallyShownCoordinator }
+            .forEach { $0.removeFromParent() }
+    }
+    
+    open func clearUnusedModalController() {
+        modallyShownController = nil
     }
 }
 

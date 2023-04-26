@@ -10,8 +10,6 @@ import Alamofire
 import Utils
 
 public class APIDataManager {
-//    private var baseURL: String = ""
-    
     public init() { }
     
     public func makeDataRequest(for endpoint: RequestDescription) -> DataRequest {

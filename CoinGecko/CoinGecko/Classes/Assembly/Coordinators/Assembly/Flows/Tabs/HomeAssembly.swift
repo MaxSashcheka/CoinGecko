@@ -26,12 +26,32 @@ extension HomeAssembly {
         return viewController
     }
     
+    static func accountWalletsScreen(
+        transitions: AccountWalletsViewController.ViewModel.Transitions,
+        resolver: DependencyResolver
+    ) -> AccountWalletsViewController {
+        let viewController = AccountWalletsViewController()
+        let viewModel = AccountWalletsViewController.ViewModel(
+            transitions: transitions, services: .inject(from: resolver)
+        )
+        viewController.viewModel = viewModel
+        
+        return viewController
+    }
+    
 }
 
 // MARK: - DI
 
 extension HomeViewController.ViewModel.Services: DependencyInjectable {
     static func inject(from resolver: DependencyResolver) -> Self {
-        Self(auth: ServicesAssembly.auth(resolver: resolver))
+        Self(auth: ServicesAssembly.auth(resolver: resolver),
+             users: ServicesAssembly.users(resolver: resolver))
+    }
+}
+
+extension AccountWalletsViewController.ViewModel.Services: DependencyInjectable {
+    static func inject(from resolver: DependencyResolver) -> Self {
+        Self(wallets: ServicesAssembly.wallets(resolver: resolver))
     }
 }

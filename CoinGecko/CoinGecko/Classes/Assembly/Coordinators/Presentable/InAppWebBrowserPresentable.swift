@@ -22,7 +22,7 @@ extension InAppWebBrowserPresentable where Self: NavigationCoordinator {
             url: url
         )
         
-        presentModal(controller: screen)
+        presentModal(controller: screen, presentationStyle: .overFullScreen)
     }
     
     var showInAppWebBrowserTransition: Closure.URL {

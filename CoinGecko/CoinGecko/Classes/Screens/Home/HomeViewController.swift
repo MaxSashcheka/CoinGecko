@@ -42,15 +42,7 @@ final class HomeViewController: ViewController {
         profileImageView.layer.cornerRadius = 30
         profileImageView.clipsToBounds = true
         
-        profileImageView.imageURL = URL(string: "https://firebasestorage.googleapis.com:443/v0/b/imagestorage-a16f8.appspot.com/o/images%2F3641BC6A-23C9-4638-805C-6F5CC2136152.jpg?alt=media&token=8c5c2d04-f887-43c7-8840-384fe9cd1ac1")
-        
         viewModel.errorHandlerClosure = errorHandler
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-//        profileImageView.layer.cornerRadius = 20
     }
     
     // MARK: - Methods
@@ -63,16 +55,6 @@ final class HomeViewController: ViewController {
             make.leading.trailing.equalToSuperview()
             make.bottom.top.equalToSuperview().inset(17)
         }
-        
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-//        view.addSubview(placeholderView)
-//        placeholderView.snp.makeConstraints { make in
-//            make.centerY.equalToSuperview()
-//            make.leading.trailing.equalToSuperview().inset(45)
-//        }
     }
     
     override func bindData() {
@@ -81,6 +63,16 @@ final class HomeViewController: ViewController {
         viewModel.cellsViewModels
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+        
+        viewModel.profileImageURL
+            .bind(to: \.imageURL, on: profileImageView)
+            .store(in: &cancellables)
+        
+        viewModel.isTableVisible
+            .sink { [weak self] in
+                self?.setTableVisibillity(isHidden: !$0)
             }
             .store(in: &cancellables)
         
@@ -106,6 +98,26 @@ final class HomeViewController: ViewController {
         tableView.dataSource = self
     
         placeholderView.viewModel = viewModel.placeholderViewModel
+    }
+}
+
+// MARK: - HomeViewController+SetTableVisibillity
+private extension HomeViewController {
+    func setTableVisibillity(isHidden: Bool) {
+        if isHidden {
+            tableView.removeFromSuperview()
+            view.addSubview(placeholderView)
+            placeholderView.snp.makeConstraints { make in
+                make.centerY.equalToSuperview()
+                make.leading.trailing.equalToSuperview().inset(45)
+            }
+        } else {
+            placeholderView.removeFromSuperview()
+            view.addSubview(tableView)
+            tableView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+        }
     }
 }
 

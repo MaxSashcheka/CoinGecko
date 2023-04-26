@@ -19,6 +19,16 @@ public class CoinsService: CoinsServiceProtocol {
         self.coinsCacheDataManager = coinsCacheDataManager
     }
     
+    public func getStoredCoin(id: String,
+                              success: @escaping Closure.Coin,
+                              failure: @escaping Closure.GeneralError) {
+        guard let coin = coinsCacheDataManager.cachedCoins[id] else {
+            failure(.defaultError)
+            return
+        }
+        success(coin)
+    }
+    
     // MARK: - API methods
     public func getCoins(fromCache: Bool = false,
                          currency: String, page: Int, pageSize: Int,

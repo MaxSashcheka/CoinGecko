@@ -9,6 +9,7 @@
 import Core
 
 // MARK: - SessionsAssembly
+
 enum SessionsAssembly: Assembly {
     static func usersCacheDataManager(resolver: DependencyResolver) -> UsersCacheDataManager {
         UsersCacheDataManager()
@@ -22,12 +23,20 @@ enum SessionsAssembly: Assembly {
         PostsCacheDataManager()
     }
     
+    static func walletsCacheDataManager(resolver: DependencyResolver) -> WalletsCacheDataManager {
+        WalletsCacheDataManager()
+    }
+    
     static func composeUserCacheDataManager(resolver: DependencyResolver) -> ComposeUserCacheDataManager {
         ComposeUserCacheDataManager()
     }
     
     static func composePostCacheDataManager(resolver: DependencyResolver) -> ComposePostCacheDataManager {
         ComposePostCacheDataManager()
+    }
+    
+    static func appPropertiesDataManager(resolver: DependencyResolver) -> AppPropertiesDataManager {
+        AppPropertiesDataManager(group: "group.coingecko.properties")
     }
 }
 
@@ -49,6 +58,10 @@ enum APIAssembly: Assembly {
     static func posts() -> PostsAPIDataManager {
         PostsAPIDataManager()
     }
+    
+    static func wallets() -> WalletsAPIDataManager {
+        WalletsAPIDataManager()
+    }
 }
 
 // MARK: - Providers Assembly
@@ -59,8 +72,10 @@ enum ProvidersAssembly {
     }
 }
 
+extension AppPropertiesDataManager: DependencyResolvable { }
 extension UsersCacheDataManager: DependencyResolvable { }
 extension CoinsCacheDataManager: DependencyResolvable { }
 extension PostsCacheDataManager: DependencyResolvable { }
+extension WalletsCacheDataManager: DependencyResolvable { }
 extension ComposeUserCacheDataManager: DependencyResolvable { }
 extension ComposePostCacheDataManager: DependencyResolvable { }

@@ -26,4 +26,5 @@ extension GlobalDataResponse: APIResponse { }
 extension SearchResponse: APIResponse { }
 extension UserResponse: APIResponse { }
 extension PostResponse: APIResponse { }
+extension WalletResponse: APIResponse { }
 extension Array: APIResponse where Element: APIResponse, Element: Decodable { }

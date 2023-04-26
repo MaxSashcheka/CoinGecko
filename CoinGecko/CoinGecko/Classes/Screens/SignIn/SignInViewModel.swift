@@ -75,11 +75,18 @@ extension SignInViewController.ViewModel {
         }
         
         guard !textFieldsViewModels.contains(where: { $0.isErrorVisible.value }) else { return }
+        ActivityIndicator.show()
         services.auth.login(
             login: loginTitledTextFieldViewModel.text.value,
             password: passwordTitledTextFieldViewModel.text.value,
-            success: { [weak self] in self?.transitions.completion() },
-            failure: { [weak self] in self?.errorHandlerClosure($0) }
+            success: { [weak self] in
+                ActivityIndicator.hide()
+                self?.transitions.completion()
+            },
+            failure: { [weak self] in
+                ActivityIndicator.hide()
+                self?.errorHandlerClosure($0)
+            }
         )
     }
 }

@@ -12,6 +12,7 @@
 		1C2A63DB28D63F160007877D /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63DA28D63F160007877D /* View.swift */; };
 		1C2A63EB28D645E90007877D /* GeneralClosures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63EA28D645E90007877D /* GeneralClosures.swift */; };
 		1C2A63ED28D647290007877D /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63EC28D647290007877D /* UIView+Extensions.swift */; };
+		1C2EF9AA29F86DAA00052211 /* UIApplication+Extensons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2EF9A929F86DAA00052211 /* UIApplication+Extensons.swift */; };
 		1C3F8ADD28ECB48C00E04740 /* UIFeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3F8ADC28ECB48C00E04740 /* UIFeedbackGenerator.swift */; };
 		1C4287AC28E0B34A00273979 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4287AB28E0B34A00273979 /* UIStackView+Extensions.swift */; };
 		1C57B50B28D5E92700E91F7C /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B50A28D5E92700E91F7C /* Optional+Extensions.swift */; };
@@ -42,6 +43,7 @@
 		1CAD2B30293F58960004E4AA /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD2B2F293F58950004E4AA /* TableView.swift */; };
 		1CAD2B39293F73180004E4AA /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD2B38293F73180004E4AA /* TextField.swift */; };
 		1CB3353C29EC2081003D08EB /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB3353B29EC2081003D08EB /* Date+Extensions.swift */; };
+		1CC2B5AF29F9B77E00C26190 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5AE29F9B77E00C26190 /* UIColor+Extensions.swift */; };
 		1CD695C528CFBFAB007AE077 /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CD695C428CFBFAB007AE077 /* Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDABA9F28DA4ACC00B7A632 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDABA9E28DA4ACC00B7A632 /* ActivityIndicator.swift */; };
 		1CDABAA128DA4B0B00B7A632 /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDABAA028DA4B0B00B7A632 /* TextStyle.swift */; };
@@ -69,6 +71,7 @@
 		1C2A63DA28D63F160007877D /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		1C2A63EA28D645E90007877D /* GeneralClosures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralClosures.swift; sourceTree = "<group>"; };
 		1C2A63EC28D647290007877D /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		1C2EF9A929F86DAA00052211 /* UIApplication+Extensons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensons.swift"; sourceTree = "<group>"; };
 		1C3F8ADC28ECB48C00E04740 /* UIFeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFeedbackGenerator.swift; sourceTree = "<group>"; };
 		1C4287AB28E0B34A00273979 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		1C57B50A28D5E92700E91F7C /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
@@ -99,6 +102,7 @@
 		1CAD2B2F293F58950004E4AA /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		1CAD2B38293F73180004E4AA /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		1CB3353B29EC2081003D08EB /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		1CC2B5AE29F9B77E00C26190 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		1CD695C128CFBFAB007AE077 /* Utils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Utils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD695C428CFBFAB007AE077 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		1CDABA9E28DA4ACC00B7A632 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -230,6 +234,8 @@
 				1C97B9CD28E9CE6F0085C979 /* UIGestureRecognizer+Extensions.swift */,
 				1C3F8ADC28ECB48C00E04740 /* UIFeedbackGenerator.swift */,
 				1C1D85B2295861DC007BEDF4 /* UITableView+Extensions.swift */,
+				1C2EF9A929F86DAA00052211 /* UIApplication+Extensons.swift */,
+				1CC2B5AE29F9B77E00C26190 /* UIColor+Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -461,6 +467,7 @@
 				1CDCB2D728D12EFF00624AB5 /* TabCoordinator.swift in Sources */,
 				1C7200AA28D717D5001DDBD5 /* String+Extensions.swift in Sources */,
 				1C872DD429F4031800F6D83F /* CacheContainer.swift in Sources */,
+				1CC2B5AF29F9B77E00C26190 /* UIColor+Extensions.swift in Sources */,
 				1CF969D028E399E400F49456 /* TimeInterval+Extensions.swift in Sources */,
 				1C60DA1228E8F8F400B675DA /* Publisher+Extensions.swift in Sources */,
 				1C2A63ED28D647290007877D /* UIView+Extensions.swift in Sources */,
@@ -489,6 +496,7 @@
 				1CDCB2C928D12D5500624AB5 /* NavigationCoordinator.swift in Sources */,
 				1CA3D3AA28D3D1C2009D43E9 /* CollectionCell.swift in Sources */,
 				1CDCB2E528D1375300624AB5 /* ViewController.swift in Sources */,
+				1C2EF9AA29F86DAA00052211 /* UIApplication+Extensons.swift in Sources */,
 				1C590F4E29ECB27500D700D1 /* EndEditingTappable.swift in Sources */,
 				1C97B9C228E9CCAA0085C979 /* ControlEventSubscription.swift in Sources */,
 				1CAC0F1929ED7D0A0098D5B4 /* Array+Extensions.swift in Sources */,

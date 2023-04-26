@@ -78,4 +78,16 @@ public extension ParametersProvider {
             "password": password
         ]
     }
+    
+    static func createWallet(id: String,
+                             userId: String,
+                             name: String,
+                             colorHex: String) -> [String: String] {
+        [
+            "id": id,
+            "userId": userId,
+            "name": name,
+            "colorHex": colorHex
+        ]
+    }
 }

@@ -7,8 +7,8 @@
 //
 
 import Combine
-import Utils
 import SafeSFSymbols
+import Utils
 
 extension HomeViewController {
     final class ProfileTableCell: TableCell {
@@ -31,7 +31,7 @@ extension HomeViewController {
         }
         
         private let separatorLine = View(
-            backgroundColor: Assets.Colors.lightGray.color.withAlphaComponent(0.8)
+            backgroundColor: Assets.Colors.lightGray.color.withAlphaComponent(0.65)
         )
         
         var viewModel: ViewModel? {
@@ -73,9 +73,9 @@ extension HomeViewController.ProfileTableCell {
         }
         
         separatorLine.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(15)
             make.height.equalTo(1)
-            make.trailing.bottom.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
     }
     

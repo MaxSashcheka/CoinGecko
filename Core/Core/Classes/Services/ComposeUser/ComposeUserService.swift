@@ -10,12 +10,18 @@ import Utils
 import UIKit.UIImage
 
 public class ComposeUserService: ComposeUserServiceProtocol {
+    private let appPropertiesDataManager: AppPropertiesDataManager
     private let composeUserCacheDataManager: ComposeUserCacheDataManagerProtocol
+    private let usersCacheDataManager: UsersCacheDataManagerProtocol
     private let usersAPIDataManager: UsersAPIDataManagerProtocol
     
-    public init(composeUserCacheDataManager: ComposeUserCacheDataManagerProtocol,
+    public init(appPropertiesDataManager: AppPropertiesDataManager,
+                composeUserCacheDataManager: ComposeUserCacheDataManagerProtocol,
+                usersCacheDataManager: UsersCacheDataManagerProtocol,
                 usersAPIDataManager: UsersAPIDataManagerProtocol) {
+        self.appPropertiesDataManager = appPropertiesDataManager
         self.composeUserCacheDataManager = composeUserCacheDataManager
+        self.usersCacheDataManager = usersCacheDataManager
         self.usersAPIDataManager = usersAPIDataManager
     }
 }
@@ -79,7 +85,9 @@ public extension ComposeUserService {
             role: role,
             personalWebLink: personalWebLink.orEmpty(),
             imageURL: imageURL,
-            success: { user in
+            success: { [weak self] in
+                self?.appPropertiesDataManager[.user] = $0
+                self?.usersCacheDataManager.updateCurrentUser($0)
                 success()
             },
             failure: failure
