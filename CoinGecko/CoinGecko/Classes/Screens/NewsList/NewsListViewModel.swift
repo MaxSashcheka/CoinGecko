@@ -59,9 +59,11 @@ extension NewsListViewController.ViewModel {
 // MARK: - NewsListViewModel+FetchData
 extension NewsListViewController.ViewModel {
     func fetchPosts(fromCache: Bool = false) {
+        ActivityIndicator.show()
         services.posts.getPosts(
             fromCache: fromCache,
             success: { [weak self] posts in
+                ActivityIndicator.hide()
                 self?.postsViewModels.send(
                     posts.map {
                         PostTableCell.ViewModel(
@@ -72,6 +74,7 @@ extension NewsListViewController.ViewModel {
                     }
                 )
             }, failure: { [weak self] in
+                ActivityIndicator.hide()
                 self?.errorHandlerClosure?($0)
             }
         )

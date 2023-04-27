@@ -16,8 +16,7 @@ extension ComposeWalletViewController {
         private let services: Services
         let transitions: Transitions
         
-        let walletTitle = CurrentValueSubject<String, Never>(.empty)
-        let walletColor = CurrentValueSubject<UIColor, Never>(Assets.Colors.red.color)
+        let walletViewModel = WalletView.ViewModel(color: Assets.Colors.red.color)
         
         let nameTitledTextFieldViewModel = TitledTextField.ViewModel(
             title: "Write wallet title",
@@ -31,7 +30,7 @@ extension ComposeWalletViewController {
             super.init()
             
             nameTitledTextFieldViewModel.saveTextClosure = { [weak self] in
-                self?.walletTitle.send($0)
+                self?.walletViewModel.title.send($0)
             }
         }
     }
@@ -61,7 +60,7 @@ extension ComposeWalletViewController.ViewModel {
     
     func didTapPickColorButton() {
         transitions.pickColor { [weak self] in
-            self?.walletColor.send($0)
+            self?.walletViewModel.color.send($0)
         }
     }
     
@@ -71,7 +70,7 @@ extension ComposeWalletViewController.ViewModel {
             nameTitledTextFieldViewModel.isErrorVisible.send(true)
         }
         
-        guard let colorHex = walletColor.value.hexValue,
+        guard let colorHex = walletViewModel.color.value.hexValue,
               !nameTitledTextFieldViewModel.isErrorVisible.value else { return }
         
         ActivityIndicator.show()

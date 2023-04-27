@@ -41,11 +41,18 @@ public final class WalletsService: WalletsServiceProtocol {
         )
     }
     
-    public func getWallets(userId: UUID,
+    public func getWallets(fromCache: Bool,
                            success: @escaping Closure.WalletsArray,
                            failure: @escaping Closure.GeneralError) {
+        if fromCache {
+            success(walletsCacheDataManager.cachedWallets.allItems)
+        }
+        guard let currentUser = usersCacheDataManager.currentUser else {
+            failure(.defaultError)
+            return
+        }
         walletsAPIDataManager.getWallets(
-            userId: userId,
+            userId: currentUser.id,
             success: { [weak self] in
                 self?.walletsCacheDataManager.cachedWallets.append(contentsOf: $0)
                 success($0)

@@ -14,7 +14,7 @@ public protocol WalletsServiceProtocol {
                       success: @escaping Closure.Void,
                       failure: @escaping Closure.GeneralError)
     
-    func getWallets(userId: UUID,
+    func getWallets(fromCache: Bool,
                     success: @escaping Closure.WalletsArray,
                     failure: @escaping Closure.GeneralError)
     

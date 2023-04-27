@@ -9,11 +9,14 @@
 import Combine
 import Core
 import Utils
+import UIKit.UIColor
 
 extension AccountWalletsViewController {
     final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
         private let services: Services
         let transitions: Transitions
+        
+        let walletsViewModels = CurrentValueSubject<[WalletTableCell.ViewModel], Never>([])
         
         init(transitions: Transitions, services: Services) {
             self.services = services
@@ -41,16 +44,49 @@ extension AccountWalletsViewController.ViewModel {
     }
 }
 
+// MARK: - AccountWalletsViewModel+TableViewDataProviders
+extension AccountWalletsViewController.ViewModel {
+    var numberOfItems: Int { walletsViewModels.value.count }
+    
+    func cellViewModel(for indexPath: IndexPath) -> WalletTableCell.ViewModel {
+        walletsViewModels.value[indexPath.row]
+    }
+    
+    func didSelectCell(at indexPath: IndexPath) {
+        transitions.postDetails(cellViewModel(for: indexPath).id)
+    }
+}
+
 private extension AccountWalletsViewController.ViewModel {
-    func fetchWallets() {
-        
+    func fetchWallets(fromCache: Bool = false) {
+        ActivityIndicator.show()
+        services.wallets.getWallets(
+            fromCache: fromCache,
+            success: { [weak self] wallets in
+                self?.walletsViewModels.send(
+                    wallets.compactMap {
+                        guard let color = UIColor(hex: $0.colorHex) else { return nil }
+                        let viewModel = WalletTableCell.ViewModel(
+                            title: $0.name,
+                            color: color
+                        )
+                        return viewModel
+                    }
+                )
+                ActivityIndicator.hide()
+            },
+            failure: { [weak self] in
+                ActivityIndicator.hide()
+                self?.errorHandlerClosure($0)
+            }
+        )
     }
 }
 
 extension AccountWalletsViewController.ViewModel {
     func didTapComposeWalletButton() {
-        transitions.composeWallet {
-            print("compose wallet finished")
+        transitions.composeWallet { [weak self] in
+            self?.fetchWallets(fromCache: true)
         }
     }
 }

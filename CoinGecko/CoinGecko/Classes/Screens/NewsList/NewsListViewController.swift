@@ -13,7 +13,7 @@ import Utils
 
 final class NewsListViewController: ViewController {
     
-    private let postsTableView: UITableView = .make {
+    private let postsTableView: TableView = .make {
         $0.register(PostTableCell.self)
         $0.separatorStyle = .none
         $0.backgroundColor = Assets.Colors.platinum.color

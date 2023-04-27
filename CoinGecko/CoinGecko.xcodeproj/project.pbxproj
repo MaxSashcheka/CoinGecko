@@ -97,6 +97,10 @@
 		1CC2B5A829F99BB800C26190 /* ComposeWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5A729F99BB800C26190 /* ComposeWalletViewModel.swift */; };
 		1CC2B5AB29F9AD0800C26190 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5AA29F9AD0800C26190 /* ColorPickerViewController.swift */; };
 		1CC2B5AD29F9AD1200C26190 /* ColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5AC29F9AD1200C26190 /* ColorPickerViewModel.swift */; };
+		1CC2B5BB29F9D52B00C26190 /* WalletTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5BA29F9D52B00C26190 /* WalletTableCell.swift */; };
+		1CC2B5BD29F9D52F00C26190 /* WalletTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5BC29F9D52F00C26190 /* WalletTableCellViewModel.swift */; };
+		1CC2B5C029F9D68100C26190 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5BF29F9D68100C26190 /* WalletView.swift */; };
+		1CC2B5C229F9D68600C26190 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5C129F9D68600C26190 /* WalletViewModel.swift */; };
 		1CC329BC29F07FA40061EB04 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CC329BB29F07FA40061EB04 /* GoogleService-Info.plist */; };
 		1CC329BF29F083780061EB04 /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC329BE29F083780061EB04 /* FirebaseProvider.swift */; };
 		1CCB08CC29AD560900596FED /* ScreenTransitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCB08CB29AD560900596FED /* ScreenTransitionable.swift */; };
@@ -235,6 +239,10 @@
 		1CC2B5A729F99BB800C26190 /* ComposeWalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeWalletViewModel.swift; sourceTree = "<group>"; };
 		1CC2B5AA29F9AD0800C26190 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		1CC2B5AC29F9AD1200C26190 /* ColorPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewModel.swift; sourceTree = "<group>"; };
+		1CC2B5BA29F9D52B00C26190 /* WalletTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableCell.swift; sourceTree = "<group>"; };
+		1CC2B5BC29F9D52F00C26190 /* WalletTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableCellViewModel.swift; sourceTree = "<group>"; };
+		1CC2B5BF29F9D68100C26190 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		1CC2B5C129F9D68600C26190 /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
 		1CC329BB29F07FA40061EB04 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1CC329BE29F083780061EB04 /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
 		1CCB08CB29AD560900596FED /* ScreenTransitionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTransitionable.swift; sourceTree = "<group>"; };
@@ -371,6 +379,7 @@
 		1C2A63E128D644DC0007877D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1CC2B5BE29F9D66300C26190 /* WalletView */,
 				1CA3D3A228D3CF03009D43E9 /* CoinCell */,
 				1C42879E28E0730100273979 /* ChartView */,
 				1C2A63E228D644F40007877D /* RemoteImageView.swift */,
@@ -432,6 +441,7 @@
 		1C2EF9B329F87EBB00052211 /* AccountWallets */ = {
 			isa = PBXGroup;
 			children = (
+				1CC2B5B929F9D51F00C26190 /* WalletTableCell */,
 				1CD2581429F87EE200EE96DD /* AccountWalletsViewController.swift */,
 				1CD2581629F87EE700EE96DD /* AccountWalletsViewModel.swift */,
 			);
@@ -779,6 +789,24 @@
 			path = ColorPicker;
 			sourceTree = "<group>";
 		};
+		1CC2B5B929F9D51F00C26190 /* WalletTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				1CC2B5BA29F9D52B00C26190 /* WalletTableCell.swift */,
+				1CC2B5BC29F9D52F00C26190 /* WalletTableCellViewModel.swift */,
+			);
+			path = WalletTableCell;
+			sourceTree = "<group>";
+		};
+		1CC2B5BE29F9D66300C26190 /* WalletView */ = {
+			isa = PBXGroup;
+			children = (
+				1CC2B5BF29F9D68100C26190 /* WalletView.swift */,
+				1CC2B5C129F9D68600C26190 /* WalletViewModel.swift */,
+			);
+			path = WalletView;
+			sourceTree = "<group>";
+		};
 		1CC329BD29F0836E0061EB04 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1089,6 +1117,7 @@
 				1C872DEB29F418C400F6D83F /* ComposePostInfoViewController.swift in Sources */,
 				1CF969CE28E3959900F49456 /* ButtonCollectionViewModel.swift in Sources */,
 				1CEEC76D28D2801800F8DC7A /* AppDelegate.swift in Sources */,
+				1CC2B5BB29F9D52B00C26190 /* WalletTableCell.swift in Sources */,
 				1C4287A028E0732100273979 /* ChartView.swift in Sources */,
 				1C12DD5028F2365700E7D91E /* UITableViewPresentable.swift in Sources */,
 				1CF466EE28CFDF5F0012DE85 /* Fonts.swift in Sources */,
@@ -1098,6 +1127,7 @@
 				1C2A63F128D6496F0007877D /* TitledDescriptionViewModel.swift in Sources */,
 				1C7CD4F828D2744300068965 /* TrendingViewModel.swift in Sources */,
 				1C2DE53729F6DF9700665876 /* SignInCoordinator.swift in Sources */,
+				1CC2B5C229F9D68600C26190 /* WalletViewModel.swift in Sources */,
 				1C4287A228E0732600273979 /* ChartViewModel.swift in Sources */,
 				1C68714929ACF4C200A9C59B /* Assembly.swift in Sources */,
 				1C2A63E628D645250007877D /* RemoteImageDownloadable.swift in Sources */,
@@ -1151,6 +1181,7 @@
 				1CAD2B33293F66990004E4AA /* AppStyle.swift in Sources */,
 				1C9961AE294130E800F9A7AE /* PriceConverable.swift in Sources */,
 				1C7200BA28D77FED001DDBD5 /* CoinDetailsViewModel.swift in Sources */,
+				1CC2B5C029F9D68100C26190 /* WalletView.swift in Sources */,
 				1C872DD629F4096D00F6D83F /* NewsCoordinator.swift in Sources */,
 				1CE2AE7228F3777200642D00 /* HomeViewController.swift in Sources */,
 				1C289BD229F5A9AF005A231C /* PostTableCellViewModel.swift in Sources */,
@@ -1179,6 +1210,7 @@
 				1CAD2B37293F66B30004E4AA /* AppStyle+Colors.swift in Sources */,
 				1CE8A3CA28F1824C0052E34B /* SearchViewModel.swift in Sources */,
 				1C97B9D728EA32550085C979 /* PageButtonsCollectionView.swift in Sources */,
+				1CC2B5BD29F9D52F00C26190 /* WalletTableCellViewModel.swift in Sources */,
 				1CC2B5A129F99AF800C26190 /* ComposeWalletCoordinator.swift in Sources */,
 				1C68715129ACFE6F00A9C59B /* ServicesAssembly.swift in Sources */,
 				1C60D9F628E8A4C900B675DA /* MarketsAssembly.swift in Sources */,

@@ -31,20 +31,7 @@ final class ComposeWalletViewController: ViewController {
         $0.text = "Wallet Preview"
     }
     
-    private let walletView: View = .make {
-        $0.backgroundColor = Assets.Colors.green.color
-        $0.cornerRadius = 12
-    }
-    
-    private let walletTitleLabel: Label = .make {
-        $0.text = "First wallet"
-        $0.font = .systemFont(ofSize: 25, weight: .medium)
-    }
-    
-    private let coinsCountLabel: Label = .make {
-        $0.font = .systemFont(ofSize: 25, weight: .medium)
-        $0.text = "0 coins"
-    }
+    private let walletView = WalletView()
     
     override var backgroundColor: UIColor { Assets.Colors.white.color }
     
@@ -75,14 +62,6 @@ final class ComposeWalletViewController: ViewController {
     
     override func bindData() {
         super.bindData()
-        
-        viewModel.walletTitle
-            .bind(to: \.text, on: walletTitleLabel)
-            .store(in: &cancellables)
-        
-        viewModel.walletColor
-            .bind(to: \.backgroundColor, on: walletView)
-            .store(in: &cancellables)
         
         pickColorButton.tapPublisher
             .sink { [weak viewModel] in
@@ -119,15 +98,6 @@ final class ComposeWalletViewController: ViewController {
             make.height.equalTo(100)
         }
         
-        walletView.addSubviews([walletTitleLabel, coinsCountLabel])
-        walletTitleLabel.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview().inset(15)
-        }
-        
-        coinsCountLabel.snp.makeConstraints { make in
-            make.leading.bottom.trailing.equalToSuperview().inset(15)
-        }
-        
         view.addSubview(pickColorButton)
         pickColorButton.snp.makeConstraints { make in
             make.height.equalTo(50)
@@ -146,6 +116,7 @@ final class ComposeWalletViewController: ViewController {
     override func setupData() {
         super.setupData()
         
+        walletView.viewModel = viewModel.walletViewModel
         nameTitledTextField.viewModel = viewModel.nameTitledTextFieldViewModel
     }
 }
