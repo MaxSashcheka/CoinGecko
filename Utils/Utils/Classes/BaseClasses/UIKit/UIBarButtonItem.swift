@@ -35,4 +35,11 @@ public extension UIBarButtonItem {
         item.actionClosure = action
         return item
     }
+    
+    static func barButtonItem(title: String,
+                              action: @escaping Closure.Void) -> UIBarButtonItem {
+        let item = UIBarButtonItem(title: title, style: .plain, target: self, action: nil)
+        item.actionClosure = action
+        return item
+    }
 }

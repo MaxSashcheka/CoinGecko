@@ -16,15 +16,13 @@ extension CommonAssembly {
     static func coinDetailsScreen(
         transitions: CoinDetailsViewController.ViewModel.Transitions,
         resolver: DependencyResolver,
-        coinId: String,
-        isAddToPortfolioEnabled: Bool
+        coinId: String
     ) -> CoinDetailsViewController {
         let viewController = CoinDetailsViewController()
         let viewModel = CoinDetailsViewController.ViewModel(
             transitions: transitions,
             services: .inject(from: resolver),
-            coinId: coinId,
-            isAddToPortfolioEnabled: isAddToPortfolioEnabled
+            coinId: coinId
         )
         viewController.viewModel = viewModel
         
@@ -53,13 +51,34 @@ extension CommonAssembly {
         
         return viewController
     }
+    
+    static func addCoinScreen(
+        transitions: AddCoinViewController.ViewModel.Transitions,
+        resolver: DependencyResolver
+    ) -> AddCoinViewController {
+        let viewController = AddCoinViewController()
+        let viewModel = AddCoinViewController.ViewModel(
+            transitions: transitions,
+            services: .inject(from: resolver)
+        )
+        viewController.viewModel = viewModel
+        
+        return viewController
+    }
 }
 
 // MARK: - DI
 
 extension CoinDetailsViewController.ViewModel.Services: DependencyInjectable {
     static func inject(from resolver: DependencyResolver) -> Self {
-        Self(coins: ServicesAssembly.coins(resolver: resolver),
+        Self(users: ServicesAssembly.users(resolver: resolver),
+             coins: ServicesAssembly.coins(resolver: resolver),
              externalLinkBuilder: resolver.resolve(ExternalLinkBuilder.self))
+    }
+}
+
+extension AddCoinViewController.ViewModel.Services: DependencyInjectable {
+    static func inject(from resolver: DependencyResolver) -> Self {
+        Self(wallets: ServicesAssembly.wallets(resolver: resolver))
     }
 }

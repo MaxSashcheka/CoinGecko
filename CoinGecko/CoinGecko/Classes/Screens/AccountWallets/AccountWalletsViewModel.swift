@@ -8,8 +8,8 @@
 
 import Combine
 import Core
-import Utils
 import UIKit.UIColor
+import Utils
 
 extension AccountWalletsViewController {
     final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
@@ -17,6 +17,10 @@ extension AccountWalletsViewController {
         let transitions: Transitions
         
         let walletsViewModels = CurrentValueSubject<[WalletTableCell.ViewModel], Never>([])
+        
+        var updateWalletsFromCacheClosure: Closure.Void {
+            { [weak self] in self?.fetchWallets(fromCache: true) }
+        }
         
         init(transitions: Transitions, services: Services) {
             self.services = services
@@ -32,7 +36,8 @@ extension AccountWalletsViewController {
 // MARK: - AccountWalletsViewModel+NestedTypes
 extension AccountWalletsViewController.ViewModel {
     struct Transitions: ScreenTransitions {
-        var composeWallet: (@escaping Closure.Void) -> Void
+        let composeWallet: (@escaping Closure.Void) -> Void
+        let walletDetails: (UUID, @escaping Closure.Void) -> Void
     }
     
     final class Services {
@@ -53,7 +58,7 @@ extension AccountWalletsViewController.ViewModel {
     }
     
     func didSelectCell(at indexPath: IndexPath) {
-        transitions.postDetails(cellViewModel(for: indexPath).id)
+        transitions.walletDetails(cellViewModel(for: indexPath).id, updateWalletsFromCacheClosure)
     }
 }
 
@@ -67,6 +72,7 @@ private extension AccountWalletsViewController.ViewModel {
                     wallets.compactMap {
                         guard let color = UIColor(hex: $0.colorHex) else { return nil }
                         let viewModel = WalletTableCell.ViewModel(
+                            id: $0.id,
                             title: $0.name,
                             color: color
                         )
@@ -85,8 +91,6 @@ private extension AccountWalletsViewController.ViewModel {
 
 extension AccountWalletsViewController.ViewModel {
     func didTapComposeWalletButton() {
-        transitions.composeWallet { [weak self] in
-            self?.fetchWallets(fromCache: true)
-        }
+        transitions.composeWallet(updateWalletsFromCacheClosure)
     }
 }

@@ -27,4 +27,5 @@ extension SearchResponse: APIResponse { }
 extension UserResponse: APIResponse { }
 extension PostResponse: APIResponse { }
 extension WalletResponse: APIResponse { }
+extension CoinIdentifierResponse: APIResponse { }
 extension Array: APIResponse where Element: APIResponse, Element: Decodable { }

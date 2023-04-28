@@ -16,7 +16,6 @@ extension CoinDetailsViewController {
         let transitions: Transitions
 
         private let coinId: String
-        let isAddToPortfolioEnabled: Bool
         
         let chartViewModel = ChartView.ViewModel()
         let buttonsCollectionViewModel = ButtonsCollectionView.ViewModel()
@@ -27,16 +26,15 @@ extension CoinDetailsViewController {
         let currentPriceText = CurrentValueSubject<String, Never>(.empty)
         let priceChangeText = CurrentValueSubject<String, Never>(.empty)
         let isPriceChangePositive = CurrentValueSubject<Bool, Never>(false)
+        let isAddToPortfolioButtonHidden = CurrentValueSubject<Bool, Never>(false)
         let hideAddButtonSubject = PassthroughSubject<Void, Never>()
         
         init(transitions: Transitions,
              services: Services,
-             coinId: String,
-             isAddToPortfolioEnabled: Bool) {
+             coinId: String) {
             self.services = services
             self.transitions = transitions
             self.coinId = coinId
-            self.isAddToPortfolioEnabled = isAddToPortfolioEnabled
             
             super.init()
             
@@ -46,6 +44,7 @@ extension CoinDetailsViewController {
                 }
             )
             
+            fetchCurrentUserData()
             fetchCoinDetails()
             fetchCoinChartData(for: .hour)
         }
@@ -61,13 +60,18 @@ extension CoinDetailsViewController.ViewModel {
     struct Transitions: ScreenTransitions {
         let close: Transition
         let browser: Closure.URL
+        let addToWallet: Transition
     }
     
     final class Services {
+        let users: UsersServiceProtocol
         let coins: CoinsServiceProtocol
         let externalLinkBuilder: ExternalLinkBuilder
         
-        init(coins: CoinsServiceProtocol, externalLinkBuilder: ExternalLinkBuilder) {
+        init(users: UsersServiceProtocol,
+             coins: CoinsServiceProtocol,
+             externalLinkBuilder: ExternalLinkBuilder) {
+            self.users = users
             self.coins = coins
             self.externalLinkBuilder = externalLinkBuilder
         }
@@ -76,6 +80,10 @@ extension CoinDetailsViewController.ViewModel {
 
 // MARK: - CoinDetailsViewModel+Fetch
 extension CoinDetailsViewController.ViewModel {
+    func fetchCurrentUserData() {
+        isAddToPortfolioButtonHidden.send(services.users.currentUser.isNil)
+    }
+    
     func fetchCoinDetails() {
         services.coins.getCoinDetails(
             id: coinId,
@@ -143,6 +151,10 @@ extension CoinDetailsViewController.ViewModel {
 extension CoinDetailsViewController.ViewModel {
     func didTapCloseButton() {
         transitions.close()
+    }
+    
+    func didTapAddToWalletButton() {
+        transitions.addToWallet()
     }
     
     func didTapBrowserButton() {

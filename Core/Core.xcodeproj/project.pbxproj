@@ -47,6 +47,8 @@
 		1C60DA0D28E8E64000B675DA /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60DA0C28E8E64000B675DA /* APIResponse.swift */; };
 		1C72009E28D70E9D001DDBD5 /* CoinsAPIDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C72009D28D70E9D001DDBD5 /* CoinsAPIDataManagerProtocol.swift */; };
 		1C872DD129F3DEDC00F6D83F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DD029F3DEDC00F6D83F /* User.swift */; };
+		1C945B2029FB0D4A0085FA2F /* CoinIdentifierResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C945B1F29FB0D4A0085FA2F /* CoinIdentifierResponse.swift */; };
+		1C945B2229FB0D680085FA2F /* CoinIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C945B2129FB0D680085FA2F /* CoinIdentifier.swift */; };
 		1CA3D39B28D3C847009D43E9 /* CoinsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D39A28D3C847009D43E9 /* CoinsService.swift */; };
 		1CA3D39D28D3C850009D43E9 /* CoinsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D39C28D3C850009D43E9 /* CoinsServiceProtocol.swift */; };
 		1CA3D3A128D3CD80009D43E9 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3D3A028D3CD80009D43E9 /* Coin.swift */; };
@@ -131,6 +133,8 @@
 		1C60DA0C28E8E64000B675DA /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		1C72009D28D70E9D001DDBD5 /* CoinsAPIDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsAPIDataManagerProtocol.swift; sourceTree = "<group>"; };
 		1C872DD029F3DEDC00F6D83F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1C945B1F29FB0D4A0085FA2F /* CoinIdentifierResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinIdentifierResponse.swift; sourceTree = "<group>"; };
+		1C945B2129FB0D680085FA2F /* CoinIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinIdentifier.swift; sourceTree = "<group>"; };
 		1CA3D39A28D3C847009D43E9 /* CoinsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsService.swift; sourceTree = "<group>"; };
 		1CA3D39C28D3C850009D43E9 /* CoinsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsServiceProtocol.swift; sourceTree = "<group>"; };
 		1CA3D3A028D3CD80009D43E9 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
@@ -364,6 +368,7 @@
 				1C872DD029F3DEDC00F6D83F /* User.swift */,
 				1C289BC029F5892E005A231C /* Post.swift */,
 				1CB234FB29F8881F001D98BF /* Wallet.swift */,
+				1C945B2129FB0D680085FA2F /* CoinIdentifier.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 				1C01EDC429EEAAA00088AEE7 /* UserResponse.swift */,
 				1C289BBE29F588EF005A231C /* PostResponse.swift */,
 				1CB234F929F887F9001D98BF /* WalletResponse.swift */,
+				1C945B1F29FB0D4A0085FA2F /* CoinIdentifierResponse.swift */,
 			);
 			path = Responces;
 			sourceTree = "<group>";
@@ -714,6 +720,7 @@
 				1CFD91FD291285120010172D /* CoinsCacheDataManager.swift in Sources */,
 				1CC329BA29F070B00061EB04 /* FirebaseDataManagerProtocol.swift in Sources */,
 				1CC329B829F070A80061EB04 /* FirebaseDataManager.swift in Sources */,
+				1C945B2229FB0D680085FA2F /* CoinIdentifier.swift in Sources */,
 				1C05EE4829F68E8700A9306C /* UsersCacheDataManager.swift in Sources */,
 				1C289BC129F5892E005A231C /* Post.swift in Sources */,
 				1CA3D3A128D3CD80009D43E9 /* Coin.swift in Sources */,
@@ -721,6 +728,7 @@
 				1C289BC829F59F6E005A231C /* PostsCacheDataManagerProtocol.swift in Sources */,
 				1CA3D39D28D3C850009D43E9 /* CoinsServiceProtocol.swift in Sources */,
 				1CC178F728E6463900550D3B /* CoinChartDataResponse.swift in Sources */,
+				1C945B2029FB0D4A0085FA2F /* CoinIdentifierResponse.swift in Sources */,
 				1C60D9FD28E8C70A00B675DA /* RequestDescription.swift in Sources */,
 				1C590F3D29EC96D800D700D1 /* ComposeUserService.swift in Sources */,
 				1C01EDC129EEA1860088AEE7 /* UsersAPIDataManagerProtocol.swift in Sources */,

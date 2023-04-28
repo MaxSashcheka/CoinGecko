@@ -56,33 +56,23 @@ final class AccountWalletsViewController: ViewController {
     override func arrangeSubviews() {
         super.arrangeSubviews()
         
-        view.addSubview(walletsTableView)
-        walletsTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        placeholderView.addSubviews([placeholderTitleLabel, placeholderButton])
+        placeholderTitleLabel.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
         }
-        
-//        view.addSubview(placeholderView)
-//        placeholderView.snp.makeConstraints { make in
-//            make.leading.trailing.equalToSuperview().inset(45)
-//            make.centerY.equalToSuperview()
-//        }
-//
-//        placeholderView.addSubviews([placeholderTitleLabel, placeholderButton])
-//        placeholderTitleLabel.snp.makeConstraints { make in
-//            make.top.leading.trailing.equalToSuperview()
-//        }
-//        placeholderButton.snp.makeConstraints { make in
-//            make.height.equalTo(50)
-//            make.leading.trailing.bottom.equalToSuperview()
-//            make.top.equalTo(placeholderTitleLabel.snp.bottom).offset(20)
-//        }
+        placeholderButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(placeholderTitleLabel.snp.bottom).offset(20)
+        }
     }
     
     override func bindData() {
         super.bindData()
         
         viewModel.walletsViewModels
-            .sink { [weak self] _ in
+            .sink { [weak self] in
+                self?.updateTableVisibillity(isVisible: !$0.isEmpty)
                 self?.walletsTableView.reloadData()
             }
             .store(in: &cancellables)
@@ -98,6 +88,23 @@ final class AccountWalletsViewController: ViewController {
         super.viewDidLayoutSubviews()
         
         placeholderButton.layer.cornerRadius = placeholderButton.bounds.height / 2
+    }
+    
+    private func updateTableVisibillity(isVisible: Bool) {
+        if isVisible {
+            placeholderView.removeFromSuperview()
+            view.addSubview(walletsTableView)
+            walletsTableView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+        } else {
+            walletsTableView.removeFromSuperview()
+            view.addSubview(placeholderView)
+            placeholderView.snp.makeConstraints { make in
+                make.leading.trailing.equalToSuperview().inset(45)
+                make.centerY.equalToSuperview()
+            }
+        }
     }
 }
 

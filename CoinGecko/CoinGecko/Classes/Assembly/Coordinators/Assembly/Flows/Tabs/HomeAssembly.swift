@@ -39,6 +39,21 @@ extension HomeAssembly {
         return viewController
     }
     
+    static func walletDetailsScreen(
+        walletId: UUID,
+        transitions: WalletDetailsViewController.ViewModel.Transitions,
+        resolver: DependencyResolver
+    ) -> WalletDetailsViewController {
+        let viewController = WalletDetailsViewController()
+        let viewModel = WalletDetailsViewController.ViewModel(
+            walletId: walletId,
+            transitions: transitions,
+            services: .inject(from: resolver)
+        )
+        viewController.viewModel = viewModel
+        
+        return viewController
+    }
 }
 
 // MARK: - DI
@@ -53,5 +68,12 @@ extension HomeViewController.ViewModel.Services: DependencyInjectable {
 extension AccountWalletsViewController.ViewModel.Services: DependencyInjectable {
     static func inject(from resolver: DependencyResolver) -> Self {
         Self(wallets: ServicesAssembly.wallets(resolver: resolver))
+    }
+}
+
+extension WalletDetailsViewController.ViewModel.Services: DependencyInjectable {
+    static func inject(from resolver: DependencyResolver) -> Self {
+        Self(wallets: ServicesAssembly.wallets(resolver: resolver),
+             coins: ServicesAssembly.coins(resolver: resolver))
     }
 }

@@ -11,9 +11,11 @@ import UIKit.UIColor
 
 extension WalletTableCell {
     final class ViewModel {
+        let id: UUID
         let walletViewModel = WalletView.ViewModel()
         
-        init(title: String, color: UIColor) {
+        init(id: UUID, title: String, color: UIColor) {
+            self.id = id
             self.walletViewModel.title.send(title)
             self.walletViewModel.color.send(color)
         }

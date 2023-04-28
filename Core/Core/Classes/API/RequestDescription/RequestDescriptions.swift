@@ -12,7 +12,7 @@ import Foundation
 public extension RequestDescription {
     enum BasePath {
         static let coinGecko = "https://api.coingecko.com/api/v3"
-        static let localhost = "https://3f01-2a00-1760-8006-5b-b50c-4a0f-3fcd-2372.eu.ngrok.io"
+        static let localhost = "https://4b97-2a00-1760-8006-5b-58f7-137a-6e0d-9284.eu.ngrok.io"
     }
     
     class Coins {
@@ -113,6 +113,22 @@ public extension RequestDescription {
         public static let deleteWalletById = RequestDescription(
             path: basePath + "/{id}",
             method: .delete,
+            isAuthRequired: false
+        )
+    }
+    
+    class CoinsIdentifier {
+        private static let basePath = BasePath.localhost + "/coins"
+        
+        public static let createCoin = RequestDescription(
+            path: basePath,
+            method: .post,
+            isAuthRequired: false
+        )
+        
+        public static let getCoinsByWalletId = RequestDescription(
+            path: basePath + "/{id}",
+            method: .get,
             isAuthRequired: false
         )
     }

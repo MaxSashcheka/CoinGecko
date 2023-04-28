@@ -18,29 +18,28 @@ final class CoinDetailsCoordinator: NavigationCoordinator {
     
     init(parent: Coordinator?,
          transitions: Transitions,
-         coinId: String,
-         isAddToPortfolioEnabled: Bool = true) {
+         coinId: String) {
         self.transitions = transitions
         
         super.init(parent: parent)
         
-        showCoinDetailInfoScreen(coinId: coinId, isAddToPortfolioEnabled: isAddToPortfolioEnabled)
+        showCoinDetailInfoScreen(coinId: coinId)
     }
 }
 
 // MARK: - CoinDetailsCoordinator+SreensAssembly
 extension CoinDetailsCoordinator {
-    func showCoinDetailInfoScreen(coinId: String, isAddToPortfolioEnabled: Bool) {
+    func showCoinDetailInfoScreen(coinId: String) {
         let transitions = CoinDetailsViewController.ViewModel.Transitions(
             close: { [weak self] in self?.transitions.close() },
-            browser: showInAppWebBrowserTransition
+            browser: showInAppWebBrowserTransition,
+            addToWallet: { [weak self] in self?.showAddCoinCoordinator(coinId: coinId) }
         )
         
         let screen = CommonAssembly.coinDetailsScreen(
             transitions: transitions,
             resolver: self,
-            coinId: coinId,
-            isAddToPortfolioEnabled: isAddToPortfolioEnabled
+            coinId: coinId
         )
 
         pushViewController(screen, animated: false)
@@ -48,3 +47,6 @@ extension CoinDetailsCoordinator {
 }
 // MARK: - CoinDetailsCoordinator+InAppWebBrowserPresentable
 extension CoinDetailsCoordinator: InAppWebBrowserPresentable { }
+
+// MARK: - CoinDetailsCoordinator+AddCoinCoordinatorPresentable
+extension CoinDetailsCoordinator: AddCoinCoordinatorPresentable { }

@@ -37,7 +37,13 @@ extension HomeCoordinator {
     
     func showAccountWalletsScreen() {
         let transitions = AccountWalletsViewController.ViewModel.Transitions(
-            composeWallet: { [weak self] in self?.showComposeWalletCoordinator(completion: $0) }
+            composeWallet: { [weak self] in self?.showComposeWalletCoordinator(completion: $0) },
+            walletDetails: { [weak self] id, completion in
+                self?.showWalletDetailsScreen(walletId: id, completion: { [weak self] in
+                    self?.popViewController(animated: true)
+                    completion()
+                })
+            }
         )
         
         let screen = HomeAssembly.accountWalletsScreen(
@@ -58,6 +64,20 @@ extension HomeCoordinator {
             completion: completion
         )
         presentModal(coordinator: coordinator, presentationStyle: .fullScreen)
+    }
+    
+    func showWalletDetailsScreen(walletId: UUID, completion: @escaping Closure.Void) {
+        let transitions = WalletDetailsViewController.ViewModel.Transitions(
+            completion: completion
+        )
+        
+        let screen = HomeAssembly.walletDetailsScreen(
+            walletId: walletId,
+            transitions: transitions,
+            resolver: self
+        )
+        
+        pushViewController(screen)
     }
 }
 

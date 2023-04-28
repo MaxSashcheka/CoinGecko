@@ -90,4 +90,14 @@ public extension ParametersProvider {
             "colorHex": colorHex
         ]
     }
+    
+    static func createCoinIdentifier(id: String,
+                                     identifier: String,
+                                     walletId: String) -> [String: String] {
+        [
+            "id": id,
+            "identifier": identifier,
+            "walletId": walletId
+        ]
+    }
 }

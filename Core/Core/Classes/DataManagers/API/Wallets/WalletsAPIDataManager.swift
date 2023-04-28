@@ -63,4 +63,40 @@ public final class WalletsAPIDataManager: APIDataManager, WalletsAPIDataManagerP
             failure: failure
         )
     }
+    
+    public func getCoinsIdentifiers(walletId: UUID,
+                                    success: @escaping ([String]) -> Void,
+                                    failure: @escaping Closure.GeneralError) {
+        let endpoint = RequestDescription.CoinsIdentifier.getCoinsByWalletId
+            .replacingInlineArguments(
+                .id(walletId.uuidString)
+            )
+        
+        execute(
+            request: makeDataRequest(for: endpoint),
+            responseType: [CoinIdentifierResponse].self,
+            success: { success($0.map { $0.identifier }) },
+            failure: failure
+        )
+    }
+    
+    public func createCoinIdentifier(walletId: UUID,
+                                     identifier: String,
+                                     success: @escaping Closure.Void,
+                                     failure: @escaping Closure.GeneralError) {
+        let endpoint = RequestDescription.CoinsIdentifier.createCoin
+            .replacingParameters(
+                .createCoinIdentifier(
+                    id: UUID().uuidString,
+                    identifier: identifier,
+                    walletId: walletId.uuidString
+                )
+            )
+        
+        execute(
+            request: makeDataRequest(for: endpoint),
+            success: success,
+            failure: failure
+        )
+    }
 }

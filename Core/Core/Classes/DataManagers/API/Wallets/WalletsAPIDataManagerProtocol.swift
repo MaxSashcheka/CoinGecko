@@ -22,4 +22,13 @@ public protocol WalletsAPIDataManagerProtocol {
     func deleteWallet(id: UUID,
                       success: @escaping Closure.Wallet,
                       failure: @escaping Closure.GeneralError)
+    
+    func getCoinsIdentifiers(walletId: UUID,
+                             success: @escaping ([String]) -> Void,
+                             failure: @escaping Closure.GeneralError)
+    
+    func createCoinIdentifier(walletId: UUID,
+                              identifier: String,
+                              success: @escaping Closure.Void,
+                              failure: @escaping Closure.GeneralError)
 }

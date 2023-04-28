@@ -41,6 +41,16 @@ public final class WalletsService: WalletsServiceProtocol {
         )
     }
     
+    public func getWallet(id: UUID,
+                          success: @escaping Closure.Wallet,
+                          failure: @escaping Closure.GeneralError) {
+        guard let wallet = walletsCacheDataManager.cachedWallets[id] else {
+            failure(.defaultError)
+            return
+        }
+        success(wallet)
+    }
+    
     public func getWallets(fromCache: Bool,
                            success: @escaping Closure.WalletsArray,
                            failure: @escaping Closure.GeneralError) {
@@ -70,6 +80,28 @@ public final class WalletsService: WalletsServiceProtocol {
                 self?.walletsCacheDataManager.cachedWallets.removeItem(with: $0.id)
                 success()
             },
+            failure: failure
+        )
+    }
+    
+    public func getCoinsIdentifiers(walletId: UUID,
+                                    success: @escaping ([String]) -> Void,
+                                    failure: @escaping Closure.GeneralError) {
+        walletsAPIDataManager.getCoinsIdentifiers(
+            walletId: walletId,
+            success: success,
+            failure: failure
+        )
+    }
+    
+    public func createCoinIdentifier(walletId: UUID,
+                                     identifier: String,
+                                     success: @escaping Closure.Void,
+                                     failure: @escaping Closure.GeneralError) {
+        walletsAPIDataManager.createCoinIdentifier(
+            walletId: walletId,
+            identifier: identifier,
+            success: success,
             failure: failure
         )
     }

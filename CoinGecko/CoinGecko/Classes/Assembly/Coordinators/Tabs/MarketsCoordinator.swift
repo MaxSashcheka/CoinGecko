@@ -33,9 +33,7 @@ extension MarketsCoordinator {
     
     func showSearchScreen() {
         let transitions = SearchViewController.ViewModel.Transitions(
-            coinDetails: { [weak self] in
-                self?.showCoinDetailsCoordinator(coinId: $0, isAddToPortfolioEnabled: false)
-            }
+            coinDetails: { [weak self] in self?.showCoinDetailsCoordinator(coinId: $0) }
         )
         let screen = MarketsAssembly.searchScreen(
             transitions: transitions,
@@ -45,15 +43,14 @@ extension MarketsCoordinator {
         pushViewController(screen, animated: true)
     }
     
-    func showCoinDetailsCoordinator(coinId: String, isAddToPortfolioEnabled: Bool = true) {
+    func showCoinDetailsCoordinator(coinId: String) {
         let transitions = CoinDetailsCoordinator.Transitions(
             close: { [weak self] in self?.dismissModalCoordinator() }
         )
         let coordinator = CoinDetailsCoordinator(
             parent: self,
             transitions: transitions,
-            coinId: coinId,
-            isAddToPortfolioEnabled: isAddToPortfolioEnabled
+            coinId: coinId
         )
         presentModal(coordinator: coordinator, presentationStyle: .fullScreen)
     }

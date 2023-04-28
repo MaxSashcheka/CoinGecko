@@ -122,21 +122,25 @@ final class CoinDetailsViewController: ViewController {
             make.top.equalTo(chartView.snp.bottom).offset(25)
             make.centerX.equalToSuperview()
             make.height.equalTo(33)
-            make.bottom.equalToSuperview().offset(-20)
         }
         
-        if viewModel.isAddToPortfolioEnabled {
-            scrollView.addSubview(addToPortfolioButton)
-            addToPortfolioButton.snp.makeConstraints { make in
-                make.leading.trailing.equalTo(buttonsCollectionView)
-                make.top.equalTo(buttonsCollectionView.snp.bottom).offset(35)
-                make.height.equalTo(55)
-            }
+        scrollView.addSubview(addToPortfolioButton)
+        addToPortfolioButton.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(buttonsCollectionView)
+            make.top.equalTo(buttonsCollectionView.snp.bottom).offset(35)
+            make.bottom.equalToSuperview().offset(-20)
+            make.height.equalTo(55)
         }
     }
     
     override func bindData() {
         super.bindData()
+        
+        addToPortfolioButton.tapPublisher
+            .sink { [weak viewModel] in
+                viewModel?.didTapAddToWalletButton()
+            }
+            .store(in: &cancellables)
         
         viewModel.buttonsCollectionViewModel.selectTimeIntervalSubject
             .removeDuplicates()
@@ -160,6 +164,10 @@ final class CoinDetailsViewController: ViewController {
         viewModel.isPriceChangePositive
             .map { $0 ? UIColor.systemGreen : .systemRed }
             .bind(to: \.textColor, on: priceChangeLabel)
+            .store(in: &cancellables)
+        
+        viewModel.isAddToPortfolioButtonHidden
+            .bind(to: \.isHidden, on: addToPortfolioButton)
             .store(in: &cancellables)
     }
     
