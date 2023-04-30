@@ -17,7 +17,7 @@ final class WalletView: View {
     
     private let countLabel: Label = .make {
         $0.font = .systemFont(ofSize: 25, weight: .medium)
-        $0.text = "0 coins"
+        $0.text = "0 \(L10n.AccountWallets.coins)"
     }
     
     var viewModel: ViewModel? {
@@ -51,7 +51,7 @@ private extension WalletView {
             .store(in: &cancellables)
         
         viewModel.coinsCount
-            .map { $0.description + " coins" }
+            .map { $0.description + L10n.AccountWallets.coins }
             .bind(to: \.text, on: countLabel)
             .store(in: &cancellables)
         

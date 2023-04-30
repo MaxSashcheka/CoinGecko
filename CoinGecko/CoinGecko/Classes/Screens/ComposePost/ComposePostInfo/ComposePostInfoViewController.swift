@@ -11,6 +11,7 @@ import SnapKit
 import Utils
 
 final class ComposePostInfoViewController: ViewController {
+    private typealias Texts = L10n.CreatePost
     
     // MARK: - UI Components
     
@@ -20,7 +21,7 @@ final class ComposePostInfoViewController: ViewController {
     
     private let contentTitleLabel: Label = .make {
         $0.font = .systemFont(ofSize: 20, weight: .medium)
-        $0.text = "Write post content"
+        $0.text = Texts.Content.title
     }
     
     private let contentTextView: UITextView = .make {
@@ -35,13 +36,13 @@ final class ComposePostInfoViewController: ViewController {
     private let contentHintLabel: Label = .make {
         $0.font = .systemFont(ofSize: 15, weight: .medium)
         $0.textColor = Assets.Colors.red.color
-        $0.text = "Content should not be nil"
+        $0.text = Texts.Content.hint
         $0.isHidden = true
     }
     
     private let continueButton: Button = .make {
         $0.backgroundColor = Assets.Colors.blue.color.withAlphaComponent(0.7)
-        $0.setTitle("Continue", for: .normal)
+        $0.setTitle(Texts.continueButton, for: .normal)
     }
     
     override var backgroundColor: UIColor { Assets.Colors.white.color }
@@ -51,7 +52,7 @@ final class ComposePostInfoViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Create new Post"
+        title = Texts.title
         
         navigationItem.leftBarButtonItem = UIBarButtonItem.barButtonItem(
             image: Assets.Images.cross.image,

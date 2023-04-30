@@ -12,13 +12,15 @@ import Utils
 
 extension AddCoinViewController {
     final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+        private typealias Texts = L10n.AddCoin.Amount
+        
         private let coinId: String
         private let services: Services
         let transitions: Transitions
         
         let amountTitledTextFieldViewModel = TitledTextField.ViewModel(
-            title: "Enter amount",
-            errorHintText: "Amount should not be empty and have correct format"
+            title: Texts.title,
+            errorHintText: Texts.hint
         )
         
         let walletsViewModels = CurrentValueSubject<[AddCoinWalletTableCell.ViewModel], Never>([])

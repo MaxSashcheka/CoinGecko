@@ -13,29 +13,31 @@ import Utils
 
 extension HomeViewController {
     final class SignInPlaceholderView: View {
+        private typealias Texts = L10n.Home.Placeholder
         
         // MARK: - UI Components
         
         private let titleLabel: Label = .make {
             $0.textColor = Assets.Colors.black.color
             $0.font = .systemFont(ofSize: 25, weight: .semibold)
-            $0.text = "You are not logged"
+            $0.text = Texts.title
             $0.textAlignment = .center
         }
         
         private let descriptionLabel: Label = .make {
             $0.textColor = Assets.Colors.darkGray.color
             $0.font = .systemFont(ofSize: 23, weight: .regular)
-            $0.text = "Please log in"
+            $0.text = Texts.description
+            $0.numberOfLines = .zero
             $0.textAlignment = .center
         }
         
         private let signInButton: Button = .make {
-            $0.setTitle("Sign In", for: .normal)
+            $0.setTitle(Texts.signIn, for: .normal)
         }
         
         private let signUpButton: Button = .make {
-            $0.setTitle("Sign Up", for: .normal)
+            $0.setTitle(Texts.signUp, for: .normal)
         }
         
         var buttons: [Button] { [signInButton, signUpButton] }

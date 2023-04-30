@@ -12,13 +12,14 @@ import SnapKit
 import Utils
 
 final class AccountWalletsViewController: ViewController {
+    private typealias Texts = L10n.AccountWallets
     
     override var backgroundColor: UIColor { Assets.Colors.white.color }
     
     private let placeholderView = View()
     
     private let placeholderTitleLabel: Label = .make {
-        $0.text = "No wallets yet."
+        $0.text = Texts.Placeholder.title
         $0.font = .systemFont(ofSize: 25, weight: .medium)
         $0.textAlignment = .center
         $0.textColor = .darkGray
@@ -26,7 +27,7 @@ final class AccountWalletsViewController: ViewController {
     
     private let placeholderButton: Button = .make {
         $0.backgroundColor = Assets.Colors.blue.color.withAlphaComponent(0.7)
-        $0.setTitle("Add wallet", for: .normal)
+        $0.setTitle(Texts.Placeholder.button, for: .normal)
     }
     
     private let walletsTableView: TableView = .make {
@@ -54,7 +55,7 @@ final class AccountWalletsViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Account Wallets"
+        title = Texts.title
         
         navigationItem.rightBarButtonItems = [createWalletBarButtonItem, reloadDataBarButtonItem]
 

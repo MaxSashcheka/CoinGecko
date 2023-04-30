@@ -1,0 +1,97 @@
+"tabbar.title.trending" = "Тренды";
+"tabbar.title.markets" = "Рынок";
+"tabbar.title.news" = "Новости";
+"tabbar.title.home" = "Дом";
+
+"range_button.title.hour" = "1 Ч";
+"range_button.title.day" = "24 Ч";
+"range_button.title.week" = "1 Н";
+"range_button.title.month" = "1 М";
+"range_button.title.half_year" = "6 М";
+"range_button.title.year" = "1 Г";
+"range_button.title.all" = "Все";
+
+"trending.title" = "Популярные монеты";
+
+"coin_details.add_button.title" = "Добавить в кошелек";
+
+"add_coin.title" = "Выберите кошелек";
+"add_coin.button.done" = "Добавить";
+"add_coin.amount.title" = "Введите количество";
+"add_coin.amount.hint" = "Неправильный формат или пустое количество";
+
+"markets.status_title.up" = "Рост рынка";
+"markets.status_title.down" = "Спад рынка";
+"markets.time_placeholder.title" = "За последние 24 часа";
+"markets.button.all" = "Все";
+"markets.button.gainer" = "Растущие";
+"markets.button.loser" = "Падающие";
+
+"search.title" = "Поиск";
+"search.text_field.placeholder.title" = "Название криптовалют";
+"search.table.title.crypto_coin" = "Крипто монеты";
+"search.table.title.nft" = "NFTS";
+
+"news_list.title" = "Новости";
+
+"home.title" = "Дом";
+"home.table_row.id" = "Идентификатор";
+"home.table_row.username" = "Имя пользователя";
+"home.table_row.login" = "Логин";
+"home.table_row.email" = "Почта";
+"home.table_row.user_role" = "Роль пользователя";
+"home.table_row.wallets" = "Список кошельков";
+"home.table_row.personal_web_page" = "Веб-страница";
+"home.table_row.log_out" = "Выйти из аккаунта";
+"home.placeholder.title" = "Вы не авторизированы";
+"home.placeholder.description" = "Войдите в аккаунт или создайте новый";
+"home.placeholder.sign_in" = "Войти в аккаунт";
+"home.placeholder.sign_up" = "Зарегистрироваться";
+
+"sign_in.title" = "Вход в аккаунт";
+"sign_in.login.button" = "Войти";
+"sign_in.login.title" = "Укажите логин";
+"sign_in.login.hint" = "Логин не должен быть пустым";
+"sign_in.password.title" = "Укажите пароль";
+"sign_in.password.hint" = "Пароль не должен быть пустым";
+
+"create_user.title" = "Создать пользователя";
+"create_user.continue_button" = "Продолжить";
+"create_user.username.title" = "Укажите имя пользователя";
+"create_user.username.hint" = "Имя пользователя не должно быть пустым";
+"create_user.login.title" = "Укажите логин";
+"create_user.login.hint" = "Логин не должен быть пустым";
+"create_user.password.title" = "Укажите пароль";
+"create_user.password.hint" = "Пароль не должен быть пустым";
+"create_user.email.title" = "Укажите почту";
+"create_user.email.hint" = "Почта не должна быть пустой";
+"create_user.personal_web_page.option_title" = "Хотите ли вы добавить веб-страницу ?";
+"create_user.personal_web_page.title" = "Укажите ссылку на веб-страницу";
+"create_user.personal_web_page.hint" = "Веб-страница не должна быть пустой";
+
+"create_photo.button.pick_photo" = "Выбрать фото";
+"create_photo.button.finish" = "Закончить";
+"create_photo.title.create_post" = "Добавить фото поста";
+"create_photo.title.create_user" = "Добавить фото пользователя";
+
+"create_post.title" = "Создать новый пост";
+"create_post.continue_button" = "Продолжить";
+"create_post.content.title" = "Укажите содержимое поста";
+"create_post.content.hint" = "Содержимое поста не должно быть пустым";
+"create_post.title_text_field.title" = "Укажите название поста";
+"create_post.title_text_field.hint" = "Название поста не должно быть пустым";
+
+"post_details.title" = "Описание поста";
+
+"account_wallets.title" = "Кошельки аккаунта";
+"account_wallets.placeholder.title" = "Кошельков нет";
+"account_wallets.placeholder.button" = "Добавить кошелек";
+"account_wallets.amount" = "Количество: ";
+"account_wallets.coins" = " монет";
+
+"compose_wallet.title" = "Создать кошелек";
+"compose_wallet.button.pick_color" = "Выбрат цвет фона";
+"compose_wallet.button.finish" = "Закончить";
+"compose_wallet.preview_title" = "Превью кошелька";
+"compose_wallet.name.title" = "Укажите название кошелька";
+"compose_wallet.name.hint" = "Название кошелька не должно быть пустым";

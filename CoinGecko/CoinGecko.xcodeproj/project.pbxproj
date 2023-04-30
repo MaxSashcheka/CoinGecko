@@ -192,6 +192,7 @@
 		1C2E1CC329FBE4E40048C5B8 /* AddCoinCoordinatorPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinCoordinatorPresentable.swift; sourceTree = "<group>"; };
 		1C2E1CC629FBE7860048C5B8 /* AddCoinWalletTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinWalletTableCell.swift; sourceTree = "<group>"; };
 		1C2E1CC829FBE78B0048C5B8 /* AddCoinWalletTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinWalletTableCellViewModel.swift; sourceTree = "<group>"; };
+		1C3F96BE29FEDB1B009A7729 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1C42879F28E0732100273979 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		1C4287A128E0732600273979 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 		1C4287A628E0AFD800273979 /* RangePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangePickerButton.swift; sourceTree = "<group>"; };
@@ -1046,6 +1047,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 1CD6958128CFBDA5007AE077;
 			productRefGroup = 1CD6958B28CFBDA5007AE077 /* Products */;
@@ -1294,6 +1296,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1CD695E228CFD364007AE077 /* en */,
+				1C3F96BE29FEDB1B009A7729 /* ru */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1305,6 +1308,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -1365,6 +1369,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

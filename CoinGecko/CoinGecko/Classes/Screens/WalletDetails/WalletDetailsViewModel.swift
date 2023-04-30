@@ -69,7 +69,7 @@ private extension WalletDetailsViewController.ViewModel {
                     name: $0.name,
                     symbol: $0.symbol.uppercased(),
                     currentPrice: roundedValueString($0.currentPrice),
-                    priceChangePercentage: "Amount " + preciseRound(Double(services.wallets.coinAmount(for: $0.id)), precision: .hundredths).description
+                    priceChangePercentage: L10n.AccountWallets.amount + preciseRound(Double(services.wallets.coinAmount(for: $0.id)), precision: .hundredths).description
                 )
             }
         )

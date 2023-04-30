@@ -40,7 +40,7 @@ final class PostDetailsViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Post Details"
+        title = L10n.PostDetails.title
         
         navigationItem.leftBarButtonItem = UIBarButtonItem.barButtonItem(
             image: Assets.Images.cross.image,

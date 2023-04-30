@@ -11,6 +11,7 @@ import SnapKit
 import Utils
 
 final class SignInViewController: ViewController {
+    private typealias Texts = L10n.SignIn
     
     // MARK: - UI Components
     
@@ -20,7 +21,7 @@ final class SignInViewController: ViewController {
     
     private let loginButton: Button = .make {
         $0.backgroundColor = Assets.Colors.blue.color.withAlphaComponent(0.7)
-        $0.setTitle("Log in", for: .normal)
+        $0.setTitle(Texts.Login.button, for: .normal)
     }
     
     override var backgroundColor: UIColor { Assets.Colors.white.color }
@@ -37,7 +38,7 @@ final class SignInViewController: ViewController {
         
         activateEndEditingTap(at: view)
         
-        title = "Sign In"
+        title = Texts.title
         
         viewModel.errorHandlerClosure = errorHandler
     }

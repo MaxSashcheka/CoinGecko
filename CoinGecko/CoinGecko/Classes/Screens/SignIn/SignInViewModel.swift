@@ -12,17 +12,19 @@ import Utils
 
 extension SignInViewController {
     final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+        private typealias Texts = L10n.SignIn
+        
         private let services: Services
         let transitions: Transitions
         
         let loginTitledTextFieldViewModel = TitledTextField.ViewModel(
-            title: "Write login",
-            errorHintText: "Login should not be empty"
+            title: Texts.Login.title,
+            errorHintText: Texts.Login.hint
         )
         
         let passwordTitledTextFieldViewModel = TitledTextField.ViewModel(
-            title: "Write password",
-            errorHintText: "Password should not be empty",
+            title: Texts.Password.title,
+            errorHintText: Texts.Password.hint,
             isSecureTextEntry: true
         )
         

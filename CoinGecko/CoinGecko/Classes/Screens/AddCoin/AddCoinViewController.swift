@@ -12,6 +12,7 @@ import SnapKit
 import Utils
 
 final class AddCoinViewController: ViewController {
+    private typealias Texts = L10n.AddCoin
     
     private let headerView = View()
     
@@ -31,7 +32,7 @@ final class AddCoinViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Choose wallet"
+        title = Texts.title
         
         activateEndEditingTap(at: view)
         
@@ -41,7 +42,7 @@ final class AddCoinViewController: ViewController {
         )
         
         navigationItem.rightBarButtonItem = UIBarButtonItem.barButtonItem(
-            title: "Done",
+            title: Texts.Button.done,
             action: { [weak viewModel] in viewModel?.didTapDoneButton() }
         )
         

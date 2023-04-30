@@ -11,6 +11,7 @@ import SnapKit
 import Utils
 
 final class ComposeUserInfoViewController: ViewController {
+    private typealias Texts = L10n.CreateUser
     
     // MARK: - UI Components
     
@@ -23,7 +24,7 @@ final class ComposeUserInfoViewController: ViewController {
     
     private let continueButton: Button = .make {
         $0.backgroundColor = Assets.Colors.blue.color.withAlphaComponent(0.7)
-        $0.setTitle("Continue", for: .normal)
+        $0.setTitle(Texts.continueButton, for: .normal)
     }
     
     private let usernameTitledTextField = TitledTextField()
@@ -56,7 +57,7 @@ final class ComposeUserInfoViewController: ViewController {
         
         activateEndEditingTap(at: view)
         
-        title = "Create User"
+        title = Texts.title
         
         navigationItem.leftBarButtonItem = UIBarButtonItem.barButtonItem(
             image: Assets.Images.cross.image,

@@ -12,8 +12,8 @@ import Utils
 
 extension HomeViewController {
     final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, PriceConvertable {
+        private typealias Texts = L10n.Home.TableRow
         typealias ProfileCellViewModel = HomeViewController.ProfileTableCell.ViewModel
-        private typealias Texts = L10n.Home.NetworthCard.Status
         
         let placeholderViewModel = HomeViewController.SignInPlaceholderView.ViewModel()
         
@@ -89,17 +89,17 @@ private extension HomeViewController.ViewModel {
         var infoViewModels = [[BaseProfileTableCellViewModel]]()
         infoViewModels.append(
             [
-                ProfileCellViewModel(title: "ID", description: String(user.id.uuidString.prefix(8))),
-                ProfileCellViewModel(title: "Username", description: user.name),
-                ProfileCellViewModel(title: "Login", description: user.login),
-                ProfileCellViewModel(title: "Email", description: user.email),
-                ProfileCellViewModel(title: "User Role", description: user.role.rawValue, isSeparatorLineHidden: true)
+                ProfileCellViewModel(title: Texts.id, description: String(user.id.uuidString.prefix(8))),
+                ProfileCellViewModel(title: Texts.username, description: user.name),
+                ProfileCellViewModel(title: Texts.login, description: user.login),
+                ProfileCellViewModel(title: Texts.email, description: user.email),
+                ProfileCellViewModel(title: Texts.userRole, description: user.role.rawValue, isSeparatorLineHidden: true)
             ]
         )
         
         infoViewModels.append([
             ProfileCellViewModel(
-                title: "Wallets",
+                title: Texts.wallets,
                 description: .empty,
                 isSeparatorLineHidden: true,
                 type: .action,
@@ -110,7 +110,7 @@ private extension HomeViewController.ViewModel {
         if !user.webPageURL.isNil {
             infoViewModels.append([
                 ProfileCellViewModel(
-                    title: "Personal Web Page",
+                    title: Texts.personalWebPage,
                     description: .empty,
                     isSeparatorLineHidden: true,
                     type: .action,
@@ -124,7 +124,7 @@ private extension HomeViewController.ViewModel {
         
         infoViewModels.append([
             HomeViewController.ActionTableCell.ViewModel(
-                title: "Log Out",
+                title: Texts.logOut,
                 selectClosure: { [weak self] in
                     self?.services.users.clearCurrentUser()
                     self?.fetchCurrentUserData()

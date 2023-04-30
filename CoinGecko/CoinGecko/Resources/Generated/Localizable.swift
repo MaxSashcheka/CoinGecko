@@ -10,59 +10,170 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
+  internal enum AccountWallets {
+    /// Amount: 
+    internal static let amount = L10n.tr("Localizable", "account_wallets.amount", fallback: #"Amount: "#)
+    ///  coins
+    internal static let coins = L10n.tr("Localizable", "account_wallets.coins", fallback: #" coins"#)
+    /// Account Wallets
+    internal static let title = L10n.tr("Localizable", "account_wallets.title", fallback: #"Account Wallets"#)
+    internal enum Placeholder {
+      /// Add wallet
+      internal static let button = L10n.tr("Localizable", "account_wallets.placeholder.button", fallback: #"Add wallet"#)
+      /// No wallets yet.
+      internal static let title = L10n.tr("Localizable", "account_wallets.placeholder.title", fallback: #"No wallets yet."#)
+    }
+  }
+  internal enum AddCoin {
+    /// Choose wallet
+    internal static let title = L10n.tr("Localizable", "add_coin.title", fallback: #"Choose wallet"#)
+    internal enum Amount {
+      /// Amount should not be empty and have correct format
+      internal static let hint = L10n.tr("Localizable", "add_coin.amount.hint", fallback: #"Amount should not be empty and have correct format"#)
+      /// Enter amount
+      internal static let title = L10n.tr("Localizable", "add_coin.amount.title", fallback: #"Enter amount"#)
+    }
+    internal enum Button {
+      /// Done
+      internal static let done = L10n.tr("Localizable", "add_coin.button.done", fallback: #"Done"#)
+    }
+  }
   internal enum CoinDetails {
     internal enum AddButton {
-      /// Add to portfolio
-      internal static let title = L10n.tr("Localizable", "coin_details.add_button.title", fallback: #"Add to portfolio"#)
+      /// Add to wallet
+      internal static let title = L10n.tr("Localizable", "coin_details.add_button.title", fallback: #"Add to wallet"#)
+    }
+  }
+  internal enum ComposeWallet {
+    /// Wallet Preview
+    internal static let previewTitle = L10n.tr("Localizable", "compose_wallet.preview_title", fallback: #"Wallet Preview"#)
+    /// Create new Wallet
+    internal static let title = L10n.tr("Localizable", "compose_wallet.title", fallback: #"Create new Wallet"#)
+    internal enum Button {
+      /// Finish
+      internal static let finish = L10n.tr("Localizable", "compose_wallet.button.finish", fallback: #"Finish"#)
+      /// Pick background color
+      internal static let pickColor = L10n.tr("Localizable", "compose_wallet.button.pick_color", fallback: #"Pick background color"#)
+    }
+    internal enum Name {
+      /// Wallet title should not be empty
+      internal static let hint = L10n.tr("Localizable", "compose_wallet.name.hint", fallback: #"Wallet title should not be empty"#)
+      /// Write wallet title
+      internal static let title = L10n.tr("Localizable", "compose_wallet.name.title", fallback: #"Write wallet title"#)
+    }
+  }
+  internal enum CreatePhoto {
+    internal enum Button {
+      /// Finish
+      internal static let finish = L10n.tr("Localizable", "create_photo.button.finish", fallback: #"Finish"#)
+      /// Choose photo
+      internal static let pickPhoto = L10n.tr("Localizable", "create_photo.button.pick_photo", fallback: #"Choose photo"#)
+    }
+    internal enum Title {
+      /// Create Post Photo
+      internal static let createPost = L10n.tr("Localizable", "create_photo.title.create_post", fallback: #"Create Post Photo"#)
+      /// Create User Photo
+      internal static let createUser = L10n.tr("Localizable", "create_photo.title.create_user", fallback: #"Create User Photo"#)
+    }
+  }
+  internal enum CreatePost {
+    /// Create new Post
+    internal static let continueButton = L10n.tr("Localizable", "create_post.continue_button", fallback: #"Create new Post"#)
+    /// Create new Post
+    internal static let title = L10n.tr("Localizable", "create_post.title", fallback: #"Create new Post"#)
+    internal enum Content {
+      /// Content should not be empty
+      internal static let hint = L10n.tr("Localizable", "create_post.content.hint", fallback: #"Content should not be empty"#)
+      /// Write post content
+      internal static let title = L10n.tr("Localizable", "create_post.content.title", fallback: #"Write post content"#)
+    }
+    internal enum TitleTextField {
+      /// Post title should not be empty
+      internal static let hint = L10n.tr("Localizable", "create_post.title_text_field.hint", fallback: #"Post title should not be empty"#)
+      /// Write post title
+      internal static let title = L10n.tr("Localizable", "create_post.title_text_field.title", fallback: #"Write post title"#)
+    }
+  }
+  internal enum CreateUser {
+    /// Continue
+    internal static let continueButton = L10n.tr("Localizable", "create_user.continue_button", fallback: #"Continue"#)
+    /// Create User
+    internal static let title = L10n.tr("Localizable", "create_user.title", fallback: #"Create User"#)
+    internal enum Email {
+      /// Email should not be empty
+      internal static let hint = L10n.tr("Localizable", "create_user.email.hint", fallback: #"Email should not be empty"#)
+      /// Write email
+      internal static let title = L10n.tr("Localizable", "create_user.email.title", fallback: #"Write email"#)
+    }
+    internal enum Login {
+      /// Login should not be empty
+      internal static let hint = L10n.tr("Localizable", "create_user.login.hint", fallback: #"Login should not be empty"#)
+      /// Write login
+      internal static let title = L10n.tr("Localizable", "create_user.login.title", fallback: #"Write login"#)
+    }
+    internal enum Password {
+      /// Password should not be empty
+      internal static let hint = L10n.tr("Localizable", "create_user.password.hint", fallback: #"Password should not be empty"#)
+      /// Write password
+      internal static let title = L10n.tr("Localizable", "create_user.password.title", fallback: #"Write password"#)
+    }
+    internal enum PersonalWebPage {
+      /// Web page url should not be empty
+      internal static let hint = L10n.tr("Localizable", "create_user.personal_web_page.hint", fallback: #"Web page url should not be empty"#)
+      /// Do your want to add
+      /// personal web page link?
+      internal static let optionTitle = L10n.tr("Localizable", "create_user.personal_web_page.option_title", fallback: #"Do your want to add\npersonal web page link?"#)
+      /// Paste Your personal web page url
+      internal static let title = L10n.tr("Localizable", "create_user.personal_web_page.title", fallback: #"Paste Your personal web page url"#)
+    }
+    internal enum Username {
+      /// Username should not be empty
+      internal static let hint = L10n.tr("Localizable", "create_user.username.hint", fallback: #"Username should not be empty"#)
+      /// Write username
+      internal static let title = L10n.tr("Localizable", "create_user.username.title", fallback: #"Write username"#)
     }
   }
   internal enum Home {
-    internal enum NavigationBar {
-      internal enum Title {
-        /// sashchekam@gmail.com
-        internal static let email = L10n.tr("Localizable", "home.navigation_bar.title.email", fallback: #"sashchekam@gmail.com"#)
-        /// Maksim Sashcheka
-        internal static let name = L10n.tr("Localizable", "home.navigation_bar.title.name", fallback: #"Maksim Sashcheka"#)
-        /// Weclome
-        internal static let welcome = L10n.tr("Localizable", "home.navigation_bar.title.welcome", fallback: #"Weclome"#)
-      }
-    }
-    internal enum NetworthCard {
-      /// Balance
-      internal static let title = L10n.tr("Localizable", "home.networth_card.title", fallback: #"Balance"#)
-      internal enum Status {
-        /// Day Loss
-        internal static let down = L10n.tr("Localizable", "home.networth_card.status.down", fallback: #"Day Loss"#)
-        /// Day Gain
-        internal static let up = L10n.tr("Localizable", "home.networth_card.status.up", fallback: #"Day Gain"#)
-      }
-    }
-    internal enum NetworthCell {
-      internal enum DeleteButton {
-        /// Delete
-        internal static let title = L10n.tr("Localizable", "home.networth_cell.delete_button.title", fallback: #"Delete"#)
-      }
-    }
+    /// Home
+    internal static let title = L10n.tr("Localizable", "home.title", fallback: #"Home"#)
     internal enum Placeholder {
-      /// Try to add coin to see portfolio
-      internal static let subtitle = L10n.tr("Localizable", "home.placeholder.subtitle", fallback: #"Try to add coin to see portfolio"#)
-      /// No coins yet.
-      internal static let title = L10n.tr("Localizable", "home.placeholder.title", fallback: #"No coins yet."#)
+      /// Please log in
+      internal static let description = L10n.tr("Localizable", "home.placeholder.description", fallback: #"Please log in"#)
+      /// Sign In
+      internal static let signIn = L10n.tr("Localizable", "home.placeholder.sign_in", fallback: #"Sign In"#)
+      /// Sign Up
+      internal static let signUp = L10n.tr("Localizable", "home.placeholder.sign_up", fallback: #"Sign Up"#)
+      /// You are not logged
+      internal static let title = L10n.tr("Localizable", "home.placeholder.title", fallback: #"You are not logged"#)
     }
-    internal enum Portfolio {
-      internal enum Title {
-        /// Portfolio count: %@
-        internal static func count(_ p1: Any) -> String {
-          return L10n.tr("Localizable", "home.portfolio.title.count", String(describing: p1), fallback: #"Portfolio count: %@"#)
-        }
-        /// Portfolio networth: %@
-        internal static func networth(_ p1: Any) -> String {
-          return L10n.tr("Localizable", "home.portfolio.title.networth", String(describing: p1), fallback: #"Portfolio networth: %@"#)
-        }
-      }
+    internal enum TableRow {
+      /// Email
+      internal static let email = L10n.tr("Localizable", "home.table_row.email", fallback: #"Email"#)
+      /// ID
+      internal static let id = L10n.tr("Localizable", "home.table_row.id", fallback: #"ID"#)
+      /// Log Out
+      internal static let logOut = L10n.tr("Localizable", "home.table_row.log_out", fallback: #"Log Out"#)
+      /// Login
+      internal static let login = L10n.tr("Localizable", "home.table_row.login", fallback: #"Login"#)
+      /// Personal Web Page
+      internal static let personalWebPage = L10n.tr("Localizable", "home.table_row.personal_web_page", fallback: #"Personal Web Page"#)
+      /// User Role
+      internal static let userRole = L10n.tr("Localizable", "home.table_row.user_role", fallback: #"User Role"#)
+      /// Username
+      internal static let username = L10n.tr("Localizable", "home.table_row.username", fallback: #"Username"#)
+      /// Wallets
+      internal static let wallets = L10n.tr("Localizable", "home.table_row.wallets", fallback: #"Wallets"#)
     }
   }
   internal enum Markets {
+    internal enum Button {
+      /// All
+      internal static let all = L10n.tr("Localizable", "markets.button.all", fallback: #"All"#)
+      /// Gainer
+      internal static let gainer = L10n.tr("Localizable", "markets.button.gainer", fallback: #"Gainer"#)
+      /// Loser
+      internal static let loser = L10n.tr("Localizable", "markets.button.loser", fallback: #"Loser"#)
+    }
     internal enum StatusTitle {
       /// Market is down
       internal static let down = L10n.tr("Localizable", "markets.status_title.down", fallback: #"Market is down"#)
@@ -74,15 +185,13 @@ internal enum L10n {
       internal static let title = L10n.tr("Localizable", "markets.time_placeholder.title", fallback: #"In the past 24 hours"#)
     }
   }
-  internal enum Overlay {
-    internal enum Coin {
-      /// Enter the amount of the coin
-      internal static let title = L10n.tr("Localizable", "overlay.coin.title", fallback: #"Enter the amount of the coin"#)
-      internal enum Button {
-        /// Add
-        internal static let title = L10n.tr("Localizable", "overlay.coin.button.title", fallback: #"Add"#)
-      }
-    }
+  internal enum NewsList {
+    /// News
+    internal static let title = L10n.tr("Localizable", "news_list.title", fallback: #"News"#)
+  }
+  internal enum PostDetails {
+    /// Post Details
+    internal static let title = L10n.tr("Localizable", "post_details.title", fallback: #"Post Details"#)
   }
   internal enum RangeButton {
     internal enum Title {
@@ -120,12 +229,32 @@ internal enum L10n {
       }
     }
   }
+  internal enum SignIn {
+    /// Sign in
+    internal static let title = L10n.tr("Localizable", "sign_in.title", fallback: #"Sign in"#)
+    internal enum Login {
+      /// Log in
+      internal static let button = L10n.tr("Localizable", "sign_in.login.button", fallback: #"Log in"#)
+      /// Login should not be empty
+      internal static let hint = L10n.tr("Localizable", "sign_in.login.hint", fallback: #"Login should not be empty"#)
+      /// Write login
+      internal static let title = L10n.tr("Localizable", "sign_in.login.title", fallback: #"Write login"#)
+    }
+    internal enum Password {
+      /// Password should not be empty
+      internal static let hint = L10n.tr("Localizable", "sign_in.password.hint", fallback: #"Password should not be empty"#)
+      /// Write password
+      internal static let title = L10n.tr("Localizable", "sign_in.password.title", fallback: #"Write password"#)
+    }
+  }
   internal enum Tabbar {
     internal enum Title {
       /// Home
       internal static let home = L10n.tr("Localizable", "tabbar.title.home", fallback: #"Home"#)
       /// Markets
       internal static let markets = L10n.tr("Localizable", "tabbar.title.markets", fallback: #"Markets"#)
+      /// News
+      internal static let news = L10n.tr("Localizable", "tabbar.title.news", fallback: #"News"#)
       /// Trending
       internal static let trending = L10n.tr("Localizable", "tabbar.title.trending", fallback: #"Trending"#)
     }

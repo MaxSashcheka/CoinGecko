@@ -12,7 +12,6 @@ final class ComposePostPhotoViewController: BaseComposePhotoViewController<Compo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Create Post Photo"
+        title = Texts.Title.createPost
     }
 }
-

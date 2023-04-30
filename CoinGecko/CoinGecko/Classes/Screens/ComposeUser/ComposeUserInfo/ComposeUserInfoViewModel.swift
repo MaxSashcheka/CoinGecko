@@ -12,37 +12,39 @@ import Utils
 
 extension ComposeUserInfoViewController {
     final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+        private typealias Texts = L10n.CreateUser
+        
         private let services: Services
         let transitions: Transitions
         
         let usernameTitledTextFieldViewModel = TitledTextField.ViewModel(
-            title: "Write username",
-            errorHintText: "Username should not be empty"
+            title: Texts.Username.title,
+            errorHintText: Texts.Username.hint
         )
         
         let loginTitledTextFieldViewModel = TitledTextField.ViewModel(
-            title: "Write login",
-            errorHintText: "Login should not be empty"
+            title: Texts.Login.title,
+            errorHintText: Texts.Login.hint
         )
         
         let passwordTitledTextFieldViewModel = TitledTextField.ViewModel(
-            title: "Write password",
-            errorHintText: "Password should not be empty",
+            title: Texts.Password.title,
+            errorHintText: Texts.Password.hint,
             isSecureTextEntry: true
         )
         
         let emailTitledTextFieldViewModel = TitledTextField.ViewModel(
-            title: "Write email",
-            errorHintText: "Email should not be empty"
+            title: Texts.Email.title,
+            errorHintText: Texts.Email.hint
         )
         
         let showPersonalWebPageOptionPickerViewModel = OptionPickerView.ViewModel(
-            title: "Do your want to add\npersonal web page link?"
+            title: Texts.PersonalWebPage.optionTitle
         )
         
         let personalWebPageTitledTextFieldViewModel = TitledTextField.ViewModel(
-            title: "Paste Your personal web page url",
-            errorHintText: "Web page url should not be empty"
+            title: Texts.PersonalWebPage.title,
+            errorHintText: Texts.PersonalWebPage.hint
         )
         
         var textFieldViewModels: [TitledTextField.ViewModel] {[

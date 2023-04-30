@@ -6,13 +6,15 @@
 //  Copyright © 2023 BSUIR. All rights reserved.
 //
 
-import Core
 import Combine
+import Core
 import SnapKit
 import Utils
 
 extension ComposePostInfoViewController {
     final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+        private typealias Texts = L10n.CreatePost
+        
         private let services: Services
         let transitions: Transitions
         
@@ -20,8 +22,8 @@ extension ComposePostInfoViewController {
         let isContentErrorVisible = CurrentValueSubject<Bool, Never>(false)
         
         let titleTextFieldViewModel = TitledTextField.ViewModel(
-            title: "Write post title",
-            errorHintText: "Post title should not be empty"
+            title: Texts.TitleTextField.title,
+            errorHintText: Texts.TitleTextField.hint
         )
         
         init(transitions: Transitions, services: Services) {

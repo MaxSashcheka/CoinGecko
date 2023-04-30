@@ -13,14 +13,16 @@ import Utils
 
 extension ComposeWalletViewController {
     final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+        private typealias Texts = L10n.ComposeWallet.Name
+        
         private let services: Services
         let transitions: Transitions
         
         let walletViewModel = WalletView.ViewModel(color: Assets.Colors.red.color)
         
         let nameTitledTextFieldViewModel = TitledTextField.ViewModel(
-            title: "Write wallet title",
-            errorHintText: "Wallet title should not be empty"
+            title: Texts.title,
+            errorHintText: Texts.hint
         )
         
         init(transitions: Transitions, services: Services) {

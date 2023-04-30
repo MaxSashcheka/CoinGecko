@@ -12,6 +12,6 @@ final class ComposeUserPhotoViewController: BaseComposePhotoViewController<Compo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Create User Photo"
+        title = Texts.Title.createUser
     }
 }

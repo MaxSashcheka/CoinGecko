@@ -37,7 +37,7 @@ final class HomeViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Home"
+        title = L10n.Home.title
         
         profileImageView.layer.cornerRadius = 30
         profileImageView.clipsToBounds = true

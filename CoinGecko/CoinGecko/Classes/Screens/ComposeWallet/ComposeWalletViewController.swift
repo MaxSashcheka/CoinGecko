@@ -12,23 +12,24 @@ import SnapKit
 import Utils
 
 final class ComposeWalletViewController: ViewController {
+    private typealias Texts = L10n.ComposeWallet
     
     private let nameTitledTextField = TitledTextField()
     
     private let finishButton: Button = .make {
         $0.backgroundColor = Assets.Colors.blue.color.withAlphaComponent(0.7)
-        $0.setTitle("Finish", for: .normal)
+        $0.setTitle(Texts.Button.finish, for: .normal)
     }
     
     private let pickColorButton: Button = .make {
         $0.backgroundColor = Assets.Colors.blue.color.withAlphaComponent(0.7)
-        $0.setTitle("Pick background color", for: .normal)
+        $0.setTitle(Texts.Button.pickColor, for: .normal)
     }
     
     private let previewLabel: Label = .make {
         $0.textColor = Assets.Colors.darkGray.color
         $0.font = .systemFont(ofSize: 23, weight: .regular)
-        $0.text = "Wallet Preview"
+        $0.text = Texts.previewTitle
     }
     
     private let walletView = WalletView()
@@ -40,7 +41,7 @@ final class ComposeWalletViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Create new wallet"
+        title = Texts.title
         
         activateEndEditingTap(at: view)
         

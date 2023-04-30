@@ -20,7 +20,7 @@ final class NewsListViewController: ViewController {
     }
     
     override var backgroundColor: UIColor { Assets.Colors.platinum.color }
-    override var tabBarTitle: String { "News" }
+    override var tabBarTitle: String { L10n.Tabbar.Title.news }
     override var tabBarImage: UIImage? { UIImage(.newspaper) }
     
     var createPostBarButton: UIBarButtonItem {
@@ -35,7 +35,7 @@ final class NewsListViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "News"
+        title = L10n.NewsList.title
         
         viewModel.fetchPosts()
         

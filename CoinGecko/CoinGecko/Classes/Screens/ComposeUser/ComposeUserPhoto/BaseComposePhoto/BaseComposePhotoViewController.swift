@@ -11,6 +11,7 @@ import SnapKit
 import Utils
 
 class BaseComposePhotoViewController<ViewModel: BaseComposePhotoViewModel>: ViewController {
+    typealias Texts = L10n.CreatePhoto
     
     private let photoImageView: UIImageView = .make {
         $0.backgroundColor = Assets.Colors.lightGray.color
@@ -21,12 +22,12 @@ class BaseComposePhotoViewController<ViewModel: BaseComposePhotoViewModel>: View
     
     private let pickPhotoButton: Button = .make {
         $0.backgroundColor = Assets.Colors.blue.color.withAlphaComponent(0.7)
-        $0.setTitle("Choose photo", for: .normal)
+        $0.setTitle(Texts.Button.pickPhoto, for: .normal)
     }
     
     private let finishButton: Button = .make {
         $0.backgroundColor = Assets.Colors.blue.color.withAlphaComponent(0.7)
-        $0.setTitle("Finish", for: .normal)
+        $0.setTitle(Texts.Button.finish, for: .normal)
     }
     
     var buttons: [Button] { [pickPhotoButton, finishButton] }
@@ -42,6 +43,8 @@ class BaseComposePhotoViewController<ViewModel: BaseComposePhotoViewModel>: View
             image: Assets.Images.cross.image,
             action: { [weak viewModel] in viewModel?.didTapCloseButton() }
         )
+        
+        viewModel.errorHandlerClosure = errorHandler
     }
     
     override func viewDidLayoutSubviews() {
