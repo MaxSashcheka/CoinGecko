@@ -83,7 +83,7 @@ private extension TitledTextField {
     }
     
     func arrangeSubviews() {
-        backgroundColor = .white
+        backgroundColor = .clear
         
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in

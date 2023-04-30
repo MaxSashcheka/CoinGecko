@@ -53,11 +53,13 @@ extension CommonAssembly {
     }
     
     static func addCoinScreen(
+        coinId: String,
         transitions: AddCoinViewController.ViewModel.Transitions,
         resolver: DependencyResolver
     ) -> AddCoinViewController {
         let viewController = AddCoinViewController()
         let viewModel = AddCoinViewController.ViewModel(
+            coinId: coinId,
             transitions: transitions,
             services: .inject(from: resolver)
         )

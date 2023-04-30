@@ -16,6 +16,7 @@ extension NewsListViewController {
         let transitions: Transitions
         
         let postsViewModels = CurrentValueSubject<[PostTableCell.ViewModel], Never>([])
+        let isAddPostButtonHidden = CurrentValueSubject<Bool, Never>(false)
         
         init(transitions: Transitions,
              services: Services) {
@@ -23,6 +24,8 @@ extension NewsListViewController {
             self.transitions = transitions
             
             super.init()
+            
+            fetchCurrentUserData()
         }
     }
 }
@@ -35,9 +38,12 @@ extension NewsListViewController.ViewModel {
     }
     
     final class Services {
+        let users: UsersServiceProtocol
         let posts: PostsServiceProtocol
         
-        init(posts: PostsServiceProtocol) {
+        init(users: UsersServiceProtocol,
+             posts: PostsServiceProtocol) {
+            self.users = users
             self.posts = posts
         }
     }
@@ -58,6 +64,14 @@ extension NewsListViewController.ViewModel {
 
 // MARK: - NewsListViewModel+FetchData
 extension NewsListViewController.ViewModel {
+    func fetchCurrentUserData() {
+        guard let currentUser = services.users.currentUser else {
+            isAddPostButtonHidden.send(true)
+            return
+        }
+        isAddPostButtonHidden.send(currentUser.role == .user)
+    }
+    
     func fetchPosts(fromCache: Bool = false) {
         ActivityIndicator.show()
         services.posts.getPosts(

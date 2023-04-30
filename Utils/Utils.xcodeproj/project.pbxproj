@@ -22,6 +22,7 @@
 		1C60DA1228E8F8F400B675DA /* Publisher+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60DA1128E8F8F400B675DA /* Publisher+Extensions.swift */; };
 		1C60DA1428E8FC0D00B675DA /* GeneralError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C60DA1328E8FC0D00B675DA /* GeneralError.swift */; };
 		1C68714629ACF33400A9C59B /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C68714529ACF33400A9C59B /* CGFloat+Extensions.swift */; };
+		1C6DF73429FC40E300B92822 /* Perform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6DF73329FC40E300B92822 /* Perform.swift */; };
 		1C7200AA28D717D5001DDBD5 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7200A928D717D5001DDBD5 /* String+Extensions.swift */; };
 		1C7200AC28D721ED001DDBD5 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7200AB28D721ED001DDBD5 /* Double+Extensions.swift */; };
 		1C872DD429F4031800F6D83F /* CacheContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DD329F4031800F6D83F /* CacheContainer.swift */; };
@@ -81,6 +82,7 @@
 		1C60DA1128E8F8F400B675DA /* Publisher+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extensions.swift"; sourceTree = "<group>"; };
 		1C60DA1328E8FC0D00B675DA /* GeneralError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralError.swift; sourceTree = "<group>"; };
 		1C68714529ACF33400A9C59B /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
+		1C6DF73329FC40E300B92822 /* Perform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Perform.swift; sourceTree = "<group>"; };
 		1C7200A928D717D5001DDBD5 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		1C7200AB28D721ED001DDBD5 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		1C872DD329F4031800F6D83F /* CacheContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheContainer.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				1C590F4D29ECB27500D700D1 /* EndEditingTappable.swift */,
 				1CAC0F1629ED7C670098D5B4 /* TextInputTraitsOptions.swift */,
 				1C872DD329F4031800F6D83F /* CacheContainer.swift */,
+				1C6DF73329FC40E300B92822 /* Perform.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				1CAC0F1929ED7D0A0098D5B4 /* Array+Extensions.swift in Sources */,
 				1C60DA1428E8FC0D00B675DA /* GeneralError.swift in Sources */,
 				1C1D85B3295861DC007BEDF4 /* UITableView+Extensions.swift in Sources */,
+				1C6DF73429FC40E300B92822 /* Perform.swift in Sources */,
 				1CDCB2CF28D12DED00624AB5 /* ContainerViewController.swift in Sources */,
 				1CAD2B30293F58960004E4AA /* TableView.swift in Sources */,
 				1CB3353C29EC2081003D08EB /* Date+Extensions.swift in Sources */,

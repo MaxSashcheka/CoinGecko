@@ -50,6 +50,11 @@ private extension WalletView {
             .bind(to: \.text, on: titleLabel)
             .store(in: &cancellables)
         
+        viewModel.coinsCount
+            .map { $0.description + " coins" }
+            .bind(to: \.text, on: countLabel)
+            .store(in: &cancellables)
+        
         viewModel.color
             .bind(to: \.backgroundColor, on: self)
             .store(in: &cancellables)

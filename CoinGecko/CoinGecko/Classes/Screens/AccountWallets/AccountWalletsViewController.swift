@@ -35,6 +35,20 @@ final class AccountWalletsViewController: ViewController {
         $0.backgroundColor = Assets.Colors.platinum.color
     }
     
+    var createWalletBarButtonItem: UIBarButtonItem {
+        UIBarButtonItem.barButtonItem(
+            image: UIImage(.plus),
+            action: { [weak viewModel] in viewModel?.didTapComposeWalletButton() }
+        )
+    }
+    
+    var reloadDataBarButtonItem: UIBarButtonItem {
+        UIBarButtonItem.barButtonItem(
+            image: UIImage(.gobackward),
+            action: { [weak viewModel] in viewModel?.fetchWallets(fromCache: false) }
+        )
+    }
+    
     var viewModel: ViewModel!
     
     override func viewDidLoad() {
@@ -42,11 +56,8 @@ final class AccountWalletsViewController: ViewController {
         
         title = "Account Wallets"
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem.barButtonItem(
-            image: UIImage(.plus),
-            action: { [weak viewModel] in viewModel?.didTapComposeWalletButton() }
-        )
-        
+        navigationItem.rightBarButtonItems = [createWalletBarButtonItem, reloadDataBarButtonItem]
+
         walletsTableView.delegate = self
         walletsTableView.dataSource = self
         

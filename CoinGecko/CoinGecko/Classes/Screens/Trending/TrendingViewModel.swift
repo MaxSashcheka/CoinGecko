@@ -58,15 +58,6 @@ extension TrendingViewController.ViewModel {
     }
 }
 
-// MARK: - TrendingViewModel+TapActions
-extension TrendingViewController.ViewModel {
-    func didTapComposeUserButton() {
-        transitions.composeUser {
-            print("user compose finished")
-        }
-    }
-}
-
 // MARK: - TrendingViewModel+Fetch
 extension TrendingViewController.ViewModel {
     func fetchCoins() {
@@ -77,10 +68,10 @@ extension TrendingViewController.ViewModel {
         
         ActivityIndicator.show()
         services.coins.getCoins(fromCache: false,
-                                 currency: "usd",
-                                 page: currentPage,
-                                 pageSize: 20,
-                                 success: { [weak self] coins in
+                                currency: "usd",
+                                page: currentPage,
+                                pageSize: 20,
+                                success: { [weak self] coins in
             guard let self = self else { return }
             self.isSearchPerforming = false
             

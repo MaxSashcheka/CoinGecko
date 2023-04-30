@@ -62,7 +62,7 @@ extension AccountWalletsViewController.ViewModel {
     }
 }
 
-private extension AccountWalletsViewController.ViewModel {
+extension AccountWalletsViewController.ViewModel {
     func fetchWallets(fromCache: Bool = false) {
         ActivityIndicator.show()
         services.wallets.getWallets(
@@ -74,6 +74,7 @@ private extension AccountWalletsViewController.ViewModel {
                         let viewModel = WalletTableCell.ViewModel(
                             id: $0.id,
                             title: $0.name,
+                            coinsCount: $0.coinsCount,
                             color: color
                         )
                         return viewModel

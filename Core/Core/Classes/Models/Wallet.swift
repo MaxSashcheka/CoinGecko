@@ -18,6 +18,7 @@ public struct Wallet {
     public let userId: UUID
     public let name: String
     public let colorHex: String
+    public let coinsCount: Int
 }
 
 public extension Wallet {
@@ -26,6 +27,7 @@ public extension Wallet {
         self.userId = UUID(uuidString: walletResponse.userId) ?? UUID()
         self.name = walletResponse.name
         self.colorHex = walletResponse.colorHex
+        self.coinsCount = walletResponse.coinsCount
     }
 }
 

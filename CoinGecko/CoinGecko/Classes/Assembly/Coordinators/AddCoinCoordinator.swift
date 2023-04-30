@@ -33,6 +33,7 @@ extension AddCoinCoordinator {
             close: { [weak self] in self?.transitions.close() }
         )
         let screen = CommonAssembly.addCoinScreen(
+            coinId: coinId,
             transitions: transitions,
             resolver: self
         )

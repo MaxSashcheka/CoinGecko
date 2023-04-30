@@ -10,4 +10,5 @@ import Utils
 
 public protocol WalletsCacheDataManagerProtocol {
     var cachedWallets: CacheContainer<UUID, Wallet> { get set }
+    var cachedCoinIdentifiers: CacheContainer<UUID, CoinIdentifier> { get set }
 }

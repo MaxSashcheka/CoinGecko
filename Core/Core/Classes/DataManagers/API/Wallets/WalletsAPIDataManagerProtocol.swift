@@ -24,10 +24,11 @@ public protocol WalletsAPIDataManagerProtocol {
                       failure: @escaping Closure.GeneralError)
     
     func getCoinsIdentifiers(walletId: UUID,
-                             success: @escaping ([String]) -> Void,
+                             success: @escaping Closure.CoinIdentifiersArray,
                              failure: @escaping Closure.GeneralError)
     
     func createCoinIdentifier(walletId: UUID,
+                              amount: Float,
                               identifier: String,
                               success: @escaping Closure.Void,
                               failure: @escaping Closure.GeneralError)

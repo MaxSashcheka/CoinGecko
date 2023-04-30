@@ -124,7 +124,7 @@ final class MarketsViewController: ViewController {
         view.addSubview(pageButtonsCollectionView)
         pageButtonsCollectionView.snp.makeConstraints { make in
             make.top.equalTo(statusTimePlaceholderLabel.snp.bottom).offset(15)
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(60)
         }
         
         view.addSubview(separatorLine)

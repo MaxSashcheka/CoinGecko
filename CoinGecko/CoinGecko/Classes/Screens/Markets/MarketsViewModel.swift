@@ -22,7 +22,6 @@ extension MarketsViewController {
         let coinsViewModels = CurrentValueSubject<[CoinCell.ViewModel], Never>([])
         let changePercentage = CurrentValueSubject<Double, Never>(.zero)
         let isPriceChangePositive = CurrentValueSubject<Bool, Never>(false)
-        let favouriteCoins = CurrentValueSubject<[Coin], Never>([])
         
         private var selectedMode: DisplayMode { pageButtonsCollectionViewModel.selectedMode.value }
         
@@ -81,12 +80,6 @@ extension MarketsViewController.ViewModel {
                                  pageSize: 50,
                                  success: { [weak self] coins in
             guard let self = self else { return }
-            if mode == .favourites {
-                self.coinsViewModels.send(
-                    self.makeCoinViewModels(from: self.favouriteCoins.value)
-                )
-                return
-            }
             
             let filterClosure: (Coin) -> Bool = { coin in
                 switch mode {

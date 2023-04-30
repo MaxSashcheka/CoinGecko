@@ -92,10 +92,12 @@ public extension ParametersProvider {
     }
     
     static func createCoinIdentifier(id: String,
+                                     amount: Float,
                                      identifier: String,
                                      walletId: String) -> [String: String] {
         [
             "id": id,
+            "amount": amount.description,
             "identifier": identifier,
             "walletId": walletId
         ]

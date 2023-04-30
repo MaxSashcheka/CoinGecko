@@ -23,6 +23,13 @@ final class NewsListViewController: ViewController {
     override var tabBarTitle: String { "News" }
     override var tabBarImage: UIImage? { UIImage(.newspaper) }
     
+    var createPostBarButton: UIBarButtonItem {
+        UIBarButtonItem.barButtonItem(
+            image: UIImage(.plus),
+            action: { [weak viewModel] in viewModel?.didTapComposePostButton() }
+        )
+    }
+    
     var viewModel: ViewModel!
     
     override func viewDidLoad() {
@@ -32,12 +39,13 @@ final class NewsListViewController: ViewController {
         
         viewModel.fetchPosts()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem.barButtonItem(
-            image: UIImage(.plus),
-            action: { [weak viewModel] in viewModel?.didTapComposePostButton() }
-        )
-        
         viewModel.errorHandlerClosure = errorHandler
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.fetchCurrentUserData()
     }
     
     override func arrangeSubviews() {
@@ -55,6 +63,13 @@ final class NewsListViewController: ViewController {
         viewModel.postsViewModels
             .sink { [weak self] _ in
                 self?.postsTableView.reloadData()
+            }
+            .store(in: &cancellables)
+        
+        viewModel.isAddPostButtonHidden
+            .sink { [weak self] in
+                self?.navigationItem.rightBarButtonItem = $0 ? nil : self?.createPostBarButton
+                
             }
             .store(in: &cancellables)
     }

@@ -13,4 +13,5 @@ public struct WalletResponse: Decodable {
     public let userId: String
     public let name: String
     public let colorHex: String
+    public let coinsCount: Int
 }

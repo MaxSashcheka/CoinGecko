@@ -83,6 +83,7 @@ final class CoinCell: TableCell {
             .store(in: &cancellables)
         
         viewModel.isPriceChangePositive
+            .compactMap { $0 }
             .sink { [weak priceInfoTitledDescriptionView] in
                 priceInfoTitledDescriptionView?.setDescriptionLabelTextColor($0 ? .green : .red)
             }

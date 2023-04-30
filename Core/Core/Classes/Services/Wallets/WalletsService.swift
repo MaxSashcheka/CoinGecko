@@ -85,7 +85,7 @@ public final class WalletsService: WalletsServiceProtocol {
     }
     
     public func getCoinsIdentifiers(walletId: UUID,
-                                    success: @escaping ([String]) -> Void,
+                                    success: @escaping Closure.CoinIdentifiersArray,
                                     failure: @escaping Closure.GeneralError) {
         walletsAPIDataManager.getCoinsIdentifiers(
             walletId: walletId,
@@ -95,14 +95,31 @@ public final class WalletsService: WalletsServiceProtocol {
     }
     
     public func createCoinIdentifier(walletId: UUID,
+                                     amount: Float,
                                      identifier: String,
                                      success: @escaping Closure.Void,
                                      failure: @escaping Closure.GeneralError) {
         walletsAPIDataManager.createCoinIdentifier(
             walletId: walletId,
+            amount: amount,
             identifier: identifier,
             success: success,
             failure: failure
         )
+    }
+    
+    public func save(coinsIdentifier: [CoinIdentifier]) {
+        walletsCacheDataManager.cachedCoinIdentifiers.append(contentsOf: coinsIdentifier)
+    }
+    
+    public func coinAmount(for identifier: String) -> Float {
+        guard let coinIdentifier = walletsCacheDataManager.cachedCoinIdentifiers.allItems.first(
+            where: { $0.identifier == identifier }
+        ) else { return .zero }
+        return coinIdentifier.amount
+    }
+    
+    public func clearCoinsIdentifiers() {
+        walletsCacheDataManager.cachedCoinIdentifiers.clear()
     }
 }

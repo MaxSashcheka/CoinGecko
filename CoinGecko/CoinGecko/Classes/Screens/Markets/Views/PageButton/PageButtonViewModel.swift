@@ -12,7 +12,7 @@ import Utils
 extension PageButton {
     final class ViewModel {
         enum DisplayMode: CaseIterable {
-            case all, gainer, loser, favourites
+            case all, gainer, loser
         }
         
         let title = CurrentValueSubject<String, Never>(.empty)
@@ -33,7 +33,6 @@ extension PageButton.ViewModel.DisplayMode {
         case .all: return "All"
         case .gainer: return "Gainer"
         case .loser: return "Loser"
-        case .favourites: return "Favourites"
         }
     }
 }

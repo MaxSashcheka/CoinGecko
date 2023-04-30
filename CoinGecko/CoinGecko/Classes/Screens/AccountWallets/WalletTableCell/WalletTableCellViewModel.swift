@@ -14,9 +14,10 @@ extension WalletTableCell {
         let id: UUID
         let walletViewModel = WalletView.ViewModel()
         
-        init(id: UUID, title: String, color: UIColor) {
+        init(id: UUID, title: String, coinsCount: Int = .zero, color: UIColor) {
             self.id = id
             self.walletViewModel.title.send(title)
+            self.walletViewModel.coinsCount.send(coinsCount)
             self.walletViewModel.color.send(color)
         }
     }

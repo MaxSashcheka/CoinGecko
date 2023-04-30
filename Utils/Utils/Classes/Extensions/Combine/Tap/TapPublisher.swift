@@ -17,9 +17,10 @@ public extension UIView {
         private let view: View
         private let recognizer: Recognizer
         
-        public init(view: View, recognizer: Recognizer) {
+        public init(view: View, recognizer: Recognizer, cancelsTouchesInView: Bool = false) {
             self.view = view
             self.recognizer = recognizer
+            self.recognizer.cancelsTouchesInView = cancelsTouchesInView
         }
         
         public func receive<S>(subscriber: S) where S: Subscriber, Failure == S.Failure, Output == S.Input {

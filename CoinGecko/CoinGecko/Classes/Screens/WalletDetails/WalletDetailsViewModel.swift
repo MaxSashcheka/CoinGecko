@@ -17,6 +17,7 @@ extension WalletDetailsViewController {
         let transitions: Transitions
         
         let walletTitle = CurrentValueSubject<String, Never>(.empty)
+        let coinsViewModels = CurrentValueSubject<[CoinCell.ViewModel], Never>([])
          
         init(walletId: UUID, transitions: Transitions, services: Services) {
             self.walletId = walletId
@@ -48,21 +49,69 @@ extension WalletDetailsViewController.ViewModel {
     }
 }
 
+// MARK: - WalletDetailsViewModel+TableMethods
+extension WalletDetailsViewController.ViewModel {
+    var coinsCount: Int { coinsViewModels.value.count }
+    
+    func cellViewModel(for indexPath: IndexPath) -> CoinCell.ViewModel {
+        coinsViewModels.value[indexPath.row]
+    }
+}
+
 // MARK: - WalletDetailsViewModel+FetchData
 private extension WalletDetailsViewController.ViewModel {
+    func updateCoinsViewModels(with coins: [CoinDetails]) {        
+        coinsViewModels.send(
+            coins.map {
+                CoinCell.ViewModel(
+                    id: $0.id,
+                    imageURL: $0.imageURL,
+                    name: $0.name,
+                    symbol: $0.symbol.uppercased(),
+                    currentPrice: roundedValueString($0.currentPrice),
+                    priceChangePercentage: "Amount " + preciseRound(Double(services.wallets.coinAmount(for: $0.id)), precision: .hundredths).description
+                )
+            }
+        )
+    }
+    
     func fetchWalletData() {
+        services.wallets.clearCoinsIdentifiers()
+        
         services.wallets.getWallet(
             id: walletId,
             success: { [weak self] in self?.walletTitle.send($0.name) },
             failure: { [weak self] in self?.errorHandlerClosure?($0) }
         )
         
+        ActivityIndicator.show()
         services.wallets.getCoinsIdentifiers(
             walletId: walletId,
             success: { [weak self] coinsIdentifiers in
-                print(coinsIdentifiers)
+                self?.services.wallets.save(coinsIdentifier: coinsIdentifiers)
+                Perform.batch(
+                    coinsIdentifiers,
+                    action: { [weak self] coinIdentifier, success, failure in
+                        self?.services.coins.getCoinDetails(
+                            id: coinIdentifier.identifier,
+                            success: success,
+                            failure: failure
+                        )
+                    },
+                    success: { [weak self] in
+                        ActivityIndicator.hide()
+                        self?.updateCoinsViewModels(with: $0)
+                    },
+                    failure: { [weak self] in
+                        ActivityIndicator.hide()
+                        self?.errorHandlerClosure?($0)
+                    }
+                )
             },
-            failure: { [weak self] in self?.errorHandlerClosure?($0) }
+            failure: { [weak self] in
+                self?.errorHandlerClosure?($0)
+                ActivityIndicator.hide()
+            }
         )
     }
 }
@@ -77,3 +126,5 @@ extension WalletDetailsViewController.ViewModel {
         )
     }
 }
+
+extension WalletDetailsViewController.ViewModel: PriceConvertable { }

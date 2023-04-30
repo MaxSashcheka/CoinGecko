@@ -12,7 +12,7 @@ import Foundation
 public extension RequestDescription {
     enum BasePath {
         static let coinGecko = "https://api.coingecko.com/api/v3"
-        static let localhost = "https://4b97-2a00-1760-8006-5b-58f7-137a-6e0d-9284.eu.ngrok.io"
+        static let localhost = "https://b2ea-2a00-1760-8006-5b-259a-63c0-bd03-4bdf.eu.ngrok.io"
     }
     
     class Coins {

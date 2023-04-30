@@ -101,7 +101,6 @@ final class CoinDetailsViewController: ViewController {
             make.top.equalToSuperview().offset(10)
             make.leading.equalToSuperview().offset(15)
         }
-        currentPriceLabel.text = "1234.34"
         
         scrollView.addSubview(priceChangeLabel)
         priceChangeLabel.snp.makeConstraints { make in
@@ -159,6 +158,10 @@ final class CoinDetailsViewController: ViewController {
         
         viewModel.priceChangeText
             .bind(to: \.text, on: priceChangeLabel)
+            .store(in: &cancellables)
+        
+        viewModel.currentPriceText
+            .bind(to: \.text, on: currentPriceLabel)
             .store(in: &cancellables)
         
         viewModel.isPriceChangePositive

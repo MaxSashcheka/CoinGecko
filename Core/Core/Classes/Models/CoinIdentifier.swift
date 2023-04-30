@@ -17,6 +17,7 @@ public struct CoinIdentifier {
     public let id: UUID
     public let walletId: UUID
     public let identifier: String
+    public let amount: Float
 }
 
 public extension CoinIdentifier {
@@ -24,5 +25,10 @@ public extension CoinIdentifier {
         self.id = UUID(uuidString: coinIdentifierResponse.id) ?? UUID()
         self.walletId = UUID(uuidString: coinIdentifierResponse.walletId) ?? UUID()
         self.identifier = coinIdentifierResponse.identifier
+        self.amount = coinIdentifierResponse.amount
     }
+}
+
+extension CoinIdentifier: CacheContainerConformable {
+    public var cacheItemIdentifer: UUID { id }
 }

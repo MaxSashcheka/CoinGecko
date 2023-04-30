@@ -13,9 +13,14 @@ import Utils
 
 final class AddCoinViewController: ViewController {
     
+    private let headerView = View()
+    
+    private let amountTitledTextField: TitledTextField = .make {
+        $0.setTextInputTraitsOptions(TextInputTraitsOptions.decimal)
+    }
+    
     private let walletsTableView: TableView = .make(style: .insetGrouped) {
         $0.register(AddCoinWalletTableCell.self)
-//        $0.separatorStyle = .none
         $0.backgroundColor = Assets.Colors.platinum.color
     }
     
@@ -27,6 +32,8 @@ final class AddCoinViewController: ViewController {
         super.viewDidLoad()
         
         title = "Choose wallet"
+        
+        activateEndEditingTap(at: view)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem.barButtonItem(
             image: Assets.Images.cross.image,
@@ -43,6 +50,12 @@ final class AddCoinViewController: ViewController {
     
     override func arrangeSubviews() {
         super.arrangeSubviews()
+        
+        headerView.addSubview(amountTitledTextField)
+        amountTitledTextField.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(45)
+            make.top.bottom.equalToSuperview().inset(10)
+        }
         
         view.addSubview(walletsTableView)
         walletsTableView.snp.makeConstraints { make in
@@ -63,6 +76,8 @@ final class AddCoinViewController: ViewController {
     override func setupData() {
         super.setupData()
         
+        amountTitledTextField.viewModel = viewModel.amountTitledTextFieldViewModel
+        
         walletsTableView.delegate = self
         walletsTableView.dataSource = self
     }
@@ -70,6 +85,11 @@ final class AddCoinViewController: ViewController {
 
 // MARK: - AddCoinViewController+UITableViewPresentable
 extension AddCoinViewController: UITableViewPresentable {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard section == .zero else { return nil }
+        return headerView
+    }
+    
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
         viewModel.numberOfItems
@@ -90,3 +110,6 @@ extension AddCoinViewController: UITableViewPresentable {
         viewModel.didSelectCell(at: indexPath)
     }
 }
+
+// MARK: - AddCoinViewController+EndEditingTappable
+extension AddCoinViewController: EndEditingTappable { }

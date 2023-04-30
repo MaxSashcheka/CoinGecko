@@ -49,17 +49,8 @@ public extension TextInputTraitsOptions {
     static var name: [TextInputTraitsOptions] {
         combine([.autocapitalizationType(.words), .contentType(.givenName)])
     }
-    static var number: [TextInputTraitsOptions] {
-        combine([keyboardType(.numberPad)])
-    }
-    static var search: [TextInputTraitsOptions] {
-        combine([.autocorrectionType(.no), .returnKeyType(.search), .contentType(.init(rawValue: .empty))])
-    }
-    static var cardHolder: [TextInputTraitsOptions] {
-        combine([.autocapitalizationType(.allCharacters), .autocorrectionType(.no)])
-    }
-    static var noOtpPrompt: [TextInputTraitsOptions] {
-        combine([keyboardType(.numberPad), .contentType(.username)])
+    static var decimal: [TextInputTraitsOptions] {
+        combine([keyboardType(.decimalPad)])
     }
 
     static var `default`: [TextInputTraitsOptions] {

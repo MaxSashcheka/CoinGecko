@@ -10,6 +10,7 @@ import Utils
 
 public final class WalletsCacheDataManager: WalletsCacheDataManagerProtocol {
     public var cachedWallets = CacheContainer<UUID, Wallet>()
+    public var cachedCoinIdentifiers = CacheContainer<UUID, CoinIdentifier>()
     
     public init() { }
 }

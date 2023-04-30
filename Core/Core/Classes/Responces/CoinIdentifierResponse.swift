@@ -12,4 +12,5 @@ public struct CoinIdentifierResponse: Decodable {
     public let id: String
     public let walletId: String
     public let identifier: String
+    public let amount: Float
 }

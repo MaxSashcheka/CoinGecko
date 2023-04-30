@@ -12,12 +12,21 @@ import Utils
 
 extension AddCoinViewController {
     final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+        private let coinId: String
         private let services: Services
         let transitions: Transitions
         
+        let amountTitledTextFieldViewModel = TitledTextField.ViewModel(
+            title: "Enter amount",
+            errorHintText: "Amount should not be empty and have correct format"
+        )
+        
         let walletsViewModels = CurrentValueSubject<[AddCoinWalletTableCell.ViewModel], Never>([])
          
-        init(transitions: Transitions, services: Services) {
+        init(coinId: String,
+             transitions: Transitions,
+             services: Services) {
+            self.coinId = coinId
             self.services = services
             self.transitions = transitions
             
@@ -84,6 +93,29 @@ extension AddCoinViewController.ViewModel {
     }
     
     func didTapDoneButton() {
-        transitions.close()
+        amountTitledTextFieldViewModel.isErrorVisible.send(false)
+        let text = amountTitledTextFieldViewModel.text.value.replacingOccurrences(of: ",", with: ".")
+        guard let amount = Float(text) else {
+            amountTitledTextFieldViewModel.isErrorVisible.send(true)
+            return
+        }
+        guard let walletId = walletsViewModels.value.first(where: { $0.isSelected.value })?.id else {
+            return
+        }
+        
+        ActivityIndicator.show()
+        services.wallets.createCoinIdentifier(
+            walletId: walletId,
+            amount: amount,
+            identifier: coinId,
+            success: { [weak self] in
+                ActivityIndicator.hide()
+                self?.transitions.close()
+            },
+            failure: { [weak self] in
+                ActivityIndicator.hide()
+                self?.errorHandlerClosure?($0)
+            }
+        )
     }
 }
