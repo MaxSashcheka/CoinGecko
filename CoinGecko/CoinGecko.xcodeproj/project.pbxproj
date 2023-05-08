@@ -70,6 +70,10 @@
 		1C7200BA28D77FED001DDBD5 /* CoinDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7200B928D77FED001DDBD5 /* CoinDetailsViewModel.swift */; };
 		1C7CD4F628D2743C00068965 /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD4F528D2743C00068965 /* TrendingViewController.swift */; };
 		1C7CD4F828D2744300068965 /* TrendingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD4F728D2744300068965 /* TrendingViewModel.swift */; };
+		1C7E17C12A043F1300B91C1B /* ModalWindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7E17C02A043F1300B91C1B /* ModalWindowViewController.swift */; };
+		1C7E17C32A043F1F00B91C1B /* OverlayAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7E17C22A043F1F00B91C1B /* OverlayAlertController.swift */; };
+		1C7E17C62A04400900B91C1B /* AppAlertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7E17C52A04400900B91C1B /* AppAlertCoordinator.swift */; };
+		1C7E17C82A0440D700B91C1B /* HandlersAccessingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7E17C72A0440D700B91C1B /* HandlersAccessingProtocol.swift */; };
 		1C872DD629F4096D00F6D83F /* NewsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DD529F4096D00F6D83F /* NewsCoordinator.swift */; };
 		1C872DD829F409B800F6D83F /* NewsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DD729F409B800F6D83F /* NewsAssembly.swift */; };
 		1C872DDC29F40A3D00F6D83F /* NewsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DDB29F40A3D00F6D83F /* NewsListViewController.swift */; };
@@ -221,6 +225,10 @@
 		1C7200B928D77FED001DDBD5 /* CoinDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsViewModel.swift; sourceTree = "<group>"; };
 		1C7CD4F528D2743C00068965 /* TrendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewController.swift; sourceTree = "<group>"; };
 		1C7CD4F728D2744300068965 /* TrendingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewModel.swift; sourceTree = "<group>"; };
+		1C7E17C02A043F1300B91C1B /* ModalWindowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalWindowViewController.swift; sourceTree = "<group>"; };
+		1C7E17C22A043F1F00B91C1B /* OverlayAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayAlertController.swift; sourceTree = "<group>"; };
+		1C7E17C52A04400900B91C1B /* AppAlertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAlertCoordinator.swift; sourceTree = "<group>"; };
+		1C7E17C72A0440D700B91C1B /* HandlersAccessingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlersAccessingProtocol.swift; sourceTree = "<group>"; };
 		1C872DD529F4096D00F6D83F /* NewsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCoordinator.swift; sourceTree = "<group>"; };
 		1C872DD729F409B800F6D83F /* NewsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAssembly.swift; sourceTree = "<group>"; };
 		1C872DDB29F40A3D00F6D83F /* NewsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewController.swift; sourceTree = "<group>"; };
@@ -385,6 +393,8 @@
 		1C2A63E028D644D60007877D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1C7E17C42A043FFD00B91C1B /* Coordinators */,
+				1C7E17BF2A043EFD00B91C1B /* ModalControllers */,
 				1CC329BD29F0836E0061EB04 /* Providers */,
 				1C2A63E428D645190007877D /* Protocols */,
 				1C2A63E128D644DC0007877D /* Views */,
@@ -414,6 +424,7 @@
 				1C68714329ACF20900A9C59B /* ScreenDependent.swift */,
 				1CCB08CB29AD560900596FED /* ScreenTransitionable.swift */,
 				1C1E81AB29AE840200CABF79 /* DependencyInjectable.swift */,
+				1C7E17C72A0440D700B91C1B /* HandlersAccessingProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -683,6 +694,23 @@
 				1C7CD4F728D2744300068965 /* TrendingViewModel.swift */,
 			);
 			path = Trending;
+			sourceTree = "<group>";
+		};
+		1C7E17BF2A043EFD00B91C1B /* ModalControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1C7E17C02A043F1300B91C1B /* ModalWindowViewController.swift */,
+				1C7E17C22A043F1F00B91C1B /* OverlayAlertController.swift */,
+			);
+			path = ModalControllers;
+			sourceTree = "<group>";
+		};
+		1C7E17C42A043FFD00B91C1B /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				1C7E17C52A04400900B91C1B /* AppAlertCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		1C872DD229F3F14C00F6D83F /* CoinDetailsTitleView */ = {
@@ -1165,6 +1193,7 @@
 				1C872DE229F40A4F00F6D83F /* PostDetailsViewModel.swift in Sources */,
 				1CAC0F2329ED9C510098D5B4 /* ImagePickerViewController.swift in Sources */,
 				1C2DE53529F6D6C500665876 /* ComposeUserCoordinatorPresentable.swift in Sources */,
+				1C7E17C62A04400900B91C1B /* AppAlertCoordinator.swift in Sources */,
 				1C2E1CC429FBE4E40048C5B8 /* AddCoinCoordinatorPresentable.swift in Sources */,
 				1C872DEB29F418C400F6D83F /* ComposePostInfoViewController.swift in Sources */,
 				1CF969CE28E3959900F49456 /* ButtonCollectionViewModel.swift in Sources */,
@@ -1185,6 +1214,7 @@
 				1C4287A228E0732600273979 /* ChartViewModel.swift in Sources */,
 				1C68714929ACF4C200A9C59B /* Assembly.swift in Sources */,
 				1C2A63E628D645250007877D /* RemoteImageDownloadable.swift in Sources */,
+				1C7E17C32A043F1F00B91C1B /* OverlayAlertController.swift in Sources */,
 				1C2E1CC029FBDF020048C5B8 /* AddCoinViewController.swift in Sources */,
 				1C68714F29ACFE6700A9C59B /* ProvidersAssembly.swift in Sources */,
 				1C289BAE29F556DD005A231C /* ComposePostPhotoViewModel.swift in Sources */,
@@ -1205,11 +1235,13 @@
 				1CC2B5AB29F9AD0800C26190 /* ColorPickerViewController.swift in Sources */,
 				1CB0B4E7293FF15C00C874C4 /* InAppWebBrowserViewController.swift in Sources */,
 				1C289BD029F5A8B7005A231C /* PostTableCell.swift in Sources */,
+				1C7E17C82A0440D700B91C1B /* HandlersAccessingProtocol.swift in Sources */,
 				1CFA294B28D27CBA0088A051 /* TrendingAssembly.swift in Sources */,
 				1CD2581529F87EE200EE96DD /* AccountWalletsViewController.swift in Sources */,
 				1C2E1CC929FBE78B0048C5B8 /* AddCoinWalletTableCellViewModel.swift in Sources */,
 				1C2A63DF28D644C00007877D /* SceneDelegate.swift in Sources */,
 				1CDCB2E028D1341500624AB5 /* AppAssembly.swift in Sources */,
+				1C7E17C12A043F1300B91C1B /* ModalWindowViewController.swift in Sources */,
 				1C12DD4A28F21DC000E7D91E /* SearchTextField.swift in Sources */,
 				1C60D9EC28E8853500B675DA /* MarketsCoordinator.swift in Sources */,
 				03460CEF290EB2F900F754FA /* CommonAssembly.swift in Sources */,

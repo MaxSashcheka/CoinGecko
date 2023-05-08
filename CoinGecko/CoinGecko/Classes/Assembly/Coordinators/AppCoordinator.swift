@@ -11,6 +11,8 @@ import SafeSFSymbols
 import UIKit
 import Utils
 
+private let alertHandler = AppAlertCoordinator()
+
 final class AppCoordinator: TabCoordinator {
     override func registerContent() {
         register(SessionsAssembly.coinsCacheDataManager(resolver: self))

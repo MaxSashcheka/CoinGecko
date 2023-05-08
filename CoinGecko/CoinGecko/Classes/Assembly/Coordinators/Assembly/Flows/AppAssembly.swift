@@ -34,6 +34,20 @@ extension AppAssembly {
     }
 }
 
+// MARK: - Handlers
+
+extension AppAssembly {
+    private enum Handlers {
+        static let alerts = AppAlertCoordinator()
+//        static let events = EventsTracker()
+//        static let errors = ErrorsHandler(alertsPresenter: alerts, tracker: events)
+    }
+    
+//    static func eventsTracker() -> EventsTracker { Handlers.events }
+    static func alertsPresenter() -> AppAlertCoordinator { Handlers.alerts }
+//    static func errorsHandler() -> ErrorsHandler { Handlers.errors }
+}
+
 // MARK: - ExternalLinksBuilder
 
 extension AppAssembly {
@@ -43,6 +57,4 @@ extension AppAssembly {
     }
 }
 
-// MARK
 extension ExternalLinkBuilder: DependencyResolvable { }
-

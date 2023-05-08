@@ -10,6 +10,7 @@ import Combine
 import SafeSFSymbols
 import SnapKit
 import Utils
+import NVActivityIndicatorView
 
 final class TrendingViewController: ViewController {
     private typealias Colors = AppStyle.Colors.Trending
@@ -28,6 +29,8 @@ final class TrendingViewController: ViewController {
     override var tabBarTitle: String { L10n.Tabbar.Title.trending }
     override var tabBarImage: UIImage? { UIImage(.chart.lineUptrendXyaxis) }
     
+    let indicatorView = NVActivityIndicatorView(frame: .zero, type: .ballTrianglePath, color: Assets.Colors.blue.color.withAlphaComponent(0.7), padding: 10)
+    
     var viewModel: ViewModel!
     
     // MARK: - Lifecycle
@@ -44,10 +47,21 @@ final class TrendingViewController: ViewController {
     override func arrangeSubviews() {
         super.arrangeSubviews()
         
-        view.addSubview(coinsTableView)
-        coinsTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        view.addSubview(indicatorView)
+        indicatorView.snp.makeConstraints { make in
+            make.size.equalTo(100)
+            make.center.equalToSuperview()
         }
+        indicatorView.backgroundColor = .lightGray.withAlphaComponent(0.6)
+        indicatorView.isHidden = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            self.indicatorView.startAnimating()
+        }
+        
+//        view.addSubview(coinsTableView)
+//        coinsTableView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
+//        }
     }
     
     override func setupData() {

@@ -25,6 +25,7 @@ def ui_pods
   pod 'SVProgressHUD'
   pod 'SafeSFSymbols'
   pod 'Charts'
+  pod 'NVActivityIndicatorView'
 end
 
 def network_pods

@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension TrendingViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, PriceConvertable {
+    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, PriceConvertable, HandlersAccessible {
         private let services: Services
         let transitions: Transitions
         
@@ -25,6 +25,10 @@ extension TrendingViewController {
             self.services = services
 
             super.init()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                self.alertHandler.showAlert(title: "Alert title", message: "Message message message", actions: [self.alertHandler.closeAction()])
+            }
         }
     }
 }
