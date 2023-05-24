@@ -11,7 +11,10 @@ import Core
 import Utils
 
 extension MarketsViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, PriceConvertable {
+    final class ViewModel: ErrorHandableViewModel,
+                           ScreenTransitionable,
+                           PriceConvertable,
+                           HandlersAccessible {
         typealias DisplayMode = PageButton.ViewModel.DisplayMode
 
         private let services: Services
@@ -61,13 +64,13 @@ extension MarketsViewController.ViewModel {
 // MARK: - MarketsViewModel+Fetch
 extension MarketsViewController.ViewModel {    
     func fetchGlobalData() {
-        ActivityIndicator.show()
+        activityIndicator.show()
         services.coins.getGlobalData(success: { [weak self] globalData in
             self?.isPriceChangePositive.send(globalData.previousDayChangePercentage > .zero)
             self?.changePercentage.send(globalData.previousDayChangePercentage)
-            ActivityIndicator.hide()
+            self?.activityIndicator.hide()
         }, failure: { [weak self] error in
-            ActivityIndicator.hide()
+            self?.activityIndicator.hide()
             self?.errorHandlerClosure?(error)
         })
     }
@@ -75,10 +78,10 @@ extension MarketsViewController.ViewModel {
     func fetchCoins() {
         let mode = selectedMode
         services.coins.getCoins(fromCache: true,
-                                 currency: "usd",
-                                 page: 1,
-                                 pageSize: 50,
-                                 success: { [weak self] coins in
+                                currency: "usd",
+                                page: 1,
+                                pageSize: 50,
+                                success: { [weak self] coins in
             guard let self = self else { return }
             
             let filterClosure: (Coin) -> Bool = { coin in
@@ -86,9 +89,6 @@ extension MarketsViewController.ViewModel {
                 case .all: return true
                 case .gainer: return coin.priceDetails.changePercentage24h > .zero
                 case .loser: return coin.priceDetails.changePercentage24h < .zero
-                default:
-                    assertionFailure("Impossible state")
-                    return true
                 }
             }
             

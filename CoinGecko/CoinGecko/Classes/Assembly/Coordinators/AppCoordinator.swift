@@ -11,8 +11,6 @@ import SafeSFSymbols
 import UIKit
 import Utils
 
-private let alertHandler = AppAlertCoordinator()
-
 final class AppCoordinator: TabCoordinator {
     override func registerContent() {
         register(SessionsAssembly.coinsCacheDataManager(resolver: self))
@@ -74,7 +72,6 @@ private extension AppCoordinator {
     }
     
     func authenticateStoredUserIfPossible() {
-        // TODO: Remove data managers in coordinator
         guard let user = appPropertiesDataManager.user else { return }
         usersCacheDataManager.updateCurrentUser(user)
     }

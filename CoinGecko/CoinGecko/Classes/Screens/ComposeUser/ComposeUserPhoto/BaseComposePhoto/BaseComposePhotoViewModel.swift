@@ -11,7 +11,7 @@ import Core
 import UIKit.UIImage
 import Utils
 
-class BaseComposePhotoViewModel: ErrorHandableViewModel, ScreenTransitionable {
+class BaseComposePhotoViewModel: ErrorHandableViewModel, ScreenTransitionable, HandlersAccessible {
     private let services: BaseServices
     let transitions: Transitions
     
@@ -65,7 +65,7 @@ extension BaseComposePhotoViewModel {
     
     func didTapFinishButton() {
         guard let image = selectedImage.value else { return }
-        ActivityIndicator.show()
+        activityIndicator.show()
         services.firebaseProvider.uploadImage(
             image: image,
             success: { [weak self] in
@@ -73,7 +73,7 @@ extension BaseComposePhotoViewModel {
             },
             failure: { [weak self] in
                 self?.errorHandlerClosure($0)
-                ActivityIndicator.hide()
+                self?.activityIndicator.hide()
             }
         )
     }

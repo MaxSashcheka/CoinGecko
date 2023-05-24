@@ -24,11 +24,11 @@ class ComposePostPhotoViewModel: BaseComposePhotoViewModel {
         services.composePost.submitPost(
             imageURL: imageURL,
             success: { [weak self] in
-                ActivityIndicator.hide()
+                self?.activityIndicator.hide()
                 self?.transitions.completion()
             },
             failure: { [weak self] error in
-                ActivityIndicator.hide()
+                self?.activityIndicator.hide()
                 self?.errorHandlerClosure(error)
             }
         )

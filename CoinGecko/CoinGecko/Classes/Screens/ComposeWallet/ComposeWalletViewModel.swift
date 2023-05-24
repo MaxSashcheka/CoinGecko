@@ -12,7 +12,7 @@ import UIKit.UIColor
 import Utils
 
 extension ComposeWalletViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, HandlersAccessible {
         private typealias Texts = L10n.ComposeWallet.Name
         
         private let services: Services
@@ -75,16 +75,16 @@ extension ComposeWalletViewController.ViewModel {
         guard let colorHex = walletViewModel.color.value.hexValue,
               !nameTitledTextFieldViewModel.isErrorVisible.value else { return }
         
-        ActivityIndicator.show()
+        activityIndicator.show()
         services.wallets.createWallet(
             name: nameTitledTextFieldViewModel.text.value,
             colorHex: colorHex,
             success: { [weak self] in
-                ActivityIndicator.hide()
+                self?.activityIndicator.hide()
                 self?.transitions.completion()
             },
             failure: { [weak self] in
-                ActivityIndicator.hide()
+                self?.activityIndicator.hide()
                 self?.errorHandlerClosure?($0)
             }
         )

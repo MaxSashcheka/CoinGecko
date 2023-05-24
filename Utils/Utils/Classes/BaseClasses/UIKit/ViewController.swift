@@ -86,7 +86,7 @@ open class ViewController: UIViewController {
     
     public var errorHandler: Closure.GeneralError {
         { [weak self] error in
-            ActivityIndicator.hide()
+//            activityin.hide()
             let alert = UIAlertController(title: "Error Appeared !",
                                           message: error.rawValue,
                                           preferredStyle: UIAlertController.Style.alert)

@@ -10,8 +10,10 @@ import Foundation
 
 protocol HandlersAccessible {
     var alertHandler: AppAlertCoordinator { get }
+    var activityIndicator: ActivityIndicatorCoordinator { get }
 }
 
 extension HandlersAccessible {
     var alertHandler: AppAlertCoordinator { AppAssembly.alertsPresenter() }
+    var activityIndicator: ActivityIndicatorCoordinator { AppAssembly.activityIndicator() }
 }

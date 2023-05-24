@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension WalletDetailsViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, HandlersAccessible {
         private let walletId: UUID
         private let services: Services
         let transitions: Transitions
@@ -84,7 +84,7 @@ private extension WalletDetailsViewController.ViewModel {
             failure: { [weak self] in self?.errorHandlerClosure?($0) }
         )
         
-        ActivityIndicator.show()
+        activityIndicator.show()
         services.wallets.getCoinsIdentifiers(
             walletId: walletId,
             success: { [weak self] coinsIdentifiers in
@@ -99,18 +99,18 @@ private extension WalletDetailsViewController.ViewModel {
                         )
                     },
                     success: { [weak self] in
-                        ActivityIndicator.hide()
+                        self?.activityIndicator.hide()
                         self?.updateCoinsViewModels(with: $0)
                     },
                     failure: { [weak self] in
-                        ActivityIndicator.hide()
+                        self?.activityIndicator.hide()
                         self?.errorHandlerClosure?($0)
                     }
                 )
             },
             failure: { [weak self] in
                 self?.errorHandlerClosure?($0)
-                ActivityIndicator.hide()
+                self?.activityIndicator.hide()
             }
         )
     }

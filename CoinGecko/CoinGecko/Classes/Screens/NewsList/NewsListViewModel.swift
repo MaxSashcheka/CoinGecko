@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension NewsListViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, HandlersAccessible {
         private let services: Services
         let transitions: Transitions
         
@@ -73,11 +73,11 @@ extension NewsListViewController.ViewModel {
     }
     
     func fetchPosts(fromCache: Bool = false) {
-        ActivityIndicator.show()
+        activityIndicator.show()
         services.posts.getPosts(
             fromCache: fromCache,
             success: { [weak self] posts in
-                ActivityIndicator.hide()
+                self?.activityIndicator.hide()
                 self?.postsViewModels.send(
                     posts.map {
                         PostTableCell.ViewModel(
@@ -88,7 +88,7 @@ extension NewsListViewController.ViewModel {
                     }
                 )
             }, failure: { [weak self] in
-                ActivityIndicator.hide()
+                self?.activityIndicator.hide()
                 self?.errorHandlerClosure?($0)
             }
         )

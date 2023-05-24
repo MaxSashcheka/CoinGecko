@@ -86,6 +86,8 @@
 		1C872DED29F418C800F6D83F /* ComposePostInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DEC29F418C800F6D83F /* ComposePostInfoViewModel.swift */; };
 		1C872DF029F41B2500F6D83F /* BaseComposePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DEF29F41B2500F6D83F /* BaseComposePhotoViewController.swift */; };
 		1C872DF229F41B2E00F6D83F /* BaseComposePhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C872DF129F41B2E00F6D83F /* BaseComposePhotoViewModel.swift */; };
+		1C8AF1512A0AA0B40004836C /* ActivityIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8AF1502A0AA0B40004836C /* ActivityIndicatorController.swift */; };
+		1C8AF1532A0AA0E60004836C /* ActivityIndicatorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8AF1522A0AA0E60004836C /* ActivityIndicatorCoordinator.swift */; };
 		1C945B1C29FB09C50085FA2F /* WalletDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C945B1B29FB09C50085FA2F /* WalletDetailsViewController.swift */; };
 		1C945B1E29FB09C90085FA2F /* WalletDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C945B1D29FB09C90085FA2F /* WalletDetailsViewModel.swift */; };
 		1C97B9D128EA2E3C0085C979 /* PageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C97B9D028EA2E3C0085C979 /* PageButton.swift */; };
@@ -241,6 +243,8 @@
 		1C872DEC29F418C800F6D83F /* ComposePostInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePostInfoViewModel.swift; sourceTree = "<group>"; };
 		1C872DEF29F41B2500F6D83F /* BaseComposePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComposePhotoViewController.swift; sourceTree = "<group>"; };
 		1C872DF129F41B2E00F6D83F /* BaseComposePhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComposePhotoViewModel.swift; sourceTree = "<group>"; };
+		1C8AF1502A0AA0B40004836C /* ActivityIndicatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorController.swift; sourceTree = "<group>"; };
+		1C8AF1522A0AA0E60004836C /* ActivityIndicatorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorCoordinator.swift; sourceTree = "<group>"; };
 		1C945B1B29FB09C50085FA2F /* WalletDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDetailsViewController.swift; sourceTree = "<group>"; };
 		1C945B1D29FB09C90085FA2F /* WalletDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDetailsViewModel.swift; sourceTree = "<group>"; };
 		1C97B9D028EA2E3C0085C979 /* PageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageButton.swift; sourceTree = "<group>"; };
@@ -701,6 +705,7 @@
 			children = (
 				1C7E17C02A043F1300B91C1B /* ModalWindowViewController.swift */,
 				1C7E17C22A043F1F00B91C1B /* OverlayAlertController.swift */,
+				1C8AF1502A0AA0B40004836C /* ActivityIndicatorController.swift */,
 			);
 			path = ModalControllers;
 			sourceTree = "<group>";
@@ -709,6 +714,7 @@
 			isa = PBXGroup;
 			children = (
 				1C7E17C52A04400900B91C1B /* AppAlertCoordinator.swift */,
+				1C8AF1522A0AA0E60004836C /* ActivityIndicatorCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -1188,6 +1194,7 @@
 				1C289BA729F5531E005A231C /* ComposePostCoordinator.swift in Sources */,
 				1C2DE54729F6FACE00665876 /* BaseProfileTableCellViewModel.swift in Sources */,
 				1C872DDC29F40A3D00F6D83F /* NewsListViewController.swift in Sources */,
+				1C8AF1512A0AA0B40004836C /* ActivityIndicatorController.swift in Sources */,
 				1C872DE429F4151400F6D83F /* PostDetailsCoordinator.swift in Sources */,
 				1C2E1CBD29FBDEC00048C5B8 /* AddCoinCoordinator.swift in Sources */,
 				1C872DE229F40A4F00F6D83F /* PostDetailsViewModel.swift in Sources */,
@@ -1206,6 +1213,7 @@
 				1C872DDE29F40A4100F6D83F /* NewsListViewModel.swift in Sources */,
 				1C945B1C29FB09C50085FA2F /* WalletDetailsViewController.swift in Sources */,
 				1C590F2D29EC7DFF00D700D1 /* ComposeUserCoordinator.swift in Sources */,
+				1C8AF1532A0AA0E60004836C /* ActivityIndicatorCoordinator.swift in Sources */,
 				1C68714C29ACF6CC00A9C59B /* Aliases.swift in Sources */,
 				1C2A63F128D6496F0007877D /* TitledDescriptionViewModel.swift in Sources */,
 				1C7CD4F828D2744300068965 /* TrendingViewModel.swift in Sources */,

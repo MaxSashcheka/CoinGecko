@@ -25,10 +25,6 @@ extension TrendingViewController {
             self.services = services
 
             super.init()
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                self.alertHandler.showAlert(title: "Alert title", message: "Message message message", actions: [self.alertHandler.closeAction()])
-            }
         }
     }
 }
@@ -70,7 +66,7 @@ extension TrendingViewController.ViewModel {
         
         currentPage += 1
         
-        ActivityIndicator.show()
+        activityIndicator.show()
         services.coins.getCoins(fromCache: false,
                                 currency: "usd",
                                 page: currentPage,
@@ -98,10 +94,10 @@ extension TrendingViewController.ViewModel {
                     )
                 }
             )
-            ActivityIndicator.hide()
+            self.activityIndicator.hide()
         }, failure: { [weak self] in
             self?.isSearchPerforming = false
-            ActivityIndicator.hide()
+            self?.activityIndicator.hide()
             self?.errorHandlerClosure($0)
         })
     }

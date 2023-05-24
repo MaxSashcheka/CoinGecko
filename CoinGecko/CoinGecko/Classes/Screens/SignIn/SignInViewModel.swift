@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension SignInViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, HandlersAccessible {
         private typealias Texts = L10n.SignIn
         
         private let services: Services
@@ -77,16 +77,16 @@ extension SignInViewController.ViewModel {
         }
         
         guard !textFieldsViewModels.contains(where: { $0.isErrorVisible.value }) else { return }
-        ActivityIndicator.show()
+        activityIndicator.show()
         services.auth.login(
             login: loginTitledTextFieldViewModel.text.value,
             password: passwordTitledTextFieldViewModel.text.value,
             success: { [weak self] in
-                ActivityIndicator.hide()
+                self?.activityIndicator.hide()
                 self?.transitions.completion()
             },
             failure: { [weak self] in
-                ActivityIndicator.hide()
+                self?.activityIndicator.hide()
                 self?.errorHandlerClosure($0)
             }
         )

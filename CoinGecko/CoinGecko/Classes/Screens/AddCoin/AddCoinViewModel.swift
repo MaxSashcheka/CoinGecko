@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension AddCoinViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, HandlersAccessible {
         private typealias Texts = L10n.AddCoin.Amount
         
         private let coinId: String
@@ -105,17 +105,17 @@ extension AddCoinViewController.ViewModel {
             return
         }
         
-        ActivityIndicator.show()
+        activityIndicator.show()
         services.wallets.createCoinIdentifier(
             walletId: walletId,
             amount: amount,
             identifier: coinId,
             success: { [weak self] in
-                ActivityIndicator.hide()
+                self?.activityIndicator.hide()
                 self?.transitions.close()
             },
             failure: { [weak self] in
-                ActivityIndicator.hide()
+                self?.activityIndicator.hide()
                 self?.errorHandlerClosure?($0)
             }
         )

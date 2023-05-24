@@ -11,7 +11,10 @@ import Core
 import Utils
 
 extension CoinDetailsViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, PriceConvertable {
+    final class ViewModel: ErrorHandableViewModel,
+                           ScreenTransitionable,
+                           PriceConvertable,
+                           HandlersAccessible {
         private let services: Services
         let transitions: Transitions
 
@@ -95,16 +98,16 @@ extension CoinDetailsViewController.ViewModel {
                 self.currentPriceText.send(self.roundedValueString(coinDetails.currentPrice))
                 self.currentPrice.send(coinDetails.currentPrice)
                 
-                ActivityIndicator.hide()
+                self.activityIndicator.hide()
             }, failure: { [weak self] error in
                 self?.errorHandlerClosure(error)
-                ActivityIndicator.hide()
+                self?.activityIndicator.hide()
             }
         )
     }
     
     func fetchCoinChartData(for timeInterval: TimeInterval) {
-        ActivityIndicator.show()
+        activityIndicator.show()
         services.coins.getCoinMarketChart(id: coinId, currency: "usd",
                                            startTimeInterval: timeInterval.offsetFromCurrentTime,
                                            endTimeInterval: .intervalSince1970,
@@ -139,10 +142,10 @@ extension CoinDetailsViewController.ViewModel {
             self.priceChangeText.send(priceChangeText)
             self.isPriceChangePositive.send(isPriceChangePositive)
             
-            ActivityIndicator.hide()
+            self.activityIndicator.hide()
         }, failure: { [weak self] error in
             self?.errorHandlerClosure(error)
-            ActivityIndicator.hide()
+            self?.activityIndicator.hide()
         })
     }
 }
