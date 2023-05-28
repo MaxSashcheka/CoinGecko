@@ -25,7 +25,8 @@ extension HomeCoordinator {
             signIn: showSignInCoordinatorTransition,
             signUp: showComposeUserCoordinatorTransition,
             personalWebPage: showInAppWebBrowserTransition,
-            accountWallets: { [weak self] in self?.showAccountWalletsScreen() }
+            accountWallets: { [weak self] in self?.showAccountWalletsScreen() },
+            usersList: { [weak self] in self?.showUsersListScreen() }
         )
         let screen = HomeAssembly.homeScreen(
             transitions: transitions,
@@ -73,6 +74,31 @@ extension HomeCoordinator {
         
         let screen = HomeAssembly.walletDetailsScreen(
             walletId: walletId,
+            transitions: transitions,
+            resolver: self
+        )
+        
+        pushViewController(screen)
+    }
+    
+    func showUsersListScreen() {
+        let transitions = UsersListViewController.ViewModel.Transitions(
+            userDetails: { [weak self] in self?.showExternalProfileScreen(userId: $0) }
+        )
+        
+        let screen = HomeAssembly.usersListScreen(
+            transitions: transitions,
+            resolver: self
+        )
+        
+        pushViewController(screen)
+    }
+    
+    func showExternalProfileScreen(userId: UUID) {
+        let transitions = ExternalProfileViewController.ViewModel.Transitions()
+        
+        let screen = HomeAssembly.externalProfileScreen(
+            userId: userId,
             transitions: transitions,
             resolver: self
         )

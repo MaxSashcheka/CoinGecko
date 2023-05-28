@@ -10,50 +10,48 @@ import Combine
 import SafeSFSymbols
 import Utils
 
-extension HomeViewController {
-    final class ProfileTableCell: TableCell {
-        
-        // MARK: - UI Components
-        
-        private let titleLabel: Label = .make {
-            $0.textColor = Assets.Colors.black.color
-            $0.font = .systemFont(ofSize: 18, weight: .regular)
+final class ProfileTableCell: TableCell {
+    
+    // MARK: - UI Components
+    
+    private let titleLabel: Label = .make {
+        $0.textColor = Assets.Colors.black.color
+        $0.font = .systemFont(ofSize: 18, weight: .regular)
+    }
+    
+    private let descriptionLabel: Label = .make {
+        $0.textColor = Assets.Colors.darkGray.color
+        $0.font = .systemFont(ofSize: 18, weight: .regular)
+    }
+    
+    private let chevronImageView: UIImageView = .make {
+        $0.image = UIImage(.chevron.right)
+        $0.tintColor = Assets.Colors.lightGray.color
+    }
+    
+    private let separatorLine = View(
+        backgroundColor: Assets.Colors.lightGray.color.withAlphaComponent(0.65)
+    )
+    
+    var viewModel: ViewModel? {
+        didSet {
+            cancellables.removeAll()
+            guard let viewModel = viewModel else { return }
+            
+            arrangeSubviews()
+            bindData(with: viewModel)
+            setupData()
         }
-        
-        private let descriptionLabel: Label = .make {
-            $0.textColor = Assets.Colors.darkGray.color
-            $0.font = .systemFont(ofSize: 18, weight: .regular)
-        }
-        
-        private let chevronImageView: UIImageView = .make {
-            $0.image = UIImage(.chevron.right)
-            $0.tintColor = Assets.Colors.lightGray.color
-        }
-        
-        private let separatorLine = View(
-            backgroundColor: Assets.Colors.lightGray.color.withAlphaComponent(0.65)
-        )
-        
-        var viewModel: ViewModel? {
-            didSet {
-                cancellables.removeAll()
-                guard let viewModel = viewModel else { return }
-                
-                arrangeSubviews()
-                bindData(with: viewModel)
-                setupData()
-            }
-        }
-        
-        override func prepareForReuse() {
-            super.prepareForReuse()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
 
-            viewModel = nil
-        }
+        viewModel = nil
     }
 }
 
-extension HomeViewController.ProfileTableCell {
+extension ProfileTableCell {
     func arrangeSubviews() {
         addSubviews([titleLabel, descriptionLabel, chevronImageView, separatorLine])
         

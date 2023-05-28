@@ -12,7 +12,8 @@ enum ServicesAssembly: Assembly {
     static func users(resolver: DependencyResolver) -> UsersServiceProtocol {
         UsersService(
             appPropertiesDataManager: resolver.resolve(AppPropertiesDataManager.self),
-            usersCacheDataManager: resolver.resolve(UsersCacheDataManager.self)
+            usersCacheDataManager: resolver.resolve(UsersCacheDataManager.self),
+            usersAPIDataManager: APIAssembly.users()
         )
     }
     

@@ -9,7 +9,7 @@
 import Combine
 import Utils
 
-extension HomeViewController.ProfileTableCell {
+extension ProfileTableCell {
     final class ViewModel: BaseProfileTableCellViewModel {
         enum CellType {
             case common, action

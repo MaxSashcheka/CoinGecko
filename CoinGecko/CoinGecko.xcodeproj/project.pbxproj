@@ -48,6 +48,12 @@
 		1C4287A728E0AFD800273979 /* RangePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4287A628E0AFD800273979 /* RangePickerButton.swift */; };
 		1C4287AA28E0B0C300273979 /* RangePickerButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4287A928E0B0C300273979 /* RangePickerButtonViewModel.swift */; };
 		1C564C4B290D5BFE00F4BFC6 /* PriceTriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C564C4A290D5BFE00F4BFC6 /* PriceTriangleView.swift */; };
+		1C57B7722A23E0A800BD06B7 /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B7712A23E0A800BD06B7 /* UsersListViewController.swift */; };
+		1C57B7742A23E0AC00BD06B7 /* UsersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B7732A23E0AC00BD06B7 /* UsersListViewModel.swift */; };
+		1C57B7772A23E5B600BD06B7 /* UserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B7762A23E5B600BD06B7 /* UserTableCell.swift */; };
+		1C57B7792A23E5BD00BD06B7 /* UserTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B7782A23E5BD00BD06B7 /* UserTableCellViewModel.swift */; };
+		1C57B77C2A23EAF000BD06B7 /* ExternalProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B77B2A23EAF000BD06B7 /* ExternalProfileViewController.swift */; };
+		1C57B77E2A23EAF300BD06B7 /* ExternalProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C57B77D2A23EAF300BD06B7 /* ExternalProfileViewModel.swift */; };
 		1C590F2D29EC7DFF00D700D1 /* ComposeUserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C590F2C29EC7DFF00D700D1 /* ComposeUserCoordinator.swift */; };
 		1C590F3229EC7F1A00D700D1 /* ComposeUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C590F3129EC7F1A00D700D1 /* ComposeUserInfoViewController.swift */; };
 		1C590F3429EC7F1F00D700D1 /* ComposeUserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C590F3329EC7F1F00D700D1 /* ComposeUserInfoViewModel.swift */; };
@@ -217,6 +223,12 @@
 		1C4287A628E0AFD800273979 /* RangePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangePickerButton.swift; sourceTree = "<group>"; };
 		1C4287A928E0B0C300273979 /* RangePickerButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangePickerButtonViewModel.swift; sourceTree = "<group>"; };
 		1C564C4A290D5BFE00F4BFC6 /* PriceTriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTriangleView.swift; sourceTree = "<group>"; };
+		1C57B7712A23E0A800BD06B7 /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
+		1C57B7732A23E0AC00BD06B7 /* UsersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModel.swift; sourceTree = "<group>"; };
+		1C57B7762A23E5B600BD06B7 /* UserTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableCell.swift; sourceTree = "<group>"; };
+		1C57B7782A23E5BD00BD06B7 /* UserTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableCellViewModel.swift; sourceTree = "<group>"; };
+		1C57B77B2A23EAF000BD06B7 /* ExternalProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalProfileViewController.swift; sourceTree = "<group>"; };
+		1C57B77D2A23EAF300BD06B7 /* ExternalProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalProfileViewModel.swift; sourceTree = "<group>"; };
 		1C590F2C29EC7DFF00D700D1 /* ComposeUserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeUserCoordinator.swift; sourceTree = "<group>"; };
 		1C590F3129EC7F1A00D700D1 /* ComposeUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeUserInfoViewController.swift; sourceTree = "<group>"; };
 		1C590F3329EC7F1F00D700D1 /* ComposeUserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeUserInfoViewModel.swift; sourceTree = "<group>"; };
@@ -555,6 +567,34 @@
 			path = RangePickerButton;
 			sourceTree = "<group>";
 		};
+		1C57B7702A23DB4800BD06B7 /* UsersList */ = {
+			isa = PBXGroup;
+			children = (
+				1C57B7752A23E5AD00BD06B7 /* TableCell */,
+				1C57B7712A23E0A800BD06B7 /* UsersListViewController.swift */,
+				1C57B7732A23E0AC00BD06B7 /* UsersListViewModel.swift */,
+			);
+			path = UsersList;
+			sourceTree = "<group>";
+		};
+		1C57B7752A23E5AD00BD06B7 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				1C57B7762A23E5B600BD06B7 /* UserTableCell.swift */,
+				1C57B7782A23E5BD00BD06B7 /* UserTableCellViewModel.swift */,
+			);
+			path = TableCell;
+			sourceTree = "<group>";
+		};
+		1C57B77A2A23EAE200BD06B7 /* ExternalProfile */ = {
+			isa = PBXGroup;
+			children = (
+				1C57B77B2A23EAF000BD06B7 /* ExternalProfileViewController.swift */,
+				1C57B77D2A23EAF300BD06B7 /* ExternalProfileViewModel.swift */,
+			);
+			path = ExternalProfile;
+			sourceTree = "<group>";
+		};
 		1C590F2E29EC7EA000D700D1 /* ComposeUser */ = {
 			isa = PBXGroup;
 			children = (
@@ -697,6 +737,9 @@
 		1C7CD4F328D273F800068965 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1C57B77A2A23EAE200BD06B7 /* ExternalProfile */,
+				1C57B7702A23DB4800BD06B7 /* UsersList */,
+				1CE2AE7028F3776400642D00 /* Home */,
 				1C2E1CBE29FBDEF50048C5B8 /* AddCoin */,
 				1C945B1A29FB09AE0085FA2F /* WalletDetails */,
 				1CC2B5A929F9ACFE00C26190 /* ColorPicker */,
@@ -713,7 +756,6 @@
 				1C7200B628D77FA4001DDBD5 /* CoinDetails */,
 				1C60D9F028E8A2EB00B675DA /* Markets */,
 				1CE8A3C628F182360052E34B /* Search */,
-				1CE2AE7028F3776400642D00 /* Home */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -1259,6 +1301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C872DE629F4178100F6D83F /* ComposePostAssembly.swift in Sources */,
+				1C57B7772A23E5B600BD06B7 /* UserTableCell.swift in Sources */,
 				1C289BA729F5531E005A231C /* ComposePostCoordinator.swift in Sources */,
 				1C2DE54729F6FACE00665876 /* BaseProfileTableCellViewModel.swift in Sources */,
 				1C872DDC29F40A3D00F6D83F /* NewsListViewController.swift in Sources */,
@@ -1273,6 +1316,7 @@
 				1C872DEB29F418C400F6D83F /* ComposePostInfoViewController.swift in Sources */,
 				1CF969CE28E3959900F49456 /* ButtonCollectionViewModel.swift in Sources */,
 				1CEEC76D28D2801800F8DC7A /* AppDelegate.swift in Sources */,
+				1C57B77C2A23EAF000BD06B7 /* ExternalProfileViewController.swift in Sources */,
 				1CC2B5BB29F9D52B00C26190 /* WalletTableCell.swift in Sources */,
 				1C2E1CC229FBDF050048C5B8 /* AddCoinViewModel.swift in Sources */,
 				1C4287A028E0732100273979 /* ChartView.swift in Sources */,
@@ -1291,6 +1335,7 @@
 				1C68714929ACF4C200A9C59B /* Assembly.swift in Sources */,
 				1C2A63E628D645250007877D /* RemoteImageDownloadable.swift in Sources */,
 				1C7E17C32A043F1F00B91C1B /* OverlayAlertController.swift in Sources */,
+				1C57B77E2A23EAF300BD06B7 /* ExternalProfileViewModel.swift in Sources */,
 				1C2E1CC029FBDF020048C5B8 /* AddCoinViewController.swift in Sources */,
 				1C68714F29ACFE6700A9C59B /* ProvidersAssembly.swift in Sources */,
 				1C289BAE29F556DD005A231C /* ComposePostPhotoViewModel.swift in Sources */,
@@ -1319,6 +1364,7 @@
 				1CDCB2E028D1341500624AB5 /* AppAssembly.swift in Sources */,
 				1C7E17C12A043F1300B91C1B /* ModalWindowViewController.swift in Sources */,
 				1C12DD4A28F21DC000E7D91E /* SearchTextField.swift in Sources */,
+				1C57B7792A23E5BD00BD06B7 /* UserTableCellViewModel.swift in Sources */,
 				1C60D9EC28E8853500B675DA /* MarketsCoordinator.swift in Sources */,
 				03460CEF290EB2F900F754FA /* CommonAssembly.swift in Sources */,
 				1C2A63EF28D649500007877D /* TitledDescriptionView.swift in Sources */,
@@ -1371,6 +1417,7 @@
 				1C872DE029F40A4A00F6D83F /* PostDetailsViewController.swift in Sources */,
 				1C4287A728E0AFD800273979 /* RangePickerButton.swift in Sources */,
 				1C05EE3B29F684AF00A9306C /* SignInPlaceholderViewModel.swift in Sources */,
+				1C57B7742A23E0AC00BD06B7 /* UsersListViewModel.swift in Sources */,
 				1C68714429ACF20900A9C59B /* ScreenDependent.swift in Sources */,
 				1CAD2B37293F66B30004E4AA /* AppStyle+Colors.swift in Sources */,
 				1CE8A3CA28F1824C0052E34B /* SearchViewModel.swift in Sources */,
@@ -1380,6 +1427,7 @@
 				1C68715129ACFE6F00A9C59B /* ServicesAssembly.swift in Sources */,
 				1C60D9F628E8A4C900B675DA /* MarketsAssembly.swift in Sources */,
 				03460CF2290EB9EB00F754FA /* CoinDetailsCoordinator.swift in Sources */,
+				1C57B7722A23E0A800BD06B7 /* UsersListViewController.swift in Sources */,
 				1C945B1E29FB09C90085FA2F /* WalletDetailsViewModel.swift in Sources */,
 				1C872DF029F41B2500F6D83F /* BaseComposePhotoViewController.swift in Sources */,
 				1C2DE54929F6FB4C00665876 /* ActionTableCell.swift in Sources */,

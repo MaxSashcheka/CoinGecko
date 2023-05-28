@@ -39,4 +39,30 @@ public final class UsersAPIDataManager: APIDataManager, UsersAPIDataManagerProto
             failure: failure
         )
     }
+    
+    public func fetchAllUsers(success: @escaping Closure.UsersArray,
+                              failure: @escaping Closure.GeneralError) {
+        let endpoint = RequestDescription.Users.getAllUsers
+
+        execute(
+            request: makeDataRequest(for: endpoint),
+            responseType: [UserResponse].self,
+            success: { success($0.map { User(userResponse: $0) }) },
+            failure: failure
+        )
+    }
+    
+    public func fetchUser(id: UUID,
+                          success: @escaping Closure.User,
+                          failure: @escaping Closure.GeneralError) {
+        let endpoint = RequestDescription.Users.getUserById
+            .replacingParameters(.id(id.uuidString))
+        
+        execute(
+            request: makeDataRequest(for: endpoint),
+            responseType: UserResponse.self,
+            success: { success(User(userResponse: $0)) },
+            failure: failure
+        )
+    }
 }

@@ -54,6 +54,36 @@ extension HomeAssembly {
         
         return viewController
     }
+    
+    static func usersListScreen(
+        transitions: UsersListViewController.ViewModel.Transitions,
+        resolver: DependencyResolver
+    ) -> UsersListViewController {
+        let viewController = UsersListViewController()
+        let viewModel = UsersListViewController.ViewModel(
+            transitions: transitions,
+            services: .inject(from: resolver)
+        )
+        viewController.viewModel = viewModel
+        
+        return viewController
+    }
+    
+    static func externalProfileScreen(
+        userId: UUID,
+        transitions: ExternalProfileViewController.ViewModel.Transitions,
+        resolver: DependencyResolver
+    ) -> ExternalProfileViewController {
+        let viewController = ExternalProfileViewController()
+        let viewModel = ExternalProfileViewController.ViewModel(
+            userId: userId,
+            transitions: transitions,
+            services: .inject(from: resolver)
+        )
+        viewController.viewModel = viewModel
+        
+        return viewController
+    }
 }
 
 // MARK: - DI
@@ -75,5 +105,17 @@ extension WalletDetailsViewController.ViewModel.Services: DependencyInjectable {
     static func inject(from resolver: DependencyResolver) -> Self {
         Self(wallets: ServicesAssembly.wallets(resolver: resolver),
              coins: ServicesAssembly.coins(resolver: resolver))
+    }
+}
+
+extension UsersListViewController.ViewModel.Services: DependencyInjectable {
+    static func inject(from resolver: DependencyResolver) -> Self {
+        Self(users: ServicesAssembly.users(resolver: resolver))
+    }
+}
+
+extension ExternalProfileViewController.ViewModel.Services: DependencyInjectable {
+    static func inject(from resolver: DependencyResolver) -> Self {
+        Self(users: ServicesAssembly.users(resolver: resolver))
     }
 }

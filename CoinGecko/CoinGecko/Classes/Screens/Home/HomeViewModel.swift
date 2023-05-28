@@ -13,7 +13,7 @@ import Utils
 extension HomeViewController {
     final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, PriceConvertable {
         private typealias Texts = L10n.Home.TableRow
-        typealias ProfileCellViewModel = HomeViewController.ProfileTableCell.ViewModel
+        typealias ProfileCellViewModel = ProfileTableCell.ViewModel
         
         let placeholderViewModel = HomeViewController.SignInPlaceholderView.ViewModel()
         
@@ -42,6 +42,7 @@ extension HomeViewController.ViewModel {
         let signUp: (@escaping Closure.Void) -> Void
         let personalWebPage: Closure.URL
         let accountWallets: Transition
+        let usersList: Transition
     }
     
     final class Services {
@@ -87,15 +88,13 @@ private extension HomeViewController.ViewModel {
     
     func setupData(with user: User) {
         var infoViewModels = [[BaseProfileTableCellViewModel]]()
-        infoViewModels.append(
-            [
-                ProfileCellViewModel(title: Texts.id, description: String(user.id.uuidString.prefix(8))),
-                ProfileCellViewModel(title: Texts.username, description: user.name),
-                ProfileCellViewModel(title: Texts.login, description: user.login),
-                ProfileCellViewModel(title: Texts.email, description: user.email),
-                ProfileCellViewModel(title: Texts.userRole, description: user.role.rawValue, isSeparatorLineHidden: true)
-            ]
-        )
+        infoViewModels.append([
+            ProfileCellViewModel(title: Texts.id, description: String(user.id.uuidString.prefix(8))),
+            ProfileCellViewModel(title: Texts.username, description: user.name),
+            ProfileCellViewModel(title: Texts.login, description: user.login),
+            ProfileCellViewModel(title: Texts.email, description: user.email),
+            ProfileCellViewModel(title: Texts.userRole, description: user.role.rawValue, isSeparatorLineHidden: true)
+        ])
         
         infoViewModels.append([
             ProfileCellViewModel(
@@ -118,6 +117,18 @@ private extension HomeViewController.ViewModel {
                         guard let url = user.webPageURL else { return }
                         self?.transitions.personalWebPage(url)
                     }
+                )
+            ])
+        }
+        
+        if user.role == .user {
+            infoViewModels.append([
+                ProfileCellViewModel(
+                    title: "Список пользователей",
+                    description: .empty,
+                    isSeparatorLineHidden: true,
+                    type: .action,
+                    selectClosure: { [weak self] in self?.transitions.usersList() }
                 )
             ])
         }
