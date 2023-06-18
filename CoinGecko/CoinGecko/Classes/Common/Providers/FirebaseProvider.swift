@@ -22,7 +22,7 @@ final class FirebaseProvider {
         let path = "images/\(UUID().uuidString).jpg"
         let fileRef = storageRef.child(path)
 
-        let uploadTask = fileRef.putData(imageData, metadata: nil) { metaData, error in
+        _ = fileRef.putData(imageData, metadata: nil) { metaData, error in
             guard error.isNil else {
                 failure(
                     FirebaseError(code: .uploadImage, underlying: error)

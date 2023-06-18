@@ -51,6 +51,9 @@
 "home.placeholder.sign_in" = "Sign In";
 "home.placeholder.sign_up" = "Sign Up";
 "home.users_list.title" = "Users List";
+"home.logout.title" = "Log out";
+"home.logout.message" = "Are you sure you want to log out?";
+"home.logout.action" = "Log out";
 
 "sign_in.title" = "Sign in";
 "sign_in.login.button" = "Log in";

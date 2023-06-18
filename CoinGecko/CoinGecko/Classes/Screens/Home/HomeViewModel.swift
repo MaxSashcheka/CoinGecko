@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension HomeViewController {
-    final class ViewModel: ScreenTransitionable, PriceConvertable {
+    final class ViewModel: ScreenTransitionable, HandlersAccessible, PriceConvertable {
         private typealias Texts = L10n.Home.TableRow
         typealias ProfileCellViewModel = ProfileTableCell.ViewModel
         
@@ -135,8 +135,21 @@ private extension HomeViewController.ViewModel {
             HomeViewController.ActionTableCell.ViewModel(
                 title: Texts.logOut,
                 selectClosure: { [weak self] in
-                    self?.services.users.clearCurrentUser()
-                    self?.fetchCurrentUserData()
+                    guard let self = self else { return }
+                    
+                    let logoutClosure = { [weak self] in
+                        self?.services.users.clearCurrentUser()
+                        self?.fetchCurrentUserData()
+                    }
+                    
+                    self.alertHandler.showAlert(
+                        title: L10n.Home.Logout.title,
+                        message: L10n.Home.Logout.message,
+                        actions: [
+                            self.alertHandler.cancelAction(),
+                            self.alertHandler.action(title: L10n.Home.Logout.action, completion: logoutClosure)
+                        ]
+                    )
                 }
             )
         ])

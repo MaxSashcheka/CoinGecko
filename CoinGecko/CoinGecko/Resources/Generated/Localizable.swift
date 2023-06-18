@@ -144,6 +144,14 @@ internal enum L10n {
   internal enum Home {
     /// Home
     internal static let title = L10n.tr("Localizable", "home.title", fallback: #"Home"#)
+    internal enum Logout {
+      /// Log out
+      internal static let action = L10n.tr("Localizable", "home.logout.action", fallback: #"Log out"#)
+      /// Are you sure you want to log out?
+      internal static let message = L10n.tr("Localizable", "home.logout.message", fallback: #"Are you sure you want to log out?"#)
+      /// Log out
+      internal static let title = L10n.tr("Localizable", "home.logout.title", fallback: #"Log out"#)
+    }
     internal enum Placeholder {
       /// Please log in
       internal static let description = L10n.tr("Localizable", "home.placeholder.description", fallback: #"Please log in"#)

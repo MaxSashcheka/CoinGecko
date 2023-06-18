@@ -51,6 +51,9 @@
 "home.placeholder.sign_in" = "Войти в аккаунт";
 "home.placeholder.sign_up" = "Зарегистрироваться";
 "home.users_list.title" = "Список пользователей";
+"home.logout.title" = "Выход из аккаунта";
+"home.logout.message" = "Вы уверены, что хотите выйти из аккаунта ?";
+"home.logout.action" = "Выйти";
 
 "sign_in.title" = "Вход в аккаунт";
 "sign_in.login.button" = "Войти";

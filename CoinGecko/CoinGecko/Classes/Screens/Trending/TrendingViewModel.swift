@@ -96,6 +96,7 @@ extension TrendingViewController.ViewModel {
         }, failure: errorsHandler.handleClosure(completion: { [weak self] in
             self?.isSearchPerforming = false
             self?.activityIndicator.hide()
+            self?.currentPage -= 1
             })                      
         )
     }
