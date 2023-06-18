@@ -33,6 +33,8 @@
 		1C2A63D928D5FA1F0007877D /* CoinsAPIDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2A63D828D5FA1F0007877D /* CoinsAPIDataManager.swift */; };
 		1C2EF9AF29F8768D00052211 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2EF9AE29F8768D00052211 /* UsersService.swift */; };
 		1C2EF9B129F8769200052211 /* UsersServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2EF9B029F8769200052211 /* UsersServiceProtocol.swift */; };
+		1C32DA612A3DD8EC0030C8F2 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DA602A3DD8EC0030C8F2 /* ServiceError.swift */; };
+		1C32DA632A3DE86F0030C8F2 /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DA622A3DE86F0030C8F2 /* FirebaseError.swift */; };
 		1C3F8AE128ECD75A00E04740 /* GlobalDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3F8AE028ECD75A00E04740 /* GlobalDataResponse.swift */; };
 		1C3F8AE328ECD92D00E04740 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3F8AE228ECD92D00E04740 /* GlobalData.swift */; };
 		1C4287A428E07DFD00273979 /* CoinChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4287A328E07DFD00273979 /* CoinChartData.swift */; };
@@ -64,8 +66,7 @@
 		1CC2B5B129F9C5E100C26190 /* AppPropertiesDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5B029F9C5E100C26190 /* AppPropertiesDataManager.swift */; };
 		1CC2B5B429F9C69100C26190 /* AppPropertyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5B329F9C69100C26190 /* AppPropertyCodable.swift */; };
 		1CC2B5B729F9C6D300C26190 /* User+AppPropertyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5B629F9C6D300C26190 /* User+AppPropertyCodable.swift */; };
-		1CC329B829F070A80061EB04 /* FirebaseDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC329B729F070A80061EB04 /* FirebaseDataManager.swift */; };
-		1CC329BA29F070B00061EB04 /* FirebaseDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC329B929F070B00061EB04 /* FirebaseDataManagerProtocol.swift */; };
+		1CC6EAC82A3DB338008B3314 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC6EAC72A3DB338008B3314 /* APIError.swift */; };
 		1CD2581A29F8804400EE96DD /* WalletsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD2581929F8804400EE96DD /* WalletsServiceProtocol.swift */; };
 		1CD2581C29F8804B00EE96DD /* WalletsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD2581B29F8804B00EE96DD /* WalletsService.swift */; };
 		1CD2581F29F8807500EE96DD /* WalletsAPIDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD2581E29F8807500EE96DD /* WalletsAPIDataManager.swift */; };
@@ -120,6 +121,8 @@
 		1C2A63D828D5FA1F0007877D /* CoinsAPIDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsAPIDataManager.swift; sourceTree = "<group>"; };
 		1C2EF9AE29F8768D00052211 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
 		1C2EF9B029F8769200052211 /* UsersServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersServiceProtocol.swift; sourceTree = "<group>"; };
+		1C32DA602A3DD8EC0030C8F2 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
+		1C32DA622A3DE86F0030C8F2 /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
 		1C3F8AE028ECD75A00E04740 /* GlobalDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataResponse.swift; sourceTree = "<group>"; };
 		1C3F8AE228ECD92D00E04740 /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		1C4287A328E07DFD00273979 /* CoinChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinChartData.swift; sourceTree = "<group>"; };
@@ -150,8 +153,7 @@
 		1CC2B5B029F9C5E100C26190 /* AppPropertiesDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPropertiesDataManager.swift; sourceTree = "<group>"; };
 		1CC2B5B329F9C69100C26190 /* AppPropertyCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPropertyCodable.swift; sourceTree = "<group>"; };
 		1CC2B5B629F9C6D300C26190 /* User+AppPropertyCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+AppPropertyCodable.swift"; sourceTree = "<group>"; };
-		1CC329B729F070A80061EB04 /* FirebaseDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataManager.swift; sourceTree = "<group>"; };
-		1CC329B929F070B00061EB04 /* FirebaseDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataManagerProtocol.swift; sourceTree = "<group>"; };
+		1CC6EAC72A3DB338008B3314 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		1CD2581929F8804400EE96DD /* WalletsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsServiceProtocol.swift; sourceTree = "<group>"; };
 		1CD2581B29F8804B00EE96DD /* WalletsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsService.swift; sourceTree = "<group>"; };
 		1CD2581E29F8807500EE96DD /* WalletsAPIDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsAPIDataManager.swift; sourceTree = "<group>"; };
@@ -297,8 +299,8 @@
 		1C590F3B29EC96BF00D700D1 /* ComposeUser */ = {
 			isa = PBXGroup;
 			children = (
-				1C590F3C29EC96D800D700D1 /* ComposeUserService.swift */,
 				1CAC0F1A29ED8ABE0098D5B4 /* ComposeUserServiceProtocol.swift */,
+				1C590F3C29EC96D800D700D1 /* ComposeUserService.swift */,
 			);
 			path = ComposeUser;
 			sourceTree = "<group>";
@@ -450,18 +452,18 @@
 			isa = PBXGroup;
 			children = (
 				1CC2B5B229F9C68000C26190 /* AppPropertiesDataManager */,
-				1CC329B629F070990061EB04 /* Firebase */,
 			);
 			path = Other;
 			sourceTree = "<group>";
 		};
-		1CC329B629F070990061EB04 /* Firebase */ = {
+		1CC6EAC62A3DB326008B3314 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
-				1CC329B729F070A80061EB04 /* FirebaseDataManager.swift */,
-				1CC329B929F070B00061EB04 /* FirebaseDataManagerProtocol.swift */,
+				1CC6EAC72A3DB338008B3314 /* APIError.swift */,
+				1C32DA602A3DD8EC0030C8F2 /* ServiceError.swift */,
+				1C32DA622A3DE86F0030C8F2 /* FirebaseError.swift */,
 			);
-			path = Firebase;
+			path = Errors;
 			sourceTree = "<group>";
 		};
 		1CD2581829F8803A00EE96DD /* Wallets */ = {
@@ -521,6 +523,7 @@
 		1CDCB2C328D122AE00624AB5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1CC6EAC62A3DB326008B3314 /* Errors */,
 				1CB0B4EB293FF3EE00C874C4 /* ExternalLinkBuilder */,
 				1CA3D39728D3C803009D43E9 /* Models */,
 				1CC178F528E63C2500550D3B /* Responces */,
@@ -703,7 +706,9 @@
 				1CAC0F1B29ED8ABE0098D5B4 /* ComposeUserServiceProtocol.swift in Sources */,
 				1CAC0F2029ED8AF50098D5B4 /* ComposeUserCacheDataManagerProtocol.swift in Sources */,
 				1CC2B5B429F9C69100C26190 /* AppPropertyCodable.swift in Sources */,
+				1C32DA612A3DD8EC0030C8F2 /* ServiceError.swift in Sources */,
 				1C289BC629F59F6A005A231C /* PostsCacheDataManager.swift in Sources */,
+				1CC6EAC82A3DB338008B3314 /* APIError.swift in Sources */,
 				1CC2B5B729F9C6D300C26190 /* User+AppPropertyCodable.swift in Sources */,
 				1CD2582129F8807800EE96DD /* WalletsAPIDataManagerProtocol.swift in Sources */,
 				1CD2582629F880BA00EE96DD /* WalletsCacheDataManagerProtocol.swift in Sources */,
@@ -714,12 +719,11 @@
 				1CD2581F29F8807500EE96DD /* WalletsAPIDataManager.swift in Sources */,
 				1C3F8AE128ECD75A00E04740 /* GlobalDataResponse.swift in Sources */,
 				1C12DD5228F238F900E7D91E /* SearchResponse.swift in Sources */,
+				1C32DA632A3DE86F0030C8F2 /* FirebaseError.swift in Sources */,
 				1C289BBD29F584C2005A231C /* PostsAPIDataManager.swift in Sources */,
 				1C05EE3E29F68D8C00A9306C /* AuthServiceProtocol.swift in Sources */,
 				1CB234FC29F8881F001D98BF /* Wallet.swift in Sources */,
 				1CFD91FD291285120010172D /* CoinsCacheDataManager.swift in Sources */,
-				1CC329BA29F070B00061EB04 /* FirebaseDataManagerProtocol.swift in Sources */,
-				1CC329B829F070A80061EB04 /* FirebaseDataManager.swift in Sources */,
 				1C945B2229FB0D680085FA2F /* CoinIdentifier.swift in Sources */,
 				1C05EE4829F68E8700A9306C /* UsersCacheDataManager.swift in Sources */,
 				1C289BC129F5892E005A231C /* Post.swift in Sources */,

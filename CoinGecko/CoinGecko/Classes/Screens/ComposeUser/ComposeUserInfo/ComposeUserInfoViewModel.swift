@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension ComposeUserInfoViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+    final class ViewModel: ScreenTransitionable {
         private typealias Texts = L10n.CreateUser
         
         private let services: Services
@@ -56,8 +56,6 @@ extension ComposeUserInfoViewController {
         init(transitions: Transitions, services: Services) {
             self.transitions = transitions
             self.services = services
-
-            super.init()
             
             setupTextFieldsViewModels()
         }

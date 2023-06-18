@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension TrendingViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, PriceConvertable, HandlersAccessible {
+    final class ViewModel: ScreenTransitionable, PriceConvertable, HandlersAccessible {
         private let services: Services
         let transitions: Transitions
         
@@ -23,8 +23,6 @@ extension TrendingViewController {
         init(transitions: Transitions, services: Services) {
             self.transitions = transitions
             self.services = services
-
-            super.init()
         }
     }
 }
@@ -95,10 +93,10 @@ extension TrendingViewController.ViewModel {
                 }
             )
             self.activityIndicator.hide()
-        }, failure: { [weak self] in
+        }, failure: errorsHandler.handleClosure(completion: { [weak self] in
             self?.isSearchPerforming = false
             self?.activityIndicator.hide()
-            self?.errorHandlerClosure($0)
-        })
+            })                      
+        )
     }
 }

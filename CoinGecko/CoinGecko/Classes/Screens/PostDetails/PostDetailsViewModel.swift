@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension PostDetailsViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+    final class ViewModel: ScreenTransitionable, HandlersAccessible {
         private let services: Services
         private let postId: UUID
         let transitions: Transitions
@@ -26,8 +26,6 @@ extension PostDetailsViewController {
             self.services = services
             self.transitions = transitions
             self.postId = id
-            
-            super.init()
             
             fetchPost()
         }
@@ -60,9 +58,7 @@ extension PostDetailsViewController.ViewModel {
                 self?.titleText.send(post.title)
                 self?.contentText.send(post.content)
             },
-            failure: { [weak self] in
-                self?.errorHandlerClosure($0)
-            }
+            failure: errorsHandler.handleClosure
         )
     }
 }

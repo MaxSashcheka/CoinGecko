@@ -27,10 +27,7 @@ class ComposePostPhotoViewModel: BaseComposePhotoViewModel {
                 self?.activityIndicator.hide()
                 self?.transitions.completion()
             },
-            failure: { [weak self] error in
-                self?.activityIndicator.hide()
-                self?.errorHandlerClosure(error)
-            }
+            failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure)
         )
     }
     

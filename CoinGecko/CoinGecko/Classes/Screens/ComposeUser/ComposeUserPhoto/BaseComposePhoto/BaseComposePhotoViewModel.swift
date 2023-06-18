@@ -11,7 +11,7 @@ import Core
 import UIKit.UIImage
 import Utils
 
-class BaseComposePhotoViewModel: ErrorHandableViewModel, ScreenTransitionable, HandlersAccessible {
+class BaseComposePhotoViewModel: ScreenTransitionable, HandlersAccessible {
     private let services: BaseServices
     let transitions: Transitions
     
@@ -20,8 +20,6 @@ class BaseComposePhotoViewModel: ErrorHandableViewModel, ScreenTransitionable, H
     init(transitions: Transitions, services: BaseServices) {
         self.transitions = transitions
         self.services = services
-
-        super.init()
     }
     
     func handleFinishImageUpload(imageURL: String) {
@@ -71,10 +69,7 @@ extension BaseComposePhotoViewModel {
             success: { [weak self] in
                 self?.handleFinishImageUpload(imageURL: $0)
             },
-            failure: { [weak self] in
-                self?.errorHandlerClosure($0)
-                self?.activityIndicator.hide()
-            }
+            failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure)
         )
     }
 }

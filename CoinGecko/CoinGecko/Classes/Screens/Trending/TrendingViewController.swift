@@ -36,7 +36,6 @@ final class TrendingViewController: ViewController {
         super.viewDidLoad()
         
         viewModel.fetchCoins()
-        viewModel.errorHandlerClosure = errorHandler
     }
     
     // MARK: - Methods

@@ -61,8 +61,6 @@ final class AccountWalletsViewController: ViewController {
 
         walletsTableView.delegate = self
         walletsTableView.dataSource = self
-        
-        viewModel.errorHandlerClosure = errorHandler
     }
     
     override func arrangeSubviews() {

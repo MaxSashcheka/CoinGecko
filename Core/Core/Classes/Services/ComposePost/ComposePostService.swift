@@ -45,9 +45,10 @@ public extension ComposePostService {
 public extension ComposePostService {
     func submitPost(imageURL: String,
                     success: @escaping Closure.Void,
-                    failure: @escaping Closure.GeneralError) {
+                    failure: @escaping Closure.ServiceError) {
         guard let title = title, let content = content else {
-            failure(.defaultError)
+            let appError = AppError(code: .unexpected, message: "Required fields should not be nil")
+            failure(ServiceError(code: .createPost, underlying: appError))
             return
         }
         
@@ -60,7 +61,7 @@ public extension ComposePostService {
                 self?.postsCacheDataManager.cachedPosts.addFront($0)
                 success()
             },
-            failure: failure
+            failure: ServiceError.wrap(failure, code: .createPost)
         )
     }
 }

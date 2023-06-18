@@ -11,10 +11,7 @@ import Core
 import Utils
 
 extension MarketsViewController {
-    final class ViewModel: ErrorHandableViewModel,
-                           ScreenTransitionable,
-                           PriceConvertable,
-                           HandlersAccessible {
+    final class ViewModel: ScreenTransitionable, PriceConvertable, HandlersAccessible {
         typealias DisplayMode = PageButton.ViewModel.DisplayMode
 
         private let services: Services
@@ -31,8 +28,6 @@ extension MarketsViewController {
         init(transitions: Transitions, services: Services) {
             self.transitions = transitions
             self.services = services
-
-            super.init()
             
             pageButtonsCollectionViewModel.buttonsViewModels.send(
                 DisplayMode.allCases.map {
@@ -69,10 +64,7 @@ extension MarketsViewController.ViewModel {
             self?.isPriceChangePositive.send(globalData.previousDayChangePercentage > .zero)
             self?.changePercentage.send(globalData.previousDayChangePercentage)
             self?.activityIndicator.hide()
-        }, failure: { [weak self] error in
-            self?.activityIndicator.hide()
-            self?.errorHandlerClosure?(error)
-        })
+        }, failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure))
     }
     
     func fetchCoins() {
@@ -95,9 +87,7 @@ extension MarketsViewController.ViewModel {
             self.coinsViewModels.send(
                 self.makeCoinViewModels(from: coins.filter(filterClosure))
             )
-        }, failure: { [weak self] error in
-            self?.errorHandlerClosure?(error)
-        })
+        }, failure: errorsHandler.handleClosure)
     }
 }
 

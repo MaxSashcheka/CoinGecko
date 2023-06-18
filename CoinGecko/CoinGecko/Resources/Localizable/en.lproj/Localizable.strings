@@ -1,3 +1,6 @@
+"general.alert.close" = "Close";
+"general.alert.cancel" = "Cancel";
+
 "tabbar.title.trending" = "Trending";
 "tabbar.title.markets" = "Markets";
 "tabbar.title.news" = "News";
@@ -47,6 +50,7 @@
 "home.placeholder.description" = "Please log in";
 "home.placeholder.sign_in" = "Sign In";
 "home.placeholder.sign_up" = "Sign Up";
+"home.users_list.title" = "Users List";
 
 "sign_in.title" = "Sign in";
 "sign_in.login.button" = "Log in";

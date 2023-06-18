@@ -9,12 +9,16 @@
 import Utils
 
 class ActivityIndicatorCoordinator {
-    var indicatorControllers: [ActivityIndicatorController] = []
+    private var indicatorControllers: [ActivityIndicatorController] = []
     
     func show() {
         let indicatorController = ActivityIndicatorController()
         indicatorControllers.append(indicatorController)
         indicatorController.show()
+    }
+    
+    var hideClosure: Closure.Void {
+        { [weak self] in self?.hide() }
     }
     
     func hide() {

@@ -124,6 +124,10 @@
 		1CC2B5C229F9D68600C26190 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2B5C129F9D68600C26190 /* WalletViewModel.swift */; };
 		1CC329BC29F07FA40061EB04 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CC329BB29F07FA40061EB04 /* GoogleService-Info.plist */; };
 		1CC329BF29F083780061EB04 /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC329BE29F083780061EB04 /* FirebaseProvider.swift */; };
+		1CC6EABC2A3DAFEA008B3314 /* ErrorsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC6EABB2A3DAFEA008B3314 /* ErrorsHandler.swift */; };
+		1CC6EACB2A3DB715008B3314 /* EventsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC6EACA2A3DB715008B3314 /* EventsTracker.swift */; };
+		1CC6EACD2A3DB72A008B3314 /* EventsTracker+ErrosTrackerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC6EACC2A3DB72A008B3314 /* EventsTracker+ErrosTrackerProtocol.swift */; };
+		1CC6EACF2A3DB7B1008B3314 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC6EACE2A3DB7B1008B3314 /* Logger.swift */; };
 		1CCB08CC29AD560900596FED /* ScreenTransitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCB08CB29AD560900596FED /* ScreenTransitionable.swift */; };
 		1CD2581529F87EE200EE96DD /* AccountWalletsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD2581429F87EE200EE96DD /* AccountWalletsViewController.swift */; };
 		1CD2581729F87EE700EE96DD /* AccountWalletsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD2581629F87EE700EE96DD /* AccountWalletsViewModel.swift */; };
@@ -299,6 +303,10 @@
 		1CC2B5C129F9D68600C26190 /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
 		1CC329BB29F07FA40061EB04 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1CC329BE29F083780061EB04 /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
+		1CC6EABB2A3DAFEA008B3314 /* ErrorsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsHandler.swift; sourceTree = "<group>"; };
+		1CC6EACA2A3DB715008B3314 /* EventsTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTracker.swift; sourceTree = "<group>"; };
+		1CC6EACC2A3DB72A008B3314 /* EventsTracker+ErrosTrackerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventsTracker+ErrosTrackerProtocol.swift"; sourceTree = "<group>"; };
+		1CC6EACE2A3DB7B1008B3314 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		1CCB08CB29AD560900596FED /* ScreenTransitionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTransitionable.swift; sourceTree = "<group>"; };
 		1CD2581429F87EE200EE96DD /* AccountWalletsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountWalletsViewController.swift; sourceTree = "<group>"; };
 		1CD2581629F87EE700EE96DD /* AccountWalletsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountWalletsViewModel.swift; sourceTree = "<group>"; };
@@ -437,6 +445,7 @@
 		1C2A63E028D644D60007877D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1CC6EABA2A3DAFDA008B3314 /* Helpers */,
 				1C7E17C42A043FFD00B91C1B /* Coordinators */,
 				1C7E17BF2A043EFD00B91C1B /* ModalControllers */,
 				1CC329BD29F0836E0061EB04 /* Providers */,
@@ -968,6 +977,25 @@
 			path = Providers;
 			sourceTree = "<group>";
 		};
+		1CC6EABA2A3DAFDA008B3314 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1CC6EAC92A3DB6FD008B3314 /* EventsTracker */,
+				1CC6EABB2A3DAFEA008B3314 /* ErrorsHandler.swift */,
+				1CC6EACE2A3DB7B1008B3314 /* Logger.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1CC6EAC92A3DB6FD008B3314 /* EventsTracker */ = {
+			isa = PBXGroup;
+			children = (
+				1CC6EACA2A3DB715008B3314 /* EventsTracker.swift */,
+				1CC6EACC2A3DB72A008B3314 /* EventsTracker+ErrosTrackerProtocol.swift */,
+			);
+			path = EventsTracker;
+			sourceTree = "<group>";
+		};
 		1CC8B3C229EE036C0062712A /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1350,10 +1378,12 @@
 				1C97B9D328EA2E460085C979 /* PageButtonViewModel.swift in Sources */,
 				1C2DE54B29F6FB8700665876 /* ActionTableCellViewModel.swift in Sources */,
 				1C7CD4F628D2743C00068965 /* TrendingViewController.swift in Sources */,
+				1CC6EABC2A3DAFEA008B3314 /* ErrorsHandler.swift in Sources */,
 				1CE2AE7428F3777700642D00 /* HomeViewModel.swift in Sources */,
 				1C12DD4C28F21DCB00E7D91E /* SearchTextFieldViewModel.swift in Sources */,
 				1CD2581729F87EE700EE96DD /* AccountWalletsViewModel.swift in Sources */,
 				1CC2B5AB29F9AD0800C26190 /* ColorPickerViewController.swift in Sources */,
+				1CC6EACF2A3DB7B1008B3314 /* Logger.swift in Sources */,
 				1CB0B4E7293FF15C00C874C4 /* InAppWebBrowserViewController.swift in Sources */,
 				1C289BD029F5A8B7005A231C /* PostTableCell.swift in Sources */,
 				1C7E17C82A0440D700B91C1B /* HandlersAccessingProtocol.swift in Sources */,
@@ -1410,6 +1440,7 @@
 				1C590F3629EC7F2C00D700D1 /* ComposeUserPhotoViewController.swift in Sources */,
 				1CC2B5A629F99BB500C26190 /* ComposeWalletViewController.swift in Sources */,
 				1C7200B828D77FB3001DDBD5 /* CoinDetailsViewController.swift in Sources */,
+				1CC6EACB2A3DB715008B3314 /* EventsTracker.swift in Sources */,
 				1CF466EF28CFDF5F0012DE85 /* Localizable.swift in Sources */,
 				1C2A63E328D644F40007877D /* RemoteImageView.swift in Sources */,
 				1C872DF229F41B2E00F6D83F /* BaseComposePhotoViewModel.swift in Sources */,
@@ -1419,6 +1450,7 @@
 				1C05EE3B29F684AF00A9306C /* SignInPlaceholderViewModel.swift in Sources */,
 				1C57B7742A23E0AC00BD06B7 /* UsersListViewModel.swift in Sources */,
 				1C68714429ACF20900A9C59B /* ScreenDependent.swift in Sources */,
+				1CC6EACD2A3DB72A008B3314 /* EventsTracker+ErrosTrackerProtocol.swift in Sources */,
 				1CAD2B37293F66B30004E4AA /* AppStyle+Colors.swift in Sources */,
 				1CE8A3CA28F1824C0052E34B /* SearchViewModel.swift in Sources */,
 				1C97B9D728EA32550085C979 /* PageButtonsCollectionView.swift in Sources */,

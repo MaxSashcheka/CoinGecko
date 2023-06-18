@@ -41,8 +41,6 @@ final class HomeViewController: ViewController {
         
         profileImageView.layer.cornerRadius = 30
         profileImageView.clipsToBounds = true
-        
-        viewModel.errorHandlerClosure = errorHandler
     }
     
     // MARK: - Methods

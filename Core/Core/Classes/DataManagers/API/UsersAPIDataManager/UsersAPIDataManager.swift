@@ -17,7 +17,7 @@ public final class UsersAPIDataManager: APIDataManager, UsersAPIDataManagerProto
                            personalWebLink: String,
                            imageURL: String,
                            success: @escaping Closure.User,
-                           failure: @escaping Closure.GeneralError) {
+                           failure: @escaping Closure.APIError) {
         let endpoint = RequestDescription.Users.createUser
             .replacingParameters(
                 .createUser(
@@ -34,6 +34,7 @@ public final class UsersAPIDataManager: APIDataManager, UsersAPIDataManagerProto
         
         execute(
             request: makeDataRequest(for: endpoint),
+            errorCode: .createUser,
             responseType: UserResponse.self,
             success: { success(User(userResponse: $0)) },
             failure: failure
@@ -41,11 +42,12 @@ public final class UsersAPIDataManager: APIDataManager, UsersAPIDataManagerProto
     }
     
     public func fetchAllUsers(success: @escaping Closure.UsersArray,
-                              failure: @escaping Closure.GeneralError) {
+                              failure: @escaping Closure.APIError) {
         let endpoint = RequestDescription.Users.getAllUsers
 
         execute(
             request: makeDataRequest(for: endpoint),
+            errorCode: .fetchAllUsers,
             responseType: [UserResponse].self,
             success: { success($0.map { User(userResponse: $0) }) },
             failure: failure
@@ -54,12 +56,13 @@ public final class UsersAPIDataManager: APIDataManager, UsersAPIDataManagerProto
     
     public func fetchUser(id: UUID,
                           success: @escaping Closure.User,
-                          failure: @escaping Closure.GeneralError) {
+                          failure: @escaping Closure.APIError) {
         let endpoint = RequestDescription.Users.getUserById
             .replacingParameters(.id(id.uuidString))
         
         execute(
             request: makeDataRequest(for: endpoint),
+            errorCode: .fetchUser,
             responseType: UserResponse.self,
             success: { success(User(userResponse: $0)) },
             failure: failure

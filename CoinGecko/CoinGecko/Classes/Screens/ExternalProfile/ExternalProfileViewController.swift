@@ -35,8 +35,6 @@ final class ExternalProfileViewController: ViewController {
         
         profileImageView.layer.cornerRadius = 30
         profileImageView.clipsToBounds = true
-        
-        viewModel.errorHandlerClosure = errorHandler
     }
     
     override func arrangeSubviews() {
@@ -106,4 +104,3 @@ extension ExternalProfileViewController: UITableViewPresentable {
         return cell
     }
 }
-

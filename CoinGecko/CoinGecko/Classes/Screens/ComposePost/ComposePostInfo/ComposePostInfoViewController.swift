@@ -60,8 +60,6 @@ final class ComposePostInfoViewController: ViewController {
         )
         
         activateEndEditingTap(at: view)
-        
-        viewModel.errorHandlerClosure = errorHandler
     }
     
     override func viewWillAppear(_ animated: Bool) {

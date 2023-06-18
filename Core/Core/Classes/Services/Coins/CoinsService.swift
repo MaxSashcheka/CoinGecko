@@ -21,9 +21,10 @@ public class CoinsService: CoinsServiceProtocol {
     
     public func getStoredCoin(id: String,
                               success: @escaping Closure.Coin,
-                              failure: @escaping Closure.GeneralError) {
+                              failure: @escaping Closure.ServiceError) {
         guard let coin = coinsCacheDataManager.cachedCoins[id] else {
-            failure(.defaultError)
+            let appError = AppError(code: .unexpected, message: "Cached coin not found")
+            failure(ServiceError(code: .getStoredCoin, underlying: appError))
             return
         }
         success(coin)
@@ -33,7 +34,7 @@ public class CoinsService: CoinsServiceProtocol {
     public func getCoins(fromCache: Bool = false,
                          currency: String, page: Int, pageSize: Int,
                          success: @escaping Closure.CoinsArray,
-                         failure: @escaping Closure.GeneralError) {
+                         failure: @escaping Closure.ServiceError) {
         if fromCache {
             success(coinsCacheDataManager.cachedCoins.allItems)
             return
@@ -45,16 +46,18 @@ public class CoinsService: CoinsServiceProtocol {
             success: { [weak self] coins in
                 self?.coinsCacheDataManager.cachedCoins.append(contentsOf: coins)
                 success(coins)
-            }, failure: failure)
+            },
+            failure: ServiceError.wrap(failure, code: .getCoins)
+        )
     }
     
     public func getCoinDetails(id: String,
                                success: @escaping Closure.CoinDetails,
-                               failure: @escaping Closure.GeneralError) {
+                               failure: @escaping Closure.ServiceError) {
         coinsAPIDataManager.getCoinDetails(
             id: id,
             success: success,
-            failure: failure
+            failure: ServiceError.wrap(failure, code: .getCoinDetails)
         )
     }
     
@@ -63,32 +66,32 @@ public class CoinsService: CoinsServiceProtocol {
                                    startTimeInterval: TimeInterval,
                                    endTimeInterval: TimeInterval,
                                    success: @escaping Closure.CoinChartData,
-                                   failure: @escaping Closure.GeneralError) {
+                                   failure: @escaping Closure.ServiceError) {
         coinsAPIDataManager.getCoinMarketChart(
             id: id,
             currency: currency,
             startTimeInterval: startTimeInterval,
             endTimeInterval: endTimeInterval,
             success: success,
-            failure: failure
+            failure: ServiceError.wrap(failure, code: .getCoinMarketChart)
         )
     }
     
     public func search(query: String,
                        success: @escaping Closure.SearchResult,
-                       failure: @escaping Closure.GeneralError) {
+                       failure: @escaping Closure.ServiceError) {
         coinsAPIDataManager.search(
             query: query,
             success: success,
-            failure: failure
+            failure: ServiceError.wrap(failure, code: .search)
         )
     }
     
     public func getGlobalData(success: @escaping Closure.GlobalData,
-                              failure: @escaping Closure.GeneralError) {
+                              failure: @escaping Closure.ServiceError) {
         coinsAPIDataManager.getGlobalData(
             success: success,
-            failure: failure
+            failure: ServiceError.wrap(failure, code: .getGlobalData)
         )
     }
 }

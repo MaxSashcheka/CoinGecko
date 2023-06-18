@@ -61,9 +61,6 @@ final class MarketsViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TODO: - add pull to refresh
-        viewModel.errorHandlerClosure = errorHandler
-        
         viewModel.fetchGlobalData()
     }
     

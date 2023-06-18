@@ -17,12 +17,12 @@ public protocol UsersAPIDataManagerProtocol {
                     personalWebLink: String,
                     imageURL: String,
                     success: @escaping Closure.User,
-                    failure: @escaping Closure.GeneralError)
+                    failure: @escaping Closure.APIError)
     
     func fetchAllUsers(success: @escaping Closure.UsersArray,
-                       failure: @escaping Closure.GeneralError)
+                       failure: @escaping Closure.APIError)
     
     func fetchUser(id: UUID,
                    success: @escaping Closure.User,
-                   failure: @escaping Closure.GeneralError)
+                   failure: @escaping Closure.APIError)
 }

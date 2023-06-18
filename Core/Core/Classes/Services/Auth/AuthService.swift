@@ -24,7 +24,7 @@ public final class AuthService: AuthServiceProtocol {
     public func login(login: String,
                       password: String,
                       success: @escaping Closure.Void,
-                      failure: @escaping Closure.GeneralError) {
+                      failure: @escaping Closure.ServiceError) {
         authAPIDataManager.login(
             login: login,
             password: password,
@@ -33,7 +33,7 @@ public final class AuthService: AuthServiceProtocol {
                 self?.usersCacheDataManager.updateCurrentUser($0)
                 success()
             },
-            failure: failure
+            failure: ServiceError.wrap(failure, code: .login)
         )
     }
 }

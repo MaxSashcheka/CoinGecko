@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension HomeViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, PriceConvertable {
+    final class ViewModel: ScreenTransitionable, PriceConvertable {
         private typealias Texts = L10n.Home.TableRow
         typealias ProfileCellViewModel = ProfileTableCell.ViewModel
         
@@ -27,8 +27,6 @@ extension HomeViewController {
         init(transitions: Transitions, services: Services) {
             self.transitions = transitions
             self.services = services
-            
-            super.init()
             
             fetchCurrentUserData()
         }
@@ -124,7 +122,7 @@ private extension HomeViewController.ViewModel {
         if user.role == .user {
             infoViewModels.append([
                 ProfileCellViewModel(
-                    title: "Список пользователей",
+                    title: L10n.Home.UsersList.title,
                     description: .empty,
                     isSeparatorLineHidden: true,
                     type: .action,

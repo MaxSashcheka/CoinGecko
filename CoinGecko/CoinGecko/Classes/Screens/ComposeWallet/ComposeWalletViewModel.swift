@@ -12,7 +12,7 @@ import UIKit.UIColor
 import Utils
 
 extension ComposeWalletViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, HandlersAccessible {
+    final class ViewModel: ScreenTransitionable, HandlersAccessible {
         private typealias Texts = L10n.ComposeWallet.Name
         
         private let services: Services
@@ -28,8 +28,6 @@ extension ComposeWalletViewController {
         init(transitions: Transitions, services: Services) {
             self.services = services
             self.transitions = transitions
-            
-            super.init()
             
             nameTitledTextFieldViewModel.saveTextClosure = { [weak self] in
                 self?.walletViewModel.title.send($0)
@@ -83,10 +81,7 @@ extension ComposeWalletViewController.ViewModel {
                 self?.activityIndicator.hide()
                 self?.transitions.completion()
             },
-            failure: { [weak self] in
-                self?.activityIndicator.hide()
-                self?.errorHandlerClosure?($0)
-            }
+            failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure)
         )
     }
 }

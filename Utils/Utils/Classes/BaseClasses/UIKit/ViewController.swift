@@ -83,20 +83,6 @@ open class ViewController: UIViewController {
     open func setupData() {
         // Override at subclasses
     }
-    
-    public var errorHandler: Closure.GeneralError {
-        { [weak self] error in
-//            activityin.hide()
-            let alert = UIAlertController(title: "Error Appeared !",
-                                          message: error.rawValue,
-                                          preferredStyle: UIAlertController.Style.alert)
-            
-            alert.addAction(UIAlertAction(title: "OK",
-                                          style: UIAlertAction.Style.default,
-                                          handler: nil))
-            self?.present(alert, animated: true, completion: nil)
-        }
-    }
 }
 
 private extension UITabBarController {

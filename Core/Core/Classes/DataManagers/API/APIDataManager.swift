@@ -23,8 +23,9 @@ public class APIDataManager {
     }
     
     public func execute(request: DataRequest,
+                        errorCode: APIErrorCode,
                         success: @escaping Closure.OptionalData,
-                        failure: @escaping Closure.GeneralError) {
+                        failure: @escaping Closure.APIError) {
         request
             .validate()
             .response(completionHandler: { response in
@@ -32,12 +33,23 @@ public class APIDataManager {
                 case let .success(data):
                     success(data)
                 case let .failure(afError):
-                    guard let responseData = response.data else {
-                        failure(.corrutpedDataResponse)
+                    guard !response.data.isNil else {
+                        failure(
+                            APIError(
+                                code: errorCode,
+                                underlying: afError,
+                                message: "No response data"
+                            )
+                        )
                         return
                     }
-                    failure(.unacceptableStatusCode)
-                    // TODO: - Add decoding response error
+                    failure(
+                        APIError(
+                            code: errorCode,
+                            underlying: afError,
+                            message: "Unacceptable status code"
+                        )
+                    )
                 }
             })
             .resume()
@@ -45,29 +57,43 @@ public class APIDataManager {
     
     public func execute<ResultType>(
         request: DataRequest,
+        errorCode: APIErrorCode,
         responseType: ResultType.Type,
         success: @escaping (ResultType) -> Void,
-        failure: @escaping Closure.GeneralError
+        failure: @escaping Closure.APIError
     ) where ResultType: APIResponse {
-        execute(request: request, success: { data in
+        execute(request: request, errorCode: errorCode, success: { data in
             do {
                 guard let data = data else {
-                    failure(.corrutpedDataResponse)
+                    failure(
+                        APIError(code: errorCode, message: "No response data")
+                    )
                     return
                 }
-                
+
                 let result = try ResultType.make(from: data)
                 success(result)
             } catch {
-                // TODO: - Add custom error based on decoding error type
-                failure(.corruptedResponse)
+                failure(
+                    APIError(
+                        code: errorCode,
+                        underlying: error,
+                        message: "Not convertable from \(responseType.self) to \(ResultType.self)"
+                    )
+                )
             }
         }, failure: failure)
     }
     
     public func execute(request: DataRequest,
+                        errorCode: APIErrorCode,
                         success: @escaping Closure.Void,
-                        failure: @escaping Closure.GeneralError) {
-        execute(request: request, success: { _ in success() }, failure: failure)
+                        failure: @escaping Closure.APIError) {
+        execute(
+            request: request,
+            errorCode: errorCode,
+            success: { _ in success() },
+            failure: failure
+        )
     }
 }

@@ -32,7 +32,7 @@ public final class UsersService: UsersServiceProtocol {
     
     public func fetchUsers(fromCache: Bool = true,
                            success: @escaping Closure.UsersArray,
-                           failure: @escaping Closure.GeneralError) {
+                           failure: @escaping Closure.ServiceError) {
         if fromCache {
             success(usersCacheDataManager.cachedUsers.allItems)
             return
@@ -43,13 +43,14 @@ public final class UsersService: UsersServiceProtocol {
                 self?.usersCacheDataManager.cachedUsers.append(contentsOf: $0)
                 success($0)
             },
-            failure: failure)
+            failure: ServiceError.wrap(failure, code: .fetchUsers)
+        )
     }
     
     public func fetchUser(id: UUID,
                           fromCache: Bool = true,
                           success: @escaping Closure.User,
-                          failure: @escaping Closure.GeneralError) {
+                          failure: @escaping Closure.ServiceError) {
         if fromCache, let cachedUser = usersCacheDataManager.cachedUsers[id] {
             success(cachedUser)
             return
@@ -61,7 +62,7 @@ public final class UsersService: UsersServiceProtocol {
                 self?.usersCacheDataManager.cachedUsers.append($0)
                 success($0)
             },
-            failure: failure
+            failure: ServiceError.wrap(failure, code: .fetchUser)
         )
     }
 }

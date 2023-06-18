@@ -1,3 +1,6 @@
+"general.alert.close" = "Закрыть";
+"general.alert.cancel" = "Отменить";
+
 "tabbar.title.trending" = "Тренды";
 "tabbar.title.markets" = "Рынок";
 "tabbar.title.news" = "Новости";
@@ -47,6 +50,7 @@
 "home.placeholder.description" = "Войдите в аккаунт или создайте новый";
 "home.placeholder.sign_in" = "Войти в аккаунт";
 "home.placeholder.sign_up" = "Зарегистрироваться";
+"home.users_list.title" = "Список пользователей";
 
 "sign_in.title" = "Вход в аккаунт";
 "sign_in.login.button" = "Войти";

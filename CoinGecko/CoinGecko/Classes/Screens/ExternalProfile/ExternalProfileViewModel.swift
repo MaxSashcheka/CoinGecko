@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension ExternalProfileViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+    final class ViewModel: HandlersAccessible, ScreenTransitionable {
         private typealias Texts = L10n.Home.TableRow
         
         let cellsViewModels = CurrentValueSubject<[ProfileTableCell.ViewModel], Never>([])
@@ -24,8 +24,7 @@ extension ExternalProfileViewController {
         init(userId: UUID, transitions: Transitions, services: Services) {
             self.transitions = transitions
             self.services = services
-            
-            super.init()
+
             
             fetchUserData(userId: userId)
         }
@@ -60,7 +59,7 @@ private extension ExternalProfileViewController.ViewModel {
             id: userId,
             fromCache: true,
             success: { [weak self] in self?.setupData(with: $0) },
-            failure: { [weak self] in self?.errorHandlerClosure?($0) }
+            failure: errorsHandler.handleClosure
         )
     }
     

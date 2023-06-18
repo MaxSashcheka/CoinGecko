@@ -20,5 +20,5 @@ public protocol ComposeUserServiceProtocol: AnyObject {
     
     func submitUser(imageURL: String,
                     success: @escaping Closure.Void,
-                    failure: @escaping Closure.GeneralError)
+                    failure: @escaping Closure.ServiceError)
 }

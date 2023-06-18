@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension SignInViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, HandlersAccessible {
+    final class ViewModel: ScreenTransitionable, HandlersAccessible {
         private typealias Texts = L10n.SignIn
         
         private let services: Services
@@ -35,8 +35,6 @@ extension SignInViewController {
         init(transitions: Transitions, services: Services) {
             self.transitions = transitions
             self.services = services
-
-            super.init()
         }
     }
 }
@@ -85,10 +83,7 @@ extension SignInViewController.ViewModel {
                 self?.activityIndicator.hide()
                 self?.transitions.completion()
             },
-            failure: { [weak self] in
-                self?.activityIndicator.hide()
-                self?.errorHandlerClosure($0)
-            }
+            failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure)
         )
     }
 }

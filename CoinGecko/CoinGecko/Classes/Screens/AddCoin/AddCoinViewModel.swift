@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension AddCoinViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, HandlersAccessible {
+    final class ViewModel: ScreenTransitionable, HandlersAccessible {
         private typealias Texts = L10n.AddCoin.Amount
         
         private let coinId: String
@@ -31,8 +31,6 @@ extension AddCoinViewController {
             self.coinId = coinId
             self.services = services
             self.transitions = transitions
-            
-            super.init()
             
             fetchWalletsData()
         }
@@ -83,7 +81,7 @@ private extension AddCoinViewController.ViewModel {
                 )
                 self?.walletsViewModels.value.first?.isSelected.send(true)
             },
-            failure: { [weak self] in self?.errorHandlerClosure?($0) }
+            failure: errorsHandler.handleClosure
         )
     }
 }
@@ -114,10 +112,7 @@ extension AddCoinViewController.ViewModel {
                 self?.activityIndicator.hide()
                 self?.transitions.close()
             },
-            failure: { [weak self] in
-                self?.activityIndicator.hide()
-                self?.errorHandlerClosure?($0)
-            }
+            failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure)
         )
     }
 }

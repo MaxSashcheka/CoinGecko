@@ -45,8 +45,6 @@ final class AddCoinViewController: ViewController {
             title: Texts.Button.done,
             action: { [weak viewModel] in viewModel?.didTapDoneButton() }
         )
-        
-        viewModel.errorHandlerClosure = errorHandler
     }
     
     override func arrangeSubviews() {

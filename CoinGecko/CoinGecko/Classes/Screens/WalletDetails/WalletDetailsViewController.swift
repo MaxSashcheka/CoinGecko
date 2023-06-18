@@ -30,8 +30,6 @@ final class WalletDetailsViewController: ViewController {
             image: UIImage(.trash),
             action: { [weak viewModel] in viewModel?.didTapDeleteWalletButton() }
         )
-        
-        viewModel.errorHandlerClosure = errorHandler
     }
     
     override func arrangeSubviews() {

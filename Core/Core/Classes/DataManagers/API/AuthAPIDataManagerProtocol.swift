@@ -12,5 +12,5 @@ public protocol AuthAPIDataManagerProtocol {
     func login(login: String,
                password: String,
                success: @escaping Closure.User,
-               failure: @escaping Closure.GeneralError)
+               failure: @escaping Closure.APIError)
 }

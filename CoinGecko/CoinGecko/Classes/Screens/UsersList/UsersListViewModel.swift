@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension UsersListViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, HandlersAccessible {
+    final class ViewModel: ScreenTransitionable, HandlersAccessible {
         private let services: Services
         let transitions: Transitions
         
@@ -20,8 +20,6 @@ extension UsersListViewController {
         init(transitions: Transitions, services: Services) {
             self.transitions = transitions
             self.services = services
-            
-            super.init()
             
             fetchUsersData()
         }
@@ -66,10 +64,9 @@ private extension UsersListViewController.ViewModel {
                 self?.activityIndicator.hide()
                 self?.setupCellsViewModels(from: $0)
             },
-            failure: { [weak self] in
-                self?.activityIndicator.hide()
-                self?.errorHandlerClosure?($0)
-            }
+            failure: errorsHandler.handleClosure(completion: {
+                [weak self] in self?.activityIndicator.hide()
+            })
         )
     }
     

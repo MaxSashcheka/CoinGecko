@@ -14,7 +14,7 @@ public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProto
                          page: Int,
                          pageSize: Int,
                          success: @escaping Closure.CoinsArray,
-                         failure: @escaping Closure.GeneralError) {
+                         failure: @escaping Closure.APIError) {
         let endpoint = RequestDescription.Coins.getCoinsMarkets
             .replacingQueryParameters(
                 .getCoinsMarkets(
@@ -26,6 +26,7 @@ public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProto
         
         execute(
             request: makeDataRequest(for: endpoint),
+            errorCode: .getCoins,
             responseType: [CoinResponse].self,
             success: { success($0.map { Coin(coinResponse: $0) }) },
             failure: failure
@@ -34,7 +35,7 @@ public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProto
     
     public func getCoinDetails(id: String,
                                success: @escaping Closure.CoinDetails,
-                               failure: @escaping Closure.GeneralError) {
+                               failure: @escaping Closure.APIError) {
         let endpoint = RequestDescription.Coins.getCoinDetails
             .replacingInlineArguments(
                 .id(id)
@@ -42,6 +43,7 @@ public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProto
         
         execute(
             request: makeDataRequest(for: endpoint),
+            errorCode: .getCoinDetails,
             responseType: CoinDetailsResponse.self,
             success: { success(CoinDetails(coinDetailsResponse: $0)) },
             failure: failure
@@ -53,7 +55,7 @@ public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProto
                                    startTimeInterval: TimeInterval,
                                    endTimeInterval: TimeInterval,
                                    success: @escaping Closure.CoinChartData,
-                                   failure: @escaping Closure.GeneralError) {
+                                   failure: @escaping Closure.APIError) {
         let endpoint = RequestDescription.Coins.getCoinMarketChart
             .replacingQueryParameters(
                 .getCoinMarketChart(
@@ -68,6 +70,7 @@ public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProto
         
         execute(
             request: makeDataRequest(for: endpoint),
+            errorCode: .getCoinMarketChart,
             responseType: CoinChartDataResponse.self,
             success: { success(CoinChartData(coinChartDataResponse: $0)) },
             failure: failure
@@ -76,7 +79,7 @@ public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProto
     
     public func search(query: String,
                        success: @escaping Closure.SearchResult,
-                       failure: @escaping Closure.GeneralError) {
+                       failure: @escaping Closure.APIError) {
         let endpoint = RequestDescription.Search.search
             .replacingQueryParameters(
                 .search(
@@ -86,6 +89,7 @@ public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProto
         
         execute(
             request: makeDataRequest(for: endpoint),
+            errorCode: .search,
             responseType: SearchResponse.self,
             success: { success(SearchResult(searchResponse: $0)) },
             failure: failure
@@ -93,11 +97,12 @@ public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProto
     }
     
     public func getGlobalData(success: @escaping Closure.GlobalData,
-                              failure: @escaping Closure.GeneralError) {
+                              failure: @escaping Closure.APIError) {
         let endpoint = RequestDescription.Global.getGlobalData
         
         execute(
             request: makeDataRequest(for: endpoint),
+            errorCode: .getGlobalData,
             responseType: GlobalDataResponse.self,
             success: { success(GlobalData(globalDataResponse: $0)) },
             failure: failure

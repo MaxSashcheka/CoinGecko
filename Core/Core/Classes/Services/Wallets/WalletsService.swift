@@ -24,9 +24,10 @@ public final class WalletsService: WalletsServiceProtocol {
     public func createWallet(name: String,
                              colorHex: String,
                              success: @escaping Closure.Void,
-                             failure: @escaping Closure.GeneralError) {
+                             failure: @escaping Closure.ServiceError) {
         guard let currentUser = usersCacheDataManager.currentUser else {
-            failure(.defaultError)
+            let appError = AppError(code: .unexpected, message: "Cached current user not found")
+            failure(ServiceError(code: .createWallet, underlying: appError))
             return
         }
         walletsAPIDataManager.createWallet(
@@ -37,15 +38,16 @@ public final class WalletsService: WalletsServiceProtocol {
                 self?.walletsCacheDataManager.cachedWallets.append($0)
                 success()
             },
-            failure: failure
+            failure: ServiceError.wrap(failure, code: .createWallet)
         )
     }
     
     public func getWallet(id: UUID,
                           success: @escaping Closure.Wallet,
-                          failure: @escaping Closure.GeneralError) {
+                          failure: @escaping Closure.ServiceError) {
         guard let wallet = walletsCacheDataManager.cachedWallets[id] else {
-            failure(.defaultError)
+            let appError = AppError(code: .unexpected, message: "Cached wallet not found")
+            failure(ServiceError(code: .getStoredCoin, underlying: appError))
             return
         }
         success(wallet)
@@ -53,12 +55,13 @@ public final class WalletsService: WalletsServiceProtocol {
     
     public func getWallets(fromCache: Bool,
                            success: @escaping Closure.WalletsArray,
-                           failure: @escaping Closure.GeneralError) {
+                           failure: @escaping Closure.ServiceError) {
         if fromCache {
             success(walletsCacheDataManager.cachedWallets.allItems)
         }
         guard let currentUser = usersCacheDataManager.currentUser else {
-            failure(.defaultError)
+            let appError = AppError(code: .unexpected, message: "Cached current user not found")
+            failure(ServiceError(code: .createWallet, underlying: appError))
             return
         }
         walletsAPIDataManager.getWallets(
@@ -67,30 +70,30 @@ public final class WalletsService: WalletsServiceProtocol {
                 self?.walletsCacheDataManager.cachedWallets.append(contentsOf: $0)
                 success($0)
             },
-            failure: failure
+            failure: ServiceError.wrap(failure, code: .getWallets)
         )
     }
     
     public func deleteWallet(id: UUID,
                              success: @escaping Closure.Void,
-                             failure: @escaping Closure.GeneralError) {
+                             failure: @escaping Closure.ServiceError) {
         walletsAPIDataManager.deleteWallet(
             id: id,
             success: { [weak self] in
                 self?.walletsCacheDataManager.cachedWallets.removeItem(with: $0.id)
                 success()
             },
-            failure: failure
+            failure: ServiceError.wrap(failure, code: .deleteWallet)
         )
     }
     
     public func getCoinsIdentifiers(walletId: UUID,
                                     success: @escaping Closure.CoinIdentifiersArray,
-                                    failure: @escaping Closure.GeneralError) {
+                                    failure: @escaping Closure.ServiceError) {
         walletsAPIDataManager.getCoinsIdentifiers(
             walletId: walletId,
             success: success,
-            failure: failure
+            failure: ServiceError.wrap(failure, code: .getCoinsIdentifiers)
         )
     }
     
@@ -98,13 +101,13 @@ public final class WalletsService: WalletsServiceProtocol {
                                      amount: Float,
                                      identifier: String,
                                      success: @escaping Closure.Void,
-                                     failure: @escaping Closure.GeneralError) {
+                                     failure: @escaping Closure.ServiceError) {
         walletsAPIDataManager.createCoinIdentifier(
             walletId: walletId,
             amount: amount,
             identifier: identifier,
             success: success,
-            failure: failure
+            failure: ServiceError.wrap(failure, code: .createCoinIdentifier)
         )
     }
     

@@ -46,8 +46,6 @@ final class PostDetailsViewController: ViewController {
             image: Assets.Images.cross.image,
             action: { [weak viewModel] in viewModel?.didTapCloseButton() }
         )
-        
-        viewModel.errorHandlerClosure = errorHandler
     }
     
     override func arrangeSubviews() {

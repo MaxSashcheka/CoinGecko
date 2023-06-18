@@ -38,8 +38,6 @@ final class NewsListViewController: ViewController {
         title = L10n.NewsList.title
         
         viewModel.fetchPosts()
-        
-        viewModel.errorHandlerClosure = errorHandler
     }
     
     override func viewWillAppear(_ animated: Bool) {

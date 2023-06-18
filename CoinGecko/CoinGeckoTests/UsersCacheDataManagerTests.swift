@@ -7,8 +7,8 @@
 //
 
 import XCTest
-@testable import Core
 @testable import CoinGecko
+@testable import Core
 @testable import Utils
 
 final class UsersCacheDataManagerTests: XCTestCase {

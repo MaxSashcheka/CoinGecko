@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension SearchViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+    final class ViewModel: ScreenTransitionable, HandlersAccessible {
         private let services: Services
         let transitions: Transitions
         
@@ -45,27 +45,40 @@ extension SearchViewController.ViewModel {
 // MARK: - SearchViewModel+Search
 extension SearchViewController.ViewModel {
     func search(query: String) {
-        services.coins.search(query: query, success: { [weak self] searchResult in
-            guard let self = self else { return }
-            
-            self.coinsViewModels.send(
-                self.makeSearchResultCoinsViewModels(coins: searchResult.coins)
-            )
-            self.nftsViewModels.send(
-                self.makeSearchResultNftsViewModels(nfts: searchResult.nfts)
-            )
-        }, failure: errorHandlerClosure)
+        services.coins.search(
+            query: query,
+            success: { [weak self] searchResult in
+                guard let self = self else { return }
+                
+                self.coinsViewModels.send(
+                    self.makeSearchResultCoinsViewModels(coins: searchResult.coins)
+                )
+                self.nftsViewModels.send(
+                    self.makeSearchResultNftsViewModels(nfts: searchResult.nfts)
+                )
+            },
+            failure: errorsHandler.handleClosure
+        )
     }
     
     func makeSearchResultCoinsViewModels(coins: [SearchCoin]) -> [CoinCell.ViewModel] {
         coins.map { coin in
-            .init(id: coin.id, imageURL: coin.largeURL, name: coin.name, symbol: coin.symbol)
+            CoinCell.ViewModel(
+                id: coin.id,
+                imageURL: coin.largeURL,
+                name: coin.name,
+                symbol: coin.symbol
+            )
         }
     }
     
     func makeSearchResultNftsViewModels(nfts: [SearchNFT]) -> [CoinCell.ViewModel] {
         nfts.map { nft in
-            .init(id: nft.id, imageURL: nft.thumbURL, name: nft.name.orEmpty())
+            CoinCell.ViewModel(
+                id: nft.id,
+                imageURL: nft.thumbURL,
+                name: nft.name.orEmpty()
+            )
         }
     }
 }

@@ -12,7 +12,7 @@ public final class AuthAPIDataManager: APIDataManager, AuthAPIDataManagerProtoco
     public func login(login: String,
                       password: String,
                       success: @escaping Closure.User,
-                      failure: @escaping Closure.GeneralError) {
+                      failure: @escaping Closure.APIError) {
         let endpoint = RequestDescription.Users.login
             .replacingParameters(
                 .login(login: login, password: password)
@@ -20,6 +20,7 @@ public final class AuthAPIDataManager: APIDataManager, AuthAPIDataManagerProtoco
         
         execute(
             request: makeDataRequest(for: endpoint),
+            errorCode: .login,
             responseType: UserResponse.self,
             success: { success(User(userResponse: $0)) },
             failure: failure

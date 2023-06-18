@@ -49,8 +49,6 @@ final class CoinDetailsViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.errorHandlerClosure = errorHandler
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem.barButtonItem(
             image: Assets.Images.cross.image,
             action: { [weak viewModel] in viewModel?.didTapCloseButton() }

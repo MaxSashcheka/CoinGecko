@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension NewsListViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, HandlersAccessible {
+    final class ViewModel: ScreenTransitionable, HandlersAccessible {
         private let services: Services
         let transitions: Transitions
         
@@ -22,8 +22,6 @@ extension NewsListViewController {
              services: Services) {
             self.services = services
             self.transitions = transitions
-            
-            super.init()
             
             fetchCurrentUserData()
         }
@@ -87,10 +85,7 @@ extension NewsListViewController.ViewModel {
                         )
                     }
                 )
-            }, failure: { [weak self] in
-                self?.activityIndicator.hide()
-                self?.errorHandlerClosure?($0)
-            }
+            }, failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure)
         )
     }
 }

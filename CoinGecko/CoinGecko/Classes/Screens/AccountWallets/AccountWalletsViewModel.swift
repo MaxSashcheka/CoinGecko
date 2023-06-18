@@ -12,7 +12,7 @@ import UIKit.UIColor
 import Utils
 
 extension AccountWalletsViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, HandlersAccessible {
+    final class ViewModel: ScreenTransitionable, HandlersAccessible {
         private let services: Services
         let transitions: Transitions
         
@@ -25,8 +25,6 @@ extension AccountWalletsViewController {
         init(transitions: Transitions, services: Services) {
             self.services = services
             self.transitions = transitions
-            
-            super.init()
             
             fetchWallets()
         }
@@ -82,10 +80,7 @@ extension AccountWalletsViewController.ViewModel {
                 )
                 self?.activityIndicator.hide()
             },
-            failure: { [weak self] in
-                self?.activityIndicator.hide()
-                self?.errorHandlerClosure($0)
-            }
+            failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure)
         )
     }
 }

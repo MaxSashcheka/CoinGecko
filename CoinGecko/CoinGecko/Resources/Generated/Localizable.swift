@@ -133,6 +133,14 @@ internal enum L10n {
       internal static let title = L10n.tr("Localizable", "create_user.username.title", fallback: #"Write username"#)
     }
   }
+  internal enum General {
+    internal enum Alert {
+      /// Cancel
+      internal static let cancel = L10n.tr("Localizable", "general.alert.cancel", fallback: #"Cancel"#)
+      /// Close
+      internal static let close = L10n.tr("Localizable", "general.alert.close", fallback: #"Close"#)
+    }
+  }
   internal enum Home {
     /// Home
     internal static let title = L10n.tr("Localizable", "home.title", fallback: #"Home"#)
@@ -163,6 +171,10 @@ internal enum L10n {
       internal static let username = L10n.tr("Localizable", "home.table_row.username", fallback: #"Username"#)
       /// Wallets
       internal static let wallets = L10n.tr("Localizable", "home.table_row.wallets", fallback: #"Wallets"#)
+    }
+    internal enum UsersList {
+      /// Users List
+      internal static let title = L10n.tr("Localizable", "home.users_list.title", fallback: #"Users List"#)
     }
   }
   internal enum Markets {

@@ -20,7 +20,7 @@ public final class PostsService: PostsServiceProtocol {
     
     public func getPosts(fromCache: Bool,
                          success: @escaping Closure.PostsArray,
-                         failure: @escaping Closure.GeneralError) {
+                         failure: @escaping Closure.ServiceError) {
         if fromCache {
             success(postsCacheDataManager.cachedPosts.allItems)
         } else {
@@ -29,7 +29,7 @@ public final class PostsService: PostsServiceProtocol {
                     self?.postsCacheDataManager.cachedPosts.append(contentsOf: $0)
                     success($0)
                 },
-                failure: failure
+                failure: ServiceError.wrap(failure, code: .getPosts)
             )
         }
     }
@@ -37,7 +37,7 @@ public final class PostsService: PostsServiceProtocol {
     public func getPost(id: UUID,
                         fromCache: Bool,
                         success: @escaping Closure.Post,
-                        failure: @escaping Closure.GeneralError) {
+                        failure: @escaping Closure.ServiceError) {
         if let cachedPost = postsCacheDataManager.cachedPosts[id], fromCache {
             success(cachedPost)
         } else {
@@ -47,7 +47,7 @@ public final class PostsService: PostsServiceProtocol {
                     self?.postsCacheDataManager.cachedPosts.append($0)
                     success($0)
                 },
-                failure: failure
+                failure: ServiceError.wrap(failure, code: .getPost)
             )
         }
     }

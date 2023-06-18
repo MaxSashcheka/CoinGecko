@@ -11,7 +11,7 @@ import Core
 import Utils
 
 extension WalletDetailsViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable, HandlersAccessible {
+    final class ViewModel: ScreenTransitionable, HandlersAccessible {
         private let walletId: UUID
         private let services: Services
         let transitions: Transitions
@@ -23,8 +23,6 @@ extension WalletDetailsViewController {
             self.walletId = walletId
             self.services = services
             self.transitions = transitions
-            
-            super.init()
             
             fetchWalletData()
         }
@@ -81,14 +79,15 @@ private extension WalletDetailsViewController.ViewModel {
         services.wallets.getWallet(
             id: walletId,
             success: { [weak self] in self?.walletTitle.send($0.name) },
-            failure: { [weak self] in self?.errorHandlerClosure?($0) }
+            failure: errorsHandler.handleClosure
         )
         
         activityIndicator.show()
         services.wallets.getCoinsIdentifiers(
             walletId: walletId,
             success: { [weak self] coinsIdentifiers in
-                self?.services.wallets.save(coinsIdentifier: coinsIdentifiers)
+                guard let self = self else { return }
+                self.services.wallets.save(coinsIdentifier: coinsIdentifiers)
                 Perform.batch(
                     coinsIdentifiers,
                     action: { [weak self] coinIdentifier, success, failure in
@@ -102,16 +101,10 @@ private extension WalletDetailsViewController.ViewModel {
                         self?.activityIndicator.hide()
                         self?.updateCoinsViewModels(with: $0)
                     },
-                    failure: { [weak self] in
-                        self?.activityIndicator.hide()
-                        self?.errorHandlerClosure?($0)
-                    }
+                    failure: self.errorsHandler.handleClosure(completion: self.activityIndicator.hideClosure)
                 )
             },
-            failure: { [weak self] in
-                self?.errorHandlerClosure?($0)
-                self?.activityIndicator.hide()
-            }
+            failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure)
         )
     }
 }
@@ -122,7 +115,7 @@ extension WalletDetailsViewController.ViewModel {
         services.wallets.deleteWallet(
             id: walletId,
             success: { [weak self] in self?.transitions.completion() },
-            failure: { [weak self] in self?.errorHandlerClosure?($0) }
+            failure: errorsHandler.handleClosure
         )
     }
 }

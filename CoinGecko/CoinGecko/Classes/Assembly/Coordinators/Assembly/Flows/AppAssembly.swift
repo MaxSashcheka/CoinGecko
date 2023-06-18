@@ -40,14 +40,13 @@ extension AppAssembly {
     private enum Handlers {
         static let alerts = AppAlertCoordinator()
         static let activityIndicator = ActivityIndicatorCoordinator()
-//        static let events = EventsTracker()
-//        static let errors = ErrorsHandler(alertsPresenter: alerts, tracker: events)
+        static let events = EventsTracker()
+        static let errors = ErrorsHandler(alertsHandler: alerts, tracker: events)
     }
     
-//    static func eventsTracker() -> EventsTracker { Handlers.events }
     static func alertsPresenter() -> AppAlertCoordinator { Handlers.alerts }
     static func activityIndicator() -> ActivityIndicatorCoordinator { Handlers.activityIndicator }
-//    static func errorsHandler() -> ErrorsHandler { Handlers.errors }
+    static func errorsHandler() -> ErrorsHandler { Handlers.errors }
 }
 
 // MARK: - ExternalLinksBuilder

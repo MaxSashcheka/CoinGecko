@@ -43,8 +43,6 @@ class BaseComposePhotoViewController<ViewModel: BaseComposePhotoViewModel>: View
             image: Assets.Images.cross.image,
             action: { [weak viewModel] in viewModel?.didTapCloseButton() }
         )
-        
-        viewModel.errorHandlerClosure = errorHandler
     }
     
     override func viewDidLayoutSubviews() {

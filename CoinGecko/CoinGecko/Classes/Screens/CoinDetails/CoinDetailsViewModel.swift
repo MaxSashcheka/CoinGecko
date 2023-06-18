@@ -11,10 +11,7 @@ import Core
 import Utils
 
 extension CoinDetailsViewController {
-    final class ViewModel: ErrorHandableViewModel,
-                           ScreenTransitionable,
-                           PriceConvertable,
-                           HandlersAccessible {
+    final class ViewModel: ScreenTransitionable, PriceConvertable, HandlersAccessible {
         private let services: Services
         let transitions: Transitions
 
@@ -38,8 +35,6 @@ extension CoinDetailsViewController {
             self.services = services
             self.transitions = transitions
             self.coinId = coinId
-            
-            super.init()
             
             buttonsCollectionViewModel.buttonsViewModels.send(
                 RangeButtonConfig.allCases.map {
@@ -99,10 +94,7 @@ extension CoinDetailsViewController.ViewModel {
                 self.currentPrice.send(coinDetails.currentPrice)
                 
                 self.activityIndicator.hide()
-            }, failure: { [weak self] error in
-                self?.errorHandlerClosure(error)
-                self?.activityIndicator.hide()
-            }
+            }, failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure)
         )
     }
     
@@ -143,10 +135,7 @@ extension CoinDetailsViewController.ViewModel {
             self.isPriceChangePositive.send(isPriceChangePositive)
             
             self.activityIndicator.hide()
-        }, failure: { [weak self] error in
-            self?.errorHandlerClosure(error)
-            self?.activityIndicator.hide()
-        })
+        }, failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure))
     }
 }
 
@@ -167,7 +156,7 @@ extension CoinDetailsViewController.ViewModel {
                 guard let url = self?.services.externalLinkBuilder.buildGoogleSearchURL(query: $0.name) else { return }
                 self?.transitions.browser(url)
             },
-            failure: { [weak self] in self?.errorHandlerClosure($0)}
+            failure: errorsHandler.handleClosure
         )
     }
 }

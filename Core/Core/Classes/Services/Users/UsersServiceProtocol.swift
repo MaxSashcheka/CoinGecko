@@ -15,10 +15,10 @@ public protocol UsersServiceProtocol {
     
     func fetchUsers(fromCache: Bool,
                     success: @escaping Closure.UsersArray,
-                    failure: @escaping Closure.GeneralError)
+                    failure: @escaping Closure.ServiceError)
     
     func fetchUser(id: UUID,
                    fromCache: Bool,
                    success: @escaping Closure.User,
-                   failure: @escaping Closure.GeneralError)
+                   failure: @escaping Closure.ServiceError)
 }

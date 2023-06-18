@@ -16,5 +16,5 @@ public protocol ComposePostServiceProtocol: AnyObject {
     
     func submitPost(imageURL: String,
                     success: @escaping Closure.Void,
-                    failure: @escaping Closure.GeneralError)
+                    failure: @escaping Closure.ServiceError)
 }

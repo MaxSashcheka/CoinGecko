@@ -14,7 +14,7 @@ public final class PostsAPIDataManager: APIDataManager, PostsAPIDataManagerProto
                            authorId: UUID,
                            imageURL: String,
                            success: @escaping Closure.Post,
-                           failure: @escaping Closure.GeneralError) {
+                           failure: @escaping Closure.APIError) {
         let endpoint = RequestDescription.Posts.createPost
             .replacingParameters(
                 .createPost(
@@ -28,6 +28,7 @@ public final class PostsAPIDataManager: APIDataManager, PostsAPIDataManagerProto
         
         execute(
             request: makeDataRequest(for: endpoint),
+            errorCode: .createPost,
             responseType: PostResponse.self,
             success: { success(Post(postResponse: $0)) },
             failure: failure
@@ -35,11 +36,12 @@ public final class PostsAPIDataManager: APIDataManager, PostsAPIDataManagerProto
     }
     
     public func getAllPosts(success: @escaping Closure.PostsArray,
-                            failure: @escaping Closure.GeneralError) {
+                            failure: @escaping Closure.APIError) {
         let endpoint = RequestDescription.Posts.getAllPosts
             
         execute(
             request: makeDataRequest(for: endpoint),
+            errorCode: .getAllPosts,
             responseType: [PostResponse].self,
             success: { success($0.map { Post(postResponse: $0) }) },
             failure: failure
@@ -48,7 +50,7 @@ public final class PostsAPIDataManager: APIDataManager, PostsAPIDataManagerProto
     
     public func getPost(id: UUID,
                         success: @escaping Closure.Post,
-                        failure: @escaping Closure.GeneralError) {
+                        failure: @escaping Closure.APIError) {
         let endpoint = RequestDescription.Posts.getPost
             .replacingInlineArguments(
                 .id(id.uuidString)
@@ -56,6 +58,7 @@ public final class PostsAPIDataManager: APIDataManager, PostsAPIDataManagerProto
         
         execute(
             request: makeDataRequest(for: endpoint),
+            errorCode: .getPost,
             responseType: PostResponse.self,
             success: { success(Post(postResponse: $0)) },
             failure: failure

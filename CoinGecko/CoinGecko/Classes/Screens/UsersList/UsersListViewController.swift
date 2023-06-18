@@ -26,8 +26,6 @@ final class UsersListViewController: ViewController {
         title = "Список пользователей"
         
         view.backgroundColor = Assets.Colors.white.color
-        
-        viewModel.errorHandlerClosure = errorHandler
     }
     
     override func arrangeSubviews() {

@@ -12,7 +12,7 @@ import SnapKit
 import Utils
 
 extension ComposePostInfoViewController {
-    final class ViewModel: ErrorHandableViewModel, ScreenTransitionable {
+    final class ViewModel: ScreenTransitionable {
         private typealias Texts = L10n.CreatePost
         
         private let services: Services
@@ -29,8 +29,6 @@ extension ComposePostInfoViewController {
         init(transitions: Transitions, services: Services) {
             self.transitions = transitions
             self.services = services
-
-            super.init()
             
             titleTextFieldViewModel.saveTextClosure = { [weak self] in
                 self?.services.composePost.title = $0
