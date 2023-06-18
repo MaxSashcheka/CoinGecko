@@ -9,9 +9,9 @@
 import Core
 import Utils
 
-final class NewsCoordinator: NavigationCoordinator {
-    override init(parent: Coordinator?) {
-        super.init(parent: parent)
+final class NewsCoordinator: TabContentCoordinator {
+    init(parent: TabCoordinator?) {
+        super.init(tab: .newsList, parent: parent)
         
         showNewsListScreen()
     }

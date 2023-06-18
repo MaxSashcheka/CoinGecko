@@ -144,6 +144,7 @@
 		1CE2AE7228F3777200642D00 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2AE7128F3777200642D00 /* HomeViewController.swift */; };
 		1CE2AE7428F3777700642D00 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2AE7328F3777700642D00 /* HomeViewModel.swift */; };
 		1CE2AE7B28F37C2300642D00 /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2AE7A28F37C2300642D00 /* HomeAssembly.swift */; };
+		1CE335882A3F15A300C47B9A /* TabsContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE335872A3F15A300C47B9A /* TabsContent.swift */; };
 		1CE8A3C828F182450052E34B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8A3C728F182450052E34B /* SearchViewController.swift */; };
 		1CE8A3CA28F1824C0052E34B /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE8A3C928F1824C0052E34B /* SearchViewModel.swift */; };
 		1CEEC76D28D2801800F8DC7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEEC76C28D2801800F8DC7A /* AppDelegate.swift */; };
@@ -323,6 +324,7 @@
 		1CE2AE7128F3777200642D00 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1CE2AE7328F3777700642D00 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1CE2AE7A28F37C2300642D00 /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
+		1CE335872A3F15A300C47B9A /* TabsContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsContent.swift; sourceTree = "<group>"; };
 		1CE8A3C728F182450052E34B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1CE8A3C928F1824C0052E34B /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		1CEEC76C28D2801800F8DC7A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 		1C289BA529F552FF005A231C /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				1CE335872A3F15A300C47B9A /* TabsContent.swift */,
 				1CFA294828D27B510088A051 /* TrendingCoordinator.swift */,
 				1C60D9EB28E8853500B675DA /* MarketsCoordinator.swift */,
 				1C872DD529F4096D00F6D83F /* NewsCoordinator.swift */,
@@ -1417,6 +1420,7 @@
 				1CB0B4EA293FF24600C874C4 /* InAppWebBrowserPresentable.swift in Sources */,
 				1C590F4629ECA83100D700D1 /* OptionPickerView.swift in Sources */,
 				1C590F4829ECA83900D700D1 /* OptionPickerViewModel.swift in Sources */,
+				1CE335882A3F15A300C47B9A /* TabsContent.swift in Sources */,
 				1CFA294928D27B510088A051 /* TrendingCoordinator.swift in Sources */,
 				1CAD2B33293F66990004E4AA /* AppStyle.swift in Sources */,
 				1C2E1CC729FBE7860048C5B8 /* AddCoinWalletTableCell.swift in Sources */,

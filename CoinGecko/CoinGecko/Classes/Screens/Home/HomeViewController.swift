@@ -22,9 +22,7 @@ final class HomeViewController: ViewController {
     }
     
     override var backgroundColor: UIColor { Assets.Colors.platinum.color }
-    override var tabBarTitle: String { L10n.Tabbar.Title.home }
-    override var tabBarImage: UIImage? { UIImage(.house) }
-    
+ 
     private let headerView: View = .make {
         $0.clipsToBounds = true
     }

@@ -51,8 +51,6 @@ final class MarketsViewController: ViewController {
     
     override var backgroundColor: UIColor { Colors.background }
     override var isNavigationBarHidden: Bool { true }
-    override var tabBarTitle: String { L10n.Tabbar.Title.markets }
-    override var tabBarImage: UIImage? { UIImage(.chart.pie) }
     
     var viewModel: ViewModel!
     

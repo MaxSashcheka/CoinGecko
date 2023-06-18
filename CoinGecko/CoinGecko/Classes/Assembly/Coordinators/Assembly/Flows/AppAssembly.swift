@@ -7,6 +7,7 @@
 //
 
 import Core
+import Utils
 
 enum AppAssembly: Assembly { }
 
@@ -17,19 +18,19 @@ extension AppAssembly {
         AppCoordinator(parent: nil)
     }
     
-    static func trendingCoordinator(parent: Coordinator) -> TrendingCoordinator {
+    static func trendingCoordinator(parent: TabCoordinator) -> TabContentCoordinator {
         TrendingCoordinator(parent: parent)
     }
     
-    static func marketsCoordinator(parent: Coordinator) -> MarketsCoordinator {
+    static func marketsCoordinator(parent: TabCoordinator) -> TabContentCoordinator {
         MarketsCoordinator(parent: parent)
     }
     
-    static func newsCoordinator(parent: Coordinator) -> NewsCoordinator {
+    static func newsCoordinator(parent: TabCoordinator) -> TabContentCoordinator {
         NewsCoordinator(parent: parent)
     }
     
-    static func homeCoordinator(parent: Coordinator) -> HomeCoordinator {
+    static func homeCoordinator(parent: TabCoordinator) -> TabContentCoordinator {
         HomeCoordinator(parent: parent)
     }
 }

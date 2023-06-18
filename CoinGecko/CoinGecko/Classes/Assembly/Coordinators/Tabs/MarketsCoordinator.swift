@@ -9,9 +9,9 @@
 import Core
 import Utils
 
-final class MarketsCoordinator: NavigationCoordinator {
-    override init(parent: Coordinator?) {
-        super.init(parent: parent)
+final class MarketsCoordinator: TabContentCoordinator {
+    init(parent: TabCoordinator?) {
+        super.init(tab: .markets, parent: parent)
         
         showMarketsScreen()
     }

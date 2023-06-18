@@ -10,9 +10,9 @@ import Core
 import UIKit
 import Utils
 
-final class HomeCoordinator: NavigationCoordinator {
-    override init(parent: Coordinator?) {
-        super.init(parent: parent)
+final class HomeCoordinator: TabContentCoordinator {
+    init(parent: TabCoordinator?) {
+        super.init(tab: .home, parent: parent)
         
         showHomeScreen()
     }

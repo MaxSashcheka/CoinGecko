@@ -20,9 +20,7 @@ final class NewsListViewController: ViewController {
     }
     
     override var backgroundColor: UIColor { Assets.Colors.platinum.color }
-    override var tabBarTitle: String { L10n.Tabbar.Title.news }
-    override var tabBarImage: UIImage? { UIImage(.newspaper) }
-    
+
     var createPostBarButton: UIBarButtonItem {
         UIBarButtonItem.barButtonItem(
             image: UIImage(.plus),

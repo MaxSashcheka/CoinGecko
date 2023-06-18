@@ -36,8 +36,13 @@ final class AppCoordinator: TabCoordinator {
         
         authenticateStoredUserIfPossible()
 
-        initializeTabsCoordinatorsAndShow()
         setupAppearance()
+    }
+    
+    override func tabControllerDidLoad() {
+        super.tabControllerDidLoad()
+        
+        setupTabs()
     }
 }
 
@@ -62,13 +67,16 @@ private extension AppCoordinator {
 }
 
 private extension AppCoordinator {
-    func initializeTabsCoordinatorsAndShow() {
+    func setupTabs() {
         let homeCoordinator = AppAssembly.trendingCoordinator(parent: self)
         let marketsCoordinator = AppAssembly.marketsCoordinator(parent: self)
         let newsCoordinator = AppAssembly.newsCoordinator(parent: self)
         let profileCoordinator = AppAssembly.homeCoordinator(parent: self)
-
-        setTabsCoordinators([homeCoordinator, marketsCoordinator, newsCoordinator, profileCoordinator])
+        
+        setTabs(
+            [homeCoordinator, marketsCoordinator, newsCoordinator, profileCoordinator],
+            animated: false
+        )
     }
     
     func authenticateStoredUserIfPossible() {

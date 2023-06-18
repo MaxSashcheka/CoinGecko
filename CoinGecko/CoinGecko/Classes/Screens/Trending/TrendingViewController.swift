@@ -25,9 +25,7 @@ final class TrendingViewController: ViewController {
     
     override var backgroundColor: UIColor { Colors.background }
     override var prefersLargeTitles: Bool { true }
-    override var tabBarTitle: String { L10n.Tabbar.Title.trending }
-    override var tabBarImage: UIImage? { UIImage(.chart.lineUptrendXyaxis) }
-    
+
     var viewModel: ViewModel!
     
     // MARK: - Lifecycle
@@ -55,7 +53,7 @@ final class TrendingViewController: ViewController {
         coinsTableView.delegate = self
         coinsTableView.dataSource = self
         
-        title = L10n.Trending.title
+        navigationItem.title = L10n.Trending.title
     }
     
     override func bindData() {

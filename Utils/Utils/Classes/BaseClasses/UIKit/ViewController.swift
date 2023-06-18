@@ -17,35 +17,10 @@ open class ViewController: UIViewController {
     open var prefersLargeTitles: Bool { false }
     open var backgroundColor: UIColor { .white }
     
-    open var tabBarTitle: String { .empty }
-    open var tabBarImage: UIImage? { .none }
-    
     public var cancellables: [AnyCancellable] = []
     public private(set) var isAppearFirstTime = true
     
     public let keyboardObserver = KeyboardHeightObserver()
-    
-    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
-        setupTabBarItems()
-    }
-    
-    public required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        setupTabBarItems()
-    }
-    
-    // TODO: - Fix this async call.
-    private func setupTabBarItems() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self, self.navigationController?.tabBarItem.image == nil else { return }
-            
-            self.navigationController?.tabBarItem.title = self.tabBarTitle
-            self.navigationController?.tabBarItem.image = self.tabBarImage
-        }
-    }
     
     override open func viewDidLoad() {
         super.viewDidLoad()

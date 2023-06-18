@@ -9,9 +9,9 @@
 import Core
 import Utils
 
-final class TrendingCoordinator: NavigationCoordinator {
-    override init(parent: Coordinator?) {
-        super.init(parent: parent)
+final class TrendingCoordinator: TabContentCoordinator {
+    init(parent: TabCoordinator?) {
+        super.init(tab: .trending, parent: parent)
         
         showTrendingScreen()
     }
