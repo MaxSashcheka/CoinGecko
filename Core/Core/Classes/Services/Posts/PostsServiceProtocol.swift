@@ -10,11 +10,9 @@ import Utils
 
 public protocol PostsServiceProtocol {
     func getPosts(fromCache: Bool,
-                  success: @escaping Closure.PostsArray,
-                  failure: @escaping Closure.ServiceError)
+                  completion: @escaping Completion<[Post], ServiceError>)
     
     func getPost(id: UUID,
                  fromCache: Bool,
-                 success: @escaping Closure.Post,
-                 failure: @escaping Closure.ServiceError)
+                 completion: @escaping Completion<Post, ServiceError>)
 }

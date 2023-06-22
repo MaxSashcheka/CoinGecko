@@ -79,11 +79,15 @@ extension SignInViewController.ViewModel {
         services.auth.login(
             login: loginTitledTextFieldViewModel.text.value,
             password: passwordTitledTextFieldViewModel.text.value,
-            success: { [weak self] in
-                self?.activityIndicator.hide()
-                self?.transitions.completion()
-            },
-            failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure)
+            completion: { [weak self] result in
+                switch result {
+                case .success(_):
+                    self?.activityIndicator.hide()
+                    self?.transitions.completion()
+                case .failure(let error):
+                    self?.errorsHandler.handle(error: error, completion: self?.activityIndicator.hideClosure)
+                }
+            }
         )
     }
 }

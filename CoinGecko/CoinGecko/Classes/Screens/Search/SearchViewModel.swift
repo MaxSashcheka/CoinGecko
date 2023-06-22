@@ -47,17 +47,21 @@ extension SearchViewController.ViewModel {
     func search(query: String) {
         services.coins.search(
             query: query,
-            success: { [weak self] searchResult in
+            completion: { [weak self] result in
                 guard let self = self else { return }
                 
-                self.coinsViewModels.send(
-                    self.makeSearchResultCoinsViewModels(coins: searchResult.coins)
-                )
-                self.nftsViewModels.send(
-                    self.makeSearchResultNftsViewModels(nfts: searchResult.nfts)
-                )
-            },
-            failure: errorsHandler.handleClosure
+                switch result {
+                case .success(let searchResult):
+                    self.coinsViewModels.send(
+                        self.makeSearchResultCoinsViewModels(coins: searchResult.coins)
+                    )
+                    self.nftsViewModels.send(
+                        self.makeSearchResultNftsViewModels(nfts: searchResult.nfts)
+                    )
+                case .failure(let error):
+                    self.errorsHandler.handle(error: error)
+                }
+            }
         )
     }
     

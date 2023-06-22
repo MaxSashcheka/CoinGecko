@@ -65,39 +65,46 @@ extension TrendingViewController.ViewModel {
         currentPage += 1
         
         activityIndicator.show()
-        services.coins.getCoins(fromCache: false,
-                                currency: "usd",
-                                page: currentPage,
-                                pageSize: 20,
-                                success: { [weak self] coins in
-            guard let self = self else { return }
-            self.isSearchPerforming = false
-            
-            self.coinsViewModels.send(
-                self.coinsViewModels.value + coins.map { coin in
-                    let isPriceChangePositive = coin.priceDetails.changePercentage24h > .zero
-                    let priceChangeString = self.roundedValuePriceChangeString(
-                        coin.priceDetails.changePercentage24h,
-                        isChangePositive: isPriceChangePositive
+        services.coins.getCoins(
+            fromCache: false,
+            currency: "usd",
+            page: currentPage,
+            pageSize: 20,
+            completion: { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let coins):
+                    self.isSearchPerforming = false
+                    self.coinsViewModels.send(
+                        self.coinsViewModels.value + coins.map { coin in
+                            let isPriceChangePositive = coin.priceDetails.changePercentage24h > .zero
+                            let priceChangeString = self.roundedValuePriceChangeString(
+                                coin.priceDetails.changePercentage24h,
+                                isChangePositive: isPriceChangePositive
+                            )
+                            
+                            return CoinCell.ViewModel(
+                                id: coin.id,
+                                imageURL: coin.imageURL,
+                                name: coin.name,
+                                symbol: coin.symbol.uppercased(),
+                                currentPrice: self.roundedValueString(coin.priceDetails.currentPrice),
+                                priceChangePercentage: priceChangeString,
+                                isPriceChangePositive: isPriceChangePositive
+                            )
+                        }
                     )
+                    self.activityIndicator.hide()
                     
-                    return CoinCell.ViewModel(
-                        id: coin.id,
-                        imageURL: coin.imageURL,
-                        name: coin.name,
-                        symbol: coin.symbol.uppercased(),
-                        currentPrice: self.roundedValueString(coin.priceDetails.currentPrice),
-                        priceChangePercentage: priceChangeString,
-                        isPriceChangePositive: isPriceChangePositive
-                    )
+                case .failure(let error):
+                    self.errorsHandler.handle(error: error, completion: { [weak self] in
+                        self?.isSearchPerforming = false
+                        self?.activityIndicator.hide()
+                        self?.currentPage -= 1
+                    })
                 }
-            )
-            self.activityIndicator.hide()
-        }, failure: errorsHandler.handleClosure(completion: { [weak self] in
-            self?.isSearchPerforming = false
-            self?.activityIndicator.hide()
-            self?.currentPage -= 1
-            })                      
+            }
         )
     }
 }

@@ -60,34 +60,47 @@ extension MarketsViewController.ViewModel {
 extension MarketsViewController.ViewModel {    
     func fetchGlobalData() {
         activityIndicator.show()
-        services.coins.getGlobalData(success: { [weak self] globalData in
-            self?.isPriceChangePositive.send(globalData.previousDayChangePercentage > .zero)
-            self?.changePercentage.send(globalData.previousDayChangePercentage)
-            self?.activityIndicator.hide()
-        }, failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure))
+        services.coins.getGlobalData(
+            completion: { [weak self] result in
+                switch result {
+                case .success(let globalData):
+                    self?.isPriceChangePositive.send(globalData.previousDayChangePercentage > .zero)
+                    self?.changePercentage.send(globalData.previousDayChangePercentage)
+                    self?.activityIndicator.hide()
+                case .failure(let error):
+                    self?.errorsHandler.handle(error: error, completion: self?.activityIndicator.hideClosure)
+                }
+            }
+        )
     }
     
     func fetchCoins() {
         let mode = selectedMode
-        services.coins.getCoins(fromCache: true,
-                                currency: "usd",
-                                page: 1,
-                                pageSize: 50,
-                                success: { [weak self] coins in
-            guard let self = self else { return }
-            
-            let filterClosure: (Coin) -> Bool = { coin in
-                switch mode {
-                case .all: return true
-                case .gainer: return coin.priceDetails.changePercentage24h > .zero
-                case .loser: return coin.priceDetails.changePercentage24h < .zero
+        services.coins.getCoins(
+            fromCache: true,
+            currency: "usd",
+            page: 1,
+            pageSize: 50,
+            completion: { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let coins):
+                    let filterClosure: (Coin) -> Bool = { coin in
+                        switch mode {
+                        case .all: return true
+                        case .gainer: return coin.priceDetails.changePercentage24h > .zero
+                        case .loser: return coin.priceDetails.changePercentage24h < .zero
+                        }
+                    }
+                    self.coinsViewModels.send(
+                        self.makeCoinViewModels(from: coins.filter(filterClosure))
+                    )
+                case .failure(let error):
+                    self.errorsHandler.handle(error: error)
                 }
             }
-            
-            self.coinsViewModels.send(
-                self.makeCoinViewModels(from: coins.filter(filterClosure))
-            )
-        }, failure: errorsHandler.handleClosure)
+        )
     }
 }
 

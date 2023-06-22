@@ -22,32 +22,35 @@ public class APIDataManager {
         )
     }
     
-    public func execute(request: DataRequest,
-                        errorCode: APIErrorCode,
-                        success: @escaping Closure.OptionalData,
-                        failure: @escaping Closure.APIError) {
+    private func afExecute(request: DataRequest,
+                           errorCode: APIErrorCode,
+                           completion: @escaping Completion<Data?, APIError>) {
         request
             .validate()
             .response(completionHandler: { response in
                 switch response.result {
                 case let .success(data):
-                    success(data)
+                    completion(.success(data))
                 case let .failure(afError):
                     guard !response.data.isNil else {
-                        failure(
-                            APIError(
-                                code: errorCode,
-                                underlying: afError,
-                                message: "No response data"
+                        completion(
+                            .failure(
+                                APIError(
+                                    code: errorCode,
+                                    underlying: afError,
+                                    message: "No response data"
+                                )
                             )
                         )
                         return
                     }
-                    failure(
-                        APIError(
-                            code: errorCode,
-                            underlying: afError,
-                            message: "Unacceptable status code"
+                    completion(
+                        .failure(
+                            APIError(
+                                code: errorCode,
+                                underlying: afError,
+                                message: "Unacceptable status code"
+                            )
                         )
                     )
                 }
@@ -59,41 +62,56 @@ public class APIDataManager {
         request: DataRequest,
         errorCode: APIErrorCode,
         responseType: ResultType.Type,
-        success: @escaping (ResultType) -> Void,
-        failure: @escaping Closure.APIError
+        completion: @escaping Completion<ResultType, APIError>
     ) where ResultType: APIResponse {
-        execute(request: request, errorCode: errorCode, success: { data in
-            do {
-                guard let data = data else {
-                    failure(
-                        APIError(code: errorCode, message: "No response data")
-                    )
-                    return
-                }
+        afExecute(
+            request: request,
+            errorCode: errorCode,
+            completion: { result in
+                switch result {
+                case .success(let data):
+                    do {
+                        guard let data = data else {
+                            completion(
+                                .failure(APIError(code: errorCode, message: "No response data"))
+                            )
+                            return
+                        }
 
-                let result = try ResultType.make(from: data)
-                success(result)
-            } catch {
-                failure(
-                    APIError(
-                        code: errorCode,
-                        underlying: error,
-                        message: "Not convertable from \(responseType.self) to \(ResultType.self)"
-                    )
-                )
+                        let result = try ResultType.make(from: data)
+                        completion(.success(result))
+                    } catch {
+                        completion(
+                            .failure(
+                                APIError(
+                                    code: errorCode,
+                                    underlying: error,
+                                    message: "Not convertable from \(responseType.self) to \(ResultType.self)"
+                                )
+                            )
+                        )
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
-        }, failure: failure)
+        )
     }
     
     public func execute(request: DataRequest,
                         errorCode: APIErrorCode,
-                        success: @escaping Closure.Void,
-                        failure: @escaping Closure.APIError) {
-        execute(
+                        completion: @escaping Completion<Void, APIError>) {
+        afExecute(
             request: request,
             errorCode: errorCode,
-            success: { _ in success() },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(_):
+                    completion(.success(()))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
 }

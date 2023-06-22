@@ -11,6 +11,5 @@ import Utils
 public protocol AuthAPIDataManagerProtocol {
     func login(login: String,
                password: String,
-               success: @escaping Closure.User,
-               failure: @escaping Closure.APIError)
+               completion: @escaping Completion<User, APIError>)
 }

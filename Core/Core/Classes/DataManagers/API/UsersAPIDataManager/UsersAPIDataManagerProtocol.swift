@@ -16,13 +16,10 @@ public protocol UsersAPIDataManagerProtocol {
                     role: String,
                     personalWebLink: String,
                     imageURL: String,
-                    success: @escaping Closure.User,
-                    failure: @escaping Closure.APIError)
+                    completion: @escaping Completion<User, APIError>)
     
-    func fetchAllUsers(success: @escaping Closure.UsersArray,
-                       failure: @escaping Closure.APIError)
+    func fetchAllUsers(completion: @escaping Completion<[User], APIError>)
     
     func fetchUser(id: UUID,
-                   success: @escaping Closure.User,
-                   failure: @escaping Closure.APIError)
+                   completion: @escaping Completion<User, APIError>)
 }

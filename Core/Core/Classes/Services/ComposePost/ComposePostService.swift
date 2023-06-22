@@ -44,11 +44,10 @@ public extension ComposePostService {
 // MARK: - ComposePostService+Methods
 public extension ComposePostService {
     func submitPost(imageURL: String,
-                    success: @escaping Closure.Void,
-                    failure: @escaping Closure.ServiceError) {
+                    completion: @escaping Completion<Void, ServiceError>) {
         guard let title = title, let content = content else {
             let appError = AppError(code: .unexpected, message: "Required fields should not be nil")
-            failure(ServiceError(code: .createPost, underlying: appError))
+            completion(.failure(ServiceError(code: .createPost, underlying: appError)))
             return
         }
         
@@ -57,11 +56,15 @@ public extension ComposePostService {
             content: content,
             authorId: UUID(),
             imageURL: imageURL,
-            success: { [weak self] in
-                self?.postsCacheDataManager.cachedPosts.addFront($0)
-                success()
-            },
-            failure: ServiceError.wrap(failure, code: .createPost)
+            completion: { [weak self] result in
+                switch result {
+                case .success(let post):
+                    self?.postsCacheDataManager.cachedPosts.addFront(post)
+                    completion(.success(()))
+                case .failure(let error):
+                    completion(.failure(ServiceError(code: .createPost, underlying: error)))
+                }
+            }
         )
     }
 }

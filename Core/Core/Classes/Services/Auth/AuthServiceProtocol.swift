@@ -11,7 +11,6 @@ import Utils
 public protocol AuthServiceProtocol {
     func login(login: String,
                password: String,
-               success: @escaping Closure.Void,
-               failure: @escaping Closure.ServiceError)
+               completion: @escaping Completion<Void, ServiceError>)
 }
 

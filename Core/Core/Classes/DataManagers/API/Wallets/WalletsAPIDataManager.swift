@@ -12,8 +12,7 @@ public final class WalletsAPIDataManager: APIDataManager, WalletsAPIDataManagerP
     public func createWallet(name: String,
                              userId: UUID,
                              colorHex: String,
-                             success: @escaping Closure.Wallet,
-                             failure: @escaping Closure.APIError) {
+                             completion: @escaping Completion<Wallet, APIError>) {
         let endpoint = RequestDescription.Wallets.createWallet
             .replacingParameters(
                 .createWallet(
@@ -28,14 +27,19 @@ public final class WalletsAPIDataManager: APIDataManager, WalletsAPIDataManagerP
             request: makeDataRequest(for: endpoint),
             errorCode: .createWallet,
             responseType: WalletResponse.self,
-            success: { success(Wallet(walletResponse: $0)) },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(Wallet(walletResponse: response)))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
     
     public func getWallets(userId: UUID,
-                           success: @escaping Closure.WalletsArray,
-                           failure: @escaping Closure.APIError) {
+                           completion: @escaping Completion<[Wallet], APIError>) {
         let endpoint = RequestDescription.Wallets.getWalletsByUserId
             .replacingInlineArguments(
                 .id(userId.uuidString)
@@ -45,14 +49,19 @@ public final class WalletsAPIDataManager: APIDataManager, WalletsAPIDataManagerP
             request: makeDataRequest(for: endpoint),
             errorCode: .getWallets,
             responseType: [WalletResponse].self,
-            success: { success($0.map { Wallet(walletResponse: $0) }) },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(response.map { Wallet(walletResponse: $0) }))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
     
     public func deleteWallet(id: UUID,
-                             success: @escaping Closure.Wallet,
-                             failure: @escaping Closure.APIError) {
+                             completion: @escaping Completion<Wallet, APIError>) {
         let endpoint = RequestDescription.Wallets.deleteWalletById
             .replacingInlineArguments(
                 .id(id.uuidString)
@@ -62,14 +71,19 @@ public final class WalletsAPIDataManager: APIDataManager, WalletsAPIDataManagerP
             request: makeDataRequest(for: endpoint),
             errorCode: .deleteWallet,
             responseType: WalletResponse.self,
-            success: { success(Wallet(walletResponse: $0)) },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(Wallet(walletResponse: response)))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
     
     public func getCoinsIdentifiers(walletId: UUID,
-                                    success: @escaping Closure.CoinIdentifiersArray,
-                                    failure: @escaping Closure.APIError) {
+                                    completion: @escaping Completion<[CoinIdentifier], APIError>) {
         let endpoint = RequestDescription.CoinsIdentifier.getCoinsByWalletId
             .replacingInlineArguments(
                 .id(walletId.uuidString)
@@ -79,16 +93,27 @@ public final class WalletsAPIDataManager: APIDataManager, WalletsAPIDataManagerP
             request: makeDataRequest(for: endpoint),
             errorCode: .getCoinsIdentifiers,
             responseType: [CoinIdentifierResponse].self,
-            success: { success($0.map { CoinIdentifier(coinIdentifierResponse: $0) }) },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(
+                        .success(
+                            response.map {
+                                CoinIdentifier(coinIdentifierResponse: $0)
+                            }
+                        )
+                    )
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
     
     public func createCoinIdentifier(walletId: UUID,
                                      amount: Float,
                                      identifier: String,
-                                     success: @escaping Closure.Void,
-                                     failure: @escaping Closure.APIError) {
+                                     completion: @escaping Completion<Void, APIError>) {
         let endpoint = RequestDescription.CoinsIdentifier.createCoin
             .replacingParameters(
                 .createCoinIdentifier(
@@ -102,8 +127,7 @@ public final class WalletsAPIDataManager: APIDataManager, WalletsAPIDataManagerP
         execute(
             request: makeDataRequest(for: endpoint),
             errorCode: .createCoinIdentifier,
-            success: success,
-            failure: failure
+            completion: completion
         )
     }
 }

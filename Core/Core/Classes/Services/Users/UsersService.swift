@@ -31,38 +31,44 @@ public final class UsersService: UsersServiceProtocol {
     }
     
     public func fetchUsers(fromCache: Bool = true,
-                           success: @escaping Closure.UsersArray,
-                           failure: @escaping Closure.ServiceError) {
+                           completion: @escaping Completion<[User], ServiceError>) {
         if fromCache {
-            success(usersCacheDataManager.cachedUsers.allItems)
+            completion(.success(usersCacheDataManager.cachedUsers.allItems))
             return
         }
         
         usersAPIDataManager.fetchAllUsers(
-            success: { [weak self] in
-                self?.usersCacheDataManager.cachedUsers.append(contentsOf: $0)
-                success($0)
-            },
-            failure: ServiceError.wrap(failure, code: .fetchUsers)
+            completion: { [weak self] result in
+                switch result {
+                case .success(let users):
+                    self?.usersCacheDataManager.cachedUsers.append(contentsOf: users)
+                    completion(.success(users))
+                case .failure(let error):
+                    completion(.failure(ServiceError(code: .fetchUsers, underlying: error)))
+                }
+            }
         )
     }
     
     public func fetchUser(id: UUID,
                           fromCache: Bool = true,
-                          success: @escaping Closure.User,
-                          failure: @escaping Closure.ServiceError) {
+                          completion: @escaping Completion<User, ServiceError>) {
         if fromCache, let cachedUser = usersCacheDataManager.cachedUsers[id] {
-            success(cachedUser)
+            completion(.success(cachedUser))
             return
         }
         
         usersAPIDataManager.fetchUser(
             id: id,
-            success: { [weak self] in
-                self?.usersCacheDataManager.cachedUsers.append($0)
-                success($0)
-            },
-            failure: ServiceError.wrap(failure, code: .fetchUser)
+            completion: { [weak self] result in
+                switch result {
+                case .success(let users):
+                    self?.usersCacheDataManager.cachedUsers.append(users)
+                    completion(.success(users))
+                case .failure(let error):
+                    completion(.failure(ServiceError(code: .fetchUser, underlying: error)))
+                }
+            }
         )
     }
 }

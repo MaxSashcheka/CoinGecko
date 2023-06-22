@@ -78,33 +78,50 @@ private extension WalletDetailsViewController.ViewModel {
         
         services.wallets.getWallet(
             id: walletId,
-            success: { [weak self] in self?.walletTitle.send($0.name) },
-            failure: errorsHandler.handleClosure
+            completion: { [weak self] result in
+                switch result {
+                case .success(let wallet):
+                    self?.walletTitle.send(wallet.name)
+                case .failure(let error):
+                    self?.errorsHandler.handle(error: error)
+                }
+            }
         )
         
         activityIndicator.show()
         services.wallets.getCoinsIdentifiers(
             walletId: walletId,
-            success: { [weak self] coinsIdentifiers in
+            completion: { [weak self] result in
                 guard let self = self else { return }
-                self.services.wallets.save(coinsIdentifier: coinsIdentifiers)
-                Perform.batch(
-                    coinsIdentifiers,
-                    action: { [weak self] coinIdentifier, success, failure in
-                        self?.services.coins.getCoinDetails(
-                            id: coinIdentifier.identifier,
-                            success: success,
-                            failure: failure
-                        )
-                    },
-                    success: { [weak self] in
-                        self?.activityIndicator.hide()
-                        self?.updateCoinsViewModels(with: $0)
-                    },
-                    failure: self.errorsHandler.handleClosure(completion: self.activityIndicator.hideClosure)
-                )
-            },
-            failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure)
+                
+                switch result {
+                case .success(let coinsIdentifiers):
+                    
+                    self.services.wallets.save(coinsIdentifier: coinsIdentifiers)
+                    Perform.batch(
+                        coinsIdentifiers,
+                        action: { [weak self] coinIdentifier, success, failure in
+                            self?.services.coins.getCoinDetails(
+                                id: coinIdentifier.identifier,
+                                completion: { result in
+                                    switch result {
+                                    case .success(let coinDetails): success(coinDetails)
+                                    case .failure(let error): failure(error)
+                                    }
+                                }
+                            )
+                        },
+                        success: { [weak self] in
+                            self?.activityIndicator.hide()
+                            self?.updateCoinsViewModels(with: $0)
+                        },
+                        failure: self.errorsHandler.handleClosure(completion: self.activityIndicator.hideClosure)
+                    )
+                    
+                case .failure(let error):
+                    self.errorsHandler.handle(error: error, completion: self.activityIndicator.hideClosure)
+                }
+            }
         )
     }
 }
@@ -114,8 +131,14 @@ extension WalletDetailsViewController.ViewModel {
     func didTapDeleteWalletButton() {
         services.wallets.deleteWallet(
             id: walletId,
-            success: { [weak self] in self?.transitions.completion() },
-            failure: errorsHandler.handleClosure
+            completion: { [weak self] result in
+                switch result {
+                case .success(_):
+                    self?.transitions.completion()
+                case .failure(let error):
+                    self?.errorsHandler.handle(error: error)
+                }
+            }
         )
     }
 }

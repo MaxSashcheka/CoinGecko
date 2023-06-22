@@ -58,8 +58,14 @@ private extension ExternalProfileViewController.ViewModel {
         services.users.fetchUser(
             id: userId,
             fromCache: true,
-            success: { [weak self] in self?.setupData(with: $0) },
-            failure: errorsHandler.handleClosure
+            completion: { [weak self] result in
+                switch result {
+                case .success(let user):
+                    self?.setupData(with: user)
+                case .failure(let error):
+                    self?.errorsHandler.handle(error: error)
+                }
+            }
         )
     }
     

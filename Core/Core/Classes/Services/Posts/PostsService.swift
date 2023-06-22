@@ -19,35 +19,41 @@ public final class PostsService: PostsServiceProtocol {
     }
     
     public func getPosts(fromCache: Bool,
-                         success: @escaping Closure.PostsArray,
-                         failure: @escaping Closure.ServiceError) {
+                         completion: @escaping Completion<[Post], ServiceError>) {
         if fromCache {
-            success(postsCacheDataManager.cachedPosts.allItems)
+            completion(.success(postsCacheDataManager.cachedPosts.allItems))
         } else {
             postsAPIDataManager.getAllPosts(
-                success: { [weak self] in
-                    self?.postsCacheDataManager.cachedPosts.append(contentsOf: $0)
-                    success($0)
-                },
-                failure: ServiceError.wrap(failure, code: .getPosts)
+                completion: { [weak self] result in
+                    switch result {
+                    case .success(let users):
+                        self?.postsCacheDataManager.cachedPosts.append(contentsOf: users)
+                        completion(.success(users))
+                    case .failure(let error):
+                        completion(.failure(ServiceError(code: .getPosts, underlying: error)))
+                    }
+                }
             )
         }
     }
     
     public func getPost(id: UUID,
                         fromCache: Bool,
-                        success: @escaping Closure.Post,
-                        failure: @escaping Closure.ServiceError) {
+                        completion: @escaping Completion<Post, ServiceError>) {
         if let cachedPost = postsCacheDataManager.cachedPosts[id], fromCache {
-            success(cachedPost)
+            completion(.success(cachedPost))
         } else {
             postsAPIDataManager.getPost(
                 id: id,
-                success: { [weak self] in
-                    self?.postsCacheDataManager.cachedPosts.append($0)
-                    success($0)
-                },
-                failure: ServiceError.wrap(failure, code: .getPost)
+                completion: { [weak self] result in
+                    switch result {
+                    case .success(let post):
+                        self?.postsCacheDataManager.cachedPosts.append(post)
+                        completion(.success(post))
+                    case .failure(let error):
+                        completion(.failure(ServiceError(code: .getPost, underlying: error)))
+                    }
+                }
             )
         }
     }

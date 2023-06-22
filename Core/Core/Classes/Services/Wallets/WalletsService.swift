@@ -23,91 +23,109 @@ public final class WalletsService: WalletsServiceProtocol {
     
     public func createWallet(name: String,
                              colorHex: String,
-                             success: @escaping Closure.Void,
-                             failure: @escaping Closure.ServiceError) {
+                             completion: @escaping Completion<Void, ServiceError>) {
         guard let currentUser = usersCacheDataManager.currentUser else {
             let appError = AppError(code: .unexpected, message: "Cached current user not found")
-            failure(ServiceError(code: .createWallet, underlying: appError))
+            completion(.failure(ServiceError(code: .createWallet, underlying: appError)))
             return
         }
         walletsAPIDataManager.createWallet(
             name: name,
             userId: currentUser.id,
             colorHex: colorHex,
-            success: { [weak self] in
-                self?.walletsCacheDataManager.cachedWallets.append($0)
-                success()
-            },
-            failure: ServiceError.wrap(failure, code: .createWallet)
+            completion: { [weak self] result in
+                switch result {
+                case .success(let wallets):
+                    self?.walletsCacheDataManager.cachedWallets.append(wallets)
+                    completion(.success(()))
+                case .failure(let error):
+                    completion(.failure(ServiceError(code: .createWallet, underlying: error)))
+                }
+            }
         )
     }
     
     public func getWallet(id: UUID,
-                          success: @escaping Closure.Wallet,
-                          failure: @escaping Closure.ServiceError) {
+                          completion: @escaping Completion<Wallet, ServiceError>) {
         guard let wallet = walletsCacheDataManager.cachedWallets[id] else {
             let appError = AppError(code: .unexpected, message: "Cached wallet not found")
-            failure(ServiceError(code: .getStoredCoin, underlying: appError))
+            completion(.failure(ServiceError(code: .getStoredCoin, underlying: appError)))
             return
         }
-        success(wallet)
+        completion(.success(wallet))
     }
     
     public func getWallets(fromCache: Bool,
-                           success: @escaping Closure.WalletsArray,
-                           failure: @escaping Closure.ServiceError) {
+                           completion: @escaping Completion<[Wallet], ServiceError>) {
         if fromCache {
-            success(walletsCacheDataManager.cachedWallets.allItems)
+            completion(.success(walletsCacheDataManager.cachedWallets.allItems))
         }
         guard let currentUser = usersCacheDataManager.currentUser else {
             let appError = AppError(code: .unexpected, message: "Cached current user not found")
-            failure(ServiceError(code: .createWallet, underlying: appError))
+            completion(.failure(ServiceError(code: .createWallet, underlying: appError)))
             return
         }
         walletsAPIDataManager.getWallets(
             userId: currentUser.id,
-            success: { [weak self] in
-                self?.walletsCacheDataManager.cachedWallets.append(contentsOf: $0)
-                success($0)
-            },
-            failure: ServiceError.wrap(failure, code: .getWallets)
+            completion: { [weak self] result in
+                switch result {
+                case .success(let wallets):
+                    self?.walletsCacheDataManager.cachedWallets.append(contentsOf: wallets)
+                    completion(.success(wallets))
+                case .failure(let error):
+                    completion(.failure(ServiceError(code: .getWallets, underlying: error)))
+                }
+            }
         )
     }
     
     public func deleteWallet(id: UUID,
-                             success: @escaping Closure.Void,
-                             failure: @escaping Closure.ServiceError) {
+                             completion: @escaping Completion<Void, ServiceError>) {
         walletsAPIDataManager.deleteWallet(
             id: id,
-            success: { [weak self] in
-                self?.walletsCacheDataManager.cachedWallets.removeItem(with: $0.id)
-                success()
-            },
-            failure: ServiceError.wrap(failure, code: .deleteWallet)
+            completion: { [weak self] result in
+                switch result {
+                case .success(let wallet):
+                    self?.walletsCacheDataManager.cachedWallets.removeItem(with: wallet.id)
+                    completion(.success(()))
+                case .failure(let error):
+                    completion(.failure(ServiceError(code: .deleteWallet, underlying: error)))
+                }
+            }
         )
     }
     
     public func getCoinsIdentifiers(walletId: UUID,
-                                    success: @escaping Closure.CoinIdentifiersArray,
-                                    failure: @escaping Closure.ServiceError) {
+                                    completion: @escaping Completion<[CoinIdentifier], ServiceError>) {
         walletsAPIDataManager.getCoinsIdentifiers(
             walletId: walletId,
-            success: success,
-            failure: ServiceError.wrap(failure, code: .getCoinsIdentifiers)
+            completion: { result in
+                switch result {
+                case .success(let coinIdentifiers):
+                    completion(.success(coinIdentifiers))
+                case .failure(let error):
+                    completion(.failure(ServiceError(code: .getCoinsIdentifiers, underlying: error)))
+                }
+            }
         )
     }
     
     public func createCoinIdentifier(walletId: UUID,
                                      amount: Float,
                                      identifier: String,
-                                     success: @escaping Closure.Void,
-                                     failure: @escaping Closure.ServiceError) {
+                                     completion: @escaping Completion<Void, ServiceError>) {
         walletsAPIDataManager.createCoinIdentifier(
             walletId: walletId,
             amount: amount,
             identifier: identifier,
-            success: success,
-            failure: ServiceError.wrap(failure, code: .createCoinIdentifier)
+            completion: { result in
+                switch result {
+                case .success(_):
+                    completion(.success(()))
+                case .failure(let error):
+                    completion(.failure(ServiceError(code: .createCoinIdentifier, underlying: error)))
+                }
+            }
         )
     }
     

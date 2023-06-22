@@ -60,13 +60,15 @@ private extension UsersListViewController.ViewModel {
         activityIndicator.show()
         services.users.fetchUsers(
             fromCache: false,
-            success: { [weak self] in
-                self?.activityIndicator.hide()
-                self?.setupCellsViewModels(from: $0)
-            },
-            failure: errorsHandler.handleClosure(completion: {
-                [weak self] in self?.activityIndicator.hide()
-            })
+            completion: { [weak self] result in
+                switch result {
+                case .success(let users):
+                    self?.activityIndicator.hide()
+                    self?.setupCellsViewModels(from: users)
+                case .failure(let error):
+                    self?.errorsHandler.handle(error: error, completion: self?.activityIndicator.hideClosure)
+                }
+            }
         )
     }
     

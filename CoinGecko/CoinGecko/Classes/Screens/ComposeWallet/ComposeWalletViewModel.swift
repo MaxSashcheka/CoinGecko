@@ -77,11 +77,15 @@ extension ComposeWalletViewController.ViewModel {
         services.wallets.createWallet(
             name: nameTitledTextFieldViewModel.text.value,
             colorHex: colorHex,
-            success: { [weak self] in
-                self?.activityIndicator.hide()
-                self?.transitions.completion()
-            },
-            failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure)
+            completion: { [weak self] result in
+                switch result {
+                case .success(_):
+                    self?.activityIndicator.hide()
+                    self?.transitions.completion()
+                case .failure(let error):
+                    self?.errorsHandler.handle(error: error, completion: self?.activityIndicator.hideClosure)
+                }
+            }
         )
     }
 }

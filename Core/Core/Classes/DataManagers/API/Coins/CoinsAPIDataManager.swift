@@ -13,8 +13,7 @@ public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProto
     public func getCoins(currency: String,
                          page: Int,
                          pageSize: Int,
-                         success: @escaping Closure.CoinsArray,
-                         failure: @escaping Closure.APIError) {
+                         completion: @escaping Completion<[Coin], APIError>) {
         let endpoint = RequestDescription.Coins.getCoinsMarkets
             .replacingQueryParameters(
                 .getCoinsMarkets(
@@ -28,14 +27,19 @@ public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProto
             request: makeDataRequest(for: endpoint),
             errorCode: .getCoins,
             responseType: [CoinResponse].self,
-            success: { success($0.map { Coin(coinResponse: $0) }) },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(response.map { Coin(coinResponse: $0) }))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
     
     public func getCoinDetails(id: String,
-                               success: @escaping Closure.CoinDetails,
-                               failure: @escaping Closure.APIError) {
+                               completion: @escaping Completion<CoinDetails, APIError>) {
         let endpoint = RequestDescription.Coins.getCoinDetails
             .replacingInlineArguments(
                 .id(id)
@@ -45,8 +49,14 @@ public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProto
             request: makeDataRequest(for: endpoint),
             errorCode: .getCoinDetails,
             responseType: CoinDetailsResponse.self,
-            success: { success(CoinDetails(coinDetailsResponse: $0)) },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(CoinDetails(coinDetailsResponse: response)))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
     
@@ -54,8 +64,7 @@ public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProto
                                    currency: String,
                                    startTimeInterval: TimeInterval,
                                    endTimeInterval: TimeInterval,
-                                   success: @escaping Closure.CoinChartData,
-                                   failure: @escaping Closure.APIError) {
+                                   completion: @escaping Completion<CoinChartData, APIError>) {
         let endpoint = RequestDescription.Coins.getCoinMarketChart
             .replacingQueryParameters(
                 .getCoinMarketChart(
@@ -72,14 +81,19 @@ public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProto
             request: makeDataRequest(for: endpoint),
             errorCode: .getCoinMarketChart,
             responseType: CoinChartDataResponse.self,
-            success: { success(CoinChartData(coinChartDataResponse: $0)) },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(CoinChartData(coinChartDataResponse: response)))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
     
     public func search(query: String,
-                       success: @escaping Closure.SearchResult,
-                       failure: @escaping Closure.APIError) {
+                       completion: @escaping Completion<SearchResult, APIError>) {
         let endpoint = RequestDescription.Search.search
             .replacingQueryParameters(
                 .search(
@@ -91,21 +105,32 @@ public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProto
             request: makeDataRequest(for: endpoint),
             errorCode: .search,
             responseType: SearchResponse.self,
-            success: { success(SearchResult(searchResponse: $0)) },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(SearchResult(searchResponse: response)))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
     
-    public func getGlobalData(success: @escaping Closure.GlobalData,
-                              failure: @escaping Closure.APIError) {
+    public func getGlobalData(completion: @escaping Completion<GlobalData, APIError>) {
         let endpoint = RequestDescription.Global.getGlobalData
         
         execute(
             request: makeDataRequest(for: endpoint),
             errorCode: .getGlobalData,
             responseType: GlobalDataResponse.self,
-            success: { success(GlobalData(globalDataResponse: $0)) },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(GlobalData(globalDataResponse: response)))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
     

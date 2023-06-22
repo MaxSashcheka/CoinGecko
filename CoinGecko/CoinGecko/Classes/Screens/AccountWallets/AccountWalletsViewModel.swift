@@ -65,22 +65,26 @@ extension AccountWalletsViewController.ViewModel {
         activityIndicator.show()
         services.wallets.getWallets(
             fromCache: fromCache,
-            success: { [weak self] wallets in
-                self?.walletsViewModels.send(
-                    wallets.compactMap {
-                        guard let color = UIColor(hex: $0.colorHex) else { return nil }
-                        let viewModel = WalletTableCell.ViewModel(
-                            id: $0.id,
-                            title: $0.name,
-                            coinsCount: $0.coinsCount,
-                            color: color
-                        )
-                        return viewModel
-                    }
-                )
-                self?.activityIndicator.hide()
-            },
-            failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure)
+            completion: { [weak self] result in
+                switch result {
+                case .success(let wallets):
+                    self?.walletsViewModels.send(
+                        wallets.compactMap {
+                            guard let color = UIColor(hex: $0.colorHex) else { return nil }
+                            let viewModel = WalletTableCell.ViewModel(
+                                id: $0.id,
+                                title: $0.name,
+                                coinsCount: $0.coinsCount,
+                                color: color
+                            )
+                            return viewModel
+                        }
+                    )
+                    self?.activityIndicator.hide()
+                case .failure(let error):
+                    self?.errorsHandler.handle(error: error, completion: self?.activityIndicator.hideClosure)
+                }
+            }
         )
     }
 }

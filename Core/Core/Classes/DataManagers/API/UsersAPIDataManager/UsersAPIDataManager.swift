@@ -16,8 +16,7 @@ public final class UsersAPIDataManager: APIDataManager, UsersAPIDataManagerProto
                            role: String,
                            personalWebLink: String,
                            imageURL: String,
-                           success: @escaping Closure.User,
-                           failure: @escaping Closure.APIError) {
+                           completion: @escaping Completion<User, APIError>) {
         let endpoint = RequestDescription.Users.createUser
             .replacingParameters(
                 .createUser(
@@ -36,27 +35,37 @@ public final class UsersAPIDataManager: APIDataManager, UsersAPIDataManagerProto
             request: makeDataRequest(for: endpoint),
             errorCode: .createUser,
             responseType: UserResponse.self,
-            success: { success(User(userResponse: $0)) },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(User(userResponse: response)))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
     
-    public func fetchAllUsers(success: @escaping Closure.UsersArray,
-                              failure: @escaping Closure.APIError) {
+    public func fetchAllUsers(completion: @escaping Completion<[User], APIError>) {
         let endpoint = RequestDescription.Users.getAllUsers
 
         execute(
             request: makeDataRequest(for: endpoint),
             errorCode: .fetchAllUsers,
             responseType: [UserResponse].self,
-            success: { success($0.map { User(userResponse: $0) }) },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(response.map { User(userResponse: $0) }))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
     
     public func fetchUser(id: UUID,
-                          success: @escaping Closure.User,
-                          failure: @escaping Closure.APIError) {
+                          completion: @escaping Completion<User, APIError>) {
         let endpoint = RequestDescription.Users.getUserById
             .replacingParameters(.id(id.uuidString))
         
@@ -64,8 +73,14 @@ public final class UsersAPIDataManager: APIDataManager, UsersAPIDataManagerProto
             request: makeDataRequest(for: endpoint),
             errorCode: .fetchUser,
             responseType: UserResponse.self,
-            success: { success(User(userResponse: $0)) },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(User(userResponse: response)))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
 }

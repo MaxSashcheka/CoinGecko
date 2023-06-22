@@ -11,30 +11,24 @@ import Utils
 public protocol WalletsServiceProtocol {
     func createWallet(name: String,
                       colorHex: String,
-                      success: @escaping Closure.Void,
-                      failure: @escaping Closure.ServiceError)
+                      completion: @escaping Completion<Void, ServiceError>)
     
     func getWallets(fromCache: Bool,
-                    success: @escaping Closure.WalletsArray,
-                    failure: @escaping Closure.ServiceError)
+                    completion: @escaping Completion<[Wallet], ServiceError>)
     
     func deleteWallet(id: UUID,
-                      success: @escaping Closure.Void,
-                      failure: @escaping Closure.ServiceError)
+                      completion: @escaping Completion<Void, ServiceError>)
     
     func getCoinsIdentifiers(walletId: UUID,
-                             success: @escaping Closure.CoinIdentifiersArray,
-                             failure: @escaping Closure.ServiceError)
+                             completion: @escaping Completion<[CoinIdentifier], ServiceError>)
     
     func createCoinIdentifier(walletId: UUID,
                               amount: Float,
                               identifier: String,
-                              success: @escaping Closure.Void,
-                              failure: @escaping Closure.ServiceError)
+                              completion: @escaping Completion<Void, ServiceError>)
     
     func getWallet(id: UUID,
-                   success: @escaping Closure.Wallet,
-                   failure: @escaping Closure.ServiceError)
+                   completion: @escaping Completion<Wallet, ServiceError>)
     
     func save(coinsIdentifier: [CoinIdentifier])
     

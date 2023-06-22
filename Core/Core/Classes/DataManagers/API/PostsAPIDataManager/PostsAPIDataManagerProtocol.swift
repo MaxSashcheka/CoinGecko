@@ -13,13 +13,10 @@ public protocol PostsAPIDataManagerProtocol {
                     content: String,
                     authorId: UUID,
                     imageURL: String,
-                    success: @escaping Closure.Post,
-                    failure: @escaping Closure.APIError)
+                    completion: @escaping Completion<Post, APIError>)
     
-    func getAllPosts(success: @escaping Closure.PostsArray,
-                     failure: @escaping Closure.APIError)
+    func getAllPosts(completion: @escaping Completion<[Post], APIError>)
     
     func getPost(id: UUID,
-                 success: @escaping Closure.Post,
-                 failure: @escaping Closure.APIError)
+                 completion: @escaping Completion<Post, APIError>)
 }

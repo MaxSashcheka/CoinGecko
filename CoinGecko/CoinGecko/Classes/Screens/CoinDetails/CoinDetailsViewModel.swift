@@ -85,57 +85,71 @@ extension CoinDetailsViewController.ViewModel {
     func fetchCoinDetails() {
         services.coins.getCoinDetails(
             id: coinId,
-            success: { [weak self] coinDetails in
+            completion: { [weak self] result in
                 guard let self = self else { return }
-                self.coinTitle.send(coinDetails.name)
-                self.coinImageURL.send(coinDetails.imageURL)
                 
-                self.currentPriceText.send(self.roundedValueString(coinDetails.currentPrice))
-                self.currentPrice.send(coinDetails.currentPrice)
-                
-                self.activityIndicator.hide()
-            }, failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure)
+                switch result {
+                case .success(let coinDetails):
+                    self.coinTitle.send(coinDetails.name)
+                    self.coinImageURL.send(coinDetails.imageURL)
+                    
+                    self.currentPriceText.send(self.roundedValueString(coinDetails.currentPrice))
+                    self.currentPrice.send(coinDetails.currentPrice)
+                    
+                    self.activityIndicator.hide()
+                case .failure(let error):
+                    self.errorsHandler.handle(error: error, completion: self.activityIndicator.hideClosure)
+                }
+            }
         )
     }
     
     func fetchCoinChartData(for timeInterval: TimeInterval) {
         activityIndicator.show()
-        services.coins.getCoinMarketChart(id: coinId, currency: "usd",
-                                           startTimeInterval: timeInterval.offsetFromCurrentTime,
-                                           endTimeInterval: .intervalSince1970,
-                                           success: { [weak self] chartData in
-            guard let self = self else { return }
-            self.chartViewModel.dataSubject.send(chartData.pricesWithData)
-            
-            let chartDataFirstPrice = chartData.pricesWithData.first?.price ?? .zero
-            let isPriceChangePositive = self.currentPrice.value > chartDataFirstPrice
-            var priceChangeText = preciseRound(
-                self.currentPrice.value - chartDataFirstPrice,
-                precision: .thousandths
-            ).description
-            priceChangeText.insert(contentsOf: isPriceChangePositive ? "+" : .empty,
-                                   at: priceChangeText.startIndex)
-            
-            let priceChangePercentage: Double
-            if self.currentPrice.value > chartDataFirstPrice {
-                priceChangePercentage = preciseRound(
-                    (self.currentPrice.value / chartDataFirstPrice - 1) * 100,
-                    precision: .hundredths
-                )
-            } else {
-                priceChangePercentage = preciseRound(
-                    (chartDataFirstPrice / self.currentPrice.value - 1) * 100,
-                    precision: .hundredths
-                )
+        services.coins.getCoinMarketChart(
+            id: coinId, currency: "usd",
+            startTimeInterval: timeInterval.offsetFromCurrentTime,
+            endTimeInterval: .intervalSince1970,
+            completion: { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let chartData):
+                    self.chartViewModel.dataSubject.send(chartData.pricesWithData)
+                    
+                    let chartDataFirstPrice = chartData.pricesWithData.first?.price ?? .zero
+                    let isPriceChangePositive = self.currentPrice.value > chartDataFirstPrice
+                    var priceChangeText = preciseRound(
+                        self.currentPrice.value - chartDataFirstPrice,
+                        precision: .thousandths
+                    ).description
+                    priceChangeText.insert(contentsOf: isPriceChangePositive ? "+" : .empty,
+                                           at: priceChangeText.startIndex)
+                    
+                    let priceChangePercentage: Double
+                    if self.currentPrice.value > chartDataFirstPrice {
+                        priceChangePercentage = preciseRound(
+                            (self.currentPrice.value / chartDataFirstPrice - 1) * 100,
+                            precision: .hundredths
+                        )
+                    } else {
+                        priceChangePercentage = preciseRound(
+                            (chartDataFirstPrice / self.currentPrice.value - 1) * 100,
+                            precision: .hundredths
+                        )
+                    }
+                    
+                    priceChangeText.append(" (\(priceChangePercentage) %)")
+                    
+                    self.priceChangeText.send(priceChangeText)
+                    self.isPriceChangePositive.send(isPriceChangePositive)
+                    
+                    self.activityIndicator.hide()
+                case .failure(let error):
+                    self.errorsHandler.handle(error: error, completion: self.activityIndicator.hideClosure)
+                }
             }
-            
-            priceChangeText.append(" (\(priceChangePercentage) %)")
-            
-            self.priceChangeText.send(priceChangeText)
-            self.isPriceChangePositive.send(isPriceChangePositive)
-            
-            self.activityIndicator.hide()
-        }, failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure))
+        )
     }
 }
 
@@ -152,11 +166,15 @@ extension CoinDetailsViewController.ViewModel {
     func didTapBrowserButton() {
         services.coins.getStoredCoin(
             id: coinId,
-            success: { [weak self] in
-                guard let url = self?.services.externalLinkBuilder.buildGoogleSearchURL(query: $0.name) else { return }
-                self?.transitions.browser(url)
-            },
-            failure: errorsHandler.handleClosure
+            completion: { [weak self] result in
+                switch result {
+                case .success(let coin):
+                    guard let url = self?.services.externalLinkBuilder.buildGoogleSearchURL(query: coin.name) else { return }
+                    self?.transitions.browser(url)
+                case .failure(let error):
+                    self?.errorsHandler.handle(error: error)
+                }
+            }
         )
     }
 }

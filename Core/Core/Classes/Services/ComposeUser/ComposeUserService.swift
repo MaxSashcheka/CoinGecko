@@ -67,15 +67,14 @@ public extension ComposeUserService {
 // MARK: ComposeUserService+Methods
 public extension ComposeUserService {
     func submitUser(imageURL: String,
-                    success: @escaping Closure.Void,
-                    failure: @escaping Closure.ServiceError) {
+                    completion: @escaping Completion<Void, ServiceError>) {
         guard let username = username,
               let login = login,
               let password = password,
               let email = email,
               let role = role else {
             let appError = AppError(code: .unexpected, message: "Required fields should not be nil")
-            failure(ServiceError(code: .createUser, underlying: appError))
+            completion(.failure(ServiceError(code: .createUser, underlying: appError)))
             return
         }
         usersAPIDataManager.createUser(
@@ -86,12 +85,16 @@ public extension ComposeUserService {
             role: role,
             personalWebLink: personalWebLink.orEmpty(),
             imageURL: imageURL,
-            success: { [weak self] in
-                self?.appPropertiesDataManager[.user] = $0
-                self?.usersCacheDataManager.updateCurrentUser($0)
-                success()
-            },
-            failure: ServiceError.wrap(failure, code: .createUser)
+            completion: { [weak self] result in
+                switch result {
+                case .success(let user):
+                    self?.appPropertiesDataManager[.user] = user
+                    self?.usersCacheDataManager.updateCurrentUser(user)
+                    completion(.success(()))
+                case .failure(let error):
+                    completion(.failure(ServiceError(code: .createUser, underlying: error)))
+                }
+            }
         )
     }
 }

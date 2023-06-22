@@ -11,8 +11,7 @@ import Utils
 public final class AuthAPIDataManager: APIDataManager, AuthAPIDataManagerProtocol {
     public func login(login: String,
                       password: String,
-                      success: @escaping Closure.User,
-                      failure: @escaping Closure.APIError) {
+                      completion: @escaping Completion<User, APIError>) {
         let endpoint = RequestDescription.Users.login
             .replacingParameters(
                 .login(login: login, password: password)
@@ -22,8 +21,14 @@ public final class AuthAPIDataManager: APIDataManager, AuthAPIDataManagerProtoco
             request: makeDataRequest(for: endpoint),
             errorCode: .login,
             responseType: UserResponse.self,
-            success: { success(User(userResponse: $0)) },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(User(userResponse: response)))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
 }

@@ -27,7 +27,7 @@ final class ErrorsHandler {
         }
     }
     
-    func handle(error: AnyError, completion: Closure.Void?) {
+    func handle(error: AnyError, completion: Closure.Void? = nil) {
         alertsHandler.showAlert(error, completion: completion)
         tracker.track(error: error)
     }

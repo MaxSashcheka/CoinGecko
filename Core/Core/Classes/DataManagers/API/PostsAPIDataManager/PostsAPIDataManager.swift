@@ -13,8 +13,7 @@ public final class PostsAPIDataManager: APIDataManager, PostsAPIDataManagerProto
                            content: String,
                            authorId: UUID,
                            imageURL: String,
-                           success: @escaping Closure.Post,
-                           failure: @escaping Closure.APIError) {
+                           completion: @escaping Completion<Post, APIError>) {
         let endpoint = RequestDescription.Posts.createPost
             .replacingParameters(
                 .createPost(
@@ -30,27 +29,37 @@ public final class PostsAPIDataManager: APIDataManager, PostsAPIDataManagerProto
             request: makeDataRequest(for: endpoint),
             errorCode: .createPost,
             responseType: PostResponse.self,
-            success: { success(Post(postResponse: $0)) },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(Post(postResponse: response)))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
     
-    public func getAllPosts(success: @escaping Closure.PostsArray,
-                            failure: @escaping Closure.APIError) {
+    public func getAllPosts(completion: @escaping Completion<[Post], APIError>) {
         let endpoint = RequestDescription.Posts.getAllPosts
             
         execute(
             request: makeDataRequest(for: endpoint),
             errorCode: .getAllPosts,
             responseType: [PostResponse].self,
-            success: { success($0.map { Post(postResponse: $0) }) },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(response.map { Post(postResponse: $0) }))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
     
     public func getPost(id: UUID,
-                        success: @escaping Closure.Post,
-                        failure: @escaping Closure.APIError) {
+                        completion: @escaping Completion<Post, APIError>) {
         let endpoint = RequestDescription.Posts.getPost
             .replacingInlineArguments(
                 .id(id.uuidString)
@@ -60,8 +69,14 @@ public final class PostsAPIDataManager: APIDataManager, PostsAPIDataManagerProto
             request: makeDataRequest(for: endpoint),
             errorCode: .getPost,
             responseType: PostResponse.self,
-            success: { success(Post(postResponse: $0)) },
-            failure: failure
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(Post(postResponse: response)))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
 }

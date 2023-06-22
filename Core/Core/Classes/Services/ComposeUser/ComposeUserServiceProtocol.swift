@@ -19,6 +19,5 @@ public protocol ComposeUserServiceProtocol: AnyObject {
     var image: UIImage? { get set }
     
     func submitUser(imageURL: String,
-                    success: @escaping Closure.Void,
-                    failure: @escaping Closure.ServiceError)
+                    completion: @escaping Completion<Void, ServiceError>)
 }

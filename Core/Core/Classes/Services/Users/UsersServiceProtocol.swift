@@ -14,11 +14,9 @@ public protocol UsersServiceProtocol {
     func clearCurrentUser()
     
     func fetchUsers(fromCache: Bool,
-                    success: @escaping Closure.UsersArray,
-                    failure: @escaping Closure.ServiceError)
+                    completion: @escaping Completion<[User], ServiceError>)
     
     func fetchUser(id: UUID,
                    fromCache: Bool,
-                   success: @escaping Closure.User,
-                   failure: @escaping Closure.ServiceError)
+                   completion: @escaping Completion<User, ServiceError>)
 }

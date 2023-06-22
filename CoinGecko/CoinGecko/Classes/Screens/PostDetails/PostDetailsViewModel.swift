@@ -53,12 +53,16 @@ extension PostDetailsViewController.ViewModel {
         services.posts.getPost(
             id: postId,
             fromCache: true,
-            success: { [weak self] post in
-                self?.imageURL.send(post.imageURL)
-                self?.titleText.send(post.title)
-                self?.contentText.send(post.content)
-            },
-            failure: errorsHandler.handleClosure
+            completion: { [weak self] result in
+                switch result {
+                case .success(let post):
+                    self?.imageURL.send(post.imageURL)
+                    self?.titleText.send(post.title)
+                    self?.contentText.send(post.content)
+                case .failure(let error):
+                    self?.errorsHandler.handle(error: error)
+                }
+            }
         )
     }
 }

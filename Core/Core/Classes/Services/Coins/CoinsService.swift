@@ -20,44 +20,51 @@ public class CoinsService: CoinsServiceProtocol {
     }
     
     public func getStoredCoin(id: String,
-                              success: @escaping Closure.Coin,
-                              failure: @escaping Closure.ServiceError) {
+                              completion: @escaping Completion<Coin, ServiceError>) {
         guard let coin = coinsCacheDataManager.cachedCoins[id] else {
             let appError = AppError(code: .unexpected, message: "Cached coin not found")
-            failure(ServiceError(code: .getStoredCoin, underlying: appError))
+            completion(.failure(ServiceError(code: .getStoredCoin, underlying: appError)))
             return
         }
-        success(coin)
+        completion(.success(coin))
     }
     
     // MARK: - API methods
     public func getCoins(fromCache: Bool = false,
                          currency: String, page: Int, pageSize: Int,
-                         success: @escaping Closure.CoinsArray,
-                         failure: @escaping Closure.ServiceError) {
+                         completion: @escaping Completion<[Coin], ServiceError>) {
         if fromCache {
-            success(coinsCacheDataManager.cachedCoins.allItems)
+            completion(.success(coinsCacheDataManager.cachedCoins.allItems))
             return
         }
         coinsAPIDataManager.getCoins(
             currency: currency,
             page: page,
             pageSize: pageSize,
-            success: { [weak self] coins in
-                self?.coinsCacheDataManager.cachedCoins.append(contentsOf: coins)
-                success(coins)
-            },
-            failure: ServiceError.wrap(failure, code: .getCoins)
+            completion: { [weak self] result in
+                switch result {
+                case .success(let coins):
+                    self?.coinsCacheDataManager.cachedCoins.append(contentsOf: coins)
+                    completion(.success(coins))
+                case .failure(let error):
+                    completion(.failure(ServiceError(code: .getCoins, underlying: error)))
+                }
+            }
         )
     }
     
     public func getCoinDetails(id: String,
-                               success: @escaping Closure.CoinDetails,
-                               failure: @escaping Closure.ServiceError) {
+                               completion: @escaping Completion<CoinDetails, ServiceError>) {
         coinsAPIDataManager.getCoinDetails(
             id: id,
-            success: success,
-            failure: ServiceError.wrap(failure, code: .getCoinDetails)
+            completion: { result in
+                switch result {
+                case .success(let coinDetails):
+                    completion(.success(coinDetails))
+                case .failure(let error):
+                    completion(.failure(ServiceError(code: .getCoinDetails, underlying: error)))
+                }
+            }
         )
     }
     
@@ -65,33 +72,48 @@ public class CoinsService: CoinsServiceProtocol {
                                    currency: String,
                                    startTimeInterval: TimeInterval,
                                    endTimeInterval: TimeInterval,
-                                   success: @escaping Closure.CoinChartData,
-                                   failure: @escaping Closure.ServiceError) {
+                                   completion: @escaping Completion<CoinChartData, ServiceError>) {
         coinsAPIDataManager.getCoinMarketChart(
             id: id,
             currency: currency,
             startTimeInterval: startTimeInterval,
             endTimeInterval: endTimeInterval,
-            success: success,
-            failure: ServiceError.wrap(failure, code: .getCoinMarketChart)
+            completion: { result in
+                switch result {
+                case .success(let coinChartData):
+                    completion(.success(coinChartData))
+                case .failure(let error):
+                    completion(.failure(ServiceError(code: .getCoinMarketChart, underlying: error)))
+                }
+            }
         )
     }
     
     public func search(query: String,
-                       success: @escaping Closure.SearchResult,
-                       failure: @escaping Closure.ServiceError) {
+                       completion: @escaping Completion<SearchResult, ServiceError>) {
         coinsAPIDataManager.search(
             query: query,
-            success: success,
-            failure: ServiceError.wrap(failure, code: .search)
+            completion: { result in
+                switch result {
+                case .success(let searchResult):
+                    completion(.success(searchResult))
+                case .failure(let error):
+                    completion(.failure(ServiceError(code: .search, underlying: error)))
+                }
+            }
         )
     }
     
-    public func getGlobalData(success: @escaping Closure.GlobalData,
-                              failure: @escaping Closure.ServiceError) {
+    public func getGlobalData(completion: @escaping Completion<GlobalData, ServiceError>) {
         coinsAPIDataManager.getGlobalData(
-            success: success,
-            failure: ServiceError.wrap(failure, code: .getGlobalData)
+            completion: { result in
+                switch result {
+                case .success(let gloabalData):
+                    completion(.success(gloabalData))
+                case .failure(let error):
+                    completion(.failure(ServiceError(code: .getGlobalData, underlying: error)))
+                }
+            }
         )
     }
 }

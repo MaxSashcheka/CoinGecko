@@ -71,17 +71,21 @@ private extension AddCoinViewController.ViewModel {
     func fetchWalletsData() {
         services.wallets.getWallets(
             fromCache: false,
-            success: { [weak self] wallets in
-                self?.walletsViewModels.send(
-                    wallets.map {
-                        AddCoinWalletTableCell.ViewModel(
-                            id: $0.id, title: $0.name
-                        )
-                    }
-                )
-                self?.walletsViewModels.value.first?.isSelected.send(true)
-            },
-            failure: errorsHandler.handleClosure
+            completion: { [weak self] result in
+                switch result {
+                case .success(let wallets):
+                    self?.walletsViewModels.send(
+                        wallets.map {
+                            AddCoinWalletTableCell.ViewModel(
+                                id: $0.id, title: $0.name
+                            )
+                        }
+                    )
+                    self?.walletsViewModels.value.first?.isSelected.send(true)
+                case .failure(let error):
+                    self?.errorsHandler.handle(error: error)
+                }
+            }
         )
     }
 }
@@ -108,11 +112,15 @@ extension AddCoinViewController.ViewModel {
             walletId: walletId,
             amount: amount,
             identifier: coinId,
-            success: { [weak self] in
-                self?.activityIndicator.hide()
-                self?.transitions.close()
-            },
-            failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure)
+            completion: { [weak self] result in
+                switch result {
+                case .success(_):
+                    self?.activityIndicator.hide()
+                    self?.transitions.close()
+                case .failure(let error):
+                    self?.errorsHandler.handle(error: error, completion: self?.activityIndicator.hideClosure)
+                }
+            }
         )
     }
 }

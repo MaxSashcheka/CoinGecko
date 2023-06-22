@@ -74,18 +74,23 @@ extension NewsListViewController.ViewModel {
         activityIndicator.show()
         services.posts.getPosts(
             fromCache: fromCache,
-            success: { [weak self] posts in
-                self?.activityIndicator.hide()
-                self?.postsViewModels.send(
-                    posts.map {
-                        PostTableCell.ViewModel(
-                            id: $0.id,
-                            imageURL: $0.imageURL,
-                            title: $0.title
-                        )
-                    }
-                )
-            }, failure: errorsHandler.handleClosure(completion: activityIndicator.hideClosure)
+            completion: { [weak self] result in
+                switch result {
+                case .success(let posts):
+                    self?.activityIndicator.hide()
+                    self?.postsViewModels.send(
+                        posts.map {
+                            PostTableCell.ViewModel(
+                                id: $0.id,
+                                imageURL: $0.imageURL,
+                                title: $0.title
+                            )
+                        }
+                    )
+                case .failure(let error):
+                    self?.errorsHandler.handle(error: error, completion: self?.activityIndicator.hideClosure)
+                }
+            }
         )
     }
 }

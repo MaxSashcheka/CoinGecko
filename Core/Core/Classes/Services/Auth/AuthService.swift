@@ -23,17 +23,20 @@ public final class AuthService: AuthServiceProtocol {
     
     public func login(login: String,
                       password: String,
-                      success: @escaping Closure.Void,
-                      failure: @escaping Closure.ServiceError) {
+                      completion: @escaping Completion<Void, ServiceError>) {
         authAPIDataManager.login(
             login: login,
             password: password,
-            success: { [weak self] in
-                self?.appPropertiesDataManager[.user] = $0
-                self?.usersCacheDataManager.updateCurrentUser($0)
-                success()
-            },
-            failure: ServiceError.wrap(failure, code: .login)
+            completion: { [weak self] result in
+                switch result {
+                case .success(let user):
+                    self?.appPropertiesDataManager[.user] = user
+                    self?.usersCacheDataManager.updateCurrentUser(user)
+                    completion(.success(()))
+                case .failure(let error):
+                    completion(.failure(ServiceError(code: .login, underlying: error)))
+                }
+            }
         )
     }
 }
