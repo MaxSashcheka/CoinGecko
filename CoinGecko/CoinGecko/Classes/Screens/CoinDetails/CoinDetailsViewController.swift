@@ -6,6 +6,7 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
+import Charts
 import Combine
 import SnapKit
 import Utils
@@ -15,8 +16,6 @@ final class CoinDetailsViewController: ViewController {
     private typealias Colors = AppStyle.Colors.CoinDetails
     
     // MARK: - Properties
-    
-    private let navigationBarView = CoinDetailsNavigationBarView()
     
     private let scrollView = UIScrollView()
     
@@ -37,7 +36,9 @@ final class CoinDetailsViewController: ViewController {
         $0.backgroundColor = Colors.addButton
     }
     
-    override var isNavigationBarHidden: Bool { true }
+    private let coinImageView = RemoteImageView()
+    
+    private let coinTitleLabel = Label()
     
     var viewModel: ViewModel!
     
@@ -48,7 +49,15 @@ final class CoinDetailsViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.errorHandlerClosure = errorHandler
+        navigationItem.leftBarButtonItem = UIBarButtonItem.barButtonItem(
+            image: Assets.Images.cross.image,
+            action: { [weak viewModel] in viewModel?.didTapCloseButton() }
+        )
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem.barButtonItem(
+            image: UIImage(.network),
+            action: { [weak viewModel] in viewModel?.didTapBrowserButton() }
+        )
     }
     
     override func viewDidLayoutSubviews() {
@@ -62,16 +71,26 @@ final class CoinDetailsViewController: ViewController {
     override func arrangeSubviews() {
         super.arrangeSubviews()
         
-        view.addSubview(navigationBarView)
-        navigationBarView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(53)
+        let infoContainerView = View()
+        infoContainerView.addSubview(coinImageView)
+        infoContainerView.addSubview(coinTitleLabel)
+        
+        coinImageView.snp.makeConstraints { make in
+            make.size.equalTo(30)
+            make.leading.top.bottom.equalToSuperview()
         }
         
+        coinTitleLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(coinImageView)
+            make.leading.equalTo(coinImageView.snp.trailing).offset(5)
+            make.trailing.equalToSuperview()
+        }
+        
+        navigationItem.titleView = infoContainerView
+          
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
-            make.top.equalTo(navigationBarView.snp.bottom)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.trailing.bottom.equalToSuperview()
         }
         
@@ -92,7 +111,7 @@ final class CoinDetailsViewController: ViewController {
             make.top.equalTo(currentPriceLabel.snp.bottom).offset(35)
             make.leading.trailing.equalToSuperview()
             make.centerX.equalToSuperview()
-            make.height.equalTo(chartView.snp.width).multipliedBy(0.8)
+            make.height.equalTo(chartView.snp.width).multipliedBy(1.15)
         }
         
         scrollView.addSubview(buttonsCollectionView)
@@ -100,37 +119,23 @@ final class CoinDetailsViewController: ViewController {
             make.top.equalTo(chartView.snp.bottom).offset(25)
             make.centerX.equalToSuperview()
             make.height.equalTo(33)
-            make.bottom.equalToSuperview().offset(-20)
         }
         
-        if viewModel.isAddToPortfolioEnabled {
-            scrollView.addSubview(addToPortfolioButton)
-            addToPortfolioButton.snp.makeConstraints { make in
-                make.leading.trailing.equalTo(buttonsCollectionView)
-                make.top.equalTo(buttonsCollectionView.snp.bottom).offset(35)
-                make.height.equalTo(55)
-            }
+        scrollView.addSubview(addToPortfolioButton)
+        addToPortfolioButton.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(buttonsCollectionView)
+            make.top.equalTo(buttonsCollectionView.snp.bottom).offset(35)
+            make.bottom.equalToSuperview().offset(-20)
+            make.height.equalTo(55)
         }
     }
     
     override func bindData() {
         super.bindData()
         
-        viewModel.navigationBarViewModel.closeButtonSubject
+        addToPortfolioButton.tapPublisher
             .sink { [weak viewModel] in
-                viewModel?.didTapCloseButton()
-            }
-            .store(in: &cancellables)
-        
-        viewModel.navigationBarViewModel.addToFavouriteSubject
-            .sink { [weak viewModel] in
-                viewModel?.didTapAddToFavouriteButton()
-            }
-            .store(in: &cancellables)
-        
-        viewModel.navigationBarViewModel.browserButtonSubject
-            .sink { [weak viewModel] in
-                viewModel?.didTapBrowserButton()
+                viewModel?.didTapAddToWalletButton()
             }
             .store(in: &cancellables)
         
@@ -141,12 +146,20 @@ final class CoinDetailsViewController: ViewController {
             }
             .store(in: &cancellables)
         
-        viewModel.currentPriceText
-            .bind(to: \.text, on: currentPriceLabel)
+        viewModel.coinTitle
+            .bind(to: \.text, on: coinTitleLabel)
+            .store(in: &cancellables)
+        
+        viewModel.coinImageURL
+            .bind(to: \.imageURL, on: coinImageView)
             .store(in: &cancellables)
         
         viewModel.priceChangeText
             .bind(to: \.text, on: priceChangeLabel)
+            .store(in: &cancellables)
+        
+        viewModel.currentPriceText
+            .bind(to: \.text, on: currentPriceLabel)
             .store(in: &cancellables)
         
         viewModel.isPriceChangePositive
@@ -154,17 +167,14 @@ final class CoinDetailsViewController: ViewController {
             .bind(to: \.textColor, on: priceChangeLabel)
             .store(in: &cancellables)
         
-        addToPortfolioButton.tapPublisher()
-            .sink { [weak viewModel] in
-                viewModel?.didTapOpenBottomSheetButton()
-            }
+        viewModel.isAddToPortfolioButtonHidden
+            .bind(to: \.isHidden, on: addToPortfolioButton)
             .store(in: &cancellables)
     }
     
     override func setupData() {
         super.setupData()
         
-        navigationBarView.viewModel = viewModel.navigationBarViewModel
         chartView.viewModel = viewModel.chartViewModel
         buttonsCollectionView.viewModel = viewModel.buttonsCollectionViewModel
     }

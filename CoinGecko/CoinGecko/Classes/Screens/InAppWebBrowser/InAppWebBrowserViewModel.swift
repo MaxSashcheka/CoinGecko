@@ -9,11 +9,22 @@
 import Utils
 
 extension InAppWebBrowserViewController {
-    final class ViewModel {
-        var closeTransition: Closure.Void?
+    final class ViewModel: ScreenTransitionable {
+        let transitions: Transitions
+        
+        init(transitions: Transitions) {
+            self.transitions = transitions
+        }
         
         func didSafariViewControllerFinished() {
-            closeTransition?()
+            transitions.close()
         }
+    }
+}
+
+// MARK: - InAppWebBrowserViewModel+NestedTypes
+extension InAppWebBrowserViewController.ViewModel {
+    struct Transitions: ScreenTransitions {
+        let close: Transition
     }
 }

@@ -12,12 +12,24 @@ public extension Closure {
     typealias CoinChartData = (Core.CoinChartData) -> Swift.Void
 }
 
-public struct CoinChartData: Decodable {
-    public let prices: [Double]
+public struct CoinChartData {
+    public let pricesWithData: [PriceMetadata]
+}
+
+public struct PriceMetadata {
+    public let price: Double
+    public let date: Date
 }
 
 public extension CoinChartData {
     init(coinChartDataResponse: CoinChartDataResponse) {
-        self.prices = coinChartDataResponse.prices.map { $0[1] }
+        self.pricesWithData = coinChartDataResponse.prices.map {
+            PriceMetadata(
+                price: $0[1],
+                date: Date(
+                    timeIntervalSince1970: Double(String($0[0]).dropLast(5).description) ?? .zero
+                )
+            )
+        }
     }
 }

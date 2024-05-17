@@ -60,7 +60,7 @@ final class PageButtonsCollectionView: View {
     
     private func bindButtons() {
         buttons.enumerated().forEach { index, button in
-            button.tapPublisher()
+            button.tapPublisher
                 .sink { [weak viewModel] _ in
                     viewModel?.selectButton(at: index)
                     UIFeedbackGenerator.generateFeedback(.medium)

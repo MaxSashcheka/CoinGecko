@@ -271,13 +271,13 @@ public extension Publisher where Failure == Never {
     /// }
     /// ```
     /// Although `[weak root]` makes it possible to use `WritableKeyPath<,>`, since `weak var root` is mutable, anyway its more correct to use `ReferenceWritableKeyPath<,>`
-    func bind<Root: AnyObject>(to keyPath: ReferenceWritableKeyPath<Root, Output>, on root: Root) -> AnyCancellable {
+    func bind<Root: AnyObject>(to keyPath: ReferenceWritableKeyPath<Root, Output>, on root: Root?) -> AnyCancellable {
         sink { [weak root] value in
             root?[keyPath: keyPath] = value
         }
     }
     
-    func bind<Root: AnyObject>(to keyPath: ReferenceWritableKeyPath<Root, Output?>, on root: Root) -> AnyCancellable {
+    func bind<Root: AnyObject>(to keyPath: ReferenceWritableKeyPath<Root, Output?>, on root: Root?) -> AnyCancellable {
         sink { [weak root] value in
             root?[keyPath: keyPath] = value
         }

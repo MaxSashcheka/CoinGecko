@@ -17,7 +17,7 @@ extension CoinCell {
         let nameTitledDescriptionViewModel: TitledDescriptionViewModel
         let priceInfoTitledDescriptionViewModel: TitledDescriptionViewModel
         let imageURL = CurrentValueSubject<URL?, Never>(nil)
-        let isPriceChangePositive = CurrentValueSubject<Bool, Never>(true)
+        let isPriceChangePositive = CurrentValueSubject<Bool?, Never>(true)
         
         init(id: String,
              imageURL: URL?,
@@ -25,7 +25,7 @@ extension CoinCell {
              symbol: String = .empty,
              currentPrice: String = .empty,
              priceChangePercentage: String = .empty,
-             isPriceChangePositive: Bool = false) {
+             isPriceChangePositive: Bool? = nil) {
             self.id = id
             self.imageURL.send(imageURL)
             self.isPriceChangePositive.send(isPriceChangePositive)

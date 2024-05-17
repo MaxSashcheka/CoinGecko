@@ -11,123 +11,164 @@ import Core
 import Utils
 
 extension HomeViewController {
-    final class ViewModel: ErrorHandableViewModel, PriceConvertable {
-        private typealias Texts = L10n.Home.NetworthCard.Status
+    final class ViewModel: ScreenTransitionable, HandlersAccessible, PriceConvertable {
+        private typealias Texts = L10n.Home.TableRow
+        typealias ProfileCellViewModel = ProfileTableCell.ViewModel
         
-        private let coinsInteractor: CoinsInteractorProtocol
+        let placeholderViewModel = HomeViewController.SignInPlaceholderView.ViewModel()
         
-        init(coinsInteractor: CoinsInteractorProtocol) {
-            self.coinsInteractor = coinsInteractor
+        let cellsViewModels = CurrentValueSubject<[[BaseProfileTableCellViewModel]], Never>([])
+        let profileImageURL = CurrentValueSubject<URL?, Never>(nil)
+        let isTableVisible = CurrentValueSubject<Bool, Never>(false)
+        
+        private let services: Services
+        let transitions: Transitions
+        
+        init(transitions: Transitions, services: Services) {
+            self.transitions = transitions
+            self.services = services
             
-            super.init()
+            fetchCurrentUserData()
         }
-        
-        var openSettingsTransition: Closure.Void?
-        var openProfileTransition: Closure.Void?
-        var openBottomSheetTransition: Closure.String?
-        
-        let navigationBarViewModel = HomeNavigationBarView.ViewModel()
-        let networthCardViewModel = NetworhCardView.ViewModel()
-        
-        let coinsViewModels = CurrentValueSubject<[NetworthCoinCell.ViewModel], Never>([])
-        let deleteCoinSubject = PassthroughSubject<String, Never>()
     }
 }
 
-// MARK: - HomeViewController.ViewModel+Fetch
+// MARK: - HomeViewModel+NestedTypes
 extension HomeViewController.ViewModel {
-    func fetchPortfolioCoins() {
-        coinsInteractor.getPortfolioCoins(success: { [weak self] coins in
-            self?.setupNethwordCardViewModel(with: coins)
-            self?.setupCoinsViewModels(with: coins)
-        }, failure: errorHandlerClosure)
+    struct Transitions: ScreenTransitions {
+        let signIn: (@escaping Closure.Void) -> Void
+        let signUp: (@escaping Closure.Void) -> Void
+        let personalWebPage: Closure.URL
+        let accountWallets: Transition
+        let usersList: Transition
     }
     
-    func deleteCoin(withId id: String) {
-        coinsInteractor.getStoredCoin(withId: id, success: { [weak self] coin in
-            guard let self = self else { return }
-            guard var coin = coin else {
-                self.errorHandlerClosure(.coreDataError)
-                return
-            }
-            coin.amount = .zero
-            self.coinsInteractor.createOrUpdate(coin: coin, success: { [weak self] in
-                self?.fetchPortfolioCoins()
-            }, failure: self.errorHandlerClosure)
-        }, failure: errorHandlerClosure)
+    final class Services {
+        let auth: AuthServiceProtocol
+        let users: UsersServiceProtocol
+        
+        init(auth: AuthServiceProtocol,
+             users: UsersServiceProtocol) {
+            self.auth = auth
+            self.users = users
+        }
     }
 }
 
-// MARK: - HomeViewController.ViewModel+SetupViewModels
+// MARK: - HomeViewModel+TableViewDataProviders
+extension HomeViewController.ViewModel {
+    var numberOfSections: Int { cellsViewModels.value.count }
+    
+    func numberOfItems(for section: Int) -> Int {
+        cellsViewModels.value[section].count
+    }
+    
+    func cellViewModel(for indexPath: IndexPath) -> BaseProfileTableCellViewModel {
+        cellsViewModels.value[indexPath.section][indexPath.row]
+    }
+    
+    func selectRow(at indexPath: IndexPath) {
+        cellViewModel(for: indexPath).selectClosure?()
+    }
+}
+
+// MARK: - HomeViewModel+Private
 private extension HomeViewController.ViewModel {
-    func setupNethwordCardViewModel(with coins: [Coin]) {
-        var totalNetworth: Double = .zero
-        var dayProfit: Double = .zero
-        coins.forEach {
-            totalNetworth += $0.priceDetails.currentPrice * ($0.amount ?? .zero)
-            dayProfit += $0.priceDetails.change24h * ($0.amount ?? .zero)
+    func fetchCurrentUserData() {
+        guard let user = services.users.currentUser else {
+            isTableVisible.send(false)
+            return
         }
-
-        networthCardViewModel.networthValue.send(
-            roundedValueString(totalNetworth)
-        )
-        networthCardViewModel.dayProfitValue.send(
-            roundedValueString(abs(dayProfit))
-        )
-        networthCardViewModel.dayProfitTitle.send(dayProfit > .zero ? Texts.up : Texts.down)
+        isTableVisible.send(true)
+        profileImageURL.send(user.imageURL)
+        setupData(with: user)
     }
     
-    func setupCoinsViewModels(with coins: [Coin]) {
-        coinsViewModels.send(
-            coins.compactMap { coin in
-                guard let amount = coin.amount else { return nil }
-                
-                let isPriceChangePositive = coin.priceDetails.changePercentage24h > .zero
-                let priceChangeString = roundedValuePriceChangeString(
-                    coin.priceDetails.changePercentage24h,
-                    isChangePositive: isPriceChangePositive
+    func setupData(with user: User) {
+        var infoViewModels = [[BaseProfileTableCellViewModel]]()
+        infoViewModels.append([
+            ProfileCellViewModel(title: Texts.id, description: String(user.id.uuidString.prefix(8))),
+            ProfileCellViewModel(title: Texts.username, description: user.name),
+            ProfileCellViewModel(title: Texts.login, description: user.login),
+            ProfileCellViewModel(title: Texts.email, description: user.email),
+            ProfileCellViewModel(title: Texts.userRole, description: user.role.rawValue, isSeparatorLineHidden: true)
+        ])
+        
+        infoViewModels.append([
+            ProfileCellViewModel(
+                title: Texts.wallets,
+                description: .empty,
+                isSeparatorLineHidden: true,
+                type: .action,
+                selectClosure: { [weak self] in self?.transitions.accountWallets() }
+            )
+        ])
+        
+        if !user.webPageURL.isNil {
+            infoViewModels.append([
+                ProfileCellViewModel(
+                    title: Texts.personalWebPage,
+                    description: .empty,
+                    isSeparatorLineHidden: true,
+                    type: .action,
+                    selectClosure: { [weak self] in
+                        guard let url = user.webPageURL else { return }
+                        self?.transitions.personalWebPage(url)
+                    }
                 )
-                
-                return NetworthCoinCell.ViewModel(
-                    id: coin.id,
-                    imageURL: coin.imageURL,
-                    name: coin.name,
-                    symbol: coin.symbol.uppercased(),
-                    currentPrice: roundedValueString(coin.priceDetails.currentPrice),
-                    priceChangePercentage: priceChangeString ,
-                    isPriceChangePositive: isPriceChangePositive,
-                    portfolioCount: amount,
-                    portfolioPrice: roundedValueString(amount * coin.priceDetails.currentPrice)
+            ])
+        }
+        
+        if user.role == .user {
+            infoViewModels.append([
+                ProfileCellViewModel(
+                    title: L10n.Home.UsersList.title,
+                    description: .empty,
+                    isSeparatorLineHidden: true,
+                    type: .action,
+                    selectClosure: { [weak self] in self?.transitions.usersList() }
                 )
-            }
-        )
+            ])
+        }
+        
+        infoViewModels.append([
+            HomeViewController.ActionTableCell.ViewModel(
+                title: Texts.logOut,
+                selectClosure: { [weak self] in
+                    guard let self = self else { return }
+                    
+                    let logoutClosure = { [weak self] in
+                        self?.services.users.clearCurrentUser()
+                        self?.fetchCurrentUserData()
+                    }
+                    
+                    self.alertHandler.showAlert(
+                        title: L10n.Home.Logout.title,
+                        message: L10n.Home.Logout.message,
+                        actions: [
+                            self.alertHandler.cancelAction(),
+                            self.alertHandler.action(title: L10n.Home.Logout.action, completion: logoutClosure)
+                        ]
+                    )
+                }
+            )
+        ])
+        
+        cellsViewModels.send(infoViewModels)
     }
 }
 
-// MARK: - HomeViewController.ViewModel+TableMethods
+// MARK: - HomeViewModel+TapActions
 extension HomeViewController.ViewModel {
-    var coinsCount: Int { coinsViewModels.value.count }
-    
-    func cellViewModel(for indexPath: IndexPath) -> NetworthCoinCell.ViewModel {
-        coinsViewModels.value[indexPath.row]
+    var signInClosure: Closure.Void {
+        { [weak self] in self?.fetchCurrentUserData() }
     }
     
-    func didSelectCoin(at indexPath: IndexPath) {
-        openBottomSheetTransition?(coinsViewModels.value[indexPath.row].id)
-    }
-}
-
-// MARK: - HomeViewController.ViewModel+TapActions
-extension HomeViewController.ViewModel {
-    func didTapSettingsButton() {
-        openSettingsTransition?()
+    func didTapSignInButton() {
+        transitions.signIn(signInClosure)
     }
     
-    func didTapProfileButton() {
-        openProfileTransition?()
-    }
-    
-    func presentationControllerDidDismissed() {
-        fetchPortfolioCoins()
+    func didTapSignUpButton() {
+        transitions.signUp(signInClosure)
     }
 }

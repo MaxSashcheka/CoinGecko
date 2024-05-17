@@ -12,44 +12,21 @@ import SnapKit
 import Utils
 
 final class HomeViewController: ViewController {
-    private typealias Texts = L10n.Home.Placeholder
-    private typealias TextStyles = AppStyle.TextStyles.Home.Placeholder
-    private typealias Colors = AppStyle.Colors.Home
+
+    private let placeholderView = SignInPlaceholderView()
     
-    // MARK: - Properties
-    
-    private let navigationBarView = HomeNavigationBarView()
-    
-    private let coinsTableView: TableView = .make(style: .grouped) {
-        $0.register(NetworthCoinCell.self)
+    private let tableView: TableView = .make(style: .insetGrouped) {
+        $0.register(ProfileTableCell.self)
+        $0.register(ActionTableCell.self)
         $0.separatorStyle = .none
-        $0.backgroundColor = Colors.table
     }
     
-    private let placeholderTitleLabel: Label = .make {
-        $0.apply(TextStyles.title)
-        $0.text = Texts.title
-        $0.textAlignment = .center
+    override var backgroundColor: UIColor { Assets.Colors.platinum.color }
+ 
+    private let headerView: View = .make {
+        $0.clipsToBounds = true
     }
-    
-    private let placeholderSubtitleLabel: Label = .make {
-        $0.apply(TextStyles.subtitle)
-        $0.text = Texts.subtitle
-        $0.textAlignment = .center
-    }
-    
-    private let placeholderStackView = UIStackView(axis: .vertical,
-                                                   spacing: 3,
-                                                   distribution: .equalSpacing)
-    
-    private let tableHeaderView = View()
-    
-    private let networhCardView = NetworhCardView()
-    
-    override var isNavigationBarHidden: Bool { true }
-    override var backgroundColor: UIColor { Colors.background }
-    override var tabBarTitle: String { L10n.Tabbar.Title.home }
-    override var tabBarImage: UIImage? { UIImage(.house) }
+    private let profileImageView = RemoteImageView(placeholder: .color(.gray))
     
     var viewModel: ViewModel!
     
@@ -58,13 +35,10 @@ final class HomeViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.errorHandlerClosure = errorHandler
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        title = L10n.Home.title
         
-        viewModel.fetchPortfolioCoins()
+        profileImageView.layer.cornerRadius = 30
+        profileImageView.clipsToBounds = true
     }
     
     // MARK: - Methods
@@ -72,113 +46,119 @@ final class HomeViewController: ViewController {
     override func arrangeSubviews() {
         super.arrangeSubviews()
         
-        view.addSubview(navigationBarView)
-        navigationBarView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+        headerView.addSubview(profileImageView)
+        profileImageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(140)
+            make.bottom.top.equalToSuperview().inset(17)
         }
-        
-        arrangeTableView()
-        
-        tableHeaderView.addSubview(networhCardView)
-        networhCardView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(15)
-            make.top.bottom.equalToSuperview().inset(15)
-        }
-        
-        placeholderStackView.addArrangedSubviews([placeholderTitleLabel, placeholderSubtitleLabel])
     }
     
     override func bindData() {
         super.bindData()
         
-        viewModel.coinsViewModels
+        viewModel.cellsViewModels
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+        
+        viewModel.profileImageURL
+            .bind(to: \.imageURL, on: profileImageView)
+            .store(in: &cancellables)
+        
+        viewModel.isTableVisible
             .sink { [weak self] in
-                guard let self = self else { return }
-                if $0.isEmpty {
-                    self.coinsTableView.removeFromSuperview()
-                    self.arrangePlaceholderStack()
-                } else {
-                    self.placeholderStackView.removeFromSuperview()
-                    self.arrangeTableView()
-                    self.coinsTableView.reloadData()
-                }
+                self?.setTableVisibillity(isHidden: !$0)
             }
             .store(in: &cancellables)
         
-        viewModel.navigationBarViewModel.profileButtonSubject
-            .sink { [weak viewModel] in
-                viewModel?.didTapProfileButton()
+        viewModel.placeholderViewModel.tapSubject
+            .filter { $0 == .signIn }
+            .sink { [weak viewModel] _ in
+                viewModel?.didTapSignInButton()
             }
             .store(in: &cancellables)
         
-        viewModel.navigationBarViewModel.settingsButtonSubject
-            .sink { [weak viewModel] in
-                viewModel?.didTapSettingsButton()
+        viewModel.placeholderViewModel.tapSubject
+            .filter { $0 == .signUp }
+            .sink { [weak viewModel] _ in
+                viewModel?.didTapSignUpButton()
             }
             .store(in: &cancellables)
-        
-        viewModel.deleteCoinSubject
-            .sink { [weak viewModel] in
-                viewModel?.deleteCoin(withId: $0)
-            }
-            .store(in: &cancellables)
-        
     }
     
     override func setupData() {
         super.setupData()
         
-        coinsTableView.delegate = self
-        coinsTableView.dataSource = self
-        
-        navigationBarView.viewModel = viewModel.navigationBarViewModel
-        networhCardView.viewModel = viewModel.networthCardViewModel
+        tableView.delegate = self
+        tableView.dataSource = self
+    
+        placeholderView.viewModel = viewModel.placeholderViewModel
     }
 }
 
-// MARK: - HomeViewController+ArrangeViews
+// MARK: - HomeViewController+SetTableVisibillity
 private extension HomeViewController {
-    func arrangeTableView() {
-        view.addSubview(coinsTableView)
-        coinsTableView.snp.makeConstraints { make in
-            make.top.equalTo(navigationBarView.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
-    }
-    
-    func arrangePlaceholderStack() {
-        view.addSubview(placeholderStackView)
-        placeholderStackView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+    func setTableVisibillity(isHidden: Bool) {
+        if isHidden {
+            tableView.removeFromSuperview()
+            view.addSubview(placeholderView)
+            placeholderView.snp.makeConstraints { make in
+                make.centerY.equalToSuperview()
+                make.leading.trailing.equalToSuperview().inset(45)
+            }
+        } else {
+            placeholderView.removeFromSuperview()
+            view.addSubview(tableView)
+            tableView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
         }
     }
 }
 
-// MARK: - HomeViewController+UITableViewPresentable
 extension HomeViewController: UITableViewPresentable {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.coinsCount
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == .zero else { return nil }
-        return tableHeaderView
+        return headerView
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.reuse(NetworthCoinCell.self, indexPath) else {
-            assertionFailure("Cannot deque reusable cell for \(NetworthCoinCell.reuseIdentifier) identifier")
-            return UITableViewCell()
-        }
-        cell.viewModel = viewModel.cellViewModel(for: indexPath)
-        cell.viewModel?.deleteSubject = viewModel.deleteCoinSubject
-        
-        return cell
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard section == .zero else { return .zero }
+        return 380
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        viewModel.numberOfSections
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.numberOfItems(for: section)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.didSelectCoin(at: indexPath)
+        viewModel.selectRow(at: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch viewModel.cellViewModel(for: indexPath) {
+        case let profileViewModel as ProfileTableCell.ViewModel:
+            guard let cell = tableView.reuse(ProfileTableCell.self, indexPath) else {
+                assertionFailure("Cannot deque reusable cell for \(ProfileTableCell.reuseIdentifier) identifier")
+                return UITableViewCell()
+            }
+            cell.viewModel = profileViewModel
+            return cell
+        case let actionViewModel as ActionTableCell.ViewModel:
+            guard let cell = tableView.reuse(ActionTableCell.self, indexPath) else {
+                assertionFailure("Cannot deque reusable cell for \(ActionTableCell.reuseIdentifier) identifier")
+                return UITableViewCell()
+            }
+            cell.viewModel = actionViewModel
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
 }

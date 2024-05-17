@@ -51,8 +51,6 @@ final class MarketsViewController: ViewController {
     
     override var backgroundColor: UIColor { Colors.background }
     override var isNavigationBarHidden: Bool { true }
-    override var tabBarTitle: String { L10n.Tabbar.Title.markets }
-    override var tabBarImage: UIImage? { UIImage(.chart.pie) }
     
     var viewModel: ViewModel!
     
@@ -61,9 +59,6 @@ final class MarketsViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TODO: - add pull to refresh
-        viewModel.errorHandlerClosure = errorHandler
-        
         viewModel.fetchGlobalData()
     }
     
@@ -71,7 +66,6 @@ final class MarketsViewController: ViewController {
         super.viewWillAppear(animated)
         
         viewModel.fetchCoins()
-        viewModel.fetchFavouritesCoins()
     }
     
     // MARK: - Methods
@@ -125,7 +119,7 @@ final class MarketsViewController: ViewController {
         view.addSubview(pageButtonsCollectionView)
         pageButtonsCollectionView.snp.makeConstraints { make in
             make.top.equalTo(statusTimePlaceholderLabel.snp.bottom).offset(15)
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(60)
         }
         
         view.addSubview(separatorLine)
@@ -196,7 +190,7 @@ final class MarketsViewController: ViewController {
             }
             .store(in: &cancellables)
         
-        searchButton.tapPublisher()
+        searchButton.tapPublisher
             .sink { [weak viewModel] in
                 viewModel?.didTapSearchButton()
             }

@@ -6,12 +6,29 @@
 //  Copyright © 2022 BSUIR. All rights reserved.
 //
 
+import Charts
 import Combine
 import UIKit
 import Utils
 
 final class ChartView: View {
     private typealias Colors = AppStyle.Colors.Chart
+    
+    private let stackView: UIStackView = .make {
+        $0.axis = .vertical
+    }
+    
+    private let rootChartView: LineChartView = .make {
+        $0.leftAxis.enabled = false
+        $0.rightAxis.enabled = false
+        $0.xAxis.enabled = false
+    }
+    
+    private let metadataLabel: Label = .make {
+        $0.font = .systemFont(ofSize: 23, weight: .regular)
+        $0.textAlignment = .center
+        $0.numberOfLines = .zero
+    }
     
     // MARK: - Properties
 
@@ -28,97 +45,64 @@ final class ChartView: View {
     
     private func bindData(with viewModel: ViewModel) {
         viewModel.dataSubject
-            .sink { [weak self] _ in
-                self?.setNeedsDisplay()
+            .sink { [weak self] in
+                let entries = $0.enumerated().map {
+                    ChartDataEntry(x: Double($0), y: $1.price)
+                }
+                let dataSet = LineChartDataSet(entries: entries, label: .empty)
+                guard let gradient = CGGradient(
+                    colorsSpace: CGColorSpaceCreateDeviceRGB(),
+                    colors: [UIColor.green.cgColor, UIColor.green.withAlphaComponent(0.05).cgColor] as CFArray,
+                    locations: [1.0, 0]
+                ) else { return }
+                dataSet.drawFilledEnabled = true
+                dataSet.fill = LinearGradientFill(gradient: gradient, angle: 90)
+                dataSet.mode = .cubicBezier
+                dataSet.drawCirclesEnabled = false
+                dataSet.lineWidth = 1
+                let chartData = LineChartData(dataSet: dataSet)
+                chartData.setDrawValues(false)
+                self?.rootChartView.data = chartData
+                self?.rootChartView.animate(xAxisDuration: 1.5)
+            }
+            .store(in: &cancellables)
+        
+        viewModel.selectedMetadata
+            .compactMap { $0 }
+            .sink { [weak self] metadata in
+                let price = preciseRound(metadata.price, precision: .thousandths)
+                self?.metadataLabel.text = "\(metadata.date.calendarRangeWithYearString)\n\(price) $"
             }
             .store(in: &cancellables)
     }
     
     override func initialize() {
         backgroundColor = Colors.background
+    
+        addSubview(rootChartView)
+        rootChartView.snp.makeConstraints { make in
+            make.leading.trailing.top.equalToSuperview()
+        }
+        
+        addSubview(metadataLabel)
+        metadataLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.top.equalTo(rootChartView.snp.bottom)
+        }
+        
+        rootChartView.delegate = self
+    }
+}
+
+// MARK: - ChartView+ChartViewDelegate
+extension ChartView: ChartViewDelegate {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        viewModel?.didSelectMetadata(at: Int(entry.x))
     }
     
-    override func draw(_ rect: CGRect) {
-        removeAllSubviews()
-        guard let originalChartData = viewModel?.chartData else { return }
-
-        var skipValuesCoefficient = 1
-        switch originalChartData.count {
-        case 100...200: skipValuesCoefficient = 2
-        case 200...1000: skipValuesCoefficient = 3
-        case 1000...10000: skipValuesCoefficient = 15
-        default: break
-        }
-
-        var sortedChartData: [CGFloat] = []
-        for index in originalChartData.indices where index % skipValuesCoefficient == .zero && skipValuesCoefficient != .zero {
-            sortedChartData.append(originalChartData[index])
-        }
-
-        let path = UIBezierPath()
-
-        let (width, height) = (rect.width, rect.height)
-        let maxY = sortedChartData.max() ?? .zero
-        let minY = sortedChartData.min() ?? .zero
-        let yAxis = maxY - minY
-
-        for index in sortedChartData.indices {
-            let currentXCoordinate = width / CGFloat(sortedChartData.count) * CGFloat(index + 1)
-            let currentYCoordinate = (1 - CGFloat((sortedChartData[index] - minY) / yAxis)) * height
-            if index == .zero {
-                path.move(to: .init(x: .zero, y: currentYCoordinate))
-            } else {
-                let previousIndex = index - 1
-                let previousXCoordinate = width / CGFloat(sortedChartData.count) * CGFloat(previousIndex + 1)
-                let previousYCoordinate = (1 - CGFloat((sortedChartData[previousIndex] - minY) / yAxis)) * height
-
-                let middleXCoodinate = (currentXCoordinate + previousXCoordinate) / 2
-                let middleYCoodinate = (currentYCoordinate + previousYCoordinate) / 2
-                path.addQuadCurve(to: .init(x: currentXCoordinate, y: currentYCoordinate),
-                                  controlPoint: .init(x: middleXCoodinate, y: middleYCoodinate))
-            }
-
-            if sortedChartData[index] == maxY {
-                arrangePriceLabelFor(point: .init(x: currentXCoordinate, y: currentYCoordinate),
-                                     priceValue: sortedChartData[index],
-                                     type: .max)
-            } else if sortedChartData[index] == minY {
-                arrangePriceLabelFor(point: .init(x: currentXCoordinate, y: currentYCoordinate),
-                                     priceValue: sortedChartData[index],
-                                     type: .min)
-            }
-        }
-
-        Colors.chart.setStroke()
-        path.lineWidth = 2
-        path.stroke()
-    }
-}
-
-// MARK: - ChartView+Private
-private extension ChartView {
-    func arrangePriceLabelFor(point: CGPoint, priceValue: CGFloat, type: PriceType) {
-        let labelFont = Constants.Fonts.priceLabel
-        let roundedPrice = preciseRound(priceValue, precision: .hundredths).description
-        let width: CGFloat = roundedPrice.width(font: labelFont)
-        let height: CGFloat = roundedPrice.height(font: labelFont)
-        
-        let xCoordinate = max(point.x - width / 2, .zero)
-        let yCoordinate = point.y + (type == .max ? -Constants.priceLabelInset : 5)
-
-        let label = Label(frame: .init(x: xCoordinate, y: yCoordinate, width: width, height: height))
-        label.font = labelFont
-        label.text = roundedPrice
-        label.textColor = type == .max ? Colors.maxPrice : Colors.minPrice
-
-        addSubview(label)
-    }
-}
-
-// MARK: - ChartView+PriceType
-extension ChartView {
-    enum PriceType {
-        case max, min
+    func chartViewDidEndPanning(_ chartView: ChartViewBase) {
+        viewModel?.didEndPanning()
     }
 }
 
@@ -126,10 +110,5 @@ extension ChartView {
 private extension ChartView {
     enum Constants {
         static let skipValuesCount = 10
-        static let priceLabelInset: CGFloat = 15
-        
-        enum Fonts {
-            static let priceLabel: UIFont = .systemFont(ofSize: 10, weight: .medium)
-        }
     }
 }

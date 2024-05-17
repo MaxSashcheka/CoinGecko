@@ -15,6 +15,10 @@ public extension UIView {
         return view
     }
     
+    func addSubviews(_ views: [UIView]) {
+        views.forEach { addSubview($0) }
+    }
+    
     func removeAllSubviews() {
         subviews.forEach { $0.removeFromSuperview() }
     }
@@ -28,5 +32,16 @@ public extension UIView {
     func apply(cornerMask: CACornerMask, withCornerRadius cornerRadius: CGFloat) {
         layer.maskedCorners = cornerMask
         layer.cornerRadius = cornerRadius
+    }
+}
+
+// MARK: UIView+firstResponder
+public extension UIView {
+    var firstResponder: UIView? {
+        guard !self.isFirstResponder else { return self }
+        guard let firstResponder = subviews.first(where: { $0.isFirstResponder }) else {
+            return subviews.compactMap { $0.firstResponder }.first
+        }
+        return firstResponder
     }
 }

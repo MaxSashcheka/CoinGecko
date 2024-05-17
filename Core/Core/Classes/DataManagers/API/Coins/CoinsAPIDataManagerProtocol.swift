@@ -13,24 +13,19 @@ public protocol CoinsAPIDataManagerProtocol {
     func getCoins(currency: String,
                   page: Int,
                   pageSize: Int,
-                  success: @escaping Closure.CoinsArray,
-                  failure: @escaping Closure.GeneralError)
+                  completion: @escaping Completion<[Coin], APIError>)
     
     func getCoinDetails(id: String,
-                        success: @escaping Closure.CoinDetails,
-                        failure: @escaping Closure.GeneralError)
+                        completion: @escaping Completion<CoinDetails, APIError>)
     
     func getCoinMarketChart(id: String,
                             currency: String,
                             startTimeInterval: TimeInterval,
                             endTimeInterval: TimeInterval,
-                            success: @escaping Closure.CoinChartData,
-                            failure: @escaping Closure.GeneralError)
+                            completion: @escaping Completion<CoinChartData, APIError>)
     
     func search(query: String,
-                success: @escaping Closure.SearchResult,
-                failure: @escaping Closure.GeneralError)
+                completion: @escaping Completion<SearchResult, APIError>)
     
-    func getGlobalData(success: @escaping Closure.GlobalData,
-                       failure: @escaping Closure.GeneralError)
+    func getGlobalData(completion: @escaping Completion<GlobalData, APIError>)
 }

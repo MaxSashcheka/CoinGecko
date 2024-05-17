@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TODO: - Make multiple extensions
 public extension ParametersProvider {
     static func id(_ id: String) -> [String: String] {
         ["id": id]
@@ -35,5 +36,70 @@ public extension ParametersProvider {
     
     static func search(query: String) -> [String: String] {
         ["query": query]
+    }
+    
+    static func createUser(id: String,
+                           name: String,
+                           login: String,
+                           password: String,
+                           role: String,
+                           imageURL: String,
+                           email: String,
+                           personalWebPageURL: String) -> [String: String] {
+        [
+            "id": id,
+            "name": name,
+            "login": login,
+            "password": password,
+            "role": role,
+            "imageURL": imageURL,
+            "email": email,
+            "personalWebPageURL": personalWebPageURL
+        ]
+    }
+    
+    static func createPost(id: String,
+                           title: String,
+                           content: String,
+                           authorId: String,
+                           imageURL: String) -> [String: String] {
+        [
+            "id": id,
+            "title": title,
+            "content": content,
+            "authorId": authorId,
+            "imageURL": imageURL
+        ]
+    }
+    
+    static func login(login: String, password: String) -> [String: String] {
+        [
+            "login": login,
+            "password": password
+        ]
+    }
+    
+    static func createWallet(id: String,
+                             userId: String,
+                             name: String,
+                             colorHex: String) -> [String: String] {
+        [
+            "id": id,
+            "userId": userId,
+            "name": name,
+            "colorHex": colorHex
+        ]
+    }
+    
+    static func createCoinIdentifier(id: String,
+                                     amount: Float,
+                                     identifier: String,
+                                     walletId: String) -> [String: String] {
+        [
+            "id": id,
+            "amount": amount.description,
+            "identifier": identifier,
+            "walletId": walletId
+        ]
     }
 }

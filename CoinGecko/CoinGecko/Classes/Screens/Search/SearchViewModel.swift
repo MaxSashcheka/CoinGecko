@@ -11,52 +11,83 @@ import Core
 import Utils
 
 extension SearchViewController {
-    final class ViewModel: ErrorHandableViewModel {
-        private let coinsInteractor: CoinsInteractorProtocol
-        
-        var showCoinDetailInfoTransition: Closure.String?
+    final class ViewModel: ScreenTransitionable, HandlersAccessible {
+        private let services: Services
+        let transitions: Transitions
         
         let coinsViewModels = CurrentValueSubject<[CoinCell.ViewModel], Never>([])
         let nftsViewModels = CurrentValueSubject<[CoinCell.ViewModel], Never>([])
         
         var searchTextFieldViewModel = SearchTextField.ViewModel()
         
-        init(coinsInteractor: CoinsInteractorProtocol) {
-            self.coinsInteractor = coinsInteractor
-            
+        init(transitions: Transitions, services: Services) {
+            self.transitions = transitions
+            self.services = services
         }
     }
 }
 
-// MARK: - SearchViewController.ViewModel+Search
+// MARK: - SearchViewModel+NestedTypes
+extension SearchViewController.ViewModel {
+    struct Transitions: ScreenTransitions {
+        let coinDetails: Closure.String
+    }
+    
+    final class Services {
+        let coins: CoinsServiceProtocol
+        
+        init(coins: CoinsServiceProtocol) {
+            self.coins = coins
+        }
+    }
+}
+
+// MARK: - SearchViewModel+Search
 extension SearchViewController.ViewModel {
     func search(query: String) {
-        coinsInteractor.search(query: query, success: { [weak self] searchResult in
-            guard let self = self else { return }
-            
-            self.coinsViewModels.send(
-                self.makeSearchResultCoinsViewModels(coins: searchResult.coins)
-            )
-            self.nftsViewModels.send(
-                self.makeSearchResultNftsViewModels(nfts: searchResult.nfts)
-            )
-        }, failure: errorHandlerClosure)
+        services.coins.search(
+            query: query,
+            completion: { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let searchResult):
+                    self.coinsViewModels.send(
+                        self.makeSearchResultCoinsViewModels(coins: searchResult.coins)
+                    )
+                    self.nftsViewModels.send(
+                        self.makeSearchResultNftsViewModels(nfts: searchResult.nfts)
+                    )
+                case .failure(let error):
+                    self.errorsHandler.handle(error: error)
+                }
+            }
+        )
     }
     
     func makeSearchResultCoinsViewModels(coins: [SearchCoin]) -> [CoinCell.ViewModel] {
         coins.map { coin in
-            .init(id: coin.id, imageURL: coin.largeURL, name: coin.name, symbol: coin.symbol)
+            CoinCell.ViewModel(
+                id: coin.id,
+                imageURL: coin.largeURL,
+                name: coin.name,
+                symbol: coin.symbol
+            )
         }
     }
     
     func makeSearchResultNftsViewModels(nfts: [SearchNFT]) -> [CoinCell.ViewModel] {
         nfts.map { nft in
-            .init(id: nft.id, imageURL: nft.thumbURL, name: nft.name.orEmpty())
+            CoinCell.ViewModel(
+                id: nft.id,
+                imageURL: nft.thumbURL,
+                name: nft.name.orEmpty()
+            )
         }
     }
 }
 
-// MARK: - SearchViewController.ViewModel+TableMethods
+// MARK: - SearchViewModel+TableMethods
 extension SearchViewController.ViewModel {
     var coinsCount: Int { coinsViewModels.value.count }
     var nftsCount: Int { nftsViewModels.value.count }
@@ -69,6 +100,6 @@ extension SearchViewController.ViewModel {
     
     func didSelectCoin(at indexPath: IndexPath) {
         guard indexPath.section == .zero else { return }
-        showCoinDetailInfoTransition?(coinsViewModels.value[indexPath.row].id)
+        transitions.coinDetails(coinsViewModels.value[indexPath.row].id)
     }
 }

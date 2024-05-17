@@ -9,65 +9,128 @@
 import Combine
 import Utils
 
-public final class CoinsAPIDataManager: CoinsAPIDataManagerProtocol {
-    public init() { }
-    
+public final class CoinsAPIDataManager: APIDataManager, CoinsAPIDataManagerProtocol {
     public func getCoins(currency: String,
                          page: Int,
                          pageSize: Int,
-                         success: @escaping Closure.CoinsArray,
-                         failure: @escaping Closure.GeneralError) {
-        APIClient.getCoinsMarkets(
-            currency: currency,
-            page: page,
-            pageSize: pageSize,
-            success: { coinsResponces in
-                success(coinsResponces.map { Coin(coinResponse: $0) })
-        }, failure: failure)
+                         completion: @escaping Completion<[Coin], APIError>) {
+        let endpoint = RequestDescription.Coins.getCoinsMarkets
+            .replacingQueryParameters(
+                .getCoinsMarkets(
+                    currency: currency,
+                    page: page,
+                    pageSize: pageSize
+                )
+            )
+        
+        execute(
+            request: makeDataRequest(for: endpoint),
+            errorCode: .getCoins,
+            responseType: [CoinResponse].self,
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(response.map { Coin(coinResponse: $0) }))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        )
     }
     
     public func getCoinDetails(id: String,
-                               success: @escaping Closure.CoinDetails,
-                               failure: @escaping Closure.GeneralError) {
-        APIClient.getCoinDetails(
-            id: id,
-            success: { success(CoinDetails(coinDetailsResponse: $0)) },
-            failure: failure
+                               completion: @escaping Completion<CoinDetails, APIError>) {
+        let endpoint = RequestDescription.Coins.getCoinDetails
+            .replacingInlineArguments(
+                .id(id)
+            )
+        
+        execute(
+            request: makeDataRequest(for: endpoint),
+            errorCode: .getCoinDetails,
+            responseType: CoinDetailsResponse.self,
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(CoinDetails(coinDetailsResponse: response)))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
-    
     }
     
     public func getCoinMarketChart(id: String,
                                    currency: String,
                                    startTimeInterval: TimeInterval,
                                    endTimeInterval: TimeInterval,
-                                   success: @escaping Closure.CoinChartData,
-                                   failure: @escaping Closure.GeneralError) {
-        APIClient.getCoinMarketChart(
-            id: id,
-            currency: currency,
-            startTimeInterval: startTimeInterval,
-            endTimeInterval: endTimeInterval,
-            success: { success(CoinChartData(coinChartDataResponse: $0)) },
-            failure: failure
+                                   completion: @escaping Completion<CoinChartData, APIError>) {
+        let endpoint = RequestDescription.Coins.getCoinMarketChart
+            .replacingQueryParameters(
+                .getCoinMarketChart(
+                    currency: currency,
+                    startTimeInterval: startTimeInterval,
+                    endTimeInterval: endTimeInterval
+                )
+            )
+            .replacingInlineArguments(
+                .id(id)
+            )
+        
+        execute(
+            request: makeDataRequest(for: endpoint),
+            errorCode: .getCoinMarketChart,
+            responseType: CoinChartDataResponse.self,
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(CoinChartData(coinChartDataResponse: response)))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
     
     public func search(query: String,
-                       success: @escaping Closure.SearchResult,
-                       failure: @escaping Closure.GeneralError) {
-        APIClient.search(
-            query: query,
-            success: { success(SearchResult(searchResponse: $0)) },
-            failure: failure
+                       completion: @escaping Completion<SearchResult, APIError>) {
+        let endpoint = RequestDescription.Search.search
+            .replacingQueryParameters(
+                .search(
+                    query: query
+                )
+            )
+        
+        execute(
+            request: makeDataRequest(for: endpoint),
+            errorCode: .search,
+            responseType: SearchResponse.self,
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(SearchResult(searchResponse: response)))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
     
-    public func getGlobalData(success: @escaping Closure.GlobalData,
-                              failure: @escaping Closure.GeneralError) {
-        APIClient.getGlobalData(
-            success: { success(GlobalData(globalDataResponse: $0)) },
-            failure: failure
+    public func getGlobalData(completion: @escaping Completion<GlobalData, APIError>) {
+        let endpoint = RequestDescription.Global.getGlobalData
+        
+        execute(
+            request: makeDataRequest(for: endpoint),
+            errorCode: .getGlobalData,
+            responseType: GlobalDataResponse.self,
+            completion: { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(GlobalData(globalDataResponse: response)))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         )
     }
     

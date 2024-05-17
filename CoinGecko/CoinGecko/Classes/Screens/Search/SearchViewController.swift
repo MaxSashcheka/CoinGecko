@@ -32,14 +32,6 @@ final class SearchViewController: ViewController {
     override var isNavigationBarHidden: Bool { false }
     override var isTabBarHidden: Bool { true }
     
-    // MARK: - Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        viewModel.errorHandlerClosure = errorHandler
-    }
-    
     // MARK: - Methods
     
     override func arrangeSubviews() {

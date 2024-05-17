@@ -1,5 +1,9 @@
+"general.alert.close" = "Close";
+"general.alert.cancel" = "Cancel";
+
 "tabbar.title.trending" = "Trending";
 "tabbar.title.markets" = "Markets";
+"tabbar.title.news" = "News";
 "tabbar.title.home" = "Home";
 
 "range_button.title.hour" = "1 H";
@@ -10,33 +14,91 @@
 "range_button.title.year" = "1 Y";
 "range_button.title.all" = "All";
 
-"overlay.coin.title" = "Enter the amount of the coin";
-"overlay.coin.button.title" = "Add";
-
 "trending.title" = "Trending Coins";
 
-"coin_details.add_button.title" = "Add to portfolio";
+"coin_details.add_button.title" = "Add to wallet";
+
+"add_coin.title" = "Choose wallet";
+"add_coin.button.done" = "Done";
+"add_coin.amount.title" = "Enter amount";
+"add_coin.amount.hint" = "Amount should not be empty and have correct format";
 
 "markets.status_title.up" = "Market is up";
 "markets.status_title.down" = "Market is down";
 "markets.time_placeholder.title" = "In the past 24 hours";
+"markets.button.all" = "All";
+"markets.button.gainer" = "Gainer";
+"markets.button.loser" = "Loser";
 
 "search.title" = "Search";
 "search.text_field.placeholder.title" = "Search Cryptocurrency";
 "search.table.title.crypto_coin" = "Crypto coins";
 "search.table.title.nft" = "NFTS";
 
-"home.networth_cell.delete_button.title" = "Delete";
-"home.portfolio.title.count" = "Portfolio count: %@";
-"home.portfolio.title.networth" = "Portfolio networth: %@";
-"home.networth_card.title" = "Balance";
+"news_list.title" = "News";
 
-"home.navigation_bar.title.welcome" = "Weclome";
-"home.navigation_bar.title.name" = "Maksim Sashcheka";
-"home.navigation_bar.title.email" = "sashchekam@gmail.com";
+"home.title" = "Home";
+"home.table_row.id" = "ID";
+"home.table_row.username" = "Username";
+"home.table_row.login" = "Login";
+"home.table_row.email" = "Email";
+"home.table_row.user_role" = "User Role";
+"home.table_row.wallets" = "Wallets";
+"home.table_row.personal_web_page" = "Personal Web Page";
+"home.table_row.log_out" = "Log Out";
+"home.placeholder.title" = "You are not logged";
+"home.placeholder.description" = "Please log in";
+"home.placeholder.sign_in" = "Sign In";
+"home.placeholder.sign_up" = "Sign Up";
+"home.users_list.title" = "Users List";
+"home.logout.title" = "Log out";
+"home.logout.message" = "Are you sure you want to log out?";
+"home.logout.action" = "Log out";
 
-"home.placeholder.title" = "No coins yet.";
-"home.placeholder.subtitle" = "Try to add coin to see portfolio";
+"sign_in.title" = "Sign in";
+"sign_in.login.button" = "Log in";
+"sign_in.login.title" = "Write login";
+"sign_in.login.hint" = "Login should not be empty";
+"sign_in.password.title" = "Write password";
+"sign_in.password.hint" = "Password should not be empty";
 
-"home.networth_card.status.up" = "Day Gain";
-"home.networth_card.status.down" = "Day Loss";
+"create_user.title" = "Create User";
+"create_user.continue_button" = "Continue";
+"create_user.username.title" = "Write username";
+"create_user.username.hint" = "Username should not be empty";
+"create_user.login.title" = "Write login";
+"create_user.login.hint" = "Login should not be empty";
+"create_user.password.title" = "Write password";
+"create_user.password.hint" = "Password should not be empty";
+"create_user.email.title" = "Write email";
+"create_user.email.hint" = "Email should not be empty";
+"create_user.personal_web_page.option_title" = "Do your want to add\npersonal web page link?";
+"create_user.personal_web_page.title" = "Paste Your personal web page url";
+"create_user.personal_web_page.hint" = "Web page url should not be empty";
+
+"create_photo.button.pick_photo" = "Choose photo";
+"create_photo.button.finish" = "Finish";
+"create_photo.title.create_post" = "Create Post Photo";
+"create_photo.title.create_user" = "Create User Photo";
+
+"create_post.title" = "Create new Post";
+"create_post.continue_button" = "Create new Post";
+"create_post.content.title" = "Write post content";
+"create_post.content.hint" = "Content should not be empty";
+"create_post.title_text_field.title" = "Write post title";
+"create_post.title_text_field.hint" = "Post title should not be empty";
+
+"post_details.title" = "Post Details";
+
+"account_wallets.title" = "Account Wallets";
+"account_wallets.placeholder.title" = "No wallets yet.";
+"account_wallets.placeholder.button" = "Add wallet";
+"account_wallets.amount" = "Amount: ";
+"account_wallets.coins" = " coins";
+
+"compose_wallet.title" = "Create new Wallet";
+"compose_wallet.button.pick_color" = "Pick background color";
+"compose_wallet.button.finish" = "Finish";
+"compose_wallet.preview_title" = "Wallet Preview";
+"compose_wallet.name.title" = "Write wallet title";
+"compose_wallet.name.hint" = "Wallet title should not be empty";

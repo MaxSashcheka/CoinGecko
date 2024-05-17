@@ -8,6 +8,7 @@ end
 platform :ios, '14.0'
 inhibit_all_warnings!
 use_frameworks! :linkage => :static
+#$firebase_version = '~> 9.2.0'
 
 source 'https://cdn.cocoapods.org/'
 
@@ -23,6 +24,8 @@ def ui_pods
   pod 'SDWebImage'
   pod 'SVProgressHUD'
   pod 'SafeSFSymbols'
+  pod 'Charts'
+  pod 'NVActivityIndicatorView'
 end
 
 def network_pods
@@ -32,6 +35,8 @@ end
 target 'CoinGecko' do
   common_pods
   ui_pods
+  pod 'Firebase'
+  pod 'Firebase/Storage'
 
   project 'CoinGecko/CoinGecko.xcodeproj'
 end

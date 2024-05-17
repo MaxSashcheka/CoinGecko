@@ -11,7 +11,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    private var rootCoordinator: RootCoordinator!
+    private var appCoordinator: AppCoordinator!
     
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
@@ -20,9 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
         window = UIWindow(windowScene: windowScene)
         
-        rootCoordinator = RootAssembly.makeRootCoordinator()
+        appCoordinator = AppAssembly.appCoordinator()
 
-        rootCoordinator.start(at: window)
+        appCoordinator.start(at: window)
         
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window = window
